@@ -20,7 +20,11 @@ class CreateMessagesTable extends Migration
             $table->string('name',60);
             $table->string('surname',60);
             $table->text('text');
-            $table->bigInteger('apartment_id');
+            
+            $table -> unsignedBigInteger('apartment_id')->nullable();
+            $table  -> foreign('apartment_id')
+                    -> references('id')
+                    -> on('apartments');
 
             $table->timestamps();
         });

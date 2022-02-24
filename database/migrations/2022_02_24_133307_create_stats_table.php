@@ -18,7 +18,11 @@ class CreateStatsTable extends Migration
             
             $table->bigInteger('n_views')->unsigned(); 
             $table->bigInteger('n_messages')->unsigned();
-            $table->bigInteger('apartment_id');
+            
+            $table -> unsignedBigInteger('apartment_id')->nullable();
+            $table  -> foreign('apartment_id')
+                    -> references('id')
+                    -> on('apartments');
 
             $table->timestamps();
         });

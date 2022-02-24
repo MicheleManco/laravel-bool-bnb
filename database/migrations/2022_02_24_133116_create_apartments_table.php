@@ -29,8 +29,16 @@ class CreateApartmentsTable extends Migration
             $table->float('latitude');
             $table->float('longitude');
             $table->integer('n_sponsorships');
-            $table->bigInteger('user_id');
-            $table->bigInteger('category_id');
+            
+            $table -> unsignedBigInteger('user_id')->nullable();
+            $table  -> foreign('user_id')
+                    -> references('id')
+                    -> on('users');
+
+            $table -> unsignedBigInteger('category_id')->nullable();
+            $table  -> foreign('category_id')
+                    -> references('id')
+                    -> on('categories');
 
             $table->timestamps();
         });
