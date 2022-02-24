@@ -25,11 +25,11 @@ class CreateApartmentsTable extends Migration
             $table->tinyInteger('rooms');
             $table->tinyInteger('beds');
             $table->tinyInteger('bathrooms');
-            $table->integer('price');
-            $table->float('latitude');
-            $table->float('longitude');
-            $table->integer('n_sponsorships');
-            
+            $table->decimal('price');
+            $table->float('latitude')->nullable();
+            $table->float('longitude')->nullable();
+            $table->integer('n_sponsorships')->nullable();
+
             $table -> unsignedBigInteger('user_id')->nullable();
             $table  -> foreign('user_id')
                     -> references('id')

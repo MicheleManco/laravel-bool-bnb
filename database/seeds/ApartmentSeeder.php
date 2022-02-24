@@ -2,7 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
-class ApartamentSeeder extends Seeder
+use App\Apartment;
+
+class ApartmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +13,6 @@ class ApartamentSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Apartment::class, 10) -> create();
     }
 }
