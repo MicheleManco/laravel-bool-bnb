@@ -12,4 +12,8 @@ class Image extends Model
         'cover',
         'apartment_id',
     ];
+
+    public function apartment(){
+        return $this->belongsTo(Apartment::class);
+    }
 }

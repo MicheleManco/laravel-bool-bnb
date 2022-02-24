@@ -15,6 +15,12 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
+
+            $table->string('fileName'); 
+            $table->string('altText');
+            $table->boolean('cover');
+            $table->bigInteger('apartment_id');
+
             $table->timestamps();
         });
     }

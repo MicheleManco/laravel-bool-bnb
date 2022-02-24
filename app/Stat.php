@@ -10,6 +10,5 @@ class Stat extends Model
         'n_views', 
         'n_messages',
         'apartment_id',
-        'description',
     ];
 }
