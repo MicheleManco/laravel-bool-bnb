@@ -14,6 +14,9 @@ Route::post('/register', 'Auth\RegisterController@register') -> name('register')
 
 Route::get('/userDashboard', 'UserController@userDashboard')->name('userDashboard');
 
+Route::get('/create', 'UserController@apartmentCreate')->name('apartmentCreate');
+Route::post('/store', 'UserController@apartmentStore')->name('apartmentStore');
+
 // ->prefix('')
 // Route::middleware('auth')->group(function () {
 //     Route::get('/home', 'Controller@edit')->name('edit');

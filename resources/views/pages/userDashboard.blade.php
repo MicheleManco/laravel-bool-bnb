@@ -7,6 +7,6 @@
             {{$apartment->title}}
         @endif
     @endforeach
-    <a href="#">Crea nuovo appartamento</a>
+    <a href="{{route('apartmentCreate')}}">Crea nuovo appartamento</a>
     
 @endsection
