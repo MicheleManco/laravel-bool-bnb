@@ -94,4 +94,14 @@ class UserController extends Controller
         
         return redirect()->route('userDashboard');
     }
+
+    public function apartmentDelete($id) {
+        $apartment = Apartment::findOrFail($id);
+
+        $apartment->services()->sync([]);
+        $apartment->save();        
+
+        $apartment->delete();
+        return redirect()->route('userDashboard');
+    }
 }

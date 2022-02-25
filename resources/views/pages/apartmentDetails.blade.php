@@ -5,8 +5,10 @@
     <p>{{$apartment->description}}</p>
     
     @auth
-        <a href="{{route('apartmentEdit', $apartment->id)}}">Modifica</a>
-        <a href="#">Elimina</a>
+        @if (Auth::user()->id == $apartment->user_id)
+            <a href="{{route('apartmentEdit', $apartment->id)}}">Modifica</a>
+            <a href="{{route('apartmentDelete', $apartment->id)}}">Elimina</a>            
+        @endif
     @endauth
 
 @endsection

@@ -20,6 +20,7 @@ Route::post('/store', 'UserController@apartmentStore')->name('apartmentStore');
 Route::get('/edit/{id}', 'UserController@apartmentEdit')->name('apartmentEdit');
 Route::post('/update/{id}', 'UserController@apartmentUpdate')->name('apartmentUpdate');
 
+Route::get('/delete/{id}', 'UserController@apartmentDelete')->name('apartmentDelete');
 // ->prefix('')
 // Route::middleware('auth')->group(function () {
 //     Route::get('/home', 'Controller@edit')->name('edit');
