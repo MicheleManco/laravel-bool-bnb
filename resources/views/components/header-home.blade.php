@@ -11,6 +11,7 @@
             </div>
         @endif
         
+        {{-- form di registrazione --}}
         <form action="{{route('register')}}" method="POST">
 
             @method('POST')
@@ -34,6 +35,7 @@
             <input type="submit" value= "Register">
         </form>
 
+        {{-- form di login --}}
         <form action="{{route('login')}}" method="POST">
 
             @method('POST')
@@ -46,6 +48,7 @@
             <input type="submit" value="Login">
         </form>
     @else
+        {{-- se l'utente è autenticato mostra il suo nome e i link alla dashboard personale e per il logout --}}
         <h2> Hello to {{Auth::user() -> name }}</h2>
         <a href="{{route('userDashboard')}}"> DASHBOARD</a>
         <a href="{{route('logout')}}"> LOGOUT</a>

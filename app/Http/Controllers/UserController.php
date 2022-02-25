@@ -6,25 +6,30 @@ use App\Apartment;
 use App\Category;
 use App\Service;
 use App\User;
-// use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
+    // costruttore dell'autorizzazione (login)
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    // mostra la pagina di dashboard dell'utente con la lista dei suoi appartamenti
     public function userDashboard(){
         $apartments = Apartment::all();
         return view('pages.userDashboard',compact('apartments'));
     }
+
+    // ----------------------------------------------------------------------------------------------------
+    // crea nuovo appartamento
     public function apartmentCreate(){
         $categories = Category::all();
         $services = Service::all();
         return view('pages.apartmentCreate', compact('categories', 'services'));
     }
+    // salva nuovo appartamento
     public function apartmentStore(Request $request){
 
         $data = $request->validate([
@@ -49,8 +54,8 @@ class UserController extends Controller
         $apartment->category()->associate($category);
         $apartment->save();
         
-        $services = [];
-        if ($request->has('services')) {
+        $services = []; //salva i servizi in un array vuoto
+        if ($request->has('services')) { //controlla se l'appartamento ha servizi
             $services = Service::findOrFail($request->get('services'));
         }
         $apartment->services()->attach($services);
@@ -58,12 +63,14 @@ class UserController extends Controller
                 
         return redirect()->route('userDashboard');
     }
+    // modifica appartamento
     public function apartmentEdit($id){
         $categories = Category::all();
         $services = Service::all();        
         $apartment = Apartment::findOrFail($id);
         return view('pages.apartmentEdit', compact('categories', 'services', 'apartment'));
     }
+    // salva le modifiche dell'appartamento
     public function apartmentUpdate(Request $request, $id){
 
         $data = $request->validate([
@@ -94,7 +101,7 @@ class UserController extends Controller
         
         return redirect()->route('userDashboard');
     }
-
+    // elimina appartamento
     public function apartmentDelete($id) {
         $apartment = Apartment::findOrFail($id);
 
