@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Apartment;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,5 +11,7 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    
+    public function userDashboard(){
+        return view('pages.userDashboard');
+    }
 }

@@ -12,6 +12,8 @@ Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 Route::post('/login', 'Auth\LoginController@login') -> name('login');
 Route::post('/register', 'Auth\RegisterController@register') -> name('register');
 
+Route::get('/userDashboard', 'UserController@userDashboard')->name('userDashboard');
+
 // ->prefix('')
 // Route::middleware('auth')->group(function () {
 //     Route::get('/home', 'Controller@edit')->name('edit');
