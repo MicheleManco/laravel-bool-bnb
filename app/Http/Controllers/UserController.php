@@ -49,10 +49,49 @@ class UserController extends Controller
         $apartment->category()->associate($category);
         $apartment->save();
         
-        $services = Service::findOrFail($request->get('services'));
+        $services = [];
+        if ($request->has('services')) {
+            $services = Service::findOrFail($request->get('services'));
+        }
         $apartment->services()->attach($services);
         $apartment->save();
                 
+        return redirect()->route('userDashboard');
+    }
+    public function apartmentEdit($id){
+        $categories = Category::all();
+        $services = Service::all();        
+        $apartment = Apartment::findOrFail($id);
+        return view('pages.apartmentEdit', compact('categories', 'services', 'apartment'));
+    }
+    public function apartmentUpdate(Request $request, $id){
+
+        $data = $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'cap' => 'required|string',
+            'sqmeters' => 'required|numeric',
+            'rooms' => 'required|numeric',
+            'beds' => 'required|numeric',
+            'bathrooms' => 'required|numeric',
+            'price' => 'required|numeric',
+        ]);
+
+        $apartment = Apartment::findOrFail($id);
+        $apartment->update($data);
+        $category = Category::findOrFail($request->get('category'));
+        $apartment->category()->associate($category);
+        $apartment->save();
+        
+        $services = [];
+        if ($request->has('services')) {
+            $services = Service::findOrFail($request->get('services'));
+        }
+        $apartment->services()->sync($services);
+        $apartment->save();
+        
         return redirect()->route('userDashboard');
     }
 }
