@@ -42,19 +42,17 @@ class UserController extends Controller
 
         $user = Auth::user();
         $data['user_id'] = $user->id;
-
         
         $apartment = Apartment::make($data);
         
         $category = Category::findOrFail($request->get('category'));
-        dd($category);
         $apartment->category()->associate($category);
         $apartment->save();
-
+        
         $services = Service::findOrFail($request->get('services'));
         $apartment->services()->attach($services);
         $apartment->save();
-        
+                
         return redirect()->route('userDashboard');
     }
 }

@@ -37,7 +37,7 @@
     <label for="price">Prezzo a notte</label>
     <input type="number" name="price">
     <label for="category_id">Categoria</label>
-    <select name="category_id">
+    <select name="category">
         @foreach ($categories as $category)            
             <option value="{{$category->id}}">{{$category->name}}</option>
         @endforeach
