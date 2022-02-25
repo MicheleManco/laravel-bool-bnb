@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Apartment;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,6 +13,7 @@ class UserController extends Controller
     }
 
     public function userDashboard(){
-        return view('pages.userDashboard');
+        $apartments = Apartment::all();
+        return view('pages.userDashboard',compact('apartments'));
     }
 }

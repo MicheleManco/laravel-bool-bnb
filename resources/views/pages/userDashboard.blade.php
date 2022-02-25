@@ -2,6 +2,11 @@
 @section('content')
 
     <h2> Ciao {{Auth::user() -> name }}, benvenuto alla tua dashboard!</h2>
+    @foreach ($apartments as $apartment)
+        @if ($apartment->user_id == Auth::user()->id)
+            {{$apartment->title}}
+        @endif
+    @endforeach
     <a href="#">Crea nuovo appartamento</a>
     
 @endsection
