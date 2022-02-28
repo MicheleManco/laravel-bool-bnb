@@ -1,7 +1,14 @@
 @extends('layouts.main-layout')
 @section('content')
 
-<a href="{{route('search')}}">Cerca</a>
+<a href="{{route('search')}}">Fai una ricerca avanzata</a><br>
+
+<p>Insersci la città</p>
+<div id="search">
+    <input type="search" id="search" name="search" class="txt" size="90%" placeholder="Inserisci città">
+    <a href="#"><i class="fas fa-search fs-2"></i></a>
+</div>
+
 
 <div id="elenco">
 
@@ -16,7 +23,7 @@
     @else
 
     <div id="null">
-        <h1>Non ci sono appartamenti</h1>
+        <h1>Non ci sono appartamenti sponsorizzati</h1>
     </div>
 
     @endif

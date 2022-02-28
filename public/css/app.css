@@ -10987,3 +10987,12 @@ a.text-dark:focus {
   text-align: center;
 }
 
+#search {
+  width: 90%;
+  margin: 10px auto;
+}
+
+#search input {
+  border-radius: 10px;
+}
+
