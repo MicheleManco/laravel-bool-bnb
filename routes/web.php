@@ -31,3 +31,5 @@ Route::get('/delete/{id}', 'UserController@apartmentDelete')->name('apartmentDel
 
 // rotte API
 Route::get('/api/apartments/list', 'ApiController@getApartments')->name('api.apartments.list');
+Route::get('/api/categories/list', 'ApiController@getCategories')->name('api.categories.list');
+Route::get('/api/services/list', 'ApiController@getServices')->name('api.services.list');

@@ -1914,20 +1914,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      apartments: []
+      searchText: '',
+      selectedCategory: '',
+      selectedServices: [],
+      filteredApartments: [],
+      categories: [],
+      services: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/api/apartments/list').then(function (r) {
-      return _this.apartments = r.data;
+    axios.get('/api/categories/list').then(function (r) {
+      return _this.categories = r.data;
     })["catch"](function (e) {
       return console.error(e);
     });
+    axios.get('/api/services/list').then(function (r) {
+      return _this.services = r.data;
+    })["catch"](function (e) {
+      return console.error(e);
+    });
+  },
+  methods: {
+    getApartments: function getApartments() {}
   }
 });
 
@@ -37552,7 +37602,73 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    ricerca avanzata\n")])
+  return _c("div", [
+    _c("h2", [_vm._v("Cerca una città")]),
+    _vm._v(" "),
+    _c("input", {
+      attrs: {
+        type: "text",
+        name: "",
+        id: "",
+        placeholder: "Cerca una città",
+        "v-model": _vm.searchText,
+      },
+    }),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
+        on: {
+          click: function ($event) {
+            return _vm.getApartments()
+          },
+        },
+      },
+      [_vm._v("\n        Cerca\n    ")]
+    ),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Filtri")]),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "select",
+        _vm._l(_vm.categories, function (category, j) {
+          return _c(
+            "option",
+            {
+              key: j,
+              attrs: { "v-model": _vm.selectedCategory },
+              domProps: { value: category.id },
+            },
+            [_vm._v(_vm._s(category.name))]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.services, function (service, i) {
+          return _c("span", { key: i }, [
+            _c("input", {
+              attrs: {
+                type: "checkbox",
+                name: service.name,
+                id: service.name,
+                "v-model": _vm.selectedServices,
+              },
+              domProps: { value: service.id },
+            }),
+            _vm._v(
+              "\n                " + _vm._s(service.name) + "\n            "
+            ),
+          ])
+        }),
+        0
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
