@@ -8,6 +8,6 @@
             <a href="{{route('showApartment', $apartment->id)}}">{{$apartment->title}}</a> <br>
         @endif
     @endforeach
-    <a href="{{route('apartmentCreate')}}">Crea nuovo appartamento</a>
+    <a class="btn btn-primary my-2" href="{{route('apartmentCreate')}}">Crea nuovo appartamento</a>
     
 @endsection

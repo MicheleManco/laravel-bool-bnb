@@ -10962,3 +10962,28 @@ a.text-dark:focus {
   }
 }
 
+#elenco {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+#elenco #apartment {
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.form {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form label,
+.form input {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+

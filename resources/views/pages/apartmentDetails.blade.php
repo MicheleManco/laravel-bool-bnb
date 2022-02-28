@@ -1,9 +1,12 @@
 @extends('layouts.main-layout')
 @section('content')
 
+    <a href="{{route('home')}}">Torna indietro</a>
+
     {{-- pagina di dettaglio dell'appartamento --}}
     <h1>{{$apartment->title}}</h1>
     <p>{{$apartment->description}}</p>
+    <span>Prezzo a notte: {{$apartment->price}}€</span>
     
     @auth
         {{-- se l'utente è il proprietario dell'appartamento c'è la possibilità di modificarlo o eliminarlo --}}

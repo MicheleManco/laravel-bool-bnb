@@ -6,3 +6,30 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+#elenco {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+
+    #apartment {
+        padding: 20px;
+        border: 1px solid black;
+        
+    }
+}
+
+.form{
+    margin: 0 auto;
+    text-align: center;
+
+    label, input {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+
+}

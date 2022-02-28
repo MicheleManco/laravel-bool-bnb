@@ -1,56 +1,14 @@
-<header>
+<header> 
     @guest
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        
-        {{-- form di registrazione --}}
-        <form action="{{route('register')}}" method="POST">
-
-            @method('POST')
-            @csrf
-
-            <label for="name">Nome</label>
-            <input type="text" name="name">
-            <label for="surname">Cognome</label>
-            <input type="text" name="surname">
-            <label for="email">Email</label>
-            <input type="email" name="email">
-            <label for="password">Password</label>
-            <input type="password" name="password">
-            <label for="password_confirmation">Password-confirmation</label>
-            <input type="password" name="password_confirmation">
-            <label for="birthday">Data di nascita</label>
-            <input type="date" name="birthday">
-            <label for="description">Descrizione</label>
-            <input type="textarea" name="description">
-            
-            <input type="submit" value= "Register">
-        </form>
-
-        {{-- form di login --}}
-        <form action="{{route('login')}}" method="POST">
-
-            @method('POST')
-            @csrf
-            <label for="email">Email</label>
-            <input type="email" name="email">
-            <label for="password">Password</label>
-            <input type="password" name="password">
-
-            <input type="submit" value="Login">
-        </form>
+    <a href="{{route('pageRegister')}}">Registrati</a> | <a href="{{route('pageLogin')}}">Login</a>
+    
     @else
         {{-- se l'utente è autenticato mostra il suo nome e i link alla dashboard personale e per il logout --}}
         <h2> Hello to {{Auth::user() -> name }}</h2>
         <a href="{{route('userDashboard')}}"> DASHBOARD</a>
-        <a href="{{route('logout')}}"> LOGOUT</a>
+        <a href="{{route('logout')}}"> LOGOUT</a> 
     @endguest
 </header>
+
+

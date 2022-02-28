@@ -7,6 +7,9 @@ Route::get('/', 'GuestController@home')->name('home');
 // ricerca avanzata
 Route::get('/search', 'GuestController@search')->name('search');
 
+Route::get('/page/register', 'GuestController@pageRegister') -> name('pageRegister');
+Route::get('/page/login', 'GuestController@pageLogin') -> name('pageLogin');
+
 // rotte di registrazione, login e logout
 Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 Route::post('/login', 'Auth\LoginController@login') -> name('login');

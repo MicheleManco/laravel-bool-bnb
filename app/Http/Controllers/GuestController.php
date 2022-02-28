@@ -9,7 +9,20 @@ class GuestController extends Controller
 {
     // mostra la view home
     public function home(){
-        return view('pages.home');
+
+        $apartments = Apartment::all();
+
+        return view('pages.home', compact('apartments'));
+    }
+
+    public function pageRegister(){
+
+        return view('pages.register');
+    }
+
+    public function pageLogin(){
+
+        return view('pages.login');
     }
 
     // mostra la pagina di ricerca avanzata
