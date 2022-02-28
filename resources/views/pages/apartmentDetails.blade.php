@@ -8,6 +8,9 @@
     <p>{{$apartment->description}}</p>
     <span>Prezzo a notte: {{$apartment->price}}€</span>
     
+    {{-- Component per mappa --}}
+    <map-component></map-component>
+    
     @auth
         {{-- se l'utente è il proprietario dell'appartamento c'è la possibilità di modificarlo o eliminarlo --}}
         @if (Auth::user()->id == $apartment->user_id)
