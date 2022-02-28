@@ -28,3 +28,6 @@ Route::get('/edit/{id}', 'UserController@apartmentEdit')->name('apartmentEdit');
 Route::post('/update/{id}', 'UserController@apartmentUpdate')->name('apartmentUpdate');
 // elimina un appartamento
 Route::get('/delete/{id}', 'UserController@apartmentDelete')->name('apartmentDelete');
+
+// rotte API
+Route::get('/api/apartments/list', 'ApiController@getApartments')->name('api.apartments.list');
