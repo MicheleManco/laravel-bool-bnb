@@ -2,6 +2,7 @@
   <div class="container">
     <div id="map" class="map" style="height: 300px"></div>
     <h1>hello from component</h1>
+    {{address}}
   </div>
 </template>
 
@@ -10,14 +11,19 @@ import tt from "@tomtom-international/web-sdk-maps";
 // import axios from "axios";
 
 export default {
+  props: {
+    address: String,
+    city: String,
+    cap: String,
+  },
+
   data() {
     return {
-      coordinates: []
+      coordinates: [],
     };
   },
   mounted() {
     this.getAddressLatLong();
-    this.initMap();
   },
 
   methods: {
@@ -37,7 +43,7 @@ export default {
       map.addControl(new tt.NavigationControl());
     },
     getAddressLatLong() {
-      const address = "via nazionale 30, Abbadia Lariana (LC), 23821";
+      const address = `${this.address}, ${this.city}, ${this.cap}`;
       const endpoint = `https://api.tomtom.com/search/2/search/${address}.json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk`;
       const encodedEndpoint = encodeURIComponent(endpoint);
 
@@ -54,8 +60,6 @@ export default {
         })
         .catch((e) => console.error("errror: ", e));
     },
-
-    },
-   
-}
+  },
+};
 </script>
