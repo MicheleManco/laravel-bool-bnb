@@ -1904,9 +1904,86 @@ module.exports = {
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\resources\\js\\components\\AdvancedSearchComponent.vue: Unexpected token, expected \",\" (70:0)\n\n\u001b[0m \u001b[90m 68 |\u001b[39m             }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 69 |\u001b[39m }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 70 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n    at Parser._raise (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:476:17)\n    at Parser.raiseWithData (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:469:17)\n    at Parser.raise (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:430:17)\n    at Parser.unexpected (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:3789:16)\n    at Parser.expect (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:3773:28)\n    at Parser.parseObjectLike (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:13086:14)\n    at Parser.parseExprAtom (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:12498:23)\n    at Parser.parseExprSubscripts (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:12149:23)\n    at Parser.parseUpdate (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:12129:21)\n    at Parser.parseMaybeUnary (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:12104:23)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11901:61)\n    at Parser.parseExprOps (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11908:23)\n    at Parser.parseMaybeConditional (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11878:23)\n    at Parser.parseMaybeAssign (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11833:21)\n    at C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11791:39\n    at Parser.allowInAnd (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:13817:16)\n    at Parser.parseMaybeAssignAllowIn (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11791:17)\n    at Parser.parseExportDefaultExpression (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:15465:22)\n    at Parser.parseExport (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:15353:31)\n    at Parser.parseStatementContent (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14229:27)\n    at Parser.parseStatement (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14113:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14739:25)\n    at Parser.parseBlockBody (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14730:10)\n    at Parser.parseProgram (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14032:10)\n    at Parser.parseTopLevel (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14019:25)\n    at Parser.parse (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:15940:10)\n    at parse (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:15992:38)\n    at parser (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\core\\lib\\parser\\index.js:52:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:87:38)\n    at normalizeFile.next (<anonymous>)\n    at run (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\core\\lib\\transformation\\index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\core\\lib\\transform.js:25:41)\n    at transform.next (<anonymous>)\n    at step (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\gensync\\index.js:261:32)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      searchText: '',
+      selectedCategory: '',
+      selectedServices: [],
+      filteredApartments: [],
+      categories: [],
+      services: []
+    };
+  },
+  props: {
+    apartments: Array
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/api/categories/list').then(function (r) {
+      return _this.categories = r.data;
+    })["catch"](function (e) {
+      return console.error(e);
+    });
+    axios.get('/api/services/list').then(function (r) {
+      return _this.services = r.data;
+    })["catch"](function (e) {
+      return console.error(e);
+    });
+  },
+  methods: {
+    getFilteredApartments: function getFilteredApartments() {
+      // axios.get(`/api/apartments?city=${this.searchText}&category=${this.selectedCategory}&services=${this.selectedServices}`)
+      // .then(r=>console.log(r))
+      // .catch(e=>console.error(e))
+      console.log(this.apartments);
+    }
+  }
+});
 
 /***/ }),
 
@@ -50036,14 +50113,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!*************************************************************!*\
   !*** ./resources/js/components/AdvancedSearchComponent.vue ***!
   \*************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AdvancedSearchComponent_vue_vue_type_template_id_6c4d5998___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998& */ "./resources/js/components/AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998&");
 /* harmony import */ var _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdvancedSearchComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50073,7 +50151,7 @@ component.options.__file = "resources/js/components/AdvancedSearchComponent.vue"
 /*!**************************************************************************************!*\
   !*** ./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

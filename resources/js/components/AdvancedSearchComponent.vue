@@ -51,6 +51,9 @@ export default {
                 services: []
             }
         },
+        props: {
+            apartments: Array,
+        },
         mounted() {
             axios.get('/api/categories/list')
                 .then(r=>this.categories=r.data)
@@ -61,11 +64,13 @@ export default {
         },
         methods: {
             getFilteredApartments() {
-                axios.get(`/api/apartments?city=${this.searchText}&category=${this.selectedCategory}&services=${this.selectedServices}`)
-                .then(r=>console.log(r))
-                .catch(e=>console.error(e))
+                // axios.get(`/api/apartments?city=${this.searchText}&category=${this.selectedCategory}&services=${this.selectedServices}`)
+                // .then(r=>console.log(r))
+                // .catch(e=>console.error(e))
+                console.log(this.apartments);
                 
             },
+        }
 }
 </script>
 
