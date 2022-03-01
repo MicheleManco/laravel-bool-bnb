@@ -1929,9 +1929,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
  // import axios from "axios";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    address: String,
+    city: String,
+    cap: String
+  },
   data: function data() {
     return {
       coordinates: []
@@ -1939,7 +1945,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getAddressLatLong();
-    this.initMap();
   },
   methods: {
     initMap: function initMap() {
@@ -1958,7 +1963,7 @@ __webpack_require__.r(__webpack_exports__);
     getAddressLatLong: function getAddressLatLong() {
       var _this = this;
 
-      var address = "via nazionale 30, Abbadia Lariana (LC), 23821";
+      var address = "".concat(this.address, ", ").concat(this.city, ", ").concat(this.cap);
       var endpoint = "https://api.tomtom.com/search/2/search/".concat(address, ".json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk");
       var encodedEndpoint = encodeURIComponent(endpoint);
       fetch(endpoint).then(function (a) {
@@ -37572,24 +37577,18 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", {
+      staticClass: "map",
+      staticStyle: { height: "300px" },
+      attrs: { id: "map" },
+    }),
+    _vm._v(" "),
+    _c("h1", [_vm._v("hello from component")]),
+    _vm._v("\n  " + _vm._s(_vm.address) + "\n"),
+  ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", {
-        staticClass: "map",
-        staticStyle: { height: "300px" },
-        attrs: { id: "map" },
-      }),
-      _vm._v(" "),
-      _c("h1", [_vm._v("hello from component")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
