@@ -11,13 +11,14 @@
     // justify-content: space-around;
     width: 50%;
     margin: 0 auto;
-    display: inline-block;
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
     #apartment {
-        padding: 20px;
+        padding: 13%;
         border: 1px solid black;
-        margin: 10px 0;     
+        margin: 10px;     
     }
 }
 
