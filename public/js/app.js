@@ -1947,12 +1947,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       searchText: '',
       selectedCategory: '',
       selectedServices: [],
+      servicesArray: [],
       filteredApartments: [],
       categories: [],
       services: []
@@ -1977,10 +1980,41 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getFilteredApartments: function getFilteredApartments() {
-      // axios.get(`/api/apartments?city=${this.searchText}&category=${this.selectedCategory}&services=${this.selectedServices}`)
-      // .then(r=>console.log(r))
-      // .catch(e=>console.error(e))
-      console.log(this.apartments);
+      var _this2 = this;
+
+      this.filteredApartments = [];
+
+      for (var i = 0; i < this.apartments.length; i++) {
+        // fare il controllo su come è scritto
+        if (this.apartments[i].apartment.city == this.searchText) {
+          //confronta la città
+          if (this.selectedCategory) {
+            //controlla se c'è una categoria selezionata
+            if (this.apartments[i].category.id == this.selectedCategory) {
+              // confronta le categorie
+              if (this.selectedServices.length > 0) {
+                //controlla se ci sono servizi selezionati
+                this.servicesArray = [];
+                this.apartments[i].services.forEach(function (element) {
+                  //salva gli id dei servizi
+                  _this2.servicesArray.push(element.id);
+                });
+
+                if (this.servicesArray.some(function (r) {
+                  return _this2.selectedServices.includes(r);
+                })) {
+                  //confronta i servizi
+                  this.filteredApartments.push(this.apartments[i]);
+                }
+              } else {
+                this.filteredApartments.push(this.apartments[i]);
+              }
+            }
+          } else {
+            this.filteredApartments.push(this.apartments[i]);
+          }
+        }
+      }
     }
   }
 });
@@ -37606,134 +37640,144 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h2", [_vm._v("Cerca una città")]),
-    _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.searchText,
-          expression: "searchText",
-        },
-      ],
-      attrs: { type: "text", placeholder: "Cerca una città" },
-      domProps: { value: _vm.searchText },
-      on: {
-        input: function ($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.searchText = $event.target.value
-        },
-      },
-    }),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-primary",
+  return _c(
+    "div",
+    [
+      _c("h2", [_vm._v("Cerca una città")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.searchText,
+            expression: "searchText",
+          },
+        ],
+        attrs: { type: "text", placeholder: "Cerca una città" },
+        domProps: { value: _vm.searchText },
         on: {
-          click: function ($event) {
-            return _vm.getFilteredApartments()
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.searchText = $event.target.value
           },
         },
-      },
-      [_vm._v("\n        Cerca\n    ")]
-    ),
-    _vm._v(" "),
-    _c("h2", [_vm._v("Filtri")]),
-    _vm._v(" "),
-    _c("div", [
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.selectedCategory,
-              expression: "selectedCategory",
-            },
-          ],
-          on: {
-            change: function ($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function (o) {
-                  return o.selected
-                })
-                .map(function (o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.selectedCategory = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            },
-          },
-        },
-        _vm._l(_vm.categories, function (category, j) {
-          return _c("option", { key: j, domProps: { value: category.id } }, [
-            _vm._v(_vm._s(category.name)),
-          ])
-        }),
-        0
-      ),
+      }),
       _vm._v(" "),
       _c(
-        "div",
-        _vm._l(_vm.services, function (service, i) {
-          return _c("span", { key: i }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.selectedServices,
-                  expression: "selectedServices",
-                },
-              ],
-              attrs: { type: "checkbox" },
-              domProps: {
-                value: service.id,
-                checked: Array.isArray(_vm.selectedServices)
-                  ? _vm._i(_vm.selectedServices, service.id) > -1
-                  : _vm.selectedServices,
-              },
-              on: {
-                change: function ($event) {
-                  var $$a = _vm.selectedServices,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = service.id,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.selectedServices = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (_vm.selectedServices = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.selectedServices = $$c
-                  }
-                },
-              },
-            }),
-            _vm._v(
-              "\n                " + _vm._s(service.name) + "\n            "
-            ),
-          ])
-        }),
-        0
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          on: {
+            click: function ($event) {
+              return _vm.getFilteredApartments()
+            },
+          },
+        },
+        [_vm._v("\n        Cerca\n    ")]
       ),
-    ]),
-    _vm._v(" "),
-    _c("hr"),
-  ])
+      _vm._v(" "),
+      _c("h2", [_vm._v("Filtri")]),
+      _vm._v(" "),
+      _c("div", [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selectedCategory,
+                expression: "selectedCategory",
+              },
+            ],
+            on: {
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selectedCategory = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+            },
+          },
+          _vm._l(_vm.categories, function (category, j) {
+            return _c("option", { key: j, domProps: { value: category.id } }, [
+              _vm._v(_vm._s(category.name)),
+            ])
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          _vm._l(_vm.services, function (service, i) {
+            return _c("span", { key: i }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selectedServices,
+                    expression: "selectedServices",
+                  },
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  value: service.id,
+                  checked: Array.isArray(_vm.selectedServices)
+                    ? _vm._i(_vm.selectedServices, service.id) > -1
+                    : _vm.selectedServices,
+                },
+                on: {
+                  change: function ($event) {
+                    var $$a = _vm.selectedServices,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = service.id,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 && (_vm.selectedServices = $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          (_vm.selectedServices = $$a
+                            .slice(0, $$i)
+                            .concat($$a.slice($$i + 1)))
+                      }
+                    } else {
+                      _vm.selectedServices = $$c
+                    }
+                  },
+                },
+              }),
+              _vm._v(
+                "\n                " + _vm._s(service.name) + "\n            "
+              ),
+            ])
+          }),
+          0
+        ),
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm._l(_vm.filteredApartments, function (apartment, i) {
+        return _c("div", { key: i }, [
+          _vm._v("\n        qui appartamento\n    "),
+        ])
+      }),
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

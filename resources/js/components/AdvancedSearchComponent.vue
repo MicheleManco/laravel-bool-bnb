@@ -33,7 +33,9 @@
             </div>
         </div>
         <hr>
-        
+        <div v-for="apartment, i in filteredApartments" :key="i">
+            qui appartamento
+        </div>
     </div>
 </template>
 
@@ -45,6 +47,7 @@ export default {
                 selectedCategory: '',
                 selectedServices: [],
                 
+                servicesArray: [],
                 filteredApartments: [],
 
                 categories: [],
@@ -64,13 +67,37 @@ export default {
         },
         methods: {
             getFilteredApartments() {
-                // axios.get(`/api/apartments?city=${this.searchText}&category=${this.selectedCategory}&services=${this.selectedServices}`)
-                // .then(r=>console.log(r))
-                // .catch(e=>console.error(e))
-                console.log(this.apartments);
-                
+                this.filteredApartments = [];
+
+                for (let i = 0; i < this.apartments.length; i++) {
+                    // fare il controllo su come è scritto
+                    if(this.apartments[i].apartment.city == this.searchText) { //confronta la città
+
+                        if(this.selectedCategory) { //controlla se c'è una categoria selezionata
+                            if (this.apartments[i].category.id == this.selectedCategory) { // confronta le categorie
+
+                                if (this.selectedServices.length > 0) { //controlla se ci sono servizi selezionati
+                                    this.servicesArray = []
+                                    this.apartments[i].services.forEach(element => { //salva gli id dei servizi
+                                        this.servicesArray.push(element.id)
+                                    });
+                                        if (this.servicesArray.some(r=> this.selectedServices.includes(r))) { //confronta i servizi
+                                            this.filteredApartments.push(this.apartments[i])
+                                        }
+                                } else {
+                                    this.filteredApartments.push(this.apartments[i])
+                                }
+                            }
+                        } else {
+                            this.filteredApartments.push(this.apartments[i])
+                        }
+                    }
+                }
+                                
             },
         }
+        
+        
 }
 </script>
 
