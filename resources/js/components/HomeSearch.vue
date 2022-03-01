@@ -12,7 +12,9 @@
         <div id="elenco" >
             <div id="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
 
-                <a href="#">{{apartment.city}}</a>
+                <a :href="`/apartment/${apartment.id}`" >{{apartment.city}}</a>
+                <p>{{apartment.title}}</p>
+                <p>{{apartment.description}}</p>
             </div>
 
         </div>
