@@ -1904,82 +1904,9 @@ module.exports = {
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      searchText: '',
-      selectedCategory: '',
-      selectedServices: [],
-      filteredApartments: [],
-      categories: [],
-      services: []
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    axios.get('/api/categories/list').then(function (r) {
-      return _this.categories = r.data;
-    })["catch"](function (e) {
-      return console.error(e);
-    });
-    axios.get('/api/services/list').then(function (r) {
-      return _this.services = r.data;
-    })["catch"](function (e) {
-      return console.error(e);
-    });
-  },
-  methods: {
-    getApartments: function getApartments() {}
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\resources\\js\\components\\AdvancedSearchComponent.vue: Unexpected token, expected \",\" (70:0)\n\n\u001b[0m \u001b[90m 68 |\u001b[39m             }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 69 |\u001b[39m }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 70 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n    at Parser._raise (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:476:17)\n    at Parser.raiseWithData (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:469:17)\n    at Parser.raise (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:430:17)\n    at Parser.unexpected (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:3789:16)\n    at Parser.expect (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:3773:28)\n    at Parser.parseObjectLike (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:13086:14)\n    at Parser.parseExprAtom (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:12498:23)\n    at Parser.parseExprSubscripts (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:12149:23)\n    at Parser.parseUpdate (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:12129:21)\n    at Parser.parseMaybeUnary (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:12104:23)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11901:61)\n    at Parser.parseExprOps (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11908:23)\n    at Parser.parseMaybeConditional (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11878:23)\n    at Parser.parseMaybeAssign (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11833:21)\n    at C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11791:39\n    at Parser.allowInAnd (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:13817:16)\n    at Parser.parseMaybeAssignAllowIn (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:11791:17)\n    at Parser.parseExportDefaultExpression (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:15465:22)\n    at Parser.parseExport (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:15353:31)\n    at Parser.parseStatementContent (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14229:27)\n    at Parser.parseStatement (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14113:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14739:25)\n    at Parser.parseBlockBody (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14730:10)\n    at Parser.parseProgram (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14032:10)\n    at Parser.parseTopLevel (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:14019:25)\n    at Parser.parse (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:15940:10)\n    at parse (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\parser\\lib\\index.js:15992:38)\n    at parser (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\core\\lib\\parser\\index.js:52:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:87:38)\n    at normalizeFile.next (<anonymous>)\n    at run (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\core\\lib\\transformation\\index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\@babel\\core\\lib\\transform.js:25:41)\n    at transform.next (<anonymous>)\n    at step (C:\\Users\\Admin\\Documents\\Boolean\\progetto-finale\\laravel-bool-bnb\\node_modules\\gensync\\index.js:261:32)");
 
 /***/ }),
 
@@ -37606,12 +37533,23 @@ var render = function () {
     _c("h2", [_vm._v("Cerca una città")]),
     _vm._v(" "),
     _c("input", {
-      attrs: {
-        type: "text",
-        name: "",
-        id: "",
-        placeholder: "Cerca una città",
-        "v-model": _vm.searchText,
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.searchText,
+          expression: "searchText",
+        },
+      ],
+      attrs: { type: "text", placeholder: "Cerca una città" },
+      domProps: { value: _vm.searchText },
+      on: {
+        input: function ($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.searchText = $event.target.value
+        },
       },
     }),
     _vm._v(" "),
@@ -37621,7 +37559,7 @@ var render = function () {
         staticClass: "btn btn-primary",
         on: {
           click: function ($event) {
-            return _vm.getApartments()
+            return _vm.getFilteredApartments()
           },
         },
       },
@@ -37633,16 +37571,35 @@ var render = function () {
     _c("div", [
       _c(
         "select",
-        _vm._l(_vm.categories, function (category, j) {
-          return _c(
-            "option",
+        {
+          directives: [
             {
-              key: j,
-              attrs: { "v-model": _vm.selectedCategory },
-              domProps: { value: category.id },
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedCategory,
+              expression: "selectedCategory",
             },
-            [_vm._v(_vm._s(category.name))]
-          )
+          ],
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selectedCategory = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+          },
+        },
+        _vm._l(_vm.categories, function (category, j) {
+          return _c("option", { key: j, domProps: { value: category.id } }, [
+            _vm._v(_vm._s(category.name)),
+          ])
         }),
         0
       ),
@@ -37652,13 +37609,42 @@ var render = function () {
         _vm._l(_vm.services, function (service, i) {
           return _c("span", { key: i }, [
             _c("input", {
-              attrs: {
-                type: "checkbox",
-                name: service.name,
-                id: service.name,
-                "v-model": _vm.selectedServices,
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.selectedServices,
+                  expression: "selectedServices",
+                },
+              ],
+              attrs: { type: "checkbox" },
+              domProps: {
+                value: service.id,
+                checked: Array.isArray(_vm.selectedServices)
+                  ? _vm._i(_vm.selectedServices, service.id) > -1
+                  : _vm.selectedServices,
               },
-              domProps: { value: service.id },
+              on: {
+                change: function ($event) {
+                  var $$a = _vm.selectedServices,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = service.id,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.selectedServices = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.selectedServices = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.selectedServices = $$c
+                  }
+                },
+              },
             }),
             _vm._v(
               "\n                " + _vm._s(service.name) + "\n            "
@@ -37668,6 +37654,8 @@ var render = function () {
         0
       ),
     ]),
+    _vm._v(" "),
+    _c("hr"),
   ])
 }
 var staticRenderFns = []

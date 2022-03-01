@@ -5,50 +5,48 @@
 
         <input 
         type="text" 
-        name="" 
-        id="" 
         placeholder="Cerca una città"
-        :v-model="searchText"
+        v-model="searchText"
         >
 
         <button 
         class="btn btn-primary" 
-        @click="getApartments()">
+        @click="getFilteredApartments()">
             Cerca
         </button>
         
         <h2>Filtri</h2>
         <div>
-            <select>
+            <select v-model="selectedCategory">
                 <option
                     v-for="category, j in categories" 
                     :key="j" 
-                    :value="category.id"
-                    :v-model="selectedCategory">{{category.name}}</option>
+                    :value="category.id">{{category.name}}</option>
             </select>
             <div>
                 <span v-for="service, i in services" :key="i">
                     <input type="checkbox" 
-                    :name="service.name" 
-                    :id="service.name" 
                     :value="service.id"
-                    :v-model="selectedServices">
+                    v-model="selectedServices">
                     {{service.name}}
                 </span>
             </div>
         </div>
+        <hr>
         
     </div>
 </template>
 
 <script>
 export default {
-    data: function() {
+    data() {
             return {
                 searchText: '',
                 selectedCategory: '',
                 selectedServices: [],
+                
                 filteredApartments: [],
+
                 categories: [],
                 services: []
             }
@@ -62,10 +60,12 @@ export default {
                 .catch(e=>console.error(e))
         },
         methods: {
-            getApartments() {
-
-            }
-        }
+            getFilteredApartments() {
+                axios.get(`/api/apartments?city=${this.searchText}&category=${this.selectedCategory}&services=${this.selectedServices}`)
+                .then(r=>console.log(r))
+                .catch(e=>console.error(e))
+                
+            },
 }
 </script>
 
