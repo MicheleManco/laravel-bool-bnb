@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Apartment;
+use App\Category;
+use App\Service;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -28,7 +30,9 @@ class GuestController extends Controller
     // mostra la pagina di ricerca avanzata
     public function search(){
         $apartments = Apartment::all();
-        return view('pages.search', compact('apartments'));
+        $categories = Category::all();
+        $services = Service::all();
+        return view('pages.search', compact('apartments', 'categories', 'services'));
     }
 
     // mostra la pagina di dettaglio del singolo appartamento

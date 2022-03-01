@@ -1911,6 +1911,191 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      searchText: '',
+      selectedCategory: '',
+      selectedServices: [],
+      filteredApartments: [],
+      selectedCityApartments: [],
+      selectedCategoryApartments: [],
+      selectedServicesApartments: [],
+      servicesIdArray: [],
+      intersection: [],
+      categories: [],
+      services: []
+    };
+  },
+  props: {
+    apartments: Array
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/api/categories/list').then(function (r) {
+      return _this.categories = r.data;
+    })["catch"](function (e) {
+      return console.error(e);
+    });
+    axios.get('/api/services/list').then(function (r) {
+      return _this.services = r.data;
+    })["catch"](function (e) {
+      return console.error(e);
+    });
+  },
+  methods: {
+    getFilteredApartments: function getFilteredApartments() {
+      var _this2 = this;
+
+      console.log('click');
+      this.filteredApartments = [];
+      this.intersection = [];
+      this.selectedCityApartments = [];
+      this.selectedCategoryApartments = [];
+      this.selectedServicesApartments = [];
+
+      for (var i = 0; i < this.apartments.length; i++) {
+        if (this.searchText) {
+          //controlla se c'è del testo di ricerca
+          if (this.apartments[i].apartment.city == this.searchText) {
+            this.selectedCityApartments.push(this.apartments[i]);
+          }
+        }
+
+        if (this.selectedCategory != -1) {
+          //controlla se c'è una categoria selezionata
+          if (this.apartments[i].category.id == this.selectedCategory) {
+            // confronta le categorie
+            this.selectedCategoryApartments.push(this.apartments[i]);
+          }
+        }
+
+        if (this.selectedServices.length > 0) {
+          //controlla se ci sono servizi selezionati     
+          this.servicesIdArray = [];
+          this.apartments[i].services.forEach(function (element) {
+            //salva gli id dei servizi dell'appartamento
+            _this2.servicesIdArray.push(element.id);
+          });
+
+          if (this.servicesIdArray.some(function (r) {
+            return _this2.selectedServices.includes(r);
+          })) {
+            //confronta i servizi
+            this.selectedServicesApartments.push(this.apartments[i]);
+          }
+        }
+      }
+
+      if (this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length > 0) {
+        this.intersection = this.selectedCityApartments.filter(function (e) {
+          return _this2.selectedCategoryApartments.some(function (item) {
+            return item.id === e.id;
+          });
+        });
+        this.filteredApartments = this.intersection.filter(function (e) {
+          return _this2.selectedServicesApartments.some(function (item) {
+            return item.id === e.id;
+          });
+        });
+        return this.filteredApartments;
+      } else {
+        if (this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length > 0) {
+          this.filteredApartments = this.selectedCityApartments.filter(function (e) {
+            return _this2.selectedCategoryApartments.some(function (item) {
+              return item.id === e.id;
+            });
+          });
+          return this.filteredApartments;
+        } else if (this.selectedCityApartments.length > 0 && this.selectedServicesApartments.length > 0) {
+          this.filteredApartments = this.selectedCityApartments.filter(function (e) {
+            return _this2.selectedServicesApartments.some(function (item) {
+              return item.id === e.id;
+            });
+          });
+          return this.filteredApartments;
+        } else if (this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length > 0) {
+          this.filteredApartments = this.selectedCategoryApartments.filter(function (e) {
+            return _this2.selectedServicesApartments.some(function (item) {
+              return item.id === e.id;
+            });
+          });
+          return this.filteredApartments;
+        } else {
+          if (this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length == 0 && this.selectedServicesApartments.length == 0) {
+            this.filteredApartments = this.selectedCityApartments;
+            return this.filteredApartments;
+          } else if (this.selectedCityApartments.length == 0 && this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length == 0) {
+            this.filteredApartments = this.selectedCategoryApartments;
+            return this.filteredApartments;
+          } else if (this.selectedCityApartments.length == 0 && this.selectedCategoryApartments.length == 0 && this.selectedServicesApartments.length > 0) {
+            this.filteredApartments = this.selectedServicesApartments;
+            return this.filteredApartments;
+          }
+        }
+      }
+
+      console.log(this.filteredApartments); // console.log(this.intersection);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HomeSearch.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HomeSearch.vue?vue&type=script&lang=js& ***!
@@ -37615,6 +37800,184 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("h2", [_vm._v("Cerca una città")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.searchText,
+            expression: "searchText",
+          },
+        ],
+        attrs: { type: "text", placeholder: "Cerca una città" },
+        domProps: { value: _vm.searchText },
+        on: {
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.searchText = $event.target.value
+          },
+        },
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          on: {
+            click: function ($event) {
+              return _vm.getFilteredApartments()
+            },
+          },
+        },
+        [_vm._v("\n        Cerca\n    ")]
+      ),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Filtri")]),
+      _vm._v(" "),
+      _c("div", [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selectedCategory,
+                expression: "selectedCategory",
+              },
+            ],
+            on: {
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selectedCategory = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+            },
+          },
+          [
+            _c("option", { attrs: { value: "-1" } }, [_vm._v("Qualsiasi")]),
+            _vm._v(" "),
+            _vm._l(_vm.categories, function (category, j) {
+              return _c(
+                "option",
+                { key: j, domProps: { value: category.id } },
+                [_vm._v(_vm._s(category.name))]
+              )
+            }),
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          _vm._l(_vm.services, function (service, i) {
+            return _c("span", { key: i }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selectedServices,
+                    expression: "selectedServices",
+                  },
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  value: service.id,
+                  checked: Array.isArray(_vm.selectedServices)
+                    ? _vm._i(_vm.selectedServices, service.id) > -1
+                    : _vm.selectedServices,
+                },
+                on: {
+                  change: function ($event) {
+                    var $$a = _vm.selectedServices,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = service.id,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 && (_vm.selectedServices = $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          (_vm.selectedServices = $$a
+                            .slice(0, $$i)
+                            .concat($$a.slice($$i + 1)))
+                      }
+                    } else {
+                      _vm.selectedServices = $$c
+                    }
+                  },
+                },
+              }),
+              _vm._v(
+                "\n                " + _vm._s(service.name) + "\n            "
+              ),
+            ])
+          }),
+          0
+        ),
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm._l(_vm.filteredApartments, function (filteredApartment, i) {
+        return _c(
+          "div",
+          { key: i },
+          [
+            _c("h3", [_vm._v(_vm._s(filteredApartment.apartment.title))]),
+            _vm._v(" "),
+            _c("h4", [_vm._v(_vm._s(filteredApartment.category.name))]),
+            _vm._v(" "),
+            _vm._l(filteredApartment.services, function (service, j) {
+              return _c("h5", { key: j }, [_vm._v(_vm._s(service.name))])
+            }),
+          ],
+          2
+        )
+      }),
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HomeSearch.vue?vue&type=template&id=09e28492&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HomeSearch.vue?vue&type=template&id=09e28492& ***!
@@ -49940,6 +50303,7 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./components/AdvancedSearchComponent.vue": "./resources/js/components/AdvancedSearchComponent.vue",
 	"./components/HomeSearch.vue": "./resources/js/components/HomeSearch.vue",
 	"./components/MapComponent.vue": "./resources/js/components/MapComponent.vue"
 };
@@ -50042,6 +50406,76 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/AdvancedSearchComponent.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/AdvancedSearchComponent.vue ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AdvancedSearchComponent_vue_vue_type_template_id_6c4d5998___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998& */ "./resources/js/components/AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998&");
+/* harmony import */ var _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdvancedSearchComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdvancedSearchComponent_vue_vue_type_template_id_6c4d5998___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AdvancedSearchComponent_vue_vue_type_template_id_6c4d5998___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AdvancedSearchComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AdvancedSearchComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearchComponent_vue_vue_type_template_id_6c4d5998___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearchComponent_vue_vue_type_template_id_6c4d5998___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearchComponent_vue_vue_type_template_id_6c4d5998___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -50201,8 +50635,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Admin\Documents\Boolean\progetto-finale\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Admin\Documents\Boolean\progetto-finale\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
