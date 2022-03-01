@@ -10963,16 +10963,16 @@ a.text-dark:focus {
 }
 
 #elenco {
-  display: flex;
-  justify-content: space-around;
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
-  flex-wrap: wrap;
+  display: inline-block;
+  text-align: center;
 }
 
 #elenco #apartment {
   padding: 20px;
   border: 1px solid black;
+  margin: 10px 0;
 }
 
 .form {
@@ -10994,5 +10994,9 @@ a.text-dark:focus {
 
 #search input {
   border-radius: 10px;
+}
+
+#search .fas {
+  cursor: pointer;
 }
 

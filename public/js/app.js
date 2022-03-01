@@ -1934,7 +1934,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      apartments: []
+      apartments: [],
+      apartmentFilted: []
     };
     searchApp = "";
   },
@@ -37572,7 +37573,7 @@ var render = function () {
           },
         }),
         _vm._v(" "),
-        _vm._m(0),
+        _c("i", { staticClass: "fas fa-search fs-2" }),
       ]),
       _vm._v(" "),
       _vm._l(_vm.apartments, function (apartment) {
@@ -37588,16 +37589,7 @@ var render = function () {
     2
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fas fa-search fs-2" }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

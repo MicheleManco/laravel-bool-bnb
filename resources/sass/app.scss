@@ -8,16 +8,16 @@
 @import '~bootstrap/scss/bootstrap';
 
 #elenco {
-    display: flex;
-    justify-content: space-around;
-    width: 80%;
+    // justify-content: space-around;
+    width: 50%;
     margin: 0 auto;
-    flex-wrap: wrap;
+    display: inline-block;
+    text-align: center;
 
     #apartment {
         padding: 20px;
         border: 1px solid black;
-        
+        margin: 10px 0;     
     }
 }
 
@@ -32,6 +32,7 @@
     }
 }
 
+
 #search {
     width: 90%;
     margin: 10px auto;
@@ -39,4 +40,11 @@
     input {
         border-radius: 10px;
     }
+
+    .fas {
+        cursor: pointer;
+    }
 }
+
+
+

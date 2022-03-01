@@ -5,7 +5,7 @@
 
         <div id="search">
             <input type="search" id="search" name="search" class="txt" size="90%" placeholder="Inserisci città" v-model="searchApp">
-            <a href="#"><i class="fas fa-search fs-2"></i></a>
+            <i class="fas fa-search fs-2"></i>
         </div>
 
 
@@ -28,8 +28,10 @@
 
             return {
 
-                apartments: []
-            }
+                apartments: [],
+
+                apartmentFilted: [],
+            };
 
             searchApp= "";
         },
@@ -40,7 +42,7 @@
                 .then(r => this.apartments = r.data)
                 .catch(e => console.error(e));
 
-        }
+        },
 
     }
 
