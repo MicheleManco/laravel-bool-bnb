@@ -1949,14 +1949,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       searchText: '',
       selectedCategory: '',
       selectedServices: [],
-      servicesArray: [],
       filteredApartments: [],
+      selectedCityApartments: [],
+      selectedCategoryApartments: [],
+      selectedServicesApartments: [],
+      servicesIdArray: [],
+      intersection: [],
       categories: [],
       services: []
     };
@@ -1982,39 +1989,95 @@ __webpack_require__.r(__webpack_exports__);
     getFilteredApartments: function getFilteredApartments() {
       var _this2 = this;
 
+      console.log('click');
       this.filteredApartments = [];
+      this.intersection = [];
+      this.selectedCityApartments = [];
+      this.selectedCategoryApartments = [];
+      this.selectedServicesApartments = [];
 
       for (var i = 0; i < this.apartments.length; i++) {
-        // fare il controllo su come è scritto
-        if (this.apartments[i].apartment.city == this.searchText) {
-          //confronta la città
-          if (this.selectedCategory) {
-            //controlla se c'è una categoria selezionata
-            if (this.apartments[i].category.id == this.selectedCategory) {
-              // confronta le categorie
-              if (this.selectedServices.length > 0) {
-                //controlla se ci sono servizi selezionati
-                this.servicesArray = [];
-                this.apartments[i].services.forEach(function (element) {
-                  //salva gli id dei servizi
-                  _this2.servicesArray.push(element.id);
-                });
+        if (this.searchText) {
+          //controlla se c'è del testo di ricerca
+          if (this.apartments[i].apartment.city == this.searchText) {
+            this.selectedCityApartments.push(this.apartments[i]);
+          }
+        }
 
-                if (this.servicesArray.some(function (r) {
-                  return _this2.selectedServices.includes(r);
-                })) {
-                  //confronta i servizi
-                  this.filteredApartments.push(this.apartments[i]);
-                }
-              } else {
-                this.filteredApartments.push(this.apartments[i]);
-              }
-            }
-          } else {
-            this.filteredApartments.push(this.apartments[i]);
+        if (this.selectedCategory != -1) {
+          //controlla se c'è una categoria selezionata
+          if (this.apartments[i].category.id == this.selectedCategory) {
+            // confronta le categorie
+            this.selectedCategoryApartments.push(this.apartments[i]);
+          }
+        }
+
+        if (this.selectedServices.length > 0) {
+          //controlla se ci sono servizi selezionati     
+          this.servicesIdArray = [];
+          this.apartments[i].services.forEach(function (element) {
+            //salva gli id dei servizi dell'appartamento
+            _this2.servicesIdArray.push(element.id);
+          });
+
+          if (this.servicesIdArray.some(function (r) {
+            return _this2.selectedServices.includes(r);
+          })) {
+            //confronta i servizi
+            this.selectedServicesApartments.push(this.apartments[i]);
           }
         }
       }
+
+      if (this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length > 0) {
+        this.intersection = this.selectedCityApartments.filter(function (e) {
+          return _this2.selectedCategoryApartments.some(function (item) {
+            return item.id === e.id;
+          });
+        });
+        this.filteredApartments = this.intersection.filter(function (e) {
+          return _this2.selectedServicesApartments.some(function (item) {
+            return item.id === e.id;
+          });
+        });
+        return this.filteredApartments;
+      } else {
+        if (this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length > 0) {
+          this.filteredApartments = this.selectedCityApartments.filter(function (e) {
+            return _this2.selectedCategoryApartments.some(function (item) {
+              return item.id === e.id;
+            });
+          });
+          return this.filteredApartments;
+        } else if (this.selectedCityApartments.length > 0 && this.selectedServicesApartments.length > 0) {
+          this.filteredApartments = this.selectedCityApartments.filter(function (e) {
+            return _this2.selectedServicesApartments.some(function (item) {
+              return item.id === e.id;
+            });
+          });
+          return this.filteredApartments;
+        } else if (this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length > 0) {
+          this.filteredApartments = this.selectedCategoryApartments.filter(function (e) {
+            return _this2.selectedServicesApartments.some(function (item) {
+              return item.id === e.id;
+            });
+          });
+          return this.filteredApartments;
+        } else {
+          if (this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length == 0 && this.selectedServicesApartments.length == 0) {
+            this.filteredApartments = this.selectedCityApartments;
+            return this.filteredApartments;
+          } else if (this.selectedCityApartments.length == 0 && this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length == 0) {
+            this.filteredApartments = this.selectedCategoryApartments;
+            return this.filteredApartments;
+          } else if (this.selectedCityApartments.length == 0 && this.selectedCategoryApartments.length == 0 && this.selectedServicesApartments.length > 0) {
+            this.filteredApartments = this.selectedServicesApartments;
+            return this.filteredApartments;
+          }
+        }
+      }
+
+      console.log(this.filteredApartments); // console.log(this.intersection);
     }
   }
 });
@@ -37709,12 +37772,18 @@ var render = function () {
               },
             },
           },
-          _vm._l(_vm.categories, function (category, j) {
-            return _c("option", { key: j, domProps: { value: category.id } }, [
-              _vm._v(_vm._s(category.name)),
-            ])
-          }),
-          0
+          [
+            _c("option", { attrs: { value: "-1" } }, [_vm._v("Qualsiasi")]),
+            _vm._v(" "),
+            _vm._l(_vm.categories, function (category, j) {
+              return _c(
+                "option",
+                { key: j, domProps: { value: category.id } },
+                [_vm._v(_vm._s(category.name))]
+              )
+            }),
+          ],
+          2
         ),
         _vm._v(" "),
         _c(
@@ -37770,10 +37839,21 @@ var render = function () {
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
-      _vm._l(_vm.filteredApartments, function (apartment, i) {
-        return _c("div", { key: i }, [
-          _vm._v("\n        qui appartamento\n    "),
-        ])
+      _vm._l(_vm.filteredApartments, function (filteredApartment, i) {
+        return _c(
+          "div",
+          { key: i },
+          [
+            _c("h3", [_vm._v(_vm._s(filteredApartment.apartment.title))]),
+            _vm._v(" "),
+            _c("h4", [_vm._v(_vm._s(filteredApartment.category.name))]),
+            _vm._v(" "),
+            _vm._l(filteredApartment.services, function (service, j) {
+              return _c("h5", { key: j }, [_vm._v(_vm._s(service.name))])
+            }),
+          ],
+          2
+        )
       }),
     ],
     2
