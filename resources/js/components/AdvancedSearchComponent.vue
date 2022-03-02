@@ -52,13 +52,6 @@ export default {
                 
                 filteredApartments: [],
 
-                selectedCityApartments: [],
-                selectedCategoryApartments: [],
-                selectedServicesApartments: [],
-
-                servicesIdArray: [],
-                intersection: [],
-
                 categories: [],
                 services: []
             }
@@ -76,82 +69,19 @@ export default {
         },
         methods: {
             getFilteredApartments() {
-                console.log('click');
-                this.filteredApartments = [];
-                this.intersection = [];
 
-                this.selectedCityApartments = [];
-                this.selectedCategoryApartments = [];
-                this.selectedServicesApartments = [];
-
-                for (let i = 0; i < this.apartments.length; i++) {
-                    
-                    if(this.searchText) { //controlla se c'è del testo di ricerca
-                        if(this.apartments[i].apartment.city == this.searchText) {
-                            this.selectedCityApartments.push(this.apartments[i])
-                        }
-                    }
-                    
-                    if(this.selectedCategory != -1) { //controlla se c'è una categoria selezionata
-                        if (this.apartments[i].category.id == this.selectedCategory) { // confronta le categorie
-                            this.selectedCategoryApartments.push(this.apartments[i])
-                        }
-                    }
-
-                    if (this.selectedServices.length > 0) { //controlla se ci sono servizi selezionati     
-                        this.servicesIdArray = [];
-                        this.apartments[i].services.forEach(element => { //salva gli id dei servizi dell'appartamento
-                            this.servicesIdArray.push(element.id)
-                        });
-
-                        if (this.servicesIdArray.some(r=> this.selectedServices.includes(r))) { //confronta i servizi
-                            this.selectedServicesApartments.push(this.apartments[i])
-                        }
-                    }
+                this.filteredApartments = this.apartments;
+                if (this.searchText) {
+                    this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.city.includes(this.searchText))
                 }
-
-                    if(this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length > 0) {
-                        this.intersection = this.selectedCityApartments.filter(e => this.selectedCategoryApartments.some(item => item.id === e.id));
-                        this.filteredApartments = this.intersection.filter(e => this.selectedServicesApartments.some(item => item.id === e.id));
-                        return this.filteredApartments;
-                    } else {
-
-                        if(this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length > 0) {
-                            this.filteredApartments = this.selectedCityApartments.filter(e => this.selectedCategoryApartments.some(item => item.id === e.id));
-                            return this.filteredApartments;
-                        }
-        
-                         else if(this.selectedCityApartments.length > 0 && this.selectedServicesApartments.length > 0) {
-                            this.filteredApartments = this.selectedCityApartments.filter(e => this.selectedServicesApartments.some(item => item.id === e.id));
-                            return this.filteredApartments;
-                        }
-        
-                        else if(this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length > 0) {
-                            this.filteredApartments = this.selectedCategoryApartments.filter(e => this.selectedServicesApartments.some(item => item.id === e.id));
-                            return this.filteredApartments;
-                        } else {
-
-                            if(this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length == 0 && this.selectedServicesApartments.length == 0) {
-                                this.filteredApartments = this.selectedCityApartments;
-                                return this.filteredApartments;
-                            }
-                            else if(this.selectedCityApartments.length == 0 && this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length == 0) {
-                                this.filteredApartments = this.selectedCategoryApartments;
-                                return this.filteredApartments;
-                            }
-                            else if(this.selectedCityApartments.length == 0 && this.selectedCategoryApartments.length == 0 && this.selectedServicesApartments.length > 0) {
-                                this.filteredApartments = this.selectedServicesApartments;
-                                return this.filteredApartments;
-                            }
-                        }
-                    }
-
-
-
-                                
-
-                console.log(this.filteredApartments);
-                // console.log(this.intersection);
+                if (this.selectedCategory != -1) {
+                    this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.category_id == this.selectedCategory)
+                }
+                if (this.selectedServices.length > 0) {
+                    this.selectedServices.forEach(s => {
+                        this.filteredApartments = this.filteredApartments.filter(r=>r.services.some(service => service.id === s))
+                    });
+                }                
             },
         }
         
