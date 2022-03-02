@@ -9,6 +9,7 @@
         type="text" 
         placeholder="Cerca una città"
         v-model="searchText"
+        @keyup.enter="getFilteredApartments()"
         >
 
         <button 
@@ -77,20 +78,22 @@
 export default {
     data() {
             return {
+                // v-model dei filtri selezionati dall'utente
                 searchText: '',
                 selectedCategory: -1,
                 selectedServices: [],
                 selectedRooms: -1,
                 selectedBeds: -1,
                 selectedBathrooms: -1,
-                
+                // array di appartamenti filtrati
                 filteredApartments: [],
-
+                // array di tutte le categorie e servizi
                 categories: [],
                 services: []
             }
         },
         props: {
+            // array di oggetti contenenti gli appartamenti con categorie e servizi associati
             apartments: Array,
         },
         mounted() {
@@ -102,18 +105,24 @@ export default {
                 .catch(e=>console.error(e))
         },
         methods: {
+            // metodo per eliminare le accentate da una stringa per il confronto dell'input utente con le città
             normalizeText(text) {
                 return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             },
+            // metodo per trovare la lista degli appartamenti filtrati secondo quello che seleziona l'utente
             getFilteredApartments() {
+                // elimina le accentate dalla ricerca dell'utente
                 let cleanSearchText= this.normalizeText(this.searchText);
+                // associa l'array di appartamenti filtrati a quello di base con tutti gli appartamenti
                 this.filteredApartments = this.apartments;
 
+                // controllo sulle città con la normalizzazione del testo (in minuscolo e rimozione delle accentate)
                 if (this.searchText) {
                     this.filteredApartments = this.filteredApartments.filter(r=>{
                        return this.normalizeText(r.apartment.city).toLowerCase().includes(cleanSearchText.toLowerCase())
                     })
                 }
+                // controllo sul numero di stanze
                 if (this.selectedRooms != -1) {
                     if (this.selectedRooms < 5) {
                         this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.rooms == this.selectedRooms)
@@ -121,6 +130,7 @@ export default {
                         this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.rooms >= this.selectedRooms)
                     }
                 }
+                // controllo sul numero di letti
                 if (this.selectedBeds != -1) {
                     if (this.selectedBeds < 5) {
                         this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.beds == this.selectedBeds)
@@ -128,6 +138,7 @@ export default {
                         this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.beds >= this.selectedBeds)
                     }
                 }
+                // controllo sul numero di bagni
                 if (this.selectedBathrooms != -1) {
                     if (this.selectedBathrooms < 5) {
                         this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.bathrooms == this.selectedBathrooms)
@@ -135,9 +146,11 @@ export default {
                         this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.bathrooms >= this.selectedBathrooms)
                     }
                 }
+                // controllo sulla categoria
                 if (this.selectedCategory != -1) {
                     this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.category_id == this.selectedCategory)
                 }
+                // controllo sui servizi selezionati
                 if (this.selectedServices.length > 0) {
                     this.selectedServices.forEach(s => {
                         this.filteredApartments = this.filteredApartments.filter(r=>r.services.some(service => service.id === s))

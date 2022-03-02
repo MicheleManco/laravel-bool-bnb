@@ -61,19 +61,14 @@ class UserController extends Controller
         $apartment->services()->attach($services);
         $apartment->save();
 
+        // il file è di tipo immagine
         $files = $request->file('images');
+        // se sono più file ogniuno viene salvato singolarmente
         if($request->hasFile('images')) {
+            // array contentente le immagini
             $data = [];
             foreach($files as $file) {
                 $file->store('apartments/'. $apartment->id . '/images');
-                /*$image = new Image();
-                $image = $image->fill([
-                    'fileName' => $file->getClientOriginalName().$request->getClientOriginalExtension() , 
-                    'altText' => 'prova img 1',
-                    'cover' => true,
-                    'apartment_id' => $apartment->id
-                ]);
-                $image->save();*/
                 $data[] = [
                     'fileName' => $file->getClientOriginalName(), 
                     'altText' => 'prova img 1',
