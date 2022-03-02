@@ -2057,13 +2057,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      // lista di appartamenti presa dal DB
       apartments: [],
-      apartmentFilted: []
+      // lista di appartamenti filtrati
+      apartmentFilted: [],
+      // variabili usata per la ricerca
+      searchAp: ""
     };
-    searchApp = "";
   },
   mounted: function mounted() {
     var _this = this;
@@ -2073,6 +2078,19 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (e) {
       return console.error(e);
     });
+  },
+  methods: {
+    getFilterCity: function getFilterCity() {
+      // svuota l'array a ogni click
+      this.apartmentFilted = [];
+
+      for (var i = 0; i < this.apartments.length; i++) {
+        if (this.apartments[i].city.toLowerCase().includes(this.searchAp.toLowerCase())) {
+          // aggiunge gli appartamenti filtrati nell'array
+          this.apartmentFilted.push(this.apartments[i]);
+        }
+      }
+    }
   }
 });
 
@@ -37922,56 +37940,64 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Fai una ricerca avanzata")]),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { attrs: { id: "search" } }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.searchApp,
-              expression: "searchApp",
-            },
-          ],
-          staticClass: "txt",
-          attrs: {
-            type: "search",
-            id: "search",
-            name: "search",
-            size: "90%",
-            placeholder: "Inserisci città",
+  return _c("div", [
+    _c("a", { attrs: { href: "/search" } }, [
+      _vm._v("Fai una ricerca avanzata"),
+    ]),
+    _c("br"),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "search" } }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.searchAp,
+            expression: "searchAp",
           },
-          domProps: { value: _vm.searchApp },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.searchApp = $event.target.value
-            },
+        ],
+        staticClass: "txt",
+        attrs: {
+          type: "search",
+          id: "search",
+          name: "search",
+          size: "90%",
+          placeholder: "Inserisci città",
+        },
+        domProps: { value: _vm.searchAp },
+        on: {
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.searchAp = $event.target.value
           },
-        }),
-        _vm._v(" "),
-        _c("i", { staticClass: "fas fa-search fs-2" }),
-      ]),
+        },
+      }),
       _vm._v(" "),
-      _vm._l(_vm.apartments, function (apartment) {
-        return _c("div", { key: apartment.id, attrs: { id: "elenco" } }, [
-          _c("div", { attrs: { id: "apartment" } }, [
-            _c("a", { attrs: { href: "#" } }, [
-              _vm._v(_vm._s(apartment.title)),
-            ]),
+      _c("i", {
+        staticClass: "fas fa-search fs-2",
+        on: { click: _vm.getFilterCity },
+      }),
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { attrs: { id: "elenco" } },
+      _vm._l(_vm.apartmentFilted, function (apartment) {
+        return _c("div", { key: apartment.id, attrs: { id: "apartment" } }, [
+          _c("a", { attrs: { href: "/apartment/" + apartment.id } }, [
+            _vm._v(_vm._s(apartment.city)),
           ]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(apartment.title))]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(apartment.description))]),
         ])
       }),
-    ],
-    2
-  )
+      0
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
