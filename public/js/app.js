@@ -2133,20 +2133,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       // lista di appartamenti presa dal DB
       apartments: [],
-      // lista di appartamenti filtrati
-      apartmentFilted: [],
       // variabili usata per la ricerca
-      searchAp: ""
+      searchAp: "",
+      // lista di appartamenti filtrati
+      apartmentFilted: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
+    // salva gli appartamenti del DB nell'array
     axios.get('api/apartments/list').then(function (r) {
       return _this.apartments = r.data;
     })["catch"](function (e) {
@@ -38178,6 +38180,7 @@ var render = function () {
         },
         domProps: { value: _vm.searchAp },
         on: {
+          keyup: _vm.getFilterCity,
           input: function ($event) {
             if ($event.target.composing) {
               return
@@ -38240,7 +38243,7 @@ var render = function () {
       attrs: { id: "map" },
     }),
     _vm._v(" "),
-    _c("h1", [_vm._v("hello from component")]),
+    _c("h1", [_vm._v(_vm._s(_vm.city))]),
     _vm._v("\n  " + _vm._s(_vm.address) + "\n"),
   ])
 }
@@ -50801,8 +50804,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

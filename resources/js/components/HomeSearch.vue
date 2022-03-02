@@ -1,17 +1,18 @@
 <template>
 
     <div>
+        <!-- Link per andare alla ricerca avanzata -->
         <a href="/search">Fai una ricerca avanzata</a><br>
 
+        <!-- input per la ricerca degli appartamenti tramite la città -->
         <div id="search">
-            <input type="search" id="search" name="search" class="txt" size="90%" placeholder="Inserisci città" v-model="searchAp" ><!--@keypress="getFilterCity"-->
+            <input type="search" id="search" name="search" class="txt" size="90%" placeholder="Inserisci città" v-model="searchAp" @keyup="getFilterCity" ><!--@keypress="getFilterCity"-->
             <i class="fas fa-search fs-2" @click="getFilterCity"></i>
         </div>
 
-
+        <!-- elenco di appartamenti che compare se la città corrisponde -->
         <div id="elenco" >
             <div id="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
-
                 <a :href="`/apartment/${apartment.id}`">{{apartment.city}}</a>
                 <p>{{apartment.title}}</p>
                 <p>{{apartment.description}}</p>
@@ -33,17 +34,20 @@
                 // lista di appartamenti presa dal DB
                 apartments: [],
 
+                // variabili usata per la ricerca
+                searchAp: "",
+
                 // lista di appartamenti filtrati
                 apartmentFilted: [],
                 
-                // variabili usata per la ricerca
-                searchAp: "",
+                
             };
 
         },
 
         mounted() {
 
+            // salva gli appartamenti del DB nell'array
             axios.get('api/apartments/list')
                 .then(r => this.apartments = r.data)
                 .catch(e => console.error(e));
