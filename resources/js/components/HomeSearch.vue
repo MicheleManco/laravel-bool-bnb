@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <a href="#">Fai una ricerca avanzata</a><br>
+        <a href="/search">Fai una ricerca avanzata</a><br>
 
         <div id="search">
             <input type="search" id="search" name="search" class="txt" size="90%" placeholder="Inserisci città" v-model="searchAp" ><!--@keypress="getFilterCity"-->
@@ -12,7 +12,7 @@
         <div id="elenco" >
             <div id="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
 
-                <a :href="`/apartment/${apartment.id}`" >{{apartment.city}}</a>
+                <a :href="`/apartment/${apartment.id}`">{{apartment.city}}</a>
                 <p>{{apartment.title}}</p>
                 <p>{{apartment.description}}</p>
             </div>

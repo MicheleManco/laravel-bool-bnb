@@ -1971,11 +1971,6 @@ __webpack_require__.r(__webpack_exports__);
       selectedCategory: '',
       selectedServices: [],
       filteredApartments: [],
-      selectedCityApartments: [],
-      selectedCategoryApartments: [],
-      selectedServicesApartments: [],
-      servicesIdArray: [],
-      intersection: [],
       categories: [],
       services: []
     };
@@ -2001,95 +1996,29 @@ __webpack_require__.r(__webpack_exports__);
     getFilteredApartments: function getFilteredApartments() {
       var _this2 = this;
 
-      console.log('click');
-      this.filteredApartments = [];
-      this.intersection = [];
-      this.selectedCityApartments = [];
-      this.selectedCategoryApartments = [];
-      this.selectedServicesApartments = [];
+      this.filteredApartments = this.apartments;
 
-      for (var i = 0; i < this.apartments.length; i++) {
-        if (this.searchText) {
-          //controlla se c'è del testo di ricerca
-          if (this.apartments[i].apartment.city == this.searchText) {
-            this.selectedCityApartments.push(this.apartments[i]);
-          }
-        }
-
-        if (this.selectedCategory != -1) {
-          //controlla se c'è una categoria selezionata
-          if (this.apartments[i].category.id == this.selectedCategory) {
-            // confronta le categorie
-            this.selectedCategoryApartments.push(this.apartments[i]);
-          }
-        }
-
-        if (this.selectedServices.length > 0) {
-          //controlla se ci sono servizi selezionati     
-          this.servicesIdArray = [];
-          this.apartments[i].services.forEach(function (element) {
-            //salva gli id dei servizi dell'appartamento
-            _this2.servicesIdArray.push(element.id);
-          });
-
-          if (this.servicesIdArray.some(function (r) {
-            return _this2.selectedServices.includes(r);
-          })) {
-            //confronta i servizi
-            this.selectedServicesApartments.push(this.apartments[i]);
-          }
-        }
+      if (this.searchText) {
+        this.filteredApartments = this.filteredApartments.filter(function (r) {
+          return r.apartment.city.includes(_this2.searchText);
+        });
       }
 
-      if (this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length > 0) {
-        this.intersection = this.selectedCityApartments.filter(function (e) {
-          return _this2.selectedCategoryApartments.some(function (item) {
-            return item.id === e.id;
-          });
+      if (this.selectedCategory != -1) {
+        this.filteredApartments = this.filteredApartments.filter(function (r) {
+          return r.apartment.category_id == _this2.selectedCategory;
         });
-        this.filteredApartments = this.intersection.filter(function (e) {
-          return _this2.selectedServicesApartments.some(function (item) {
-            return item.id === e.id;
-          });
-        });
-        return this.filteredApartments;
-      } else {
-        if (this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length > 0) {
-          this.filteredApartments = this.selectedCityApartments.filter(function (e) {
-            return _this2.selectedCategoryApartments.some(function (item) {
-              return item.id === e.id;
-            });
-          });
-          return this.filteredApartments;
-        } else if (this.selectedCityApartments.length > 0 && this.selectedServicesApartments.length > 0) {
-          this.filteredApartments = this.selectedCityApartments.filter(function (e) {
-            return _this2.selectedServicesApartments.some(function (item) {
-              return item.id === e.id;
-            });
-          });
-          return this.filteredApartments;
-        } else if (this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length > 0) {
-          this.filteredApartments = this.selectedCategoryApartments.filter(function (e) {
-            return _this2.selectedServicesApartments.some(function (item) {
-              return item.id === e.id;
-            });
-          });
-          return this.filteredApartments;
-        } else {
-          if (this.selectedCityApartments.length > 0 && this.selectedCategoryApartments.length == 0 && this.selectedServicesApartments.length == 0) {
-            this.filteredApartments = this.selectedCityApartments;
-            return this.filteredApartments;
-          } else if (this.selectedCityApartments.length == 0 && this.selectedCategoryApartments.length > 0 && this.selectedServicesApartments.length == 0) {
-            this.filteredApartments = this.selectedCategoryApartments;
-            return this.filteredApartments;
-          } else if (this.selectedCityApartments.length == 0 && this.selectedCategoryApartments.length == 0 && this.selectedServicesApartments.length > 0) {
-            this.filteredApartments = this.selectedServicesApartments;
-            return this.filteredApartments;
-          }
-        }
       }
 
-      console.log(this.filteredApartments); // console.log(this.intersection);
+      if (this.selectedServices.length > 0) {
+        this.selectedServices.forEach(function (s) {
+          _this2.filteredApartments = _this2.filteredApartments.filter(function (r) {
+            return r.services.some(function (service) {
+              return service.id === s;
+            });
+          });
+        });
+      }
     }
   }
 });
@@ -38012,7 +37941,9 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("a", { attrs: { href: "#" } }, [_vm._v("Fai una ricerca avanzata")]),
+    _c("a", { attrs: { href: "/search" } }, [
+      _vm._v("Fai una ricerca avanzata"),
+    ]),
     _c("br"),
     _vm._v(" "),
     _c("div", { attrs: { id: "search" } }, [
@@ -50437,15 +50368,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!*************************************************************!*\
   !*** ./resources/js/components/AdvancedSearchComponent.vue ***!
   \*************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AdvancedSearchComponent_vue_vue_type_template_id_6c4d5998___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998& */ "./resources/js/components/AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998&");
 /* harmony import */ var _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdvancedSearchComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50475,7 +50405,7 @@ component.options.__file = "resources/js/components/AdvancedSearchComponent.vue"
 /*!**************************************************************************************!*\
   !*** ./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50659,8 +50589,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Admin\Documents\Boolean\progetto-finale\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Admin\Documents\Boolean\progetto-finale\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
