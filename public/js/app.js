@@ -1995,21 +1995,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      // v-model dei filtri selezionati dall'utente
       searchText: '',
       selectedCategory: -1,
       selectedServices: [],
       selectedRooms: -1,
       selectedBeds: -1,
       selectedBathrooms: -1,
+      // array di appartamenti filtrati
       filteredApartments: [],
+      // array di tutte le categorie e servizi
       categories: [],
       services: []
     };
   },
   props: {
+    // array di oggetti contenenti gli appartamenti con categorie e servizi associati
     apartments: Array
   },
   mounted: function mounted() {
@@ -2027,20 +2032,25 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    // metodo per eliminare le accentate da una stringa per il confronto dell'input utente con le città
     normalizeText: function normalizeText(text) {
       return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     },
+    // metodo per trovare la lista degli appartamenti filtrati secondo quello che seleziona l'utente
     getFilteredApartments: function getFilteredApartments() {
       var _this2 = this;
 
-      var cleanSearchText = this.normalizeText(this.searchText);
-      this.filteredApartments = this.apartments;
+      // elimina le accentate dalla ricerca dell'utente
+      var cleanSearchText = this.normalizeText(this.searchText); // associa l'array di appartamenti filtrati a quello di base con tutti gli appartamenti
+
+      this.filteredApartments = this.apartments; // controllo sulle città con la normalizzazione del testo (in minuscolo e rimozione delle accentate)
 
       if (this.searchText) {
         this.filteredApartments = this.filteredApartments.filter(function (r) {
           return _this2.normalizeText(r.apartment.city).toLowerCase().includes(cleanSearchText.toLowerCase());
         });
-      }
+      } // controllo sul numero di stanze
+
 
       if (this.selectedRooms != -1) {
         if (this.selectedRooms < 5) {
@@ -2052,7 +2062,8 @@ __webpack_require__.r(__webpack_exports__);
             return r.apartment.rooms >= _this2.selectedRooms;
           });
         }
-      }
+      } // controllo sul numero di letti
+
 
       if (this.selectedBeds != -1) {
         if (this.selectedBeds < 5) {
@@ -2064,7 +2075,8 @@ __webpack_require__.r(__webpack_exports__);
             return r.apartment.beds >= _this2.selectedBeds;
           });
         }
-      }
+      } // controllo sul numero di bagni
+
 
       if (this.selectedBathrooms != -1) {
         if (this.selectedBathrooms < 5) {
@@ -2076,13 +2088,15 @@ __webpack_require__.r(__webpack_exports__);
             return r.apartment.bathrooms >= _this2.selectedBathrooms;
           });
         }
-      }
+      } // controllo sulla categoria
+
 
       if (this.selectedCategory != -1) {
         this.filteredApartments = this.filteredApartments.filter(function (r) {
           return r.apartment.category_id == _this2.selectedCategory;
         });
-      }
+      } // controllo sui servizi selezionati
+
 
       if (this.selectedServices.length > 0) {
         this.selectedServices.forEach(function (s) {
@@ -37855,6 +37869,15 @@ var render = function () {
         attrs: { type: "text", placeholder: "Cerca una città" },
         domProps: { value: _vm.searchText },
         on: {
+          keyup: function ($event) {
+            if (
+              !$event.type.indexOf("key") &&
+              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+            ) {
+              return null
+            }
+            return _vm.getFilteredApartments()
+          },
           input: function ($event) {
             if ($event.target.composing) {
               return
@@ -50580,14 +50603,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!*************************************************************!*\
   !*** ./resources/js/components/AdvancedSearchComponent.vue ***!
   \*************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AdvancedSearchComponent_vue_vue_type_template_id_6c4d5998___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998& */ "./resources/js/components/AdvancedSearchComponent.vue?vue&type=template&id=6c4d5998&");
 /* harmony import */ var _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdvancedSearchComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AdvancedSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50617,7 +50641,7 @@ component.options.__file = "resources/js/components/AdvancedSearchComponent.vue"
 /*!**************************************************************************************!*\
   !*** ./resources/js/components/AdvancedSearchComponent.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50801,8 +50825,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Admin\Documents\Boolean\progetto-finale\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Admin\Documents\Boolean\progetto-finale\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
