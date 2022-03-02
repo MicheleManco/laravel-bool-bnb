@@ -1987,11 +1987,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       // v-model dei filtri selezionati dall'utente
-      searchText: '',
+      searchText: "",
       selectedCategory: -1,
       selectedServices: [],
       selectedRooms: -1,
@@ -2012,18 +2030,23 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/api/categories/list').then(function (r) {
+    axios.get("/api/categories/list").then(function (r) {
       return _this.categories = r.data;
     })["catch"](function (e) {
       return console.error(e);
     });
-    axios.get('/api/services/list').then(function (r) {
+    axios.get("/api/services/list").then(function (r) {
       return _this.services = r.data;
     })["catch"](function (e) {
       return console.error(e);
     });
   },
   methods: {
+    filteredByPrice: function filteredByPrice() {
+      this.filteredApartments = this.filteredApartments.sort(function (a, b) {
+        return a.apartment.price - b.apartment.price;
+      });
+    },
     // metodo per eliminare le accentate da una stringa per il confronto dell'input utente con le città
     normalizeText: function normalizeText(text) {
       return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -37891,7 +37914,7 @@ var render = function () {
             },
           },
         },
-        [_vm._v("\n        Cerca\n    ")]
+        [_vm._v("\n    Cerca\n  ")]
       ),
       _vm._v(" "),
       _c("h2", [_vm._v("Filtri")]),
@@ -37931,7 +37954,7 @@ var render = function () {
               return _c(
                 "option",
                 { key: j, domProps: { value: category.id } },
-                [_vm._v(_vm._s(category.name))]
+                [_vm._v("\n        " + _vm._s(category.name) + "\n      ")]
               )
             }),
           ],
@@ -37972,7 +37995,7 @@ var render = function () {
               return _c(
                 "option",
                 { key: number, domProps: { value: number } },
-                [_vm._v(_vm._s(number))]
+                [_vm._v("\n        " + _vm._s(number) + "\n      ")]
               )
             }),
             _vm._v(" "),
@@ -38015,7 +38038,7 @@ var render = function () {
               return _c(
                 "option",
                 { key: number, domProps: { value: number } },
-                [_vm._v(_vm._s(number))]
+                [_vm._v("\n        " + _vm._s(number) + "\n      ")]
               )
             }),
             _vm._v(" "),
@@ -38058,7 +38081,7 @@ var render = function () {
               return _c(
                 "option",
                 { key: number, domProps: { value: number } },
-                [_vm._v(_vm._s(number))]
+                [_vm._v("\n        " + _vm._s(number) + "\n      ")]
               )
             }),
             _vm._v(" "),
@@ -38109,14 +38132,25 @@ var render = function () {
                   },
                 },
               }),
-              _vm._v(
-                "\n                " + _vm._s(service.name) + "\n            "
-              ),
+              _vm._v("\n        " + _vm._s(service.name) + "\n      "),
             ])
           }),
           0
         ),
       ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          on: {
+            click: function ($event) {
+              return _vm.filteredByPrice()
+            },
+          },
+        },
+        [_vm._v("\n    ordina per prezzo\n  ")]
+      ),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
@@ -38139,8 +38173,12 @@ var render = function () {
             _vm._v(" "),
             _c("h4", [_vm._v(_vm._s(filteredApartment.category.name))]),
             _vm._v(" "),
+            _c("h4", [_vm._v(_vm._s(filteredApartment.apartment.price))]),
+            _vm._v(" "),
             _vm._l(filteredApartment.services, function (service, j) {
-              return _c("h5", { key: j }, [_vm._v(_vm._s(service.name))])
+              return _c("h5", { key: j }, [
+                _vm._v("\n      " + _vm._s(service.name) + "\n    "),
+              ])
             }),
           ],
           2
@@ -50822,8 +50860,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
