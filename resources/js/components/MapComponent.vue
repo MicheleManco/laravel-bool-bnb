@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div id="map" class="map" style="height: 300px"></div>
-    <h1>hello from component</h1>
+    <h1>{{city}}</h1>
     {{address}}
   </div>
 </template>
