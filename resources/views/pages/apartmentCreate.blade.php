@@ -12,7 +12,7 @@
     @endif
 
     {{-- form per creare un appartamento --}}
-    <form action="{{route('apartmentStore')}}" enctype="multipart/form-data" method="POST">
+    <form action="{{route('apartmentStore')}}" enctype="multipart/form-data" method="POST"> 
 
         @method('POST')
         @csrf

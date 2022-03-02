@@ -61,8 +61,10 @@ class UserController extends Controller
         $apartment->services()->attach($services);
         $apartment->save();
 
-        $files = $request->file('images');
-        if($request->hasFile('images')) {
+        // caricamento immagini nel database
+
+        $files = $request->file('images'); //file è un'immagine
+        if($request->hasFile('images')) {  //immagini ciclate e salvate
             $data = [];
             foreach($files as $file) {
                 $file->store('apartments/'. $apartment->id . '/images');
