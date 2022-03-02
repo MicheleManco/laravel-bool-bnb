@@ -12,7 +12,7 @@
     @endif
 
     {{-- form per creare un appartamento --}}
-    <form action="{{route('apartmentStore')}}" method="POST">
+    <form action="{{route('apartmentStore')}}" enctype="multipart/form-data" method="POST">
 
         @method('POST')
         @csrf
@@ -46,7 +46,8 @@
         @foreach ($services as $service)
             <input type="checkbox" value="{{$service->id}}" name="services[]">{{$service->name}}<br>
         @endforeach
-        
+        <label for="images">Immagini</label>
+        <input type="file" name="images[]" accept="image/*" multiple>
         <input type="submit" value= "Salva nuovo appartamento">
     </form>
     

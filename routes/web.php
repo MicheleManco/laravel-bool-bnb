@@ -25,3 +25,5 @@ Route::get('/edit/{id}', 'UserController@apartmentEdit')->name('apartmentEdit');
 Route::post('/update/{id}', 'UserController@apartmentUpdate')->name('apartmentUpdate');
 // elimina un appartamento
 Route::get('/delete/{id}', 'UserController@apartmentDelete')->name('apartmentDelete');
+
+Route::post('appartamenti-immagini/{idAppartemnto}', 'GuestController@salvataggioimmagine')->name('apartmentImage');
