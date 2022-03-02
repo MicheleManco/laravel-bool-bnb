@@ -11,9 +11,7 @@ use Illuminate\Http\Request;
 class ApiController extends Controller
 {
     public function getApartments(){
-
         $apartments = Apartment::all();
-
         return json_encode($apartments);
     }
     public function getCategories() {
@@ -23,9 +21,5 @@ class ApiController extends Controller
     public function getServices() {
         $services = Service::all();
         return json_encode($services);
-    }
-
-    public function getFilteredApartments(Request $request) {
-        
     }
 }

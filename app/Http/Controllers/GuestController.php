@@ -40,8 +40,4 @@ class GuestController extends Controller
         $apartment = Apartment::findOrFail($id);
         return view('pages.apartmentDetails', compact('apartment'));
     }
-
-    public function salvataggioimmagine($idAppartamento, Request $request){
-       
-    }
 }

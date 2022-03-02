@@ -1983,21 +1983,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      // v-model dei filtri selezionati dall'utente
       searchText: '',
       selectedCategory: -1,
       selectedServices: [],
       selectedRooms: -1,
       selectedBeds: -1,
       selectedBathrooms: -1,
+      // array di appartamenti filtrati
       filteredApartments: [],
+      // array di tutte le categorie e servizi
       categories: [],
       services: []
     };
   },
   props: {
+    // array di oggetti contenenti gli appartamenti con categorie e servizi associati
     apartments: Array
   },
   mounted: function mounted() {
@@ -2015,20 +2020,25 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    // metodo per eliminare le accentate da una stringa per il confronto dell'input utente con le città
     normalizeText: function normalizeText(text) {
       return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     },
+    // metodo per trovare la lista degli appartamenti filtrati secondo quello che seleziona l'utente
     getFilteredApartments: function getFilteredApartments() {
       var _this2 = this;
 
-      var cleanSearchText = this.normalizeText(this.searchText);
-      this.filteredApartments = this.apartments;
+      // elimina le accentate dalla ricerca dell'utente
+      var cleanSearchText = this.normalizeText(this.searchText); // associa l'array di appartamenti filtrati a quello di base con tutti gli appartamenti
+
+      this.filteredApartments = this.apartments; // controllo sulle città con la normalizzazione del testo (in minuscolo e rimozione delle accentate)
 
       if (this.searchText) {
         this.filteredApartments = this.filteredApartments.filter(function (r) {
           return _this2.normalizeText(r.apartment.city).toLowerCase().includes(cleanSearchText.toLowerCase());
         });
-      }
+      } // controllo sul numero di stanze
+
 
       if (this.selectedRooms != -1) {
         if (this.selectedRooms < 5) {
@@ -2040,7 +2050,8 @@ __webpack_require__.r(__webpack_exports__);
             return r.apartment.rooms >= _this2.selectedRooms;
           });
         }
-      }
+      } // controllo sul numero di letti
+
 
       if (this.selectedBeds != -1) {
         if (this.selectedBeds < 5) {
@@ -2052,7 +2063,8 @@ __webpack_require__.r(__webpack_exports__);
             return r.apartment.beds >= _this2.selectedBeds;
           });
         }
-      }
+      } // controllo sul numero di bagni
+
 
       if (this.selectedBathrooms != -1) {
         if (this.selectedBathrooms < 5) {
@@ -2064,13 +2076,15 @@ __webpack_require__.r(__webpack_exports__);
             return r.apartment.bathrooms >= _this2.selectedBathrooms;
           });
         }
-      }
+      } // controllo sulla categoria
+
 
       if (this.selectedCategory != -1) {
         this.filteredApartments = this.filteredApartments.filter(function (r) {
           return r.apartment.category_id == _this2.selectedCategory;
         });
-      }
+      } // controllo sui servizi selezionati
+
 
       if (this.selectedServices.length > 0) {
         this.selectedServices.forEach(function (s) {
@@ -2121,20 +2135,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       // lista di appartamenti presa dal DB
       apartments: [],
-      // lista di appartamenti filtrati
-      apartmentFilted: [],
       // variabili usata per la ricerca
-      searchAp: ""
+      searchAp: "",
+      // lista di appartamenti filtrati
+      apartmentFilted: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
+    // salva gli appartamenti del DB nell'array
     axios.get('api/apartments/list').then(function (r) {
       return _this.apartments = r.data;
     })["catch"](function (e) {
@@ -37842,6 +37858,15 @@ var render = function () {
         attrs: { type: "text", placeholder: "Cerca una città" },
         domProps: { value: _vm.searchText },
         on: {
+          keyup: function ($event) {
+            if (
+              !$event.type.indexOf("key") &&
+              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+            ) {
+              return null
+            }
+            return _vm.getFilteredApartments()
+          },
           input: function ($event) {
             if ($event.target.composing) {
               return
@@ -38165,6 +38190,7 @@ var render = function () {
         },
         domProps: { value: _vm.searchAp },
         on: {
+          keyup: _vm.getFilterCity,
           input: function ($event) {
             if ($event.target.composing) {
               return
@@ -38227,7 +38253,7 @@ var render = function () {
       attrs: { id: "map" },
     }),
     _vm._v(" "),
-    _c("h1", [_vm._v("hello from component")]),
+    _c("h1", [_vm._v(_vm._s(_vm.city))]),
     _vm._v("\n  " + _vm._s(_vm.address) + "\n"),
   ])
 }
