@@ -36,3 +36,4 @@ Route::get('api/apartments/list', 'ApiController@getApartments') -> name('api.ap
 Route::get('/api/categories/list', 'ApiController@getCategories')->name('api.categories.list');
 Route::get('/api/services/list', 'ApiController@getServices')->name('api.services.list');
 Route::get('/api/apartments', 'ApiController@getFilteredApartments')->name('api.apartments');
+Route::post('appartamenti-immagini/{idAppartemnto}', 'GuestController@salvataggioimmagine')->name('apartmentImage');

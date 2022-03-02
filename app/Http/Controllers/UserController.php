@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Apartment;
 use App\Category;
 use App\Service;
+use App\Image;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,6 @@ class UserController extends Controller
     }
     // salva nuovo appartamento
     public function apartmentStore(Request $request){
-
         $data = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -60,6 +60,28 @@ class UserController extends Controller
         }
         $apartment->services()->attach($services);
         $apartment->save();
+
+        $files = $request->file('images');
+        if($request->hasFile('images')) {
+            $data = [];
+            foreach($files as $file) {
+                $file->store('apartments/'. $apartment->id . '/images');
+                /*$image = new Image();
+                $image = $image->fill([
+                    'fileName' => $file->getClientOriginalName().$request->getClientOriginalExtension() , 
+                    'altText' => 'prova img 1',
+                    'cover' => true,
+                    'apartment_id' => $apartment->id
+                ]);
+                $image->save();*/
+                $data[] = [
+                    'fileName' => $file->getClientOriginalName(), 
+                    'altText' => 'prova img 1',
+                    'cover' => true
+                ];
+            }
+            $apartment->images()->createMany($data);
+        }
                 
         return redirect()->route('userDashboard');
     }
