@@ -30,28 +30,19 @@
 
             <select v-model="selectedRooms">
                 <option value="-1">Stanze</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
+                <option v-for="number in numbers" :key="number" :value="number">{{number}}</option>
                 <option value="5">5+</option>
             </select>
 
             <select v-model="selectedBeds">
                 <option value="-1">Letti</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
+                <option v-for="number in numbers" :key="number" :value="number">{{number}}</option>
                 <option value="5">5+</option>
             </select>
 
             <select v-model="selectedBathrooms">
                 <option value="-1">Bagni</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
+                <option v-for="number in numbers" :key="number" :value="number">{{number}}</option>
                 <option value="5">5+</option>
             </select>
 
@@ -89,7 +80,8 @@ export default {
                 filteredApartments: [],
                 // array di tutte le categorie e servizi
                 categories: [],
-                services: []
+                services: [],
+                numbers: [1, 2, 3, 4]
             }
         },
         props: {
