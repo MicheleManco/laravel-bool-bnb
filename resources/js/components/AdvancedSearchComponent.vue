@@ -102,11 +102,17 @@ export default {
                 .catch(e=>console.error(e))
         },
         methods: {
+            normalizeText(text) {
+                return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            },
             getFilteredApartments() {
-                let cleanSearchText= this.searchText.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                let cleanSearchText= this.normalizeText(this.searchText);
                 this.filteredApartments = this.apartments;
+
                 if (this.searchText) {
-                    this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.city.toLowerCase().includes(cleanSearchText.toLowerCase()))
+                    this.filteredApartments = this.filteredApartments.filter(r=>{
+                       return this.normalizeText(r.apartment.city).toLowerCase().includes(cleanSearchText.toLowerCase())
+                    })
                 }
                 if (this.selectedRooms != -1) {
                     if (this.selectedRooms < 5) {

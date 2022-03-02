@@ -2027,14 +2027,18 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    normalizeText: function normalizeText(text) {
+      return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    },
     getFilteredApartments: function getFilteredApartments() {
       var _this2 = this;
 
+      var cleanSearchText = this.normalizeText(this.searchText);
       this.filteredApartments = this.apartments;
 
       if (this.searchText) {
         this.filteredApartments = this.filteredApartments.filter(function (r) {
-          return r.apartment.city.toLowerCase().includes(_this2.searchText.toLowerCase());
+          return _this2.normalizeText(r.apartment.city).toLowerCase().includes(cleanSearchText.toLowerCase());
         });
       }
 
@@ -50797,8 +50801,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
