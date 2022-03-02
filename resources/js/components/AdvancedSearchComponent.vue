@@ -103,10 +103,10 @@ export default {
         },
         methods: {
             getFilteredApartments() {
-
+                let cleanSearchText= this.searchText.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 this.filteredApartments = this.apartments;
                 if (this.searchText) {
-                    this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.city.toLowerCase().includes(this.searchText.toLowerCase()))
+                    this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.city.toLowerCase().includes(cleanSearchText.toLowerCase()))
                 }
                 if (this.selectedRooms != -1) {
                     if (this.selectedRooms < 5) {
