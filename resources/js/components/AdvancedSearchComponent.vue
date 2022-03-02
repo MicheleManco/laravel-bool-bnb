@@ -1,6 +1,8 @@
 <template>
     <div>
 
+        <a href="/">Torna indietro</a>
+
         <h2>Cerca una città</h2>
 
         <input 
@@ -18,12 +20,41 @@
         <h2>Filtri</h2>
         <div>
             <select v-model="selectedCategory">
-                <option value="-1">Qualsiasi</option>
+                <option value="-1">Categoria</option>
                 <option
                     v-for="category, j in categories" 
                     :key="j" 
                     :value="category.id">{{category.name}}</option>
             </select>
+
+            <select v-model="selectedRooms">
+                <option value="-1">Stanze</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+            </select>
+
+            <select v-model="selectedBeds">
+                <option value="-1">Letti</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+            </select>
+
+            <select v-model="selectedBathrooms">
+                <option value="-1">Bagni</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+            </select>
+
+
             <div>
                 <span v-for="service, i in services" :key="i">
                     <input type="checkbox" 
@@ -35,7 +66,7 @@
         </div>
         <hr>
         <div v-for="filteredApartment, i in filteredApartments" :key="i">
-            <h3>{{filteredApartment.apartment.title}}</h3>
+            <h3><a :href="`/apartment/${filteredApartment.apartment.id}`">{{filteredApartment.apartment.title}}</a></h3>
             <h4>{{filteredApartment.category.name}}</h4>
             <h5 v-for="service,j in filteredApartment.services" :key="j">{{service.name}}</h5>
         </div>
@@ -47,8 +78,11 @@ export default {
     data() {
             return {
                 searchText: '',
-                selectedCategory: '',
+                selectedCategory: -1,
                 selectedServices: [],
+                selectedRooms: -1,
+                selectedBeds: -1,
+                selectedBathrooms: -1,
                 
                 filteredApartments: [],
 
@@ -72,7 +106,28 @@ export default {
 
                 this.filteredApartments = this.apartments;
                 if (this.searchText) {
-                    this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.city.includes(this.searchText))
+                    this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.city.toLowerCase().includes(this.searchText.toLowerCase()))
+                }
+                if (this.selectedRooms != -1) {
+                    if (this.selectedRooms < 5) {
+                        this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.rooms == this.selectedRooms)
+                    }else {
+                        this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.rooms >= this.selectedRooms)
+                    }
+                }
+                if (this.selectedBeds != -1) {
+                    if (this.selectedBeds < 5) {
+                        this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.beds == this.selectedBeds)
+                    }else {
+                        this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.beds >= this.selectedBeds)
+                    }
+                }
+                if (this.selectedBathrooms != -1) {
+                    if (this.selectedBathrooms < 5) {
+                        this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.bathrooms == this.selectedBathrooms)
+                    }else {
+                        this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.bathrooms >= this.selectedBathrooms)
+                    }
                 }
                 if (this.selectedCategory != -1) {
                     this.filteredApartments = this.filteredApartments.filter(r=>r.apartment.category_id == this.selectedCategory)

@@ -1964,12 +1964,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       searchText: '',
-      selectedCategory: '',
+      selectedCategory: -1,
       selectedServices: [],
+      selectedRooms: -1,
+      selectedBeds: -1,
+      selectedBathrooms: -1,
       filteredApartments: [],
       categories: [],
       services: []
@@ -2000,8 +2034,44 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.searchText) {
         this.filteredApartments = this.filteredApartments.filter(function (r) {
-          return r.apartment.city.includes(_this2.searchText);
+          return r.apartment.city.toLowerCase().includes(_this2.searchText.toLowerCase());
         });
+      }
+
+      if (this.selectedRooms != -1) {
+        if (this.selectedRooms < 5) {
+          this.filteredApartments = this.filteredApartments.filter(function (r) {
+            return r.apartment.rooms == _this2.selectedRooms;
+          });
+        } else {
+          this.filteredApartments = this.filteredApartments.filter(function (r) {
+            return r.apartment.rooms >= _this2.selectedRooms;
+          });
+        }
+      }
+
+      if (this.selectedBeds != -1) {
+        if (this.selectedBeds < 5) {
+          this.filteredApartments = this.filteredApartments.filter(function (r) {
+            return r.apartment.beds == _this2.selectedBeds;
+          });
+        } else {
+          this.filteredApartments = this.filteredApartments.filter(function (r) {
+            return r.apartment.beds >= _this2.selectedBeds;
+          });
+        }
+      }
+
+      if (this.selectedBathrooms != -1) {
+        if (this.selectedBathrooms < 5) {
+          this.filteredApartments = this.filteredApartments.filter(function (r) {
+            return r.apartment.bathrooms == _this2.selectedBathrooms;
+          });
+        } else {
+          this.filteredApartments = this.filteredApartments.filter(function (r) {
+            return r.apartment.bathrooms >= _this2.selectedBathrooms;
+          });
+        }
       }
 
       if (this.selectedCategory != -1) {
@@ -37765,6 +37835,8 @@ var render = function () {
   return _c(
     "div",
     [
+      _c("a", { attrs: { href: "/" } }, [_vm._v("Torna indietro")]),
+      _vm._v(" "),
       _c("h2", [_vm._v("Cerca una città")]),
       _vm._v(" "),
       _c("input", {
@@ -37832,7 +37904,7 @@ var render = function () {
             },
           },
           [
-            _c("option", { attrs: { value: "-1" } }, [_vm._v("Qualsiasi")]),
+            _c("option", { attrs: { value: "-1" } }, [_vm._v("Categoria")]),
             _vm._v(" "),
             _vm._l(_vm.categories, function (category, j) {
               return _c(
@@ -37843,6 +37915,132 @@ var render = function () {
             }),
           ],
           2
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selectedRooms,
+                expression: "selectedRooms",
+              },
+            ],
+            on: {
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selectedRooms = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+            },
+          },
+          [
+            _c("option", { attrs: { value: "-1" } }, [_vm._v("Stanze")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selectedBeds,
+                expression: "selectedBeds",
+              },
+            ],
+            on: {
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selectedBeds = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+            },
+          },
+          [
+            _c("option", { attrs: { value: "-1" } }, [_vm._v("Letti")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selectedBathrooms,
+                expression: "selectedBathrooms",
+              },
+            ],
+            on: {
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selectedBathrooms = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+            },
+          },
+          [
+            _c("option", { attrs: { value: "-1" } }, [_vm._v("Bagni")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -37903,7 +38101,17 @@ var render = function () {
           "div",
           { key: i },
           [
-            _c("h3", [_vm._v(_vm._s(filteredApartment.apartment.title))]),
+            _c("h3", [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href: "/apartment/" + filteredApartment.apartment.id,
+                  },
+                },
+                [_vm._v(_vm._s(filteredApartment.apartment.title))]
+              ),
+            ]),
             _vm._v(" "),
             _c("h4", [_vm._v(_vm._s(filteredApartment.category.name))]),
             _vm._v(" "),
