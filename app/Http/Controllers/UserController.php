@@ -7,6 +7,7 @@ use App\Category;
 use App\Service;
 use App\Image;
 Use App\Sponsorship;
+use App\ApartmentSponsorship;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -134,22 +135,48 @@ class UserController extends Controller
     public function sponsor($id){
         $apartment = Apartment::findOrFail($id);
         $sponsorship = Sponsorship::all();
-
-        return view('pages.sponsorship', compact('apartment', 'sponsorship'));
+        $apartmentSponsorship = ApartmentSponsorship::all();
+    
+        return view('pages.sponsorship', compact('apartment', 'sponsorship', 'apartmentSponsorship'));
     }
 
     public function sponsorStore(Request $request, $id) {
 
+        $data = $request->validate([
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
+
+
         $apartment = Apartment::findOrFail($id);
+        $data['apartment_id'] = $apartment->id;
 
-        $sponsorship = []; //salva i servizi in un array vuoto
-        if ($request->has('sponsorship')) { //controlla se l'appartamento ha servizi
-            $sponsorship = Sponsorship::findOrFail($request->get('sponsorship'));
-        }
-        $apartment->sponsorships()->attach($sponsorship);
-        $apartment->save();
+        $apartment = Sponsorship::findOrFail($id);
+        $data['sponsorship_id'] = $sponsorship->id;
 
-        dd($apartment);
-        // return view('pages.sponsorship', compact('apartment', 'sponsorship'));
+
+        
+        $apartmentSponsorship = ApartmentSponsorship::make($data);
+
+        // $sponsorship = Sponsorship::findOrFail($request->get('sponsorship'));
+        // $apartment->sponsorships()->associate($sponsorship);
+        // $apartment->save();
+
+
+        // $apartmentSponsorship->save();
+
+        dd($data);
+        
+       
+        // $sponsorship = [];
+        // if ($request->has('sponsorship')) {
+        //     $sponsorship = Sponsorship::findOrFail($request->get('sponsorship'));
+        // }
+        // $apartment->sponsorships()->attach($sponsorship);
+        // $apartment->save();
+
+        
+
+        return view('pages.sponsorship', compact('apartment', 'sponsorship', 'apartmentSponsorship'));
     }
 }
