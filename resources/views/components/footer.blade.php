@@ -1,1 +1,3 @@
-<footer>ciao</footer>
+<footer>
+ <h1>BoolBNB</h1>
+</footer>

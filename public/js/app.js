@@ -2187,8 +2187,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tomtom-international/web-sdk-maps */ "./node_modules/@tomtom-international/web-sdk-maps/dist/maps.min.js");
-/* harmony import */ var _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @tomtom-international/web-sdk-maps */ "./node_modules/@tomtom-international/web-sdk-maps/dist/maps.min.js");
+/* harmony import */ var _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -2215,17 +2215,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     initMap: function initMap() {
-      var map = _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.map({
+      var map = _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_1___default.a.map({
         container: "map",
         key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
         center: this.coordinates,
         zoom: 15
       });
-      var marker = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Marker({
+      var marker = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_1___default.a.Marker({
         color: "red"
       }).setLngLat(this.coordinates).addTo(map);
-      map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.FullscreenControl());
-      map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.NavigationControl());
+      map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_1___default.a.FullscreenControl());
+      map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_1___default.a.NavigationControl());
     },
     getAddressLatLong: function getAddressLatLong() {
       var _this = this;
