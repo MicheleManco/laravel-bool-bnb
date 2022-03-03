@@ -5,9 +5,12 @@
         <a href="/search">Fai una ricerca avanzata</a><br>
 
         <!-- input per la ricerca degli appartamenti tramite la città -->
-        <div id="search">
-            <input type="search" id="search" name="search" class="txt" size="90%" placeholder="Inserisci città" v-model="searchAp" @keyup="getFilterCity" ><!--@keypress="getFilterCity"-->
-            <i class="fas fa-search fs-2" @click="getFilterCity"></i>
+        <div class="search-box">
+            <input class="search-txt" type="search" id="search" name="search" size="90%" placeholder="Inserisci città" v-model="searchAp" @keyup="getFilterCity" >
+            <a href="#" class="search-btn">
+                <i class="fas fa-search fs-2" @click="getFilterCity"></i>
+            </a>
+            
         </div>
 
         <!-- elenco di appartamenti che compare se la città corrisponde -->
