@@ -50,17 +50,15 @@ class UserController extends Controller
         
         $apartment = Apartment::make($data);
 
-        $address = $data['address'] . ', ' . $data['city'] . ', ' . $data['cap'];
-        $address = urlencode($address);
-        $api_url = 'https://api.tomtom.com/search/2/search/' . $address . '.json?key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk';
-        $json_data = file_get_contents($api_url);
-        $response = json_decode($json_data);
-        // dd($response->results[0]->position->lat);
-        $lat = $response->results[0]->position->lat;
-        $lon = $response->results[0]->position->lon;
-        // dd($apartment->latitude);
-        $apartment->latitude = $lat;
-        $apartment->longitude = $lon;
+        // chiamata API per trovare le coordinate partendo dall'indirizzo
+        $address = $data['address'] . ', ' . $data['city'] . ', ' . $data['cap']; //salva l'indirizzo in una stringa
+        $address = urlencode($address); //elimina gli spazi dall'indirizzo in modo da rendere la stringa utilizzabile nell'URL dell'API
+        $api_url = 'https://api.tomtom.com/search/2/search/' . $address . '.json?key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk'; //chiamata API
+        $json_data = file_get_contents($api_url); //salva il contenuto del JSON ricevuto
+        $response = json_decode($json_data); //decodifica il JSON
+        // associa latitudine e longituine alle colonne nel server
+        $apartment->latitude = $response->results[0]->position->lat;
+        $apartment->longitude = $response->results[0]->position->lon;
         $apartment->save();
         
         $category = Category::findOrFail($request->get('category'));
