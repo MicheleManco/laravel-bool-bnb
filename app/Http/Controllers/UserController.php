@@ -49,6 +49,19 @@ class UserController extends Controller
         $data['user_id'] = $user->id;
         
         $apartment = Apartment::make($data);
+
+        $address = $data['address'] . ', ' . $data['city'] . ', ' . $data['cap'];
+        $address = urlencode($address);
+        $api_url = 'https://api.tomtom.com/search/2/search/' . $address . '.json?key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk';
+        $json_data = file_get_contents($api_url);
+        $response = json_decode($json_data);
+        // dd($response->results[0]->position->lat);
+        $lat = $response->results[0]->position->lat;
+        $lon = $response->results[0]->position->lon;
+        // dd($apartment->latitude);
+        $apartment->latitude = $lat;
+        $apartment->longitude = $lon;
+        $apartment->save();
         
         $category = Category::findOrFail($request->get('category'));
         $apartment->category()->associate($category);
