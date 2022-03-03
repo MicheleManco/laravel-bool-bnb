@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <div id="map" class="map" style="height: 300px"></div>
-    <h1>{{city}}</h1>
-    {{address}}
+    <div id="map" class="map" style="height: 400px"></div>
   </div>
 </template>
 

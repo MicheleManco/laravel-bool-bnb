@@ -1,1 +1,1 @@
-<footer>ciao</footer>
+<footer></footer>

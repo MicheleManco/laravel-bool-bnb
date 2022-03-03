@@ -5,6 +5,7 @@
 
     {{-- pagina di dettaglio dell'appartamento --}}
     <h1>{{$apartment->title}}</h1>
+    <h4>{{$apartment->city}}, <small>{{$apartment->address}}</small></h4>
     <p>{{$apartment->description}}</p>
     <span>Prezzo a notte: {{$apartment->price}}€</span>
 
