@@ -6,6 +6,7 @@ use App\Apartment;
 use App\Category;
 use App\Service;
 use App\Image;
+Use App\Sponsorship;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -126,5 +127,29 @@ class UserController extends Controller
 
         $apartment->delete();
         return redirect()->route('userDashboard');
+    }
+
+
+
+    public function sponsor($id){
+        $apartment = Apartment::findOrFail($id);
+        $sponsorship = Sponsorship::all();
+
+        return view('pages.sponsorship', compact('apartment', 'sponsorship'));
+    }
+
+    public function sponsorStore(Request $request, $id) {
+
+        $apartment = Apartment::findOrFail($id);
+
+        $sponsorship = []; //salva i servizi in un array vuoto
+        if ($request->has('sponsorship')) { //controlla se l'appartamento ha servizi
+            $sponsorship = Sponsorship::findOrFail($request->get('sponsorship'));
+        }
+        $apartment->sponsorships()->attach($sponsorship);
+        $apartment->save();
+
+        dd($apartment);
+        // return view('pages.sponsorship', compact('apartment', 'sponsorship'));
     }
 }

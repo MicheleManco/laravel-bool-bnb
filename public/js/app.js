@@ -2163,6 +2163,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -38214,7 +38217,7 @@ var render = function () {
     ]),
     _c("br"),
     _vm._v(" "),
-    _c("div", { attrs: { id: "search" } }, [
+    _c("div", { staticClass: "search-box" }, [
       _c("input", {
         directives: [
           {
@@ -38224,7 +38227,7 @@ var render = function () {
             expression: "searchAp",
           },
         ],
-        staticClass: "txt",
+        staticClass: "search-txt",
         attrs: {
           type: "search",
           id: "search",
@@ -38244,10 +38247,12 @@ var render = function () {
         },
       }),
       _vm._v(" "),
-      _c("i", {
-        staticClass: "fas fa-search fs-2",
-        on: { click: _vm.getFilterCity },
-      }),
+      _c("a", { staticClass: "search-btn", attrs: { href: "#" } }, [
+        _c("i", {
+          staticClass: "fas fa-search fs-2",
+          on: { click: _vm.getFilterCity },
+        }),
+      ]),
     ]),
     _vm._v(" "),
     _c(
@@ -50862,8 +50867,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

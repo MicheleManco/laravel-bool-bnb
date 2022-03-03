@@ -29,6 +29,9 @@ Route::post('/update/{id}', 'UserController@apartmentUpdate')->name('apartmentUp
 // elimina un appartamento
 Route::get('/delete/{id}', 'UserController@apartmentDelete')->name('apartmentDelete');
 
+// rotta per lo sponsor
+Route::get('/sponsor/{id}', 'UserController@sponsor') ->name('sponsor');
+Route::post('/sponsor/store/{id}', 'UserController@sponsorStore') -> name("sponsorStore");
 // --------------------------------------------------------------------------------------------
 
 // rotte API
