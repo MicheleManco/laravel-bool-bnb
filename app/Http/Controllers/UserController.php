@@ -140,42 +140,16 @@ class UserController extends Controller
         return view('pages.sponsorship', compact('apartment', 'sponsorship', 'apartmentSponsorship'));
     }
 
-    public function sponsorStore(Request $request, $id) {
-
-        $data = $request->validate([
-            'start_date' => 'required',
-            'end_date' => 'required',
-        ]);
-
-
-        $apartment = Apartment::findOrFail($id);
-        $data['apartment_id'] = $apartment->id;
-
-        $apartment = Sponsorship::findOrFail($id);
-        $data['sponsorship_id'] = $sponsorship->id;
-
+    public function sponsorStore($id, $sponsor_id) {
 
         
-        $apartmentSponsorship = ApartmentSponsorship::make($data);
-
-        // $sponsorship = Sponsorship::findOrFail($request->get('sponsorship'));
-        // $apartment->sponsorships()->associate($sponsorship);
-        // $apartment->save();
-
-
-        // $apartmentSponsorship->save();
-
-        dd($data);
-        
-       
+        // $apartment = Apartment::findOrFail($id);
         // $sponsorship = [];
         // if ($request->has('sponsorship')) {
         //     $sponsorship = Sponsorship::findOrFail($request->get('sponsorship'));
         // }
         // $apartment->sponsorships()->attach($sponsorship);
         // $apartment->save();
-
-        
 
         return view('pages.sponsorship', compact('apartment', 'sponsorship', 'apartmentSponsorship'));
     }
