@@ -146,43 +146,37 @@ class UserController extends Controller
 
     public function sponsorStore($apartment_id, $sponsor_id) {
 
-        
-        $apartmentSponsorship = ApartmentSponsorship::all();
-
-        $apartmentSponsorship['apartment_id'] = $apartment_id;
-        $apartmentSponsorship['sponsorship_id'] = $sponsor_id;
-
-        $dateNow = Carbon::now();
-
-        $apartmentSponsorship['start_date'] = $dateNow;
-
-        $dateFinish = Carbon::tomorrow();
-
-        $apartmentSponsorship['end_date'] = $dateFinish;
-
-        $apartmentSponsorship['apartmentSponsorship_id'] = $sponsor_id;
-
-        // $date = 
-        // $date->modify('+ 1 day'); 
-        // $Date2 = $date->format('Y-m-d // h:i:s');
-
-        // dd($apartmentSponsorship);
-        // $sponsorship = [];
-        // if ($request->has('sponsorship')) {
-        //     $sponsorship = Sponsorship::findOrFail($request->get('sponsorship'));
-        // }
-        // $apartment->sponsorships()->attach($sponsorship);
-        // $apartment->save();
-
-        return redirect()->route('payment');
+        return view('pages.payment',compact("apartment_id","sponsor_id"));
     }
 
-    public function payment(){
+    // public function payment(){
+       
 
-        $apartmentSponsorship = ApartmentSponsorship::all();
+    //     return view('pages.payment');
+    // }
 
-        dd($apartmentSponsorship);
+    public function paymentStore(Request $request, $apartment_id,$sponsor_id){
+       
+          $data = $request->validate([
+            'start_date' => 'required|string',
+        ]);
+        
+        dd($data);
+        
+         $apartmentSponsorship['apartment_id'] = $apartment_id;
+         $apartmentSponsorship['sponsorship_id'] = $sponsor_id;
+        
+        $apartmentSponsorship= ApartmentSponsorship::make($data);
+        
 
-        return view('pages.payment', compact('apartmentSponsorship'));
+
+
+        // $dateNow = Carbon::now();
+
+        // $apartmentSponsorship['start_date'] = $dateNow;
+
+        // $apartmentSponsorship['end_date'];
+        
+        return view('pages.sponsorship');
     }
 }
