@@ -147,7 +147,6 @@ class UserController extends Controller
     public function sponsorStore($apartment_id, $sponsor_id) {
 
         
-
         $apartmentSponsorship = ApartmentSponsorship::all();
 
         $apartmentSponsorship['apartment_id'] = $apartment_id;
@@ -157,15 +156,17 @@ class UserController extends Controller
 
         $apartmentSponsorship['start_date'] = $dateNow;
 
-        $dateFinish = $dateNow->addDays(1);
+        $dateFinish = Carbon::tomorrow();
 
         $apartmentSponsorship['end_date'] = $dateFinish;
+
+        $apartmentSponsorship['apartmentSponsorship_id'] = $sponsor_id;
 
         // $date = 
         // $date->modify('+ 1 day'); 
         // $Date2 = $date->format('Y-m-d // h:i:s');
 
-        dd($apartmentSponsorship);
+        // dd($apartmentSponsorship);
         // $sponsorship = [];
         // if ($request->has('sponsorship')) {
         //     $sponsorship = Sponsorship::findOrFail($request->get('sponsorship'));
@@ -173,6 +174,15 @@ class UserController extends Controller
         // $apartment->sponsorships()->attach($sponsorship);
         // $apartment->save();
 
-        return view('pages.sponsorship', compact('apartment', 'sponsorship', 'apartmentSponsorship'));
+        return redirect()->route('payment');
+    }
+
+    public function payment(){
+
+        $apartmentSponsorship = ApartmentSponsorship::all();
+
+        dd($apartmentSponsorship);
+
+        return view('pages.payment', compact('apartmentSponsorship'));
     }
 }
