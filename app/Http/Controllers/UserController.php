@@ -132,6 +132,7 @@ class UserController extends Controller
 
         $apartment->delete();
         return redirect()->route('userDashboard');
+        
     }
 
 
