@@ -8,10 +8,10 @@
       type="text"
       placeholder="Cerca una città"
       v-model="searchText"
-      @keyup.enter="getFilteredApartments()"
+      @keyup.enter="getFilteredApartments(), getSearchLatLong()"
     />
 
-    <button class="btn btn-primary" @click="getFilteredApartments()">
+    <button class="btn btn-primary" @click="getFilteredApartments(), getSearchLatLong()">
       Cerca
     </button>
 
@@ -67,18 +67,22 @@
       ordina per prezzo
     </button>
     <hr />
-    <div v-for="(filteredApartment, i) in filteredApartments" :key="i">
-      <h3>
-        <a :href="`/apartment/${filteredApartment.apartment.id}`">{{
-          filteredApartment.apartment.title
-        }}</a>
-      </h3>
-      <h4>{{ filteredApartment.category.name }}</h4>
-
-      <h4>{{ filteredApartment.apartment.price }}</h4>
-      <h5 v-for="(service, j) in filteredApartment.services" :key="j">
-        {{ service.name }}
-      </h5>
+    <div class="result-container" style="display: flex; justify-content: space-between;">
+        <div>
+            <div v-for="(filteredApartment, i) in filteredApartments" :key="i">
+              <h3>
+                <a :href="`/apartment/${filteredApartment.apartment.id}`">{{
+                  filteredApartment.apartment.title
+                }}</a>
+              </h3>
+              <h4>{{ filteredApartment.category.name }}</h4>
+              <h4>{{ filteredApartment.apartment.price }}</h4>
+              <h5 v-for="(service, j) in filteredApartment.services" :key="j">
+                {{ service.name }}
+              </h5>
+            </div>
+        </div>
+        <div id="map" class="map" style="width: 1000px; height: 1000px; background: red;"></div>
     </div>
   </div>
 </template>
@@ -100,6 +104,8 @@ export default {
       categories: [],
       services: [],
       numbers: [1, 2, 3, 4],
+
+      coordinates: [],
     };
   },
   props: {
@@ -122,7 +128,6 @@ export default {
           return a.apartment.price - b.apartment.price;
         });
     },
-
     // metodo per eliminare le accentate da una stringa per il confronto dell'input utente con le città
     normalizeText(text) {
       return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -192,6 +197,44 @@ export default {
           );
         });
       }
+    },
+    initMap() {
+        var map = tt.map({
+            container: "map",
+            key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
+            center: this.coordinates,
+            zoom: 15,
+        });
+
+        var center = new tt.Marker({ color: "black" })
+        .setLngLat(this.coordinates)
+        .addTo(map);
+
+        for (let i = 0; i < this.filteredApartments.length; i++) {
+            var apartmentCoordinates = [this.filteredApartments[i].apartment.longitude, this.filteredApartments[i].apartment.latitude]
+            var marker = new tt.Marker({ color: "red" })
+                .setLngLat(apartmentCoordinates)
+                .addTo(map);
+        }
+        map.addControl(new tt.FullscreenControl());
+        map.addControl(new tt.NavigationControl());
+    },
+    getSearchLatLong() {
+      const search = this.searchText;
+      const endpoint = `https://api.tomtom.com/search/2/search/${search}.json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk`;
+      const encodedEndpoint = encodeURIComponent(endpoint);
+
+      fetch(endpoint)
+        .then((a) => a.json())
+        .then((r) => {
+          const lat = r.results[0].position.lat;
+          const lon = r.results[0].position.lon;
+          this.coordinates.push(lon);
+          this.coordinates.push(lat);
+
+          this.initMap();
+        })
+        .catch((e) => console.error("errror: ", e));
     },
   },
 };

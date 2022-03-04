@@ -2005,6 +2005,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2020,7 +2024,8 @@ __webpack_require__.r(__webpack_exports__);
       // array di tutte le categorie e servizi
       categories: [],
       services: [],
-      numbers: [1, 2, 3, 4]
+      numbers: [1, 2, 3, 4],
+      coordinates: []
     };
   },
   props: {
@@ -2122,6 +2127,48 @@ __webpack_require__.r(__webpack_exports__);
           });
         });
       }
+    },
+    initMap: function initMap() {
+      var map = tt.map({
+        container: "map",
+        key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
+        center: this.coordinates,
+        zoom: 15
+      });
+      var center = new tt.Marker({
+        color: "black"
+      }).setLngLat(this.coordinates).addTo(map);
+
+      for (var i = 0; i < this.filteredApartments.length; i++) {
+        var apartmentCoordinates = [this.filteredApartments[i].apartment.longitude, this.filteredApartments[i].apartment.latitude];
+        var marker = new tt.Marker({
+          color: "red"
+        }).setLngLat(apartmentCoordinates).addTo(map);
+      }
+
+      map.addControl(new tt.FullscreenControl());
+      map.addControl(new tt.NavigationControl());
+    },
+    getSearchLatLong: function getSearchLatLong() {
+      var _this3 = this;
+
+      var search = this.searchText;
+      var endpoint = "https://api.tomtom.com/search/2/search/".concat(search, ".json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk");
+      var encodedEndpoint = encodeURIComponent(endpoint);
+      fetch(endpoint).then(function (a) {
+        return a.json();
+      }).then(function (r) {
+        var lat = r.results[0].position.lat;
+        var lon = r.results[0].position.lon;
+
+        _this3.coordinates.push(lon);
+
+        _this3.coordinates.push(lat);
+
+        _this3.initMap();
+      })["catch"](function (e) {
+        return console.error("errror: ", e);
+      });
     }
   }
 });
@@ -37835,326 +37882,337 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("a", { attrs: { href: "/" } }, [_vm._v("Torna indietro")]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Cerca una città")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.searchText,
-            expression: "searchText",
-          },
-        ],
-        attrs: { type: "text", placeholder: "Cerca una città" },
-        domProps: { value: _vm.searchText },
+  return _c("div", [
+    _c("a", { attrs: { href: "/" } }, [_vm._v("Torna indietro")]),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Cerca una città")]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.searchText,
+          expression: "searchText",
+        },
+      ],
+      attrs: { type: "text", placeholder: "Cerca una città" },
+      domProps: { value: _vm.searchText },
+      on: {
+        keyup: function ($event) {
+          if (
+            !$event.type.indexOf("key") &&
+            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+          ) {
+            return null
+          }
+          _vm.getFilteredApartments(), _vm.getSearchLatLong()
+        },
+        input: function ($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.searchText = $event.target.value
+        },
+      },
+    }),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
         on: {
-          keyup: function ($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
-            }
-            return _vm.getFilteredApartments()
-          },
-          input: function ($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.searchText = $event.target.value
+          click: function ($event) {
+            _vm.getFilteredApartments(), _vm.getSearchLatLong()
           },
         },
-      }),
-      _vm._v(" "),
+      },
+      [_vm._v("\n    Cerca\n  ")]
+    ),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Filtri")]),
+    _vm._v(" "),
+    _c("div", [
       _c(
-        "button",
+        "select",
         {
-          staticClass: "btn btn-primary",
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedCategory,
+              expression: "selectedCategory",
+            },
+          ],
           on: {
-            click: function ($event) {
-              return _vm.getFilteredApartments()
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selectedCategory = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
             },
           },
         },
-        [_vm._v("\n    Cerca\n  ")]
+        [
+          _c("option", { attrs: { value: "-1" } }, [_vm._v("Categoria")]),
+          _vm._v(" "),
+          _vm._l(_vm.categories, function (category, j) {
+            return _c("option", { key: j, domProps: { value: category.id } }, [
+              _vm._v("\n        " + _vm._s(category.name) + "\n      "),
+            ])
+          }),
+        ],
+        2
       ),
       _vm._v(" "),
-      _c("h2", [_vm._v("Filtri")]),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedRooms,
+              expression: "selectedRooms",
+            },
+          ],
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selectedRooms = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+          },
+        },
+        [
+          _c("option", { attrs: { value: "-1" } }, [_vm._v("Stanze")]),
+          _vm._v(" "),
+          _vm._l(_vm.numbers, function (number) {
+            return _c("option", { key: number, domProps: { value: number } }, [
+              _vm._v("\n        " + _vm._s(number) + "\n      "),
+            ])
+          }),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
+        ],
+        2
+      ),
       _vm._v(" "),
-      _c("div", [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.selectedCategory,
-                expression: "selectedCategory",
-              },
-            ],
-            on: {
-              change: function ($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function (o) {
-                    return o.selected
-                  })
-                  .map(function (o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.selectedCategory = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedBeds,
+              expression: "selectedBeds",
+            },
+          ],
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selectedBeds = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
             },
           },
-          [
-            _c("option", { attrs: { value: "-1" } }, [_vm._v("Categoria")]),
-            _vm._v(" "),
-            _vm._l(_vm.categories, function (category, j) {
-              return _c(
-                "option",
-                { key: j, domProps: { value: category.id } },
-                [_vm._v("\n        " + _vm._s(category.name) + "\n      ")]
-              )
-            }),
+        },
+        [
+          _c("option", { attrs: { value: "-1" } }, [_vm._v("Letti")]),
+          _vm._v(" "),
+          _vm._l(_vm.numbers, function (number) {
+            return _c("option", { key: number, domProps: { value: number } }, [
+              _vm._v("\n        " + _vm._s(number) + "\n      "),
+            ])
+          }),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedBathrooms,
+              expression: "selectedBathrooms",
+            },
           ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.selectedRooms,
-                expression: "selectedRooms",
-              },
-            ],
-            on: {
-              change: function ($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function (o) {
-                    return o.selected
-                  })
-                  .map(function (o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.selectedRooms = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selectedBathrooms = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
             },
           },
-          [
-            _c("option", { attrs: { value: "-1" } }, [_vm._v("Stanze")]),
-            _vm._v(" "),
-            _vm._l(_vm.numbers, function (number) {
-              return _c(
-                "option",
-                { key: number, domProps: { value: number } },
-                [_vm._v("\n        " + _vm._s(number) + "\n      ")]
-              )
+        },
+        [
+          _c("option", { attrs: { value: "-1" } }, [_vm._v("Bagni")]),
+          _vm._v(" "),
+          _vm._l(_vm.numbers, function (number) {
+            return _c("option", { key: number, domProps: { value: number } }, [
+              _vm._v("\n        " + _vm._s(number) + "\n      "),
+            ])
+          }),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.services, function (service, i) {
+          return _c("span", { key: i }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.selectedServices,
+                  expression: "selectedServices",
+                },
+              ],
+              attrs: { type: "checkbox" },
+              domProps: {
+                value: service.id,
+                checked: Array.isArray(_vm.selectedServices)
+                  ? _vm._i(_vm.selectedServices, service.id) > -1
+                  : _vm.selectedServices,
+              },
+              on: {
+                change: function ($event) {
+                  var $$a = _vm.selectedServices,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = service.id,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.selectedServices = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.selectedServices = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.selectedServices = $$c
+                  }
+                },
+              },
             }),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.selectedBeds,
-                expression: "selectedBeds",
-              },
-            ],
-            on: {
-              change: function ($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function (o) {
-                    return o.selected
-                  })
-                  .map(function (o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.selectedBeds = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-            },
+            _vm._v("\n        " + _vm._s(service.name) + "\n      "),
+          ])
+        }),
+        0
+      ),
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-secondary",
+        on: {
+          click: function ($event) {
+            return _vm.filteredByPrice()
           },
-          [
-            _c("option", { attrs: { value: "-1" } }, [_vm._v("Letti")]),
-            _vm._v(" "),
-            _vm._l(_vm.numbers, function (number) {
-              return _c(
-                "option",
-                { key: number, domProps: { value: number } },
-                [_vm._v("\n        " + _vm._s(number) + "\n      ")]
-              )
-            }),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.selectedBathrooms,
-                expression: "selectedBathrooms",
-              },
-            ],
-            on: {
-              change: function ($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function (o) {
-                    return o.selected
-                  })
-                  .map(function (o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.selectedBathrooms = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-            },
-          },
-          [
-            _c("option", { attrs: { value: "-1" } }, [_vm._v("Bagni")]),
-            _vm._v(" "),
-            _vm._l(_vm.numbers, function (number) {
-              return _c(
-                "option",
-                { key: number, domProps: { value: number } },
-                [_vm._v("\n        " + _vm._s(number) + "\n      ")]
-              )
-            }),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
-          ],
-          2
-        ),
-        _vm._v(" "),
+        },
+      },
+      [_vm._v("\n    ordina per prezzo\n  ")]
+    ),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "result-container",
+        staticStyle: { display: "flex", "justify-content": "space-between" },
+      },
+      [
         _c(
           "div",
-          _vm._l(_vm.services, function (service, i) {
-            return _c("span", { key: i }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.selectedServices,
-                    expression: "selectedServices",
-                  },
-                ],
-                attrs: { type: "checkbox" },
-                domProps: {
-                  value: service.id,
-                  checked: Array.isArray(_vm.selectedServices)
-                    ? _vm._i(_vm.selectedServices, service.id) > -1
-                    : _vm.selectedServices,
-                },
-                on: {
-                  change: function ($event) {
-                    var $$a = _vm.selectedServices,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = service.id,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 && (_vm.selectedServices = $$a.concat([$$v]))
-                      } else {
-                        $$i > -1 &&
-                          (_vm.selectedServices = $$a
-                            .slice(0, $$i)
-                            .concat($$a.slice($$i + 1)))
-                      }
-                    } else {
-                      _vm.selectedServices = $$c
-                    }
-                  },
-                },
-              }),
-              _vm._v("\n        " + _vm._s(service.name) + "\n      "),
-            ])
+          _vm._l(_vm.filteredApartments, function (filteredApartment, i) {
+            return _c(
+              "div",
+              { key: i },
+              [
+                _c("h3", [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: "/apartment/" + filteredApartment.apartment.id,
+                      },
+                    },
+                    [_vm._v(_vm._s(filteredApartment.apartment.title))]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("h4", [_vm._v(_vm._s(filteredApartment.category.name))]),
+                _vm._v(" "),
+                _c("h4", [_vm._v(_vm._s(filteredApartment.apartment.price))]),
+                _vm._v(" "),
+                _vm._l(filteredApartment.services, function (service, j) {
+                  return _c("h5", { key: j }, [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(service.name) +
+                        "\n            "
+                    ),
+                  ])
+                }),
+              ],
+              2
+            )
           }),
           0
         ),
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          on: {
-            click: function ($event) {
-              return _vm.filteredByPrice()
-            },
-          },
-        },
-        [_vm._v("\n    ordina per prezzo\n  ")]
-      ),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _vm._l(_vm.filteredApartments, function (filteredApartment, i) {
-        return _c(
-          "div",
-          { key: i },
-          [
-            _c("h3", [
-              _c(
-                "a",
-                {
-                  attrs: {
-                    href: "/apartment/" + filteredApartment.apartment.id,
-                  },
-                },
-                [_vm._v(_vm._s(filteredApartment.apartment.title))]
-              ),
-            ]),
-            _vm._v(" "),
-            _c("h4", [_vm._v(_vm._s(filteredApartment.category.name))]),
-            _vm._v(" "),
-            _c("h4", [_vm._v(_vm._s(filteredApartment.apartment.price))]),
-            _vm._v(" "),
-            _vm._l(filteredApartment.services, function (service, j) {
-              return _c("h5", { key: j }, [
-                _vm._v("\n      " + _vm._s(service.name) + "\n    "),
-              ])
-            }),
-          ],
-          2
-        )
-      }),
-    ],
-    2
-  )
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "map",
+          staticStyle: { width: "1000px", height: "1000px", background: "red" },
+          attrs: { id: "map" },
+        }),
+      ]
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
