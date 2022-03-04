@@ -8,9 +8,9 @@
 
     <?php
 
-        $startDate = "";
-        $addDate = 2;
-        $endDate = "";
+        // $startDate = "";
+        // $addDate = 2;
+        // $endDate = "";
         
 
         //  function getDateNow() {
@@ -25,9 +25,9 @@
 
         // getDateNow();
 
-        $Date1 = '2010-09-17'; 
+        $Date1 = Carbon\Carbon::now(); 
         $date = new DateTime($Date1); 
-        $date->modify('+  day'); 
+        $date->modify('+ 1 day'); 
         $Date2 = $date->format('Y-m-d');
 
         echo $Date1, $Date2;
