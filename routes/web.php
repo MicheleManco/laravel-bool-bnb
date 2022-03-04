@@ -31,7 +31,7 @@ Route::get('/delete/{id}', 'UserController@apartmentDelete')->name('apartmentDel
 
 // rotta per lo sponsor
 Route::get('/sponsor/{id}', 'UserController@sponsor') ->name('sponsor');
-Route::post('/sponsor/store/{id}/{sponsor_id}', 'UserController@sponsorStore') -> name("sponsorStore");
+Route::get('/sponsor/store/{id}/{sponsor_id}', 'UserController@sponsorStore') -> name("sponsorStore");
 // --------------------------------------------------------------------------------------------
 
 // rotte API

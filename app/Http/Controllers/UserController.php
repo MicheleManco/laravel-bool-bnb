@@ -9,8 +9,12 @@ use App\Image;
 Use App\Sponsorship;
 use App\ApartmentSponsorship;
 use App\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Carbon;
+Use Carbon\Carbon;
+
 class UserController extends Controller
 {
     // costruttore dell'autorizzazione (login)
@@ -140,10 +144,28 @@ class UserController extends Controller
         return view('pages.sponsorship', compact('apartment', 'sponsorship', 'apartmentSponsorship'));
     }
 
-    public function sponsorStore($id, $sponsor_id) {
+    public function sponsorStore($apartment_id, $sponsor_id) {
 
         
-        // $apartment = Apartment::findOrFail($id);
+
+        $apartmentSponsorship = ApartmentSponsorship::all();
+
+        $apartmentSponsorship['apartment_id'] = $apartment_id;
+        $apartmentSponsorship['sponsorship_id'] = $sponsor_id;
+
+        $dateNow = Carbon::now();
+
+        $apartmentSponsorship['start_date'] = $dateNow;
+
+        $dateFinish = $dateNow->addDays(1);
+
+        $apartmentSponsorship['end_date'] = $dateFinish;
+
+        // $date = 
+        // $date->modify('+ 1 day'); 
+        // $Date2 = $date->format('Y-m-d // h:i:s');
+
+        dd($apartmentSponsorship);
         // $sponsorship = [];
         // if ($request->has('sponsorship')) {
         //     $sponsorship = Sponsorship::findOrFail($request->get('sponsorship'));
