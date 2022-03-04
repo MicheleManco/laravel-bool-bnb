@@ -28,7 +28,7 @@
         $Date1 = Carbon\Carbon::now(); 
         $date = new DateTime($Date1); 
         $date->modify('+ 1 day'); 
-        $Date2 = $date->format('Y-m-d');
+        $Date2 = $date->format('Y-m-d // h:i:s');
 
         echo $Date1, $Date2;
     ?>
