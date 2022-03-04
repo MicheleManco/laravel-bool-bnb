@@ -2163,6 +2163,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2218,62 +2221,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
- // import axios from "axios";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    address: String,
-    city: String,
-    cap: String
+    latitude: String,
+    longitude: String
   },
   data: function data() {
     return {
-      coordinates: []
+      coordinates: [this.longitude, this.latitude]
     };
   },
   mounted: function mounted() {
-    this.getAddressLatLong();
-  },
-  methods: {
-    initMap: function initMap() {
-      var map = _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.map({
-        container: "map",
-        key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
-        center: this.coordinates,
-        zoom: 15
-      });
-      var marker = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Marker({
-        color: "red"
-      }).setLngLat(this.coordinates).addTo(map);
-      map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.FullscreenControl());
-      map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.NavigationControl());
-    },
-    getAddressLatLong: function getAddressLatLong() {
-      var _this = this;
-
-      var address = "".concat(this.address, ", ").concat(this.city, ", ").concat(this.cap);
-      var endpoint = "https://api.tomtom.com/search/2/search/".concat(address, ".json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk");
-      var encodedEndpoint = encodeURIComponent(endpoint);
-      fetch(endpoint).then(function (a) {
-        return a.json();
-      }).then(function (r) {
-        var lat = r.results[0].position.lat;
-        var lon = r.results[0].position.lon;
-
-        _this.coordinates.push(lon);
-
-        _this.coordinates.push(lat);
-
-        console.log({
-          lat: lat,
-          lon: lon
-        });
-
-        _this.initMap();
-      })["catch"](function (e) {
-        return console.error("errror: ", e);
-      });
-    }
+    var map = _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.map({
+      container: "map",
+      key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
+      center: this.coordinates,
+      zoom: 15
+    });
+    var marker = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Marker({
+      color: "red"
+    }).setLngLat(this.coordinates).addTo(map);
+    map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.FullscreenControl());
+    map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.NavigationControl());
   }
 });
 
@@ -38214,7 +38184,7 @@ var render = function () {
     ]),
     _c("br"),
     _vm._v(" "),
-    _c("div", { attrs: { id: "search" } }, [
+    _c("div", { staticClass: "search-box" }, [
       _c("input", {
         directives: [
           {
@@ -38224,7 +38194,7 @@ var render = function () {
             expression: "searchAp",
           },
         ],
-        staticClass: "txt",
+        staticClass: "search-txt",
         attrs: {
           type: "search",
           id: "search",
@@ -38244,10 +38214,12 @@ var render = function () {
         },
       }),
       _vm._v(" "),
-      _c("i", {
-        staticClass: "fas fa-search fs-2",
-        on: { click: _vm.getFilterCity },
-      }),
+      _c("a", { staticClass: "search-btn", attrs: { href: "#" } }, [
+        _c("i", {
+          staticClass: "fas fa-search fs-2",
+          on: { click: _vm.getFilterCity },
+        }),
+      ]),
     ]),
     _vm._v(" "),
     _c(
@@ -50862,8 +50834,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Samuele\Documents\Boolean\Progetto Finale\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Samuele\Documents\Boolean\Progetto Finale\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
