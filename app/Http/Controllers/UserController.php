@@ -152,32 +152,20 @@ class UserController extends Controller
         return view('pages.payment',compact("apartment_id","sponsorship_id"));
     }
 
-    public function paymentStore(Request $request, $apartment_id,$sponsorship_id){
+    public function paymentStore($apartment_id,$sponsorship_id){
        
-        $data = $request->validate([             
-            'start_date' => 'required|date',             
-            'end_date' => 'required|date',         
-        ]);
-                          
-        $apartmentSponsorship= ApartmentSponsorship::make($data);
-        
+        $ap = new ApartmentSponsorship();
+        $ap -> start_date = Carbon::now();
+        $ap -> end_date = Carbon::now() -> modify('+3 day');
+       
         $apartment = Apartment::findOrFail($apartment_id);
         $sponsorship = Sponsorship::findOrFail($sponsorship_id);   
-       
-        $apartmentSponsorship->apartment()->associate($apartment);                   
-        // $apartmentSponsorship->save();         
-        
+
+        $ap->apartment()->associate($apartment);                   
+        $ap->sponsorship()->associate($sponsorship);   
          
-        $apartmentSponsorship->sponsorship()->associate($sponsorship);           
-        $apartmentSponsorship->save();
-
-
-        // $dateNow = Carbon::now();
-
-        // $apartmentSponsorship['start_date'] = $dateNow;
-
-        // $apartmentSponsorship['end_date'];
-        
+        $ap -> save();
+                              
         return view('pages.home');
     }
 }
