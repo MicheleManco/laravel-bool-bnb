@@ -158,16 +158,18 @@ class UserController extends Controller
 
     public function paymentStore(Request $request, $apartment_id,$sponsor_id){
        
-          $data = $request->validate([
-            'start_date' => 'required|string',
-        ]);
+        $data = $request->validate([             
+            'start_date' => 'required|date',             
+            'end_date' => 'required|date',         
+        ]);                  
         
-        dd($data);
-        
-         $apartmentSponsorship['apartment_id'] = $apartment_id;
-         $apartmentSponsorship['sponsorship_id'] = $sponsor_id;
-        
-        $apartmentSponsorship= ApartmentSponsorship::make($data);
+        $apartmentSponsorship= ApartmentSponsorship::make($data);          
+        $apartment = Apartment::findOrFail($apartment_id);                  
+        $apartmentSponsorship->apartments()->associate($apartment);                   
+        $apartmentSponsorship->save();                    
+        $sponsorship = Sponsorship::findOrFail($sponsor_id);    
+        $apartmentSponsorship->sponsorship()->associate($sponsorship);           
+        $apartmentSponsorship->save();
         
 
 

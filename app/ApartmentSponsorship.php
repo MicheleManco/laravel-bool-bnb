@@ -15,10 +15,10 @@ class ApartmentSponsorship extends Model
     ];
 
     public function apartments(){
-        return $this->hasMany(Apartment::class);
+        return $this->belongsTo(Apartment::class);
     }
 
     public function sponsorship(){
-        return $this->hasMany(Sponsorship::class);
+        return $this->belongsTo(Sponsorship::class);
     }
 }
