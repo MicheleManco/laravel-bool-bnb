@@ -145,33 +145,31 @@ class UserController extends Controller
         return view('pages.sponsorship', compact('apartment', 'sponsorship', 'apartmentSponsorship'));
     }
 
-    public function sponsorStore($apartment_id, $sponsor_id) {
+    public function sponsorStore($apartment_id, $sponsorship_id) {
 
-        return view('pages.payment',compact("apartment_id","sponsor_id"));
+
+
+        return view('pages.payment',compact("apartment_id","sponsorship_id"));
     }
 
-    // public function payment(){
-       
-
-    //     return view('pages.payment');
-    // }
-
-    public function paymentStore(Request $request, $apartment_id,$sponsor_id){
+    public function paymentStore(Request $request, $apartment_id,$sponsorship_id){
        
         $data = $request->validate([             
             'start_date' => 'required|date',             
             'end_date' => 'required|date',         
-        ]);                  
+        ]);
+                          
+        $apartmentSponsorship= ApartmentSponsorship::make($data);
         
-        $apartmentSponsorship= ApartmentSponsorship::make($data);          
-        $apartment = Apartment::findOrFail($apartment_id);                  
-        $apartmentSponsorship->apartments()->associate($apartment);                   
-        $apartmentSponsorship->save();                    
-        $sponsorship = Sponsorship::findOrFail($sponsor_id);    
+        $apartment = Apartment::findOrFail($apartment_id);
+        $sponsorship = Sponsorship::findOrFail($sponsorship_id);   
+       
+        $apartmentSponsorship->apartment()->associate($apartment);                   
+        // $apartmentSponsorship->save();         
+        
+         
         $apartmentSponsorship->sponsorship()->associate($sponsorship);           
         $apartmentSponsorship->save();
-        
-
 
 
         // $dateNow = Carbon::now();
@@ -180,6 +178,6 @@ class UserController extends Controller
 
         // $apartmentSponsorship['end_date'];
         
-        return view('pages.sponsorship');
+        return view('pages.home');
     }
 }

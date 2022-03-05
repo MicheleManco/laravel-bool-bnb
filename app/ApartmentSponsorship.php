@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class ApartmentSponsorship extends Model
 {
     protected $fillable = [
-
         'start_date',
         'end_date',
         'apartment_id',
         'sponsorship_id',
     ];
 
-    public function apartments(){
+    public function apartment(){
         return $this->belongsTo(Apartment::class);
     }
 

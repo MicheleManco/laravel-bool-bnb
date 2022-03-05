@@ -35,7 +35,7 @@ Route::get('/sponsor/store/{id}/{sponsor_id}', 'UserController@sponsorStore') ->
 
 //rotta per il pagamento
 Route::get('/payment', 'UserController@payment') ->name('payment');
-Route::post('/payment/store/{apartment_id}/{sponsor_id}', 'UserController@paymentStore') ->name('paymentStore');
+Route::post('/payment/store/{apartment_id}/{sponsorship_id}', 'UserController@paymentStore') ->name('paymentStore');
 // --------------------------------------------------------------------------------------------
 
 // rotte API
