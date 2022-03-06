@@ -10976,28 +10976,74 @@ a.text-dark:focus {
   margin: 10px;
 }
 
-.form {
-  margin: 0 auto;
+#containerForm .form {
   text-align: center;
+  background-color: #b19f90;
+  width: 50%;
 }
 
-.form label,
-.form input {
+#containerForm .form label,
+#containerForm .form input {
   display: block;
   margin: 0 auto;
   text-align: center;
 }
 
-#search {
-  width: 90%;
-  margin: 10px auto;
+#containerForm .form .btn {
+  color: white;
+  border: 1px solid burlywood;
 }
 
-#search input {
-  border-radius: 10px;
+#containerForm .form .btn:hover {
+  background-color: burlywood;
 }
 
-#search .fas {
-  cursor: pointer;
+#containerForm .form .btn:active {
+  background-color: red;
+}
+
+.search-box {
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  background-color: #2f3640;
+  height: 40px;
+  border-radius: 40px;
+  padding: 0px;
+}
+
+.search-box .search-btn {
+  color: #e84118;
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2f3640;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-box .search-txt {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: white;
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 0px;
+}
+
+.search-box:hover > .search-txt {
+  width: 240px;
+  padding: 0 6px;
+}
+
+.search-box:hover > .search-btn {
+  background-color: white;
 }
 
