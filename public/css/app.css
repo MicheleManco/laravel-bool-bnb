@@ -11033,3 +11033,47 @@ a.text-dark:focus {
   background-color: white;
 }
 
+#sponsorship {
+  display: flex;
+  justify-content: center;
+}
+
+#sponsorship a {
+  text-decoration: none;
+  color: black;
+}
+
+#sponsorship .sponsor {
+  border: 1px solid black;
+  height: 115px;
+  width: 160px;
+  margin: 0 15px;
+  transition: 0.2s;
+  text-align: center;
+  box-shadow: 10px 10px 5px #2f3640;
+}
+
+#sponsorship .sponsor .price {
+  display: none;
+}
+
+#sponsorship .sponsor:hover {
+  height: 130px;
+}
+
+#sponsorship .sponsor:hover .price {
+  display: inline;
+}
+
+#sponsorship .Silver {
+  background-color: silver;
+}
+
+#sponsorship .Gold {
+  background-color: gold;
+}
+
+#sponsorship .Platinum {
+  background-color: #e5e4e2;
+}
+

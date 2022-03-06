@@ -1,14 +1,20 @@
 @extends('layouts.main-layout')
 
 @section('content')
-    @foreach ($sponsorship  as $sponsor)
-        <p>
-            <a href="{{route('sponsorStore', ['id' => $apartment->id,'sponsor_id' => $sponsor->id])}}" method="post">
-             {{$sponsor->name}}
-             {{$sponsor->id}}
-            </a>-- {{$sponsor->price}}€
-        </p>
-    @endforeach
+    <div id="sponsorship">
+        @foreach ($sponsorship  as $sponsor)
+        <a href="{{route('sponsorStore', ['id' => $apartment->id,'sponsor_id' => $sponsor->id])}}" method="post">
+            <div class="sponsor {{$sponsor->name}}">
+                <h1 class="name">{{$sponsor->name}}</h1>
+                <span class="price"> A soli {{$sponsor->price}}€ <br>
+                avrai il tuo sponsor per {{$sponsor->duration/24}} giorni </span>
+
+
+            </div>
+        </a>
+        @endforeach
+    </div>
+    
 
     <?php
 
