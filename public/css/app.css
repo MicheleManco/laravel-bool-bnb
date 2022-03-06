@@ -11047,12 +11047,13 @@ a.text-dark:focus {
 
 #sponsorship .sponsor {
   margin: 0 15px;
+  transition: 0.45s;
   text-align: center;
 }
 
 #sponsorship .sponsor img {
-  width: 80%;
-  transition: 0.2s;
+  width: 70%;
+  transition: 0.45s;
 }
 
 #sponsorship .sponsor .info {
@@ -11060,6 +11061,7 @@ a.text-dark:focus {
 }
 
 #sponsorship .sponsor:hover img {
+  transform: rotateY(360deg);
   width: 90%;
 }
 
