@@ -156,7 +156,7 @@ class UserController extends Controller
        
         $ap = new ApartmentSponsorship();
         $ap -> start_date = Carbon::now();
-        $ap -> end_date = Carbon::now() -> modify('+3 day');
+        $ap -> end_date = Carbon::now() -> addDays($sponsorship_id);
        
         $apartment = Apartment::findOrFail($apartment_id);
         $sponsorship = Sponsorship::findOrFail($sponsorship_id);   
@@ -165,7 +165,7 @@ class UserController extends Controller
         $ap->sponsorship()->associate($sponsorship);   
          
         $ap -> save();
-                              
+        
         return view('pages.home');
     }
 }
