@@ -11036,6 +11036,8 @@ a.text-dark:focus {
 #sponsorship {
   display: flex;
   justify-content: center;
+  background-color: black;
+  height: 100%;
 }
 
 #sponsorship a {
@@ -11044,36 +11046,33 @@ a.text-dark:focus {
 }
 
 #sponsorship .sponsor {
-  border: 1px solid black;
-  height: 115px;
-  width: 160px;
   margin: 0 15px;
-  transition: 0.2s;
   text-align: center;
-  box-shadow: 10px 10px 5px #2f3640;
 }
 
-#sponsorship .sponsor .price {
-  display: none;
+#sponsorship .sponsor img {
+  width: 80%;
+  transition: 0.2s;
 }
 
-#sponsorship .sponsor:hover {
-  height: 130px;
+#sponsorship .sponsor .info {
+  font-size: 20px;
 }
 
-#sponsorship .sponsor:hover .price {
-  display: inline;
+#sponsorship .sponsor:hover img {
+  width: 90%;
 }
 
 #sponsorship .Silver {
-  background-color: silver;
+  background-color: black;
+  color: silver;
 }
 
 #sponsorship .Gold {
-  background-color: gold;
+  color: gold;
 }
 
 #sponsorship .Platinum {
-  background-color: #e5e4e2;
+  color: #e5e4e2;
 }
 
