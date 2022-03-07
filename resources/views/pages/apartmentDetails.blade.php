@@ -11,9 +11,8 @@
 
     {{-- Component per mappa --}}
     <map-component 
-    address="{{$apartment->address}}"
-    city="{{$apartment->city}}"
-    cap="{{$apartment->cap}}"
+    latitude="{{$apartment->latitude}}"
+    longitude="{{$apartment->longitude}}"
     ></map-component>
     
     @auth

@@ -2,21 +2,29 @@
   <div>
     <a href="/">Torna indietro</a>
 
+    <!-- sezione di ricerca -->
     <h2>Cerca una città</h2>
-
+    <!-- input testo -->
     <input
       type="text"
       placeholder="Cerca una città"
       v-model="searchText"
-      @keyup.enter="getFilteredApartments()"
+      @keyup.enter="getSearchLatLong()"
     />
-
-    <button class="btn btn-primary" @click="getFilteredApartments()">
+    <!-- pulsante cerca -->
+    <button class="btn btn-primary" @click="getSearchLatLong()">
       Cerca
     </button>
 
+    <!-- numero di risultati -->
+    {{filteredApartments.length}} Risultati
+
+    <!-- sezione filtri -->
     <h2>Filtri</h2>
     <div>
+      <!-- raaggio di kilometri per la ricerca -->
+      <input type="range" min="0" max="30" step="1" v-model="searchRadius"> {{searchRadius}} KM
+      <!-- selezione categoria -->
       <select v-model="selectedCategory">
         <option value="-1">Categoria</option>
         <option
@@ -27,7 +35,7 @@
           {{ category.name }}
         </option>
       </select>
-
+      <!-- selezione numero di stanze -->
       <select v-model="selectedRooms">
         <option value="-1">Stanze</option>
         <option v-for="number in numbers" :key="number" :value="number">
@@ -35,7 +43,7 @@
         </option>
         <option value="5">5+</option>
       </select>
-
+      <!-- selezione numero di leti -->
       <select v-model="selectedBeds">
         <option value="-1">Letti</option>
         <option v-for="number in numbers" :key="number" :value="number">
@@ -43,7 +51,7 @@
         </option>
         <option value="5">5+</option>
       </select>
-
+      <!-- selezione numero di bagni -->
       <select v-model="selectedBathrooms">
         <option value="-1">Bagni</option>
         <option v-for="number in numbers" :key="number" :value="number">
@@ -51,7 +59,7 @@
         </option>
         <option value="5">5+</option>
       </select>
-
+      <!-- selezione servizi aggiuntivi -->
       <div>
         <span v-for="(service, i) in services" :key="i">
           <input
@@ -63,22 +71,33 @@
         </span>
       </div>
     </div>
+    <!-- pulsante ordina per prezzo minore -->
     <button class="btn btn-secondary" @click="filteredByPrice()">
       ordina per prezzo
     </button>
     <hr />
-    <div v-for="(filteredApartment, i) in filteredApartments" :key="i">
-      <h3>
-        <a :href="`/apartment/${filteredApartment.apartment.id}`">{{
-          filteredApartment.apartment.title
-        }}</a>
-      </h3>
-      <h4>{{ filteredApartment.category.name }}</h4>
-
-      <h4>{{ filteredApartment.apartment.price }}</h4>
-      <h5 v-for="(service, j) in filteredApartment.services" :key="j">
-        {{ service.name }}
-      </h5>
+    <!-- messaggio di errore se non si inserisce una città -->
+    <div v-if="noSearch">
+      Devi inserire una città.
+    </div>
+    <!-- lista di appartamenti risultati dalla ricerca -->
+    <div class="result-container" style="display: flex; justify-content: space-between;">
+        <div>
+            <div v-for="(filteredApartment, i) in filteredApartments" :key="i">
+              <h3>
+                <a :href="`/apartment/${filteredApartment.apartment.id}`">{{
+                  filteredApartment.apartment.title
+                }}</a>
+              </h3>
+              <h4>{{ filteredApartment.category.name }}</h4>
+              <h4>{{ filteredApartment.apartment.price }}</h4>
+              <h5 v-for="(service, j) in filteredApartment.services" :key="j">
+                {{ service.name }}
+              </h5>
+            </div>
+        </div>
+        <!-- mappa che mostra gli appartamenti -->
+        <div  id="map" class="map" style="width: 1000px; height: 1000px;"></div>
     </div>
   </div>
 </template>
@@ -100,6 +119,10 @@ export default {
       categories: [],
       services: [],
       numbers: [1, 2, 3, 4],
+
+      searchCoordinates: [], // coordinate dell'indirizzo ricercato
+      searchRadius: 20, // raggio in cui compiere la ricerca
+      noSearch: 0, // se non c'è testo ricercato diventa 1 per mostrare un messaggio di errore
     };
   },
   props: {
@@ -122,26 +145,34 @@ export default {
           return a.apartment.price - b.apartment.price;
         });
     },
-
     // metodo per eliminare le accentate da una stringa per il confronto dell'input utente con le città
     normalizeText(text) {
       return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     },
     // metodo per trovare la lista degli appartamenti filtrati secondo quello che seleziona l'utente
     getFilteredApartments() {
-      // elimina le accentate dalla ricerca dell'utente
-      let cleanSearchText = this.normalizeText(this.searchText);
       // associa l'array di appartamenti filtrati a quello di base con tutti gli appartamenti
       this.filteredApartments = this.apartments;
 
-      // controllo sulle città con la normalizzazione del testo (in minuscolo e rimozione delle accentate)
-      if (this.searchText) {
-        this.filteredApartments = this.filteredApartments.filter((r) => {
-          return this.normalizeText(r.apartment.city)
-            .toLowerCase()
-            .includes(cleanSearchText.toLowerCase());
-        });
+      // se ci sono coordinate ricercate (cioé se l'utente ha inserito una citt'nel campo di ricerca)
+      if (this.searchCoordinates) {         
+        var radius = parseInt(this.searchRadius); //valore del raggio di ricerca
+
+        // calcola coordinate massime e minime in cui fare la ricerca
+        var minLon = this.searchCoordinates[0]-this.getRadius(radius);
+        var maxLon = this.searchCoordinates[0]+this.getRadius(radius);
+        var minLat = this.searchCoordinates[1]-this.getRadius(radius);
+        var maxLat = this.searchCoordinates[1]+this.getRadius(radius);
+
+        // filtra gli appartamenti che sono all'interno delle coordinate massime e minime
+        this.filteredApartments = this.filteredApartments.filter(
+          (r) => r.apartment.longitude >= minLon && r.apartment.longitude <= maxLon
+        );
+        this.filteredApartments = this.filteredApartments.filter(
+          (r) => r.apartment.latitude >= minLat && r.apartment.latitude <= maxLat
+        );
       }
+      
       // controllo sul numero di stanze
       if (this.selectedRooms != -1) {
         if (this.selectedRooms < 5) {
@@ -193,6 +224,63 @@ export default {
         });
       }
     },
+    initMap() {
+      // metodo che disegna la mappa a partire dalle coordinate dell'indirizzo inserito nel campo di ricerca
+        var map = tt.map({
+            container: "map",
+            key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
+            center: this.searchCoordinates,
+            zoom: 15,
+        });
+
+        var center = new tt.Marker({ color: "black" })
+        .setLngLat(this.searchCoordinates)
+        .addTo(map);
+        // stampa tutti gli appartameni filtrati sulla mappa
+        for (let i = 0; i < this.filteredApartments.length; i++) {
+            var apartmentCoordinates = [this.filteredApartments[i].apartment.longitude, this.filteredApartments[i].apartment.latitude]
+            var marker = new tt.Marker({ color: "red" })
+                .setLngLat(apartmentCoordinates)
+                .addTo(map);
+        }
+        map.addControl(new tt.FullscreenControl());
+        map.addControl(new tt.NavigationControl());
+    },
+    getSearchLatLong() {
+      this.noSearch = 0;
+      // controlla che sia stata inserita una città
+      if(!this.searchText) {
+        this.noSearch = 1;
+        this.filteredApartments = [];
+        this.initMap();
+        return
+      }
+      // funzione che ritorna le coordinate del campo di ricerca
+      this.searchCoordinates = [];
+      const search = this.normalizeText(this.searchText);
+      const endpoint = `https://api.tomtom.com/search/2/search/${search}.json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk`;
+      const encodedEndpoint = encodeURIComponent(endpoint);
+
+      fetch(endpoint)
+        .then((a) => a.json())
+        .then((r) => {
+          const lon = r.results[0].position.lon;
+          const lat = r.results[0].position.lat;
+          this.searchCoordinates.push(lon);
+          this.searchCoordinates.push(lat);
+
+          // filtra i risultati e crea la mappa
+          this.getFilteredApartments();
+          this.initMap();
+        })
+        .catch((e) => console.error("errror: ", e));      
+    },
+    getRadius(inputKm){
+      // trasforma il valore del raggio di ricerca da KM a gradi di coordinata (non è super preciso)
+      let radius;
+      radius = parseFloat(inputKm / 1.11 * 0.01).toFixed(2);
+      return parseFloat(radius);
+    }
   },
 };
 </script>

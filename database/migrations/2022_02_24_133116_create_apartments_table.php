@@ -16,7 +16,7 @@ class CreateApartmentsTable extends Migration
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title',100); 
+            $table->string('title', 100);
             $table->text('description');
             $table->string('address');
             $table->string('city');
@@ -26,19 +26,19 @@ class CreateApartmentsTable extends Migration
             $table->tinyInteger('beds');
             $table->tinyInteger('bathrooms');
             $table->decimal('price');
-            $table->float('latitude')->nullable();
-            $table->float('longitude')->nullable();
+            $table->float('latitude', 8, 6)->nullable();
+            $table->float('longitude', 8, 6)->nullable();
             $table->integer('n_sponsorships')->nullable();
 
-            $table -> unsignedBigInteger('user_id')->nullable();
-            $table  -> foreign('user_id')
-                    -> references('id')
-                    -> on('users');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
 
-            $table -> unsignedBigInteger('category_id')->nullable();
-            $table  -> foreign('category_id')
-                    -> references('id')
-                    -> on('categories');
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories');
 
             $table->timestamps();
         });
