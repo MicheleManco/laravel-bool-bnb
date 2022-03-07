@@ -2166,6 +2166,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2174,8 +2184,13 @@ __webpack_require__.r(__webpack_exports__);
       // variabili usata per la ricerca
       searchAp: "",
       // lista di appartamenti filtrati
-      apartmentFilted: []
+      apartmentFilted: [],
+      date: new Date(),
+      expiryDate: moment(this.date).format()
     };
+  },
+  props: {
+    apartment_sponsorship: Array
   },
   mounted: function mounted() {
     var _this = this;
@@ -2186,6 +2201,7 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (e) {
       return console.error(e);
     });
+    console.log(this.expiryDate);
   },
   methods: {
     getFilterCity: function getFilterCity() {
@@ -38211,67 +38227,95 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("a", { attrs: { href: "/search" } }, [
-      _vm._v("Fai una ricerca avanzata"),
-    ]),
-    _c("br"),
-    _vm._v(" "),
-    _c("div", { staticClass: "search-box" }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.searchAp,
-            expression: "searchAp",
-          },
-        ],
-        staticClass: "search-txt",
-        attrs: {
-          type: "search",
-          id: "search",
-          name: "search",
-          size: "90%",
-          placeholder: "Inserisci città",
-        },
-        domProps: { value: _vm.searchAp },
-        on: {
-          keyup: _vm.getFilterCity,
-          input: function ($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.searchAp = $event.target.value
-          },
-        },
-      }),
-      _vm._v(" "),
-      _c("a", { staticClass: "search-btn", attrs: { href: "#" } }, [
-        _c("i", {
-          staticClass: "fas fa-search fs-2",
-          on: { click: _vm.getFilterCity },
-        }),
+  return _c(
+    "div",
+    [
+      _c("a", { attrs: { href: "/search" } }, [
+        _vm._v("Fai una ricerca avanzata"),
       ]),
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { attrs: { id: "elenco" } },
-      _vm._l(_vm.apartmentFilted, function (apartment) {
-        return _c("div", { key: apartment.id, attrs: { id: "apartment" } }, [
-          _c("a", { attrs: { href: "/apartment/" + apartment.id } }, [
-            _vm._v(_vm._s(apartment.city)),
-          ]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(apartment.title))]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(apartment.description))]),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "search-box" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.searchAp,
+              expression: "searchAp",
+            },
+          ],
+          staticClass: "search-txt",
+          attrs: {
+            type: "search",
+            id: "search",
+            name: "search",
+            size: "90%",
+            placeholder: "Inserisci città",
+          },
+          domProps: { value: _vm.searchAp },
+          on: {
+            keyup: _vm.getFilterCity,
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.searchAp = $event.target.value
+            },
+          },
+        }),
+        _vm._v(" "),
+        _c("a", { staticClass: "search-btn", attrs: { href: "#" } }, [
+          _c("i", {
+            staticClass: "fas fa-search fs-2",
+            on: { click: _vm.getFilterCity },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { attrs: { id: "elenco" } },
+        _vm._l(_vm.apartmentFilted, function (apartment) {
+          return _c("div", { key: apartment.id, attrs: { id: "apartment" } }, [
+            _c("a", { attrs: { href: "/apartment/" + apartment.id } }, [
+              _vm._v(_vm._s(apartment.city)),
+            ]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(apartment.title))]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(apartment.description))]),
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("h1", [_vm._v("Appartamenti in evidenza")]),
+      _vm._v(" "),
+      _vm._l(_vm.apartment_sponsorship, function (apartmentsponsorship, i) {
+        return _c("div", { key: i }, [
+          apartmentsponsorship.end_date > _vm.expiryDate
+            ? _c(
+                "div",
+                _vm._l(_vm.apartments, function (apartmentsponsor, j) {
+                  return _c("div", { key: j }, [
+                    apartmentsponsor.id == apartmentsponsorship.id
+                      ? _c("div", [
+                          _c("p", [
+                            _vm._v(" " + _vm._s(apartmentsponsor.title)),
+                          ]),
+                        ])
+                      : _vm._e(),
+                  ])
+                }),
+                0
+              )
+            : _vm._e(),
         ])
       }),
-      0
-    ),
-  ])
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

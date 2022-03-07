@@ -10,7 +10,6 @@
             <a href="#" class="search-btn">
                 <i class="fas fa-search fs-2" @click="getFilterCity"></i>
             </a>
-            
         </div>
 
         <!-- elenco di appartamenti che compare se la città corrisponde -->
@@ -21,6 +20,17 @@
                 <p>{{apartment.description}}</p>
             </div>
 
+        </div>
+
+        <h1>Appartamenti in evidenza</h1>
+        <div v-for="apartmentsponsorship, i in apartment_sponsorship" :key="i">
+            <div v-if="apartmentsponsorship.end_date > expiryDate">
+                <div v-for="apartmentsponsor, j in apartments" :key="j">
+                    <div v-if="apartmentsponsor.id == apartmentsponsorship.id">
+                        <p> {{apartmentsponsor.title}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -43,9 +53,15 @@
                 // lista di appartamenti filtrati
                 apartmentFilted: [],
                 
-                
+                date: new Date(),
+
+                expiryDate: moment(this.date).format(),
+
             };
 
+        },
+        props: {
+            apartment_sponsorship: Array,
         },
 
         mounted() {
@@ -55,6 +71,7 @@
                 .then(r => this.apartments = r.data)
                 .catch(e => console.error(e));
 
+            console.log(this.expiryDate);
         },
 
         methods: {

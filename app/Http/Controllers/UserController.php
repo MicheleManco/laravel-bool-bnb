@@ -156,6 +156,8 @@ class UserController extends Controller
         $ap = new ApartmentSponsorship();
         $ap -> start_date = Carbon::now();
 
+        dd($ap -> start_date);
+
         $endDate = 0;
 
         if ($sponsorship_id == 1) {
@@ -166,7 +168,7 @@ class UserController extends Controller
             $endDate = 6;
         }
 
-        $ap -> end_date = Carbon::now() -> addDays($endDate);
+        $ap -> end_date = Carbon::now()-> addDays($endDate);
        
         $apartment = Apartment::findOrFail($apartment_id);
 

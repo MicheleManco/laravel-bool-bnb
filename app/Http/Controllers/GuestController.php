@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Apartment;
 use App\Category;
 use App\Service;
+use App\ApartmentSponsorship;    
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -13,8 +14,9 @@ class GuestController extends Controller
     public function home(){
 
         $apartments = Apartment::all();
+        $apartmentSponsorship = ApartmentSponsorship::all();
 
-        return view('pages.home', compact('apartments'));
+        return view('pages.home', compact('apartments', 'apartmentSponsorship'));
     }
 
     public function pageRegister(){
