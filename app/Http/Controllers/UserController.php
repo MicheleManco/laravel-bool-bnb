@@ -148,7 +148,6 @@ class UserController extends Controller
     public function sponsorStore($apartment_id, $sponsorship_id) {
 
 
-
         return view('pages.payment',compact("apartment_id","sponsorship_id"));
     }
 
@@ -156,10 +155,30 @@ class UserController extends Controller
        
         $ap = new ApartmentSponsorship();
         $ap -> start_date = Carbon::now();
-        $ap -> end_date = Carbon::now() -> addDays($sponsorship_id);
+
+        $endDate = 0;
+
+        if ($sponsorship_id == 1) {
+            $endDate = 1;
+        }elseif ($sponsorship_id == 2) {
+            $endDate = 3;
+        }elseif($sponsorship_id == 3) {
+            $endDate = 6;
+        }
+
+        $ap -> end_date = Carbon::now() -> addDays($endDate);
        
         $apartment = Apartment::findOrFail($apartment_id);
-        $sponsorship = Sponsorship::findOrFail($sponsorship_id);   
+
+        $sponsorship = Sponsorship::findOrFail($sponsorship_id);
+
+        // $new =  $apartment['n_sponsorships'] = $ap -> sponsorship_id;
+
+        // $apartment->update($new);
+        // $apartment->save();
+
+        // $apartment->sponsorships()->sync($sponsorship);
+        // $apartment->save();
 
         $ap->apartment()->associate($apartment);                   
         $ap->sponsorship()->associate($sponsorship);   
