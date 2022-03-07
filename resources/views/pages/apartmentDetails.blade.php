@@ -15,6 +15,20 @@
     city="{{$apartment->city}}"
     cap="{{$apartment->cap}}"
     ></map-component>
+
+    {{-- form per i messaggi --}}
+    <form action="#">
+
+        <label for="name">Nome:</label> <br>
+        <input type="text" name="name"><br>
+        <label for="surname">Cognome</label><br>
+        <input type="text" name="surname"><br>
+        <label for="email">Email</label><br>
+        <input type="email" name="email"><br>
+        <label for="text">Testo</label><br>
+        <textarea name="text" cols="50"></textarea><br>
+
+    </form>
     
     @auth
         {{-- se l'utente è il proprietario dell'appartamento c'è la possibilità di modificarlo o eliminarlo --}}
