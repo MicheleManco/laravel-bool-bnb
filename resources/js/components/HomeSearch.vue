@@ -13,8 +13,8 @@
         </div>
 
         <!-- elenco di appartamenti che compare se la città corrisponde -->
-        <div id="elenco" >
-            <div id="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
+        <div class="elenco" >
+            <div class="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
                 <a :href="`/apartment/${apartment.id}`">{{apartment.city}}</a>
                 <p>{{apartment.title}}</p>
                 <p>{{apartment.description}}</p>
@@ -23,16 +23,18 @@
         </div>
 
         <h1>Appartamenti in evidenza</h1>
-        <div v-for="apartmentsponsorship, i in apartment_sponsorship" :key="i">
-            <div v-if="apartmentsponsorship.end_date > expiryDate">
-                <div v-for="apartmentsponsor, j in apartments" :key="j">
-                    <div v-if="apartmentsponsor.id == apartmentsponsorship.id">
-                        <p> {{apartmentsponsor.title}}</p>
+
+        <div class="elenco">
+            <div v-for="apartmentsponsorship, i in apartment_sponsorship" :key="i">
+                <div v-if="apartmentsponsorship.end_date > expiryDate">
+                    <div v-for="apartmentsponsor, j in apartments" :key="j">
+                        <div class="apartment" v-if="apartmentsponsor.n_sponsorships != null">
+                            <p> {{apartmentsponsor.title}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
 </template>

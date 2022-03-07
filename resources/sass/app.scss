@@ -7,18 +7,16 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-#elenco {
+.elenco {
     // justify-content: space-around;
-    width: 50%;
-    margin: 0 auto;
+    width: 25%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 
-    #apartment {
+    .apartment {
         padding: 13%;
         border: 1px solid black;
-        margin: 10px;     
+        margin: 10px;    
+        float: right; 
     }
 }
 

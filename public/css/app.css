@@ -10962,18 +10962,16 @@ a.text-dark:focus {
   }
 }
 
-#elenco {
-  width: 50%;
-  margin: 0 auto;
+.elenco {
+  width: 25%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
-#elenco #apartment {
+.elenco .apartment {
   padding: 13%;
   border: 1px solid black;
   margin: 10px;
+  float: right;
 }
 
 .form {
