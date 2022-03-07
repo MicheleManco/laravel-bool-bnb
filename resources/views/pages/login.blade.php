@@ -23,7 +23,7 @@
             <label for="password">Password</label>
             <input type="password" name="password">
 
-            <input class='my-4 btn btn-primary' type="submit" value="Login">
+            <input class='my-4 btn' type="submit" value="Login">
         </form>
     </div>
     
