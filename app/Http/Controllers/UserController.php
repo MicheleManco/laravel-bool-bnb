@@ -135,8 +135,6 @@ class UserController extends Controller
         
     }
 
-
-
     public function sponsor($id){
         $apartment = Apartment::findOrFail($id);
         $sponsorship = Sponsorship::all();
@@ -146,8 +144,6 @@ class UserController extends Controller
     }
 
     public function sponsorStore($apartment_id, $sponsorship_id) {
-
-
 
         return view('pages.payment',compact("apartment_id","sponsorship_id"));
     }
@@ -168,4 +164,5 @@ class UserController extends Controller
         
         return view('pages.home');
     }
+
 }
