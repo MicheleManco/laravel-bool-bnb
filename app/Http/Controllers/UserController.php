@@ -49,6 +49,17 @@ class UserController extends Controller
         $data['user_id'] = $user->id;
         
         $apartment = Apartment::make($data);
+
+        // chiamata API per trovare le coordinate partendo dall'indirizzo
+        $address = $data['address'] . ', ' . $data['city'] . ', ' . $data['cap']; //salva l'indirizzo in una stringa
+        $address = urlencode($address); //elimina gli spazi dall'indirizzo in modo da rendere la stringa utilizzabile nell'URL dell'API
+        $api_url = 'https://api.tomtom.com/search/2/search/' . $address . '.json?key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk'; //chiamata API
+        $json_data = file_get_contents($api_url); //salva il contenuto del JSON ricevuto
+        $response = json_decode($json_data); //decodifica il JSON
+        // associa latitudine e longituine alle colonne nel server
+        $apartment->latitude = $response->results[0]->position->lat;
+        $apartment->longitude = $response->results[0]->position->lon;
+        $apartment->save();
         
         $category = Category::findOrFail($request->get('category'));
         $apartment->category()->associate($category);
@@ -104,6 +115,18 @@ class UserController extends Controller
 
         $apartment = Apartment::findOrFail($id);
         $apartment->update($data);
+
+        // chiamata API per trovare le coordinate partendo dall'indirizzo
+        $address = $data['address'] . ', ' . $data['city'] . ', ' . $data['cap']; //salva l'indirizzo in una stringa
+        $address = urlencode($address); //elimina gli spazi dall'indirizzo in modo da rendere la stringa utilizzabile nell'URL dell'API
+        $api_url = 'https://api.tomtom.com/search/2/search/' . $address . '.json?key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk'; //chiamata API
+        $json_data = file_get_contents($api_url); //salva il contenuto del JSON ricevuto
+        $response = json_decode($json_data); //decodifica il JSON
+        // associa latitudine e longituine alle colonne nel server
+        $apartment->latitude = $response->results[0]->position->lat;
+        $apartment->longitude = $response->results[0]->position->lon;
+        $apartment->save();
+
         $category = Category::findOrFail($request->get('category'));
         $apartment->category()->associate($category);
         $apartment->save();

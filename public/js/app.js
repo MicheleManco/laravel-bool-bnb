@@ -2005,6 +2005,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2020,7 +2039,13 @@ __webpack_require__.r(__webpack_exports__);
       // array di tutte le categorie e servizi
       categories: [],
       services: [],
-      numbers: [1, 2, 3, 4]
+      numbers: [1, 2, 3, 4],
+      searchCoordinates: [],
+      // coordinate dell'indirizzo ricercato
+      searchRadius: 20,
+      // raggio in cui compiere la ricerca
+      noSearch: 0 // se non c'è testo ricercato diventa 1 per mostrare un messaggio di errore
+
     };
   },
   props: {
@@ -2055,14 +2080,23 @@ __webpack_require__.r(__webpack_exports__);
     getFilteredApartments: function getFilteredApartments() {
       var _this2 = this;
 
-      // elimina le accentate dalla ricerca dell'utente
-      var cleanSearchText = this.normalizeText(this.searchText); // associa l'array di appartamenti filtrati a quello di base con tutti gli appartamenti
+      // associa l'array di appartamenti filtrati a quello di base con tutti gli appartamenti
+      this.filteredApartments = this.apartments; // se ci sono coordinate ricercate (cioé se l'utente ha inserito una citt'nel campo di ricerca)
 
-      this.filteredApartments = this.apartments; // controllo sulle città con la normalizzazione del testo (in minuscolo e rimozione delle accentate)
+      if (this.searchCoordinates) {
+        var radius = parseInt(this.searchRadius); //valore del raggio di ricerca
+        // calcola coordinate massime e minime in cui fare la ricerca
 
-      if (this.searchText) {
+        var minLon = this.searchCoordinates[0] - this.getRadius(radius);
+        var maxLon = this.searchCoordinates[0] + this.getRadius(radius);
+        var minLat = this.searchCoordinates[1] - this.getRadius(radius);
+        var maxLat = this.searchCoordinates[1] + this.getRadius(radius); // filtra gli appartamenti che sono all'interno delle coordinate massime e minime
+
         this.filteredApartments = this.filteredApartments.filter(function (r) {
-          return _this2.normalizeText(r.apartment.city).toLowerCase().includes(cleanSearchText.toLowerCase());
+          return r.apartment.longitude >= minLon && r.apartment.longitude <= maxLon;
+        });
+        this.filteredApartments = this.filteredApartments.filter(function (r) {
+          return r.apartment.latitude >= minLat && r.apartment.latitude <= maxLat;
         });
       } // controllo sul numero di stanze
 
@@ -2122,6 +2156,69 @@ __webpack_require__.r(__webpack_exports__);
           });
         });
       }
+    },
+    initMap: function initMap() {
+      // metodo che disegna la mappa a partire dalle coordinate dell'indirizzo inserito nel campo di ricerca
+      var map = tt.map({
+        container: "map",
+        key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
+        center: this.searchCoordinates,
+        zoom: 15
+      });
+      var center = new tt.Marker({
+        color: "black"
+      }).setLngLat(this.searchCoordinates).addTo(map); // stampa tutti gli appartameni filtrati sulla mappa
+
+      for (var i = 0; i < this.filteredApartments.length; i++) {
+        var apartmentCoordinates = [this.filteredApartments[i].apartment.longitude, this.filteredApartments[i].apartment.latitude];
+        var marker = new tt.Marker({
+          color: "red"
+        }).setLngLat(apartmentCoordinates).addTo(map);
+      }
+
+      map.addControl(new tt.FullscreenControl());
+      map.addControl(new tt.NavigationControl());
+    },
+    getSearchLatLong: function getSearchLatLong() {
+      var _this3 = this;
+
+      this.noSearch = 0; // controlla che sia stata inserita una città
+
+      if (!this.searchText) {
+        this.noSearch = 1;
+        this.filteredApartments = [];
+        this.initMap();
+        return;
+      } // funzione che ritorna le coordinate del campo di ricerca
+
+
+      this.searchCoordinates = [];
+      var search = this.normalizeText(this.searchText);
+      var endpoint = "https://api.tomtom.com/search/2/search/".concat(search, ".json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk");
+      var encodedEndpoint = encodeURIComponent(endpoint);
+      fetch(endpoint).then(function (a) {
+        return a.json();
+      }).then(function (r) {
+        var lon = r.results[0].position.lon;
+        var lat = r.results[0].position.lat;
+
+        _this3.searchCoordinates.push(lon);
+
+        _this3.searchCoordinates.push(lat); // filtra i risultati e crea la mappa
+
+
+        _this3.getFilteredApartments();
+
+        _this3.initMap();
+      })["catch"](function (e) {
+        return console.error("errror: ", e);
+      });
+    },
+    getRadius: function getRadius(inputKm) {
+      // trasforma il valore del raggio di ricerca da KM a gradi di coordinata (non è super preciso)
+      var radius;
+      radius = parseFloat(inputKm / 1.11 * 0.01).toFixed(2);
+      return parseFloat(radius);
     }
   }
 });
@@ -2137,6 +2234,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -2218,62 +2318,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
- // import axios from "axios";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    address: String,
-    city: String,
-    cap: String
+    latitude: String,
+    longitude: String
   },
   data: function data() {
     return {
-      coordinates: []
+      coordinates: [this.longitude, this.latitude]
     };
   },
   mounted: function mounted() {
-    this.getAddressLatLong();
-  },
-  methods: {
-    initMap: function initMap() {
-      var map = _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.map({
-        container: "map",
-        key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
-        center: this.coordinates,
-        zoom: 15
-      });
-      var marker = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Marker({
-        color: "red"
-      }).setLngLat(this.coordinates).addTo(map);
-      map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.FullscreenControl());
-      map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.NavigationControl());
-    },
-    getAddressLatLong: function getAddressLatLong() {
-      var _this = this;
-
-      var address = "".concat(this.address, ", ").concat(this.city, ", ").concat(this.cap);
-      var endpoint = "https://api.tomtom.com/search/2/search/".concat(address, ".json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk");
-      var encodedEndpoint = encodeURIComponent(endpoint);
-      fetch(endpoint).then(function (a) {
-        return a.json();
-      }).then(function (r) {
-        var lat = r.results[0].position.lat;
-        var lon = r.results[0].position.lon;
-
-        _this.coordinates.push(lon);
-
-        _this.coordinates.push(lat);
-
-        console.log({
-          lat: lat,
-          lon: lon
-        });
-
-        _this.initMap();
-      })["catch"](function (e) {
-        return console.error("errror: ", e);
-      });
-    }
+    var map = _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.map({
+      container: "map",
+      key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
+      center: this.coordinates,
+      zoom: 15
+    });
+    var marker = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Marker({
+      color: "red"
+    }).setLngLat(this.coordinates).addTo(map);
+    map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.FullscreenControl());
+    map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.NavigationControl());
   }
 });
 
@@ -37865,326 +37932,362 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("a", { attrs: { href: "/" } }, [_vm._v("Torna indietro")]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Cerca una città")]),
-      _vm._v(" "),
+  return _c("div", [
+    _c("a", { attrs: { href: "/" } }, [_vm._v("Torna indietro")]),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Cerca una città")]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.searchText,
+          expression: "searchText",
+        },
+      ],
+      attrs: { type: "text", placeholder: "Cerca una città" },
+      domProps: { value: _vm.searchText },
+      on: {
+        keyup: function ($event) {
+          if (
+            !$event.type.indexOf("key") &&
+            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+          ) {
+            return null
+          }
+          return _vm.getSearchLatLong()
+        },
+        input: function ($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.searchText = $event.target.value
+        },
+      },
+    }),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
+        on: {
+          click: function ($event) {
+            return _vm.getSearchLatLong()
+          },
+        },
+      },
+      [_vm._v("\n    Cerca\n  ")]
+    ),
+    _vm._v(" "),
+    _vm._v("\n  " + _vm._s(_vm.filteredApartments.length) + " Risultati\n\n  "),
+    _vm._v(" "),
+    _c("h2", [_vm._v("Filtri")]),
+    _vm._v(" "),
+    _c("div", [
       _c("input", {
         directives: [
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.searchText,
-            expression: "searchText",
+            value: _vm.searchRadius,
+            expression: "searchRadius",
           },
         ],
-        attrs: { type: "text", placeholder: "Cerca una città" },
-        domProps: { value: _vm.searchText },
+        attrs: { type: "range", min: "0", max: "30", step: "1" },
+        domProps: { value: _vm.searchRadius },
         on: {
-          keyup: function ($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
-            }
-            return _vm.getFilteredApartments()
-          },
-          input: function ($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.searchText = $event.target.value
+          __r: function ($event) {
+            _vm.searchRadius = $event.target.value
           },
         },
       }),
+      _vm._v(" " + _vm._s(_vm.searchRadius) + " KM\n    "),
       _vm._v(" "),
       _c(
-        "button",
+        "select",
         {
-          staticClass: "btn btn-primary",
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedCategory,
+              expression: "selectedCategory",
+            },
+          ],
           on: {
-            click: function ($event) {
-              return _vm.getFilteredApartments()
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selectedCategory = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
             },
           },
         },
-        [_vm._v("\n    Cerca\n  ")]
+        [
+          _c("option", { attrs: { value: "-1" } }, [_vm._v("Categoria")]),
+          _vm._v(" "),
+          _vm._l(_vm.categories, function (category, j) {
+            return _c("option", { key: j, domProps: { value: category.id } }, [
+              _vm._v("\n        " + _vm._s(category.name) + "\n      "),
+            ])
+          }),
+        ],
+        2
       ),
       _vm._v(" "),
-      _c("h2", [_vm._v("Filtri")]),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedRooms,
+              expression: "selectedRooms",
+            },
+          ],
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selectedRooms = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+          },
+        },
+        [
+          _c("option", { attrs: { value: "-1" } }, [_vm._v("Stanze")]),
+          _vm._v(" "),
+          _vm._l(_vm.numbers, function (number) {
+            return _c("option", { key: number, domProps: { value: number } }, [
+              _vm._v("\n        " + _vm._s(number) + "\n      "),
+            ])
+          }),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
+        ],
+        2
+      ),
       _vm._v(" "),
-      _c("div", [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.selectedCategory,
-                expression: "selectedCategory",
-              },
-            ],
-            on: {
-              change: function ($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function (o) {
-                    return o.selected
-                  })
-                  .map(function (o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.selectedCategory = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedBeds,
+              expression: "selectedBeds",
+            },
+          ],
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selectedBeds = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
             },
           },
-          [
-            _c("option", { attrs: { value: "-1" } }, [_vm._v("Categoria")]),
-            _vm._v(" "),
-            _vm._l(_vm.categories, function (category, j) {
-              return _c(
-                "option",
-                { key: j, domProps: { value: category.id } },
-                [_vm._v("\n        " + _vm._s(category.name) + "\n      ")]
-              )
-            }),
+        },
+        [
+          _c("option", { attrs: { value: "-1" } }, [_vm._v("Letti")]),
+          _vm._v(" "),
+          _vm._l(_vm.numbers, function (number) {
+            return _c("option", { key: number, domProps: { value: number } }, [
+              _vm._v("\n        " + _vm._s(number) + "\n      "),
+            ])
+          }),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedBathrooms,
+              expression: "selectedBathrooms",
+            },
           ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.selectedRooms,
-                expression: "selectedRooms",
-              },
-            ],
-            on: {
-              change: function ($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function (o) {
-                    return o.selected
-                  })
-                  .map(function (o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.selectedRooms = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selectedBathrooms = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
             },
           },
-          [
-            _c("option", { attrs: { value: "-1" } }, [_vm._v("Stanze")]),
-            _vm._v(" "),
-            _vm._l(_vm.numbers, function (number) {
-              return _c(
-                "option",
-                { key: number, domProps: { value: number } },
-                [_vm._v("\n        " + _vm._s(number) + "\n      ")]
-              )
+        },
+        [
+          _c("option", { attrs: { value: "-1" } }, [_vm._v("Bagni")]),
+          _vm._v(" "),
+          _vm._l(_vm.numbers, function (number) {
+            return _c("option", { key: number, domProps: { value: number } }, [
+              _vm._v("\n        " + _vm._s(number) + "\n      "),
+            ])
+          }),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.services, function (service, i) {
+          return _c("span", { key: i }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.selectedServices,
+                  expression: "selectedServices",
+                },
+              ],
+              attrs: { type: "checkbox" },
+              domProps: {
+                value: service.id,
+                checked: Array.isArray(_vm.selectedServices)
+                  ? _vm._i(_vm.selectedServices, service.id) > -1
+                  : _vm.selectedServices,
+              },
+              on: {
+                change: function ($event) {
+                  var $$a = _vm.selectedServices,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = service.id,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.selectedServices = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.selectedServices = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.selectedServices = $$c
+                  }
+                },
+              },
             }),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.selectedBeds,
-                expression: "selectedBeds",
-              },
-            ],
-            on: {
-              change: function ($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function (o) {
-                    return o.selected
-                  })
-                  .map(function (o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.selectedBeds = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-            },
+            _vm._v("\n        " + _vm._s(service.name) + "\n      "),
+          ])
+        }),
+        0
+      ),
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-secondary",
+        on: {
+          click: function ($event) {
+            return _vm.filteredByPrice()
           },
-          [
-            _c("option", { attrs: { value: "-1" } }, [_vm._v("Letti")]),
-            _vm._v(" "),
-            _vm._l(_vm.numbers, function (number) {
-              return _c(
-                "option",
-                { key: number, domProps: { value: number } },
-                [_vm._v("\n        " + _vm._s(number) + "\n      ")]
-              )
-            }),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.selectedBathrooms,
-                expression: "selectedBathrooms",
-              },
-            ],
-            on: {
-              change: function ($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function (o) {
-                    return o.selected
-                  })
-                  .map(function (o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.selectedBathrooms = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-            },
-          },
-          [
-            _c("option", { attrs: { value: "-1" } }, [_vm._v("Bagni")]),
-            _vm._v(" "),
-            _vm._l(_vm.numbers, function (number) {
-              return _c(
-                "option",
-                { key: number, domProps: { value: number } },
-                [_vm._v("\n        " + _vm._s(number) + "\n      ")]
-              )
-            }),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "5" } }, [_vm._v("5+")]),
-          ],
-          2
-        ),
-        _vm._v(" "),
+        },
+      },
+      [_vm._v("\n    ordina per prezzo\n  ")]
+    ),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _vm.noSearch
+      ? _c("div", [_vm._v("\n    Devi inserire una città.\n  ")])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "result-container",
+        staticStyle: { display: "flex", "justify-content": "space-between" },
+      },
+      [
         _c(
           "div",
-          _vm._l(_vm.services, function (service, i) {
-            return _c("span", { key: i }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.selectedServices,
-                    expression: "selectedServices",
-                  },
-                ],
-                attrs: { type: "checkbox" },
-                domProps: {
-                  value: service.id,
-                  checked: Array.isArray(_vm.selectedServices)
-                    ? _vm._i(_vm.selectedServices, service.id) > -1
-                    : _vm.selectedServices,
-                },
-                on: {
-                  change: function ($event) {
-                    var $$a = _vm.selectedServices,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = service.id,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 && (_vm.selectedServices = $$a.concat([$$v]))
-                      } else {
-                        $$i > -1 &&
-                          (_vm.selectedServices = $$a
-                            .slice(0, $$i)
-                            .concat($$a.slice($$i + 1)))
-                      }
-                    } else {
-                      _vm.selectedServices = $$c
-                    }
-                  },
-                },
-              }),
-              _vm._v("\n        " + _vm._s(service.name) + "\n      "),
-            ])
+          _vm._l(_vm.filteredApartments, function (filteredApartment, i) {
+            return _c(
+              "div",
+              { key: i },
+              [
+                _c("h3", [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: "/apartment/" + filteredApartment.apartment.id,
+                      },
+                    },
+                    [_vm._v(_vm._s(filteredApartment.apartment.title))]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("h4", [_vm._v(_vm._s(filteredApartment.category.name))]),
+                _vm._v(" "),
+                _c("h4", [_vm._v(_vm._s(filteredApartment.apartment.price))]),
+                _vm._v(" "),
+                _vm._l(filteredApartment.services, function (service, j) {
+                  return _c("h5", { key: j }, [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(service.name) +
+                        "\n            "
+                    ),
+                  ])
+                }),
+              ],
+              2
+            )
           }),
           0
         ),
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          on: {
-            click: function ($event) {
-              return _vm.filteredByPrice()
-            },
-          },
-        },
-        [_vm._v("\n    ordina per prezzo\n  ")]
-      ),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _vm._l(_vm.filteredApartments, function (filteredApartment, i) {
-        return _c(
-          "div",
-          { key: i },
-          [
-            _c("h3", [
-              _c(
-                "a",
-                {
-                  attrs: {
-                    href: "/apartment/" + filteredApartment.apartment.id,
-                  },
-                },
-                [_vm._v(_vm._s(filteredApartment.apartment.title))]
-              ),
-            ]),
-            _vm._v(" "),
-            _c("h4", [_vm._v(_vm._s(filteredApartment.category.name))]),
-            _vm._v(" "),
-            _c("h4", [_vm._v(_vm._s(filteredApartment.apartment.price))]),
-            _vm._v(" "),
-            _vm._l(filteredApartment.services, function (service, j) {
-              return _c("h5", { key: j }, [
-                _vm._v("\n      " + _vm._s(service.name) + "\n    "),
-              ])
-            }),
-          ],
-          2
-        )
-      }),
-    ],
-    2
-  )
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "map",
+          staticStyle: { width: "1000px", height: "1000px" },
+          attrs: { id: "map" },
+        }),
+      ]
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38214,7 +38317,7 @@ var render = function () {
     ]),
     _c("br"),
     _vm._v(" "),
-    _c("div", { attrs: { id: "search" } }, [
+    _c("div", { staticClass: "search-box" }, [
       _c("input", {
         directives: [
           {
@@ -38224,7 +38327,7 @@ var render = function () {
             expression: "searchAp",
           },
         ],
-        staticClass: "txt",
+        staticClass: "search-txt",
         attrs: {
           type: "search",
           id: "search",
@@ -38244,10 +38347,12 @@ var render = function () {
         },
       }),
       _vm._v(" "),
-      _c("i", {
-        staticClass: "fas fa-search fs-2",
-        on: { click: _vm.getFilterCity },
-      }),
+      _c("a", { staticClass: "search-btn", attrs: { href: "#" } }, [
+        _c("i", {
+          staticClass: "fas fa-search fs-2",
+          on: { click: _vm.getFilterCity },
+        }),
+      ]),
     ]),
     _vm._v(" "),
     _c(
@@ -50862,8 +50967,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Samuele\Documents\Boolean\Progetto Finale\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Samuele\Documents\Boolean\Progetto Finale\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
