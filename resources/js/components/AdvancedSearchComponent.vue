@@ -82,7 +82,7 @@
               </h5>
             </div>
         </div>
-        <div id="map" class="map" style="width: 1000px; height: 1000px; background: red;"></div>
+        <div v-if="filteredApartments.length > 0" id="map" class="map" style="width: 1000px; height: 1000px;"></div>
     </div>
   </div>
 </template>
@@ -105,7 +105,7 @@ export default {
       services: [],
       numbers: [1, 2, 3, 4],
 
-      coordinates: [],
+      searchCoordinates: [],
     };
   },
   props: {
@@ -202,12 +202,12 @@ export default {
         var map = tt.map({
             container: "map",
             key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
-            center: this.coordinates,
+            center: this.searchCoordinates,
             zoom: 15,
         });
 
         var center = new tt.Marker({ color: "black" })
-        .setLngLat(this.coordinates)
+        .setLngLat(this.searchCoordinates)
         .addTo(map);
 
         for (let i = 0; i < this.filteredApartments.length; i++) {
@@ -229,8 +229,8 @@ export default {
         .then((r) => {
           const lat = r.results[0].position.lat;
           const lon = r.results[0].position.lon;
-          this.coordinates.push(lon);
-          this.coordinates.push(lat);
+          this.searchCoordinates.push(lon);
+          this.searchCoordinates.push(lat);
 
           this.initMap();
         })
