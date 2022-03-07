@@ -2029,7 +2029,7 @@ __webpack_require__.r(__webpack_exports__);
       services: [],
       numbers: [1, 2, 3, 4],
       searchCoordinates: [],
-      searchRadius: 0
+      searchRadius: 20
     };
   },
   props: {
@@ -2070,15 +2070,21 @@ __webpack_require__.r(__webpack_exports__);
       this.filteredApartments = this.apartments;
 
       if (this.searchCoordinates) {
-        var minLon = this.searchCoordinates[0] - this.getRadius(this.searchRadius);
-        var maxLon = this.searchCoordinates[0] + this.getRadius(this.searchRadius);
-        var minLat = this.searchCoordinates[1] - this.getRadius(this.searchRadius);
-        var maxLon = this.searchCoordinates[1] + this.getRadius(this.searchRadius);
+        var radius = parseInt(this.searchRadius);
+        console.log(radius);
+        console.log(this.getRadius(radius));
+        console.log(this.searchCoordinates);
+        console.log(this.searchCoordinates[0]);
+        console.log(this.searchCoordinates[1]);
+        var minLon = this.searchCoordinates[0] - this.getRadius(radius);
+        var maxLon = this.searchCoordinates[0] + this.getRadius(radius);
+        var minLat = this.searchCoordinates[1] - this.getRadius(radius);
+        var maxLat = this.searchCoordinates[1] + this.getRadius(radius);
         this.filteredApartments = this.filteredApartments.filter(function (r) {
-          return r.apartment.longitude >= _this2.minLon && r.apartment.longitude <= _this2.maxLon;
+          return r.apartment.longitude >= minLon && r.apartment.longitude <= maxLon;
         });
         this.filteredApartments = this.filteredApartments.filter(function (r) {
-          return r.apartment.latitude >= _this2.minLat && r.apartment.latitude <= _this2.maxLat;
+          return r.apartment.latitude >= minLat && r.apartment.latitude <= maxLat;
         });
       } // controllo sulle città con la normalizzazione del testo (in minuscolo e rimozione delle accentate)
       // if (this.searchText) {
@@ -2171,6 +2177,7 @@ __webpack_require__.r(__webpack_exports__);
     getSearchLatLong: function getSearchLatLong() {
       var _this3 = this;
 
+      this.searchCoordinates = [];
       var search = this.normalizeText(this.searchText);
       var endpoint = "https://api.tomtom.com/search/2/search/".concat(search, ".json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk");
       var encodedEndpoint = encodeURIComponent(endpoint);
@@ -2184,11 +2191,12 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.searchCoordinates.push(lat);
 
+        _this3.getFilteredApartments();
+
         _this3.initMap();
       })["catch"](function (e) {
         return console.error("errror: ", e);
       });
-      this.getFilteredApartments();
     },
     getRadius: function getRadius(inputKm) {
       var radius;
@@ -37967,7 +37975,7 @@ var render = function () {
             expression: "searchRadius",
           },
         ],
-        attrs: { type: "range", min: "0", max: "100", value: "20", step: "20" },
+        attrs: { type: "range", min: "0", max: "30", step: "1" },
         domProps: { value: _vm.searchRadius },
         on: {
           __r: function ($event) {
@@ -37975,7 +37983,7 @@ var render = function () {
           },
         },
       }),
-      _vm._v(" " + _vm._s(_vm.searchRadius) + "KM\n\n    "),
+      _vm._v(" " + _vm._s(_vm.searchRadius) + " KM\n\n    "),
       _c(
         "select",
         {

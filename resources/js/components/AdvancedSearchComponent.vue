@@ -18,7 +18,7 @@
     <h2>Filtri</h2>
     <div>
 
-      <input type="range" min="0" max="100" value="20" step="20" v-model="searchRadius"> {{searchRadius}}KM
+      <input type="range" min="0" max="30" step="1" v-model="searchRadius"> {{searchRadius}} KM
 
       <select v-model="selectedCategory">
         <option value="-1">Categoria</option>
@@ -109,7 +109,7 @@ export default {
       numbers: [1, 2, 3, 4],
 
       searchCoordinates: [],
-      searchRadius: 0,
+      searchRadius: 20,
     };
   },
   props: {
@@ -143,17 +143,24 @@ export default {
       // associa l'array di appartamenti filtrati a quello di base con tutti gli appartamenti
       this.filteredApartments = this.apartments;
 
-      if (this.searchCoordinates) {          
-        var minLon = this.searchCoordinates[0]-this.getRadius(this.searchRadius);
-        var maxLon = this.searchCoordinates[0]+this.getRadius(this.searchRadius);
-        var minLat = this.searchCoordinates[1]-this.getRadius(this.searchRadius);
-        var maxLon = this.searchCoordinates[1]+this.getRadius(this.searchRadius);
+      if (this.searchCoordinates) {         
+        var radius = parseInt(this.searchRadius);
+        console.log(radius); 
+        console.log(this.getRadius(radius)); 
+        console.log(this.searchCoordinates);
+        console.log(this.searchCoordinates[0]);
+        console.log(this.searchCoordinates[1]);
+
+        var minLon = this.searchCoordinates[0]-this.getRadius(radius);
+        var maxLon = this.searchCoordinates[0]+this.getRadius(radius);
+        var minLat = this.searchCoordinates[1]-this.getRadius(radius);
+        var maxLat = this.searchCoordinates[1]+this.getRadius(radius);
 
         this.filteredApartments = this.filteredApartments.filter(
-          (r) => r.apartment.longitude >= this.minLon && r.apartment.longitude <= this.maxLon
+          (r) => r.apartment.longitude >= minLon && r.apartment.longitude <= maxLon
         );
         this.filteredApartments = this.filteredApartments.filter(
-          (r) => r.apartment.latitude >= this.minLat && r.apartment.latitude <= this.maxLat
+          (r) => r.apartment.latitude >= minLat && r.apartment.latitude <= maxLat
         );
       }
 
@@ -239,6 +246,7 @@ export default {
         map.addControl(new tt.NavigationControl());
     },
     getSearchLatLong() {
+      this.searchCoordinates = [];
       const search = this.normalizeText(this.searchText);
       const endpoint = `https://api.tomtom.com/search/2/search/${search}.json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk`;
       const encodedEndpoint = encodeURIComponent(endpoint);
@@ -251,11 +259,11 @@ export default {
           this.searchCoordinates.push(lon);
           this.searchCoordinates.push(lat);
 
+          this.getFilteredApartments();
           this.initMap();
         })
         .catch((e) => console.error("errror: ", e));
       
-      this.getFilteredApartments();
     },
     getRadius(inputKm){
       let radius;
