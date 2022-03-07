@@ -6,9 +6,15 @@ use App\Apartment;
 use App\Category;
 use App\Service;
 use App\Image;
+Use App\Sponsorship;
+use App\ApartmentSponsorship;
 use App\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Carbon;
+Use Carbon\Carbon;
+
 class UserController extends Controller
 {
     // costruttore dell'autorizzazione (login)
@@ -126,5 +132,55 @@ class UserController extends Controller
 
         $apartment->delete();
         return redirect()->route('userDashboard');
+        
+    }
+
+
+
+    public function sponsor($id){
+        $apartment = Apartment::findOrFail($id);
+        $sponsorship = Sponsorship::all();
+        $apartmentSponsorship = ApartmentSponsorship::all();
+    
+        return view('pages.sponsorship', compact('apartment', 'sponsorship', 'apartmentSponsorship'));
+    }
+
+    public function sponsorStore($apartment_id, $sponsorship_id) {
+
+
+        return view('pages.payment',compact("apartment_id","sponsorship_id"));
+    }
+
+    public function paymentStore($apartment_id,$sponsorship_id){
+       
+        $ap = new ApartmentSponsorship();
+        $ap -> start_date = Carbon::now();
+
+        $endDate = 0;
+
+        if ($sponsorship_id == 1) {
+            $endDate = 1;
+        }elseif ($sponsorship_id == 2) {
+            $endDate = 3;
+        }elseif($sponsorship_id == 3) {
+            $endDate = 6;
+        }
+
+        $ap -> end_date = Carbon::now()-> addDays($endDate);
+       
+        $apartment = Apartment::findOrFail($apartment_id);
+
+        $apartment -> n_sponsorships += 1 ;
+
+        $apartment->save();
+
+        $sponsorship = Sponsorship::findOrFail($sponsorship_id);
+
+        $ap->apartment()->associate($apartment);                   
+        $ap->sponsorship()->associate($sponsorship);   
+         
+        $ap -> save();
+        
+        return view('pages.home');
     }
 }

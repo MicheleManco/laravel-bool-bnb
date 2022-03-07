@@ -1,7 +1,10 @@
 @extends('layouts.main-layout')
 @section('content')
 
-<home-search></home-search>
+    <home-search
+    :apartment_sponsorship = '{{json_encode($apartmentSponsorship)}}'>
+
+    </home-search>
 
 </div>
 @endsection

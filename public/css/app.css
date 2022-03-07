@@ -10962,18 +10962,16 @@ a.text-dark:focus {
   }
 }
 
-#elenco {
-  width: 50%;
-  margin: 0 auto;
+.elenco {
+  width: 25%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
-#elenco #apartment {
+.elenco .apartment {
   padding: 13%;
   border: 1px solid black;
   margin: 10px;
+  float: right;
 }
 
 #containerForm .form {
@@ -11045,5 +11043,50 @@ a.text-dark:focus {
 
 .search-box:hover > .search-btn {
   background-color: white;
+}
+
+#sponsorship {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  height: 100%;
+}
+
+#sponsorship a {
+  text-decoration: none;
+  color: black;
+}
+
+#sponsorship .sponsor {
+  margin: 0 15px;
+  transition: 0.45s;
+  text-align: center;
+}
+
+#sponsorship .sponsor img {
+  width: 70%;
+  transition: 0.45s;
+}
+
+#sponsorship .sponsor .info {
+  font-size: 20px;
+}
+
+#sponsorship .sponsor:hover img {
+  transform: rotateY(360deg);
+  width: 90%;
+}
+
+#sponsorship .Silver {
+  background-color: black;
+  color: silver;
+}
+
+#sponsorship .Gold {
+  color: gold;
+}
+
+#sponsorship .Platinum {
+  color: #e5e4e2;
 }
 

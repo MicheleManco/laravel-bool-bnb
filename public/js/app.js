@@ -2163,6 +2163,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2171,8 +2186,13 @@ __webpack_require__.r(__webpack_exports__);
       // variabili usata per la ricerca
       searchAp: "",
       // lista di appartamenti filtrati
-      apartmentFilted: []
+      apartmentFilted: [],
+      date: new Date(),
+      expiryDate: moment(this.date).format()
     };
+  },
+  props: {
+    apartment_sponsorship: Array
   },
   mounted: function mounted() {
     var _this = this;
@@ -2183,6 +2203,7 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (e) {
       return console.error(e);
     });
+    console.log(this.expiryDate);
   },
   methods: {
     getFilterCity: function getFilterCity() {
@@ -38214,7 +38235,7 @@ var render = function () {
     ]),
     _c("br"),
     _vm._v(" "),
-    _c("div", { attrs: { id: "search" } }, [
+    _c("div", { staticClass: "search-box" }, [
       _c("input", {
         directives: [
           {
@@ -38224,7 +38245,7 @@ var render = function () {
             expression: "searchAp",
           },
         ],
-        staticClass: "txt",
+        staticClass: "search-txt",
         attrs: {
           type: "search",
           id: "search",
@@ -38244,17 +38265,19 @@ var render = function () {
         },
       }),
       _vm._v(" "),
-      _c("i", {
-        staticClass: "fas fa-search fs-2",
-        on: { click: _vm.getFilterCity },
-      }),
+      _c("a", { staticClass: "search-btn", attrs: { href: "#" } }, [
+        _c("i", {
+          staticClass: "fas fa-search fs-2",
+          on: { click: _vm.getFilterCity },
+        }),
+      ]),
     ]),
     _vm._v(" "),
     _c(
       "div",
-      { attrs: { id: "elenco" } },
+      { staticClass: "elenco" },
       _vm._l(_vm.apartmentFilted, function (apartment) {
-        return _c("div", { key: apartment.id, attrs: { id: "apartment" } }, [
+        return _c("div", { key: apartment.id, staticClass: "apartment" }, [
           _c("a", { attrs: { href: "/apartment/" + apartment.id } }, [
             _vm._v(_vm._s(apartment.city)),
           ]),
@@ -38262,6 +38285,35 @@ var render = function () {
           _c("p", [_vm._v(_vm._s(apartment.title))]),
           _vm._v(" "),
           _c("p", [_vm._v(_vm._s(apartment.description))]),
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("h1", [_vm._v("Appartamenti in evidenza")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "elenco" },
+      _vm._l(_vm.apartment_sponsorship, function (apartmentsponsorship, i) {
+        return _c("div", { key: i }, [
+          apartmentsponsorship.end_date > _vm.expiryDate
+            ? _c(
+                "div",
+                _vm._l(_vm.apartments, function (apartmentsponsor, j) {
+                  return _c("div", { key: j }, [
+                    apartmentsponsor.n_sponsorships != null
+                      ? _c("div", { staticClass: "apartment" }, [
+                          _c("p", [
+                            _vm._v(" " + _vm._s(apartmentsponsor.title)),
+                          ]),
+                        ])
+                      : _vm._e(),
+                  ])
+                }),
+                0
+              )
+            : _vm._e(),
         ])
       }),
       0
@@ -50862,8 +50914,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
