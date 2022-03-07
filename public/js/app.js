@@ -2017,6 +2017,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2034,8 +2041,11 @@ __webpack_require__.r(__webpack_exports__);
       services: [],
       numbers: [1, 2, 3, 4],
       searchCoordinates: [],
+      // coordinate dell'indirizzo ricercato
       searchRadius: 20,
-      noSearch: 0
+      // raggio in cui compiere la ricerca
+      noSearch: 0 // se non c'è testo ricercato diventa 1 per mostrare un messaggio di errore
+
     };
   },
   props: {
@@ -2148,6 +2158,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     initMap: function initMap() {
+      // metodo che disegna la mappa a partire dalle coordinate dell'indirizzo inserito nel campo di ricerca
       var map = tt.map({
         container: "map",
         key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
@@ -2156,7 +2167,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       var center = new tt.Marker({
         color: "black"
-      }).setLngLat(this.searchCoordinates).addTo(map);
+      }).setLngLat(this.searchCoordinates).addTo(map); // stampa tutti gli appartameni filtrati sulla mappa
 
       for (var i = 0; i < this.filteredApartments.length; i++) {
         var apartmentCoordinates = [this.filteredApartments[i].apartment.longitude, this.filteredApartments[i].apartment.latitude];
@@ -2171,10 +2182,12 @@ __webpack_require__.r(__webpack_exports__);
     getSearchLatLong: function getSearchLatLong() {
       var _this3 = this;
 
-      this.noSearch = 0;
+      this.noSearch = 0; // controlla che sia stata inserita una città
 
       if (!this.searchText) {
         this.noSearch = 1;
+        this.filteredApartments = [];
+        this.initMap();
         return;
       } // funzione che ritorna le coordinate del campo di ricerca
 
@@ -37966,9 +37979,9 @@ var render = function () {
       },
       [_vm._v("\n    Cerca\n  ")]
     ),
-    _vm._v(
-      "\n\n  " + _vm._s(_vm.filteredApartments.length) + " Risultati\n\n  "
-    ),
+    _vm._v(" "),
+    _vm._v("\n  " + _vm._s(_vm.filteredApartments.length) + " Risultati\n\n  "),
+    _vm._v(" "),
     _c("h2", [_vm._v("Filtri")]),
     _vm._v(" "),
     _c("div", [
@@ -37989,7 +38002,8 @@ var render = function () {
           },
         },
       }),
-      _vm._v(" " + _vm._s(_vm.searchRadius) + " KM\n\n    "),
+      _vm._v(" " + _vm._s(_vm.searchRadius) + " KM\n    "),
+      _vm._v(" "),
       _c(
         "select",
         {
