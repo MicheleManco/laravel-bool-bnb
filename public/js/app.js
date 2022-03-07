@@ -2009,6 +2009,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2025,7 +2028,8 @@ __webpack_require__.r(__webpack_exports__);
       categories: [],
       services: [],
       numbers: [1, 2, 3, 4],
-      coordinates: []
+      searchCoordinates: [],
+      searchRadius: 0
     };
   },
   props: {
@@ -2063,13 +2067,28 @@ __webpack_require__.r(__webpack_exports__);
       // elimina le accentate dalla ricerca dell'utente
       var cleanSearchText = this.normalizeText(this.searchText); // associa l'array di appartamenti filtrati a quello di base con tutti gli appartamenti
 
-      this.filteredApartments = this.apartments; // controllo sulle città con la normalizzazione del testo (in minuscolo e rimozione delle accentate)
+      this.filteredApartments = this.apartments;
 
-      if (this.searchText) {
+      if (this.searchCoordinates) {
+        var minLon = this.searchCoordinates[0] - this.getRadius(this.searchRadius);
+        var maxLon = this.searchCoordinates[0] + this.getRadius(this.searchRadius);
+        var minLat = this.searchCoordinates[1] - this.getRadius(this.searchRadius);
+        var maxLon = this.searchCoordinates[1] + this.getRadius(this.searchRadius);
         this.filteredApartments = this.filteredApartments.filter(function (r) {
-          return _this2.normalizeText(r.apartment.city).toLowerCase().includes(cleanSearchText.toLowerCase());
+          return r.apartment.longitude >= _this2.minLon && r.apartment.longitude <= _this2.maxLon;
         });
-      } // controllo sul numero di stanze
+        this.filteredApartments = this.filteredApartments.filter(function (r) {
+          return r.apartment.latitude >= _this2.minLat && r.apartment.latitude <= _this2.maxLat;
+        });
+      } // controllo sulle città con la normalizzazione del testo (in minuscolo e rimozione delle accentate)
+      // if (this.searchText) {
+      //   this.filteredApartments = this.filteredApartments.filter((r) => {
+      //     return this.normalizeText(r.apartment.city)
+      //       .toLowerCase()
+      //       .includes(cleanSearchText.toLowerCase());
+      //   });
+      // }
+      // controllo sul numero di stanze
 
 
       if (this.selectedRooms != -1) {
@@ -2132,12 +2151,12 @@ __webpack_require__.r(__webpack_exports__);
       var map = tt.map({
         container: "map",
         key: "GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk",
-        center: this.coordinates,
+        center: this.searchCoordinates,
         zoom: 15
       });
       var center = new tt.Marker({
         color: "black"
-      }).setLngLat(this.coordinates).addTo(map);
+      }).setLngLat(this.searchCoordinates).addTo(map);
 
       for (var i = 0; i < this.filteredApartments.length; i++) {
         var apartmentCoordinates = [this.filteredApartments[i].apartment.longitude, this.filteredApartments[i].apartment.latitude];
@@ -2152,23 +2171,29 @@ __webpack_require__.r(__webpack_exports__);
     getSearchLatLong: function getSearchLatLong() {
       var _this3 = this;
 
-      var search = this.searchText;
+      var search = this.normalizeText(this.searchText);
       var endpoint = "https://api.tomtom.com/search/2/search/".concat(search, ".json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk");
       var encodedEndpoint = encodeURIComponent(endpoint);
       fetch(endpoint).then(function (a) {
         return a.json();
       }).then(function (r) {
-        var lat = r.results[0].position.lat;
         var lon = r.results[0].position.lon;
+        var lat = r.results[0].position.lat;
 
-        _this3.coordinates.push(lon);
+        _this3.searchCoordinates.push(lon);
 
-        _this3.coordinates.push(lat);
+        _this3.searchCoordinates.push(lat);
 
         _this3.initMap();
       })["catch"](function (e) {
         return console.error("errror: ", e);
       });
+      this.getFilteredApartments();
+    },
+    getRadius: function getRadius(inputKm) {
+      var radius;
+      radius = parseFloat(inputKm / 1.11 * 0.01).toFixed(2);
+      return parseFloat(radius);
     }
   }
 });
@@ -37906,7 +37931,7 @@ var render = function () {
           ) {
             return null
           }
-          _vm.getFilteredApartments(), _vm.getSearchLatLong()
+          return _vm.getSearchLatLong()
         },
         input: function ($event) {
           if ($event.target.composing) {
@@ -37923,7 +37948,7 @@ var render = function () {
         staticClass: "btn btn-primary",
         on: {
           click: function ($event) {
-            _vm.getFilteredApartments(), _vm.getSearchLatLong()
+            return _vm.getSearchLatLong()
           },
         },
       },
@@ -37933,6 +37958,24 @@ var render = function () {
     _c("h2", [_vm._v("Filtri")]),
     _vm._v(" "),
     _c("div", [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.searchRadius,
+            expression: "searchRadius",
+          },
+        ],
+        attrs: { type: "range", min: "0", max: "100", value: "20", step: "20" },
+        domProps: { value: _vm.searchRadius },
+        on: {
+          __r: function ($event) {
+            _vm.searchRadius = $event.target.value
+          },
+        },
+      }),
+      _vm._v(" " + _vm._s(_vm.searchRadius) + "KM\n\n    "),
       _c(
         "select",
         {
@@ -38207,7 +38250,7 @@ var render = function () {
         _vm._v(" "),
         _c("div", {
           staticClass: "map",
-          staticStyle: { width: "1000px", height: "1000px", background: "red" },
+          staticStyle: { width: "1000px", height: "1000px" },
           attrs: { id: "map" },
         }),
       ]

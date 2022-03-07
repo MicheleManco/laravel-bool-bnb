@@ -8,15 +8,18 @@
       type="text"
       placeholder="Cerca una città"
       v-model="searchText"
-      @keyup.enter="getFilteredApartments(), getSearchLatLong()"
+      @keyup.enter="getSearchLatLong()"
     />
 
-    <button class="btn btn-primary" @click="getFilteredApartments(), getSearchLatLong()">
+    <button class="btn btn-primary" @click="getSearchLatLong()">
       Cerca
     </button>
 
     <h2>Filtri</h2>
     <div>
+
+      <input type="range" min="0" max="100" value="20" step="20" v-model="searchRadius"> {{searchRadius}}KM
+
       <select v-model="selectedCategory">
         <option value="-1">Categoria</option>
         <option
@@ -82,7 +85,7 @@
               </h5>
             </div>
         </div>
-        <div v-if="filteredApartments.length > 0" id="map" class="map" style="width: 1000px; height: 1000px;"></div>
+        <div  id="map" class="map" style="width: 1000px; height: 1000px;"></div>
     </div>
   </div>
 </template>
@@ -106,6 +109,7 @@ export default {
       numbers: [1, 2, 3, 4],
 
       searchCoordinates: [],
+      searchRadius: 0,
     };
   },
   props: {
@@ -139,14 +143,29 @@ export default {
       // associa l'array di appartamenti filtrati a quello di base con tutti gli appartamenti
       this.filteredApartments = this.apartments;
 
-      // controllo sulle città con la normalizzazione del testo (in minuscolo e rimozione delle accentate)
-      if (this.searchText) {
-        this.filteredApartments = this.filteredApartments.filter((r) => {
-          return this.normalizeText(r.apartment.city)
-            .toLowerCase()
-            .includes(cleanSearchText.toLowerCase());
-        });
+      if (this.searchCoordinates) {          
+        var minLon = this.searchCoordinates[0]-this.getRadius(this.searchRadius);
+        var maxLon = this.searchCoordinates[0]+this.getRadius(this.searchRadius);
+        var minLat = this.searchCoordinates[1]-this.getRadius(this.searchRadius);
+        var maxLon = this.searchCoordinates[1]+this.getRadius(this.searchRadius);
+
+        this.filteredApartments = this.filteredApartments.filter(
+          (r) => r.apartment.longitude >= this.minLon && r.apartment.longitude <= this.maxLon
+        );
+        this.filteredApartments = this.filteredApartments.filter(
+          (r) => r.apartment.latitude >= this.minLat && r.apartment.latitude <= this.maxLat
+        );
       }
+
+      // controllo sulle città con la normalizzazione del testo (in minuscolo e rimozione delle accentate)
+      // if (this.searchText) {
+      //   this.filteredApartments = this.filteredApartments.filter((r) => {
+      //     return this.normalizeText(r.apartment.city)
+      //       .toLowerCase()
+      //       .includes(cleanSearchText.toLowerCase());
+      //   });
+      // }
+      
       // controllo sul numero di stanze
       if (this.selectedRooms != -1) {
         if (this.selectedRooms < 5) {
@@ -220,22 +239,29 @@ export default {
         map.addControl(new tt.NavigationControl());
     },
     getSearchLatLong() {
-      const search = this.searchText;
+      const search = this.normalizeText(this.searchText);
       const endpoint = `https://api.tomtom.com/search/2/search/${search}.json?limit=1&key=GJpBcQsMGEGTQjwmKY9ABdIiOR9gVzuk`;
       const encodedEndpoint = encodeURIComponent(endpoint);
 
       fetch(endpoint)
         .then((a) => a.json())
         .then((r) => {
-          const lat = r.results[0].position.lat;
           const lon = r.results[0].position.lon;
+          const lat = r.results[0].position.lat;
           this.searchCoordinates.push(lon);
           this.searchCoordinates.push(lat);
 
           this.initMap();
         })
         .catch((e) => console.error("errror: ", e));
+      
+      this.getFilteredApartments();
     },
+    getRadius(inputKm){
+      let radius;
+      radius = parseFloat(inputKm / 1.11 * 0.01).toFixed(2);
+      return parseFloat(radius);
+    }
   },
 };
 </script>
