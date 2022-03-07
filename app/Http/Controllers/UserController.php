@@ -170,15 +170,11 @@ class UserController extends Controller
        
         $apartment = Apartment::findOrFail($apartment_id);
 
+        $apartment -> n_sponsorships = $sponsorship_id;
+
+        $apartment->save();
+
         $sponsorship = Sponsorship::findOrFail($sponsorship_id);
-
-        // $new =  $apartment['n_sponsorships'] = $ap -> sponsorship_id;
-
-        // $apartment->update($new);
-        // $apartment->save();
-
-        // $apartment->sponsorships()->sync($sponsorship);
-        // $apartment->save();
 
         $ap->apartment()->associate($apartment);                   
         $ap->sponsorship()->associate($sponsorship);   
