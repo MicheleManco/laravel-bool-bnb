@@ -20,6 +20,8 @@ Route::get('/userDashboard', 'UserController@userDashboard')->name('userDashboar
 
 // dettaglio dell'appartamento
 Route::get('/apartment/{id}', 'GuestController@showApartment')->name('showApartment');
+Route::post('post/message/{id}','GuestController@messages') ->name('messagesPost');
+
 // crea e salva un nuovo appartamento
 Route::get('/create', 'UserController@apartmentCreate')->name('apartmentCreate');
 Route::post('/store', 'UserController@apartmentStore')->name('apartmentStore');
@@ -36,6 +38,7 @@ Route::get('/sponsor/store/{id}/{sponsor_id}', 'UserController@sponsorStore') ->
 //rotta per il pagamento
 Route::get('/payment', 'UserController@payment') ->name('payment');
 Route::post('/payment/store/{apartment_id}/{sponsorship_id}', 'UserController@paymentStore') ->name('paymentStore');
+
 // --------------------------------------------------------------------------------------------
 
 // rotte API

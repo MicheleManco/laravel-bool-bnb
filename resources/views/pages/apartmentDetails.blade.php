@@ -14,6 +14,23 @@
     latitude="{{$apartment->latitude}}"
     longitude="{{$apartment->longitude}}"
     ></map-component>
+
+    {{-- form per i messaggi --}}
+    <form action="{{route('messagesPost', $apartment->id)}}" method='POST'>
+        @method('POST')
+        @csrf
+
+        <label for="name">Nome:</label> <br>
+        <input type="text" name="name"><br>
+        <label for="surname">Cognome</label><br>
+        <input type="text" name="surname"><br>
+        <label for="email">Email</label><br>
+        <input type="email" name="email"><br>
+        <label for="text">Testo</label><br>
+        <textarea name="text" cols="50"></textarea><br>
+        <input type="submit" value="manda">
+
+    </form>
     
     @auth
         {{-- se l'utente è il proprietario dell'appartamento c'è la possibilità di modificarlo o eliminarlo --}}
