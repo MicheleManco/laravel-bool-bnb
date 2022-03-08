@@ -1,40 +1,20 @@
 <template>
     <div>
-        <!-- Link per andare alla ricerca avanzata -->
-        <a href="/search">Fai una ricerca avanzata</a><br>
 
-        <!-- input per la ricerca degli appartamenti tramite la città -->
-        <div class="search-box">
-            <input class="search-txt" type="search" id="search" name="search" size="90%" placeholder="Inserisci città" v-model="searchAp" @keyup="getFilterCity" >
-            <a href="#" class="search-btn">
-                <i class="fas fa-search fs-2" @click="getFilterCity"></i>
-            </a>
-        </div>
-
-                <!-- elenco di appartamenti che compare se la città corrisponde -->
-            <div class="elenco" >
-                <div  class="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
-                    <a :href="`/apartment/${apartment.id}`">{{apartment.city}}</a>
-                    <p>{{apartment.title}}</p>
-                    <p>{{apartment.description}}</p>
-                </div>
-            </div>
+        <Jumbotrone /> 
+        <Visitedcities />
 
         <h1>Appartamenti in evidenza</h1>
 
-        <div class="elenco">
-            <div v-for="apartmentsponsorship, i in apartment_sponsorship" :key="i">
-                <div v-if="apartmentsponsorship.end_date > expiryDate">
-                    <div v-for="apartmentsponsor, j in apartments" :key="j">
-                        <div class="apartment" v-if="apartmentsponsorship.apartment_id == apartmentsponsor.id">
-                            <p> {{apartmentsponsor.title}}</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="elenco" v-for="sponsor, i in filter_sponsor" :key="i">
+
+            <div class="apartment" v-for="apartment in apartments" :key="apartment.id" v-if="(apartment.id == sponsor[i].apartment_id) && (sponsor[i].end_date > expiryDate)">
+                <p>
+                    <a :href="`/apartment/${apartment.id}`">{{apartment.title}}</a>
+                </p>
             </div>
         </div>
-        <Jumbotrone />
-        <Visitedcities />
+       
         <Randomdestination />
     </div>
       
@@ -78,6 +58,7 @@ export default {
         },
         props: {
             apartment_sponsorship: Array,
+            filter_sponsor: Array,
         },
 
         mounted() {
@@ -87,7 +68,7 @@ export default {
                 .then(r => this.apartments = r.data)
                 .catch(e => console.error(e));
 
-            console.log();
+
         },
 
         methods: {

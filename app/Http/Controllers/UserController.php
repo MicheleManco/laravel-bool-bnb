@@ -27,7 +27,7 @@ class UserController extends Controller
     public function userDashboard(){
         $apartments = Apartment::all();
         $apartmentSponsorship = ApartmentSponsorship::all();
-
+      
         $currentDate = Carbon::now();
 
         return view('pages.userDashboard',compact('apartments', 'apartmentSponsorship', 'currentDate'));
