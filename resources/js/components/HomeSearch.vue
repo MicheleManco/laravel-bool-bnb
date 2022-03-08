@@ -1,5 +1,4 @@
 <template>
-
     <div>
         <!-- Link per andare alla ricerca avanzata -->
         <a href="/search">Fai una ricerca avanzata</a><br>
@@ -15,11 +14,13 @@
         <!-- elenco di appartamenti che compare se la città corrisponde -->
         <div class="elenco" >
             <div class="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
+        <!-- elenco di appartamenti che compare se la città corrisponde -->
+        <div id="elenco" >
+            <div  id="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
                 <a :href="`/apartment/${apartment.id}`">{{apartment.city}}</a>
                 <p>{{apartment.title}}</p>
                 <p>{{apartment.description}}</p>
             </div>
-
         </div>
 
         <h1>Appartamenti in evidenza</h1>
@@ -35,12 +36,26 @@
                 </div>
             </div>
         </div>
+        <Jumbotrone />
+        <Visitedcities />
+        <Randomdestination />
     </div>
-
 </template>
 
 <script>
-    export default {
+
+import Jumbotrone from '../components/Jumbotrone.vue'
+import Randomdestination from './Randomdestination.vue';
+import Visitedcities from './Visitedcities.vue';
+
+export default {
+
+    name: 'HomeSearch',
+    components: {
+        Jumbotrone,
+        Visitedcities,
+        Randomdestination,
+    },
 
         data() {
 
@@ -100,3 +115,7 @@
     }
 
 </script>
+
+<style scoped lang="scss">
+
+</style>
