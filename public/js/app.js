@@ -2254,7 +2254,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
 //
 //
 //
@@ -2279,11 +2278,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-=======
+//
+//
+//
+//
+//
+//
+//
 
 
 
->>>>>>> layout-homepage
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HomeSearch',
   components: {
@@ -39205,18 +39209,103 @@ var render = function () {
   return _c(
     "div",
     [
+      _c("a", { attrs: { href: "/search" } }, [
+        _vm._v("Fai una ricerca avanzata"),
+      ]),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "search-box" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.searchAp,
+              expression: "searchAp",
+            },
+          ],
+          staticClass: "search-txt",
+          attrs: {
+            type: "search",
+            id: "search",
+            name: "search",
+            size: "90%",
+            placeholder: "Inserisci città",
+          },
+          domProps: { value: _vm.searchAp },
+          on: {
+            keyup: _vm.getFilterCity,
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.searchAp = $event.target.value
+            },
+          },
+        }),
+        _vm._v(" "),
+        _c("a", { staticClass: "search-btn", attrs: { href: "#" } }, [
+          _c("i", {
+            staticClass: "fas fa-search fs-2",
+            on: { click: _vm.getFilterCity },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
       _c(
         "div",
-        { attrs: { id: "elenco" } },
+        { staticClass: "elenco" },
         _vm._l(_vm.apartmentFilted, function (apartment) {
-          return _c("div", { key: apartment.id, attrs: { id: "apartment" } }, [
-            _c("a", { attrs: { href: "/apartment/" + apartment.id } }, [
-              _vm._v(_vm._s(apartment.city)),
-            ]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(apartment.title))]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(apartment.description))]),
+          return _c("div", { key: apartment.id, staticClass: "apartment" }, [
+            _c(
+              "div",
+              { attrs: { id: "elenco" } },
+              _vm._l(_vm.apartmentFilted, function (apartment) {
+                return _c(
+                  "div",
+                  { key: apartment.id, attrs: { id: "apartment" } },
+                  [
+                    _c("a", { attrs: { href: "/apartment/" + apartment.id } }, [
+                      _vm._v(_vm._s(apartment.city)),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(apartment.title))]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(apartment.description))]),
+                  ]
+                )
+              }),
+              0
+            ),
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("h1", [_vm._v("Appartamenti in evidenza")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "elenco" },
+        _vm._l(_vm.apartment_sponsorship, function (apartmentsponsorship, i) {
+          return _c("div", { key: i }, [
+            apartmentsponsorship.end_date > _vm.expiryDate
+              ? _c(
+                  "div",
+                  _vm._l(_vm.apartments, function (apartmentsponsor, j) {
+                    return _c("div", { key: j }, [
+                      apartmentsponsor.n_sponsorships != null
+                        ? _c("div", { staticClass: "apartment" }, [
+                            _c("p", [
+                              _vm._v(" " + _vm._s(apartmentsponsor.title)),
+                            ]),
+                          ])
+                        : _vm._e(),
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e(),
           ])
         }),
         0
@@ -39256,11 +39345,7 @@ var render = function () {
   return _c("div", [
     _vm._m(0),
     _vm._v(" "),
-<<<<<<< HEAD
-    _c("div", { staticClass: "search-box" }, [
-=======
     _c("div", { staticClass: "col-9 ", attrs: { id: "box" } }, [
->>>>>>> layout-homepage
       _c("input", {
         directives: [
           {
@@ -39270,7 +39355,7 @@ var render = function () {
             expression: "searchAp",
           },
         ],
-        staticClass: "search-txt",
+        staticClass: "txt",
         attrs: {
           type: "search",
           id: "search",
@@ -39290,61 +39375,6 @@ var render = function () {
         },
       }),
       _vm._v(" "),
-<<<<<<< HEAD
-      _c("a", { staticClass: "search-btn", attrs: { href: "#" } }, [
-        _c("i", {
-          staticClass: "fas fa-search fs-2",
-          on: { click: _vm.getFilterCity },
-        }),
-      ]),
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "elenco" },
-      _vm._l(_vm.apartmentFilted, function (apartment) {
-        return _c("div", { key: apartment.id, staticClass: "apartment" }, [
-          _c("a", { attrs: { href: "/apartment/" + apartment.id } }, [
-            _vm._v(_vm._s(apartment.city)),
-          ]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(apartment.title))]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(apartment.description))]),
-        ])
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c("h1", [_vm._v("Appartamenti in evidenza")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "elenco" },
-      _vm._l(_vm.apartment_sponsorship, function (apartmentsponsorship, i) {
-        return _c("div", { key: i }, [
-          apartmentsponsorship.end_date > _vm.expiryDate
-            ? _c(
-                "div",
-                _vm._l(_vm.apartments, function (apartmentsponsor, j) {
-                  return _c("div", { key: j }, [
-                    apartmentsponsor.n_sponsorships != null
-                      ? _c("div", { staticClass: "apartment" }, [
-                          _c("p", [
-                            _vm._v(" " + _vm._s(apartmentsponsor.title)),
-                          ]),
-                        ])
-                      : _vm._e(),
-                  ])
-                }),
-                0
-              )
-            : _vm._e(),
-        ])
-      }),
-      0
-    ),
-=======
       _c(
         "button",
         {
@@ -39362,7 +39392,6 @@ var render = function () {
     _c("hr"),
     _vm._v(" "),
     _c("h2", [_vm._v("Le città più visitate")]),
->>>>>>> layout-homepage
   ])
 }
 var staticRenderFns = [

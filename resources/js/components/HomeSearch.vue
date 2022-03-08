@@ -14,12 +14,14 @@
         <!-- elenco di appartamenti che compare se la città corrisponde -->
         <div class="elenco" >
             <div class="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
-        <!-- elenco di appartamenti che compare se la città corrisponde -->
-        <div id="elenco" >
-            <div  id="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
-                <a :href="`/apartment/${apartment.id}`">{{apartment.city}}</a>
-                <p>{{apartment.title}}</p>
-                <p>{{apartment.description}}</p>
+                <!-- elenco di appartamenti che compare se la città corrisponde -->
+                <div id="elenco" >
+                    <div  id="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
+                        <a :href="`/apartment/${apartment.id}`">{{apartment.city}}</a>
+                        <p>{{apartment.title}}</p>
+                        <p>{{apartment.description}}</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -40,6 +42,8 @@
         <Visitedcities />
         <Randomdestination />
     </div>
+      
+
 </template>
 
 <script>

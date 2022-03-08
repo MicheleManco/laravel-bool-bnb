@@ -11000,7 +11000,12 @@ a.text-dark:focus {
   background-color: red;
 }
 
-.search-box {
+#search {
+  width: 90%;
+  margin: 10px auto;
+}
+
+#search .search-box {
   position: absolute;
   top: 10%;
   left: 15%;
@@ -11011,7 +11016,7 @@ a.text-dark:focus {
   padding: 0px;
 }
 
-.search-box .search-btn {
+#search .search-box .search-btn {
   color: #e84118;
   float: right;
   width: 40px;
@@ -11023,7 +11028,7 @@ a.text-dark:focus {
   align-items: center;
 }
 
-.search-box .search-txt {
+#search .search-box .search-txt {
   border: none;
   background: none;
   outline: none;
@@ -11036,57 +11041,57 @@ a.text-dark:focus {
   width: 0px;
 }
 
-.search-box:hover > .search-txt {
+#search .search-box:hover > .search-txt {
   width: 240px;
   padding: 0 6px;
 }
 
-.search-box:hover > .search-btn {
+#search .search-box:hover > .search-btn {
   background-color: white;
 }
 
-#sponsorship {
+#search #sponsorship {
   display: flex;
   justify-content: center;
   background-color: black;
   height: 100%;
 }
 
-#sponsorship a {
+#search #sponsorship a {
   text-decoration: none;
   color: black;
 }
 
-#sponsorship .sponsor {
+#search #sponsorship .sponsor {
   margin: 0 15px;
   transition: 0.45s;
   text-align: center;
 }
 
-#sponsorship .sponsor img {
+#search #sponsorship .sponsor img {
   width: 70%;
   transition: 0.45s;
 }
 
-#sponsorship .sponsor .info {
+#search #sponsorship .sponsor .info {
   font-size: 20px;
 }
 
-#sponsorship .sponsor:hover img {
+#search #sponsorship .sponsor:hover img {
   transform: rotateY(360deg);
   width: 90%;
 }
 
-#sponsorship .Silver {
+#search #sponsorship .Silver {
   background-color: black;
   color: silver;
 }
 
-#sponsorship .Gold {
+#search #sponsorship .Gold {
   color: gold;
 }
 
-#sponsorship .Platinum {
+#search #sponsorship .Platinum {
   color: #e5e4e2;
 }
 
