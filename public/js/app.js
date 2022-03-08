@@ -2280,11 +2280,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -39257,26 +39252,13 @@ var render = function () {
         { staticClass: "elenco" },
         _vm._l(_vm.apartmentFilted, function (apartment) {
           return _c("div", { key: apartment.id, staticClass: "apartment" }, [
-            _c(
-              "div",
-              { attrs: { id: "elenco" } },
-              _vm._l(_vm.apartmentFilted, function (apartment) {
-                return _c(
-                  "div",
-                  { key: apartment.id, attrs: { id: "apartment" } },
-                  [
-                    _c("a", { attrs: { href: "/apartment/" + apartment.id } }, [
-                      _vm._v(_vm._s(apartment.city)),
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(apartment.title))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(apartment.description))]),
-                  ]
-                )
-              }),
-              0
-            ),
+            _c("a", { attrs: { href: "/apartment/" + apartment.id } }, [
+              _vm._v(_vm._s(apartment.city)),
+            ]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(apartment.title))]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(apartment.description))]),
           ])
         }),
         0
