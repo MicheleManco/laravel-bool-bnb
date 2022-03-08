@@ -11041,57 +11041,57 @@ a.text-dark:focus {
   width: 0px;
 }
 
-#search .search-box:hover > .search-txt {
+.search-box:hover > .search-txt {
   width: 240px;
   padding: 0 6px;
 }
 
-#search .search-box:hover > .search-btn {
+.search-box:hover > .search-btn {
   background-color: white;
 }
 
-#search #sponsorship {
+#sponsorship {
   display: flex;
   justify-content: center;
   background-color: black;
   height: 100%;
 }
 
-#search #sponsorship a {
+#sponsorship a {
   text-decoration: none;
   color: black;
 }
 
-#search #sponsorship .sponsor {
+#sponsorship .sponsor {
   margin: 0 15px;
   transition: 0.45s;
   text-align: center;
 }
 
-#search #sponsorship .sponsor img {
+#sponsorship .sponsor img {
   width: 70%;
   transition: 0.45s;
 }
 
-#search #sponsorship .sponsor .info {
+#sponsorship .sponsor .info {
   font-size: 20px;
 }
 
-#search #sponsorship .sponsor:hover img {
+#sponsorship .sponsor:hover img {
   transform: rotateY(360deg);
   width: 90%;
 }
 
-#search #sponsorship .Silver {
+#sponsorship .Silver {
   background-color: black;
   color: silver;
 }
 
-#search #sponsorship .Gold {
+#sponsorship .Gold {
   color: gold;
 }
 
-#search #sponsorship .Platinum {
+#sponsorship .Platinum {
   color: #e5e4e2;
 }
 
