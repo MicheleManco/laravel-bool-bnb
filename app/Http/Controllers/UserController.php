@@ -9,6 +9,7 @@ use App\Image;
 Use App\Sponsorship;
 use App\ApartmentSponsorship;
 use App\User;
+use App\Message;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -190,8 +191,6 @@ class UserController extends Controller
        
         $apartment = Apartment::findOrFail($apartment_id);
 
-        $apartment -> n_sponsorships += 1 ;
-
         $apartment->save();
 
         $sponsorship = Sponsorship::findOrFail($sponsorship_id);
@@ -202,6 +201,14 @@ class UserController extends Controller
         $ap -> save();
         
         return view('pages.home');
+    }
+
+    public function statistics($id) {
+        $apartment= Apartment::findOrFail($id);
+      
+       
+        $messages->apartment_id = $apartment->id;       
+        return view('pages.apartmentStatistics');
     }
 
 }
