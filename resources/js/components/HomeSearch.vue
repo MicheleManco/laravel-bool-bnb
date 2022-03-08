@@ -73,7 +73,7 @@
                 .then(r => this.apartments = r.data)
                 .catch(e => console.error(e));
 
-            console.log(this.expiryDate);
+            console.log();
         },
 
         methods: {
@@ -85,7 +85,7 @@
 
                 for (let i = 0; i < this.apartments.length; i++) {
 
-                    if(this.apartments[i].city.toLowerCase().includes(this.searchAp.toLowerCase())){
+                    if(this.apartments[i].city.toLowerCase().includes(this.searchAp.toLowerCase()) || this.apartments[i].address.toLowerCase().includes(this.searchAp.toLowerCase())){
 
                         // aggiunge gli appartamenti filtrati nell'array
                         this.apartmentFilted.push(this.apartments[i]);

@@ -2300,7 +2300,7 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (e) {
       return console.error(e);
     });
-    console.log(this.expiryDate);
+    console.log();
   },
   methods: {
     getFilterCity: function getFilterCity() {
@@ -2308,7 +2308,7 @@ __webpack_require__.r(__webpack_exports__);
       this.apartmentFilted = [];
 
       for (var i = 0; i < this.apartments.length; i++) {
-        if (this.apartments[i].city.toLowerCase().includes(this.searchAp.toLowerCase())) {
+        if (this.apartments[i].city.toLowerCase().includes(this.searchAp.toLowerCase()) || this.apartments[i].address.toLowerCase().includes(this.searchAp.toLowerCase())) {
           // aggiunge gli appartamenti filtrati nell'array
           this.apartmentFilted.push(this.apartments[i]);
         }
