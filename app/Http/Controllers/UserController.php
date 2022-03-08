@@ -225,6 +225,6 @@ class UserController extends Controller
             }
         }
 
-        return view('pages.apartmentStatistics', compact('filteredMessages'));
+        return view('pages.apartmentStatistics', compact('filteredMessages', 'apartment'));
     }
 }
