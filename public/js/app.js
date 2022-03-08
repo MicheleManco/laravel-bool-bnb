@@ -39276,7 +39276,7 @@ var render = function () {
                   "div",
                   _vm._l(_vm.apartments, function (apartmentsponsor, j) {
                     return _c("div", { key: j }, [
-                      apartmentsponsor.n_sponsorships != null
+                      apartmentsponsorship.apartment_id == apartmentsponsor.id
                         ? _c("div", { staticClass: "apartment" }, [
                             _c("p", [
                               _vm._v(" " + _vm._s(apartmentsponsor.title)),

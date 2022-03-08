@@ -26,7 +26,11 @@ class UserController extends Controller
     // mostra la pagina di dashboard dell'utente con la lista dei suoi appartamenti
     public function userDashboard(){
         $apartments = Apartment::all();
-        return view('pages.userDashboard',compact('apartments'));
+        $apartmentSponsorship = ApartmentSponsorship::all();
+
+        $currentDate = Carbon::now();
+
+        return view('pages.userDashboard',compact('apartments', 'apartmentSponsorship', 'currentDate'));
     }
 
     // ----------------------------------------------------------------------------------------------------

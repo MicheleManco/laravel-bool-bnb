@@ -26,7 +26,7 @@
             <div v-for="apartmentsponsorship, i in apartment_sponsorship" :key="i">
                 <div v-if="apartmentsponsorship.end_date > expiryDate">
                     <div v-for="apartmentsponsor, j in apartments" :key="j">
-                        <div class="apartment" v-if="apartmentsponsor.n_sponsorships != null">
+                        <div class="apartment" v-if="apartmentsponsorship.apartment_id == apartmentsponsor.id">
                             <p> {{apartmentsponsor.title}}</p>
                         </div>
                     </div>

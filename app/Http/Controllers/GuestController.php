@@ -58,6 +58,6 @@ class GuestController extends Controller
         $message->apartment_id = $apartment->id;
         $message->save();
 
-        return view('pages.home');
+        return view('pages.apartmentDetails', compact('apartment'));
     }
 }
