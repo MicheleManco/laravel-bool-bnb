@@ -32,23 +32,9 @@ class UserController extends Controller
         $apartments = Apartment::all();
         $apartmentSponsorship = ApartmentSponsorship::all();
         $dateNow = Carbon::now();
-        return view('pages.userDashboard', compact('apartments','apartmentSponsorship', 'dateNow'));
         $messages = Message::all();
-
-        $numberMessage = array();
-
-        // foreach ($apartments as $apartment) {
-        //     foreach ($messages as $message) {
-        //         if ($message->apartment_id == $apartment->id) {
-        //         array_push($numberMessage, $message);
-        //     }
-        //     }
-            
-        // }
       
-        $currentDate = Carbon::now();
-
-        return view('pages.userDashboard',compact('apartments', 'apartmentSponsorship', 'currentDate', 'messages', 'numberMessage'));
+        return view('pages.userDashboard',compact('apartments', 'apartmentSponsorship','dateNow', 'messages'));
     }
 
     public function viewMessage($id){
