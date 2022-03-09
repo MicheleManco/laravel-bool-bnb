@@ -2,11 +2,6 @@
 @section('content')
     <h2> Ciao {{ Auth::user()->name }}, benvenuto alla tua dashboard!</h2>
 
-    
-
-
-    <h2> Ciao {{Auth::user() -> name }}, benvenuto alla tua dashboard!</h2>
-
     @foreach ($apartments as $apartment)
         {{-- mostra la lista degli appartamenti che appartengono all'utente --}}
         
@@ -29,16 +24,8 @@
             ?>
 
             @if ($isSponsored == false || $expired)
-                <a href="{{ route('sponsor', $apartment->id) }}" class="bnt btn-primary">Sponsorizza </a>
+                <a href="{{ route('sponsor', $apartment->id) }}" class="bnt btn-primary mx-2">Sponsorizza </a>
             @endif
-            <br>
-        @endif
-    @endforeach
-    <br>
-    <a class="btn btn-primary my-2" href="{{ route('apartmentCreate') }}">Crea nuovo appartamento</a>
-            <a href="{{route('showApartment', $apartment->id)}}">{{$apartment->title}}</a>
-
-            <a href="{{route('sponsor', $apartment->id)}}" class="bnt btn-primary mx-2"> Sponsorizza </a>
 
             <a href="{{route('viewMessage', $apartment->id)}}" class="bnt btn-primary">Notifiche</a>
 
@@ -49,6 +36,7 @@
                     $n_message = 0;
 
                 ?>
+
                 @foreach ($messages as $message)
 
                     
@@ -65,15 +53,12 @@
                     
                 @endforeach
                 {{$n_message}}
-                
-
-                
             </span><br><br>
-    
-        
-    
-    <a class="btn btn-primary my-2" href="{{route('apartmentCreate')}}">Crea nuovo appartamento</a>
 
+        @endif
+    @endforeach
     
+    <br>
+    <a class="btn btn-primary my-2" href="{{ route('apartmentCreate') }}">Crea nuovo appartamento</a>
     
 @endsection
