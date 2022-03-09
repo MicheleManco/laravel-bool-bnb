@@ -9,6 +9,7 @@ use App\Image;
 Use App\Sponsorship;
 use App\ApartmentSponsorship;
 use App\User;
+use App\Message;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,10 +28,39 @@ class UserController extends Controller
     public function userDashboard(){
         $apartments = Apartment::all();
         $apartmentSponsorship = ApartmentSponsorship::all();
+        $messages = Message::all();
+
+        $numberMessage = array();
+
+        // foreach ($apartments as $apartment) {
+        //     foreach ($messages as $message) {
+        //         if ($message->apartment_id == $apartment->id) {
+        //         array_push($numberMessage, $message);
+        //     }
+        //     }
+            
+        // }
       
         $currentDate = Carbon::now();
 
-        return view('pages.userDashboard',compact('apartments', 'apartmentSponsorship', 'currentDate'));
+        return view('pages.userDashboard',compact('apartments', 'apartmentSponsorship', 'currentDate', 'messages', 'numberMessage'));
+    }
+
+    public function viewMessage($id){
+
+        $apartment = Apartment::findOrFail($id);
+        $messages = Message::all();
+
+        $filteredMessages = array();
+
+        foreach ($messages as $message) {
+            if ($message->apartment_id == $apartment->id) {
+                array_push($filteredMessages, $message);
+            }
+        }
+
+
+        return view('pages.messageView',compact('apartment', 'messages', 'filteredMessages'));
     }
 
     // ----------------------------------------------------------------------------------------------------

@@ -21,6 +21,7 @@ Route::get('/userDashboard', 'UserController@userDashboard')->name('userDashboar
 // dettaglio dell'appartamento
 Route::get('/apartment/{id}', 'GuestController@showApartment')->name('showApartment');
 Route::post('post/message/{id}','GuestController@messages') ->name('messagesPost');
+Route::get('view/messages/{id}', 'UserController@viewMessage') ->name('viewMessage');
 
 // crea e salva un nuovo appartamento
 Route::get('/create', 'UserController@apartmentCreate')->name('apartmentCreate');
