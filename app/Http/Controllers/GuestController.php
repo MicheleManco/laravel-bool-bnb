@@ -17,7 +17,18 @@ class GuestController extends Controller
         $apartments = Apartment::all();
         $apartmentSponsorship = ApartmentSponsorship::all();
 
-        return view('pages.home', compact('apartments', 'apartmentSponsorship'));
+        $filterSponsor = array();
+
+        foreach ($apartmentSponsorship as $apartmentSponsor) {
+            foreach ($apartments as $apartment) {
+            if ($apartmentSponsor->apartment_id == $apartment->id) {
+                array_push($filterSponsor, $apartmentSponsorship);
+            }
+            }
+            
+        }
+
+        return view('pages.home', compact('apartments', 'apartmentSponsorship', 'filterSponsor'));
     }
 
     public function pageRegister(){
@@ -63,6 +74,6 @@ class GuestController extends Controller
         $message->apartment_id = $apartment->id;
         $message->save();
 
-        return view('pages.home');
+        return view('pages.apartmentDetails', compact('apartment'));
     }
 }
