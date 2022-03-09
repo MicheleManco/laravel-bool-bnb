@@ -70,8 +70,8 @@
                 
             </span><br><br>
     
-        @endif
-    @endforeach
+        
+    
     <a class="btn btn-primary my-2" href="{{route('apartmentCreate')}}">Crea nuovo appartamento</a>
 
     
