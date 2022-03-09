@@ -30,7 +30,9 @@ class UserController extends Controller
     public function userDashboard()
     {
         $apartments = Apartment::all();
-        return view('pages.userDashboard', compact('apartments'));
+        $apartmentSponsorship = ApartmentSponsorship::all();
+        $dateNow = Carbon::now();
+        return view('pages.userDashboard', compact('apartments','apartmentSponsorship', 'dateNow'));
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -183,7 +185,6 @@ class UserController extends Controller
 
     public function paymentStore($apartment_id, $sponsorship_id)
     {
-
         $ap = new ApartmentSponsorship();
         $ap->start_date = Carbon::now();
 
