@@ -1,19 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 namespace App\Http\Controllers;
+
 use App\Apartment;
 use App\Category;
 use App\Service;
 use App\Image;
-Use App\Sponsorship;
+use App\Sponsorship;
 use App\ApartmentSponsorship;
 use App\User;
+use App\Message;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Carbon;
-Use Carbon\Carbon;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -24,20 +27,25 @@ class UserController extends Controller
     }
 
     // mostra la pagina di dashboard dell'utente con la lista dei suoi appartamenti
-    public function userDashboard(){
+    public function userDashboard()
+    {
         $apartments = Apartment::all();
-        return view('pages.userDashboard',compact('apartments'));
+        $apartmentSponsorship = ApartmentSponsorship::all();
+        $dateNow = Carbon::now();
+        return view('pages.userDashboard', compact('apartments','apartmentSponsorship', 'dateNow'));
     }
 
     // ----------------------------------------------------------------------------------------------------
     // crea nuovo appartamento
-    public function apartmentCreate(){
+    public function apartmentCreate()
+    {
         $categories = Category::all();
         $services = Service::all();
         return view('pages.apartmentCreate', compact('categories', 'services'));
     }
     // salva nuovo appartamento
-    public function apartmentStore(Request $request){
+    public function apartmentStore(Request $request)
+    {
         $data = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -53,7 +61,7 @@ class UserController extends Controller
 
         $user = Auth::user();
         $data['user_id'] = $user->id;
-        
+
         $apartment = Apartment::make($data);
 
         // chiamata API per trovare le coordinate partendo dall'indirizzo
@@ -66,11 +74,11 @@ class UserController extends Controller
         $apartment->latitude = $response->results[0]->position->lat;
         $apartment->longitude = $response->results[0]->position->lon;
         $apartment->save();
-        
+
         $category = Category::findOrFail($request->get('category'));
         $apartment->category()->associate($category);
         $apartment->save();
-        
+
         $services = []; //salva i servizi in un array vuoto
         if ($request->has('services')) { //controlla se l'appartamento ha servizi
             $services = Service::findOrFail($request->get('services'));
@@ -81,30 +89,32 @@ class UserController extends Controller
         // caricamento immagini nel database
 
         $files = $request->file('images'); //file è un'immagine
-        if($request->hasFile('images')) {  //immagini ciclate e salvate
+        if ($request->hasFile('images')) {  //immagini ciclate e salvate
             $data = [];
-            foreach($files as $file) {
-                $file->store('apartments/'. $apartment->id . '/images');
+            foreach ($files as $file) {
+                $file->store('apartments/' . $apartment->id . '/images');
                 $data[] = [
-                    'fileName' => $file->getClientOriginalName(), 
+                    'fileName' => $file->getClientOriginalName(),
                     'altText' => 'prova img 1',
                     'cover' => true
                 ];
             }
             $apartment->images()->createMany($data);
         }
-                
+
         return redirect()->route('userDashboard');
     }
     // modifica appartamento
-    public function apartmentEdit($id){
+    public function apartmentEdit($id)
+    {
         $categories = Category::all();
-        $services = Service::all();        
+        $services = Service::all();
         $apartment = Apartment::findOrFail($id);
         return view('pages.apartmentEdit', compact('categories', 'services', 'apartment'));
     }
     // salva le modifiche dell'appartamento
-    public function apartmentUpdate(Request $request, $id){
+    public function apartmentUpdate(Request $request, $id)
+    {
 
         $data = $request->validate([
             'title' => 'required|string',
@@ -136,72 +146,86 @@ class UserController extends Controller
         $category = Category::findOrFail($request->get('category'));
         $apartment->category()->associate($category);
         $apartment->save();
-        
+
         $services = [];
         if ($request->has('services')) {
             $services = Service::findOrFail($request->get('services'));
         }
         $apartment->services()->sync($services);
         $apartment->save();
-        
+
         return redirect()->route('userDashboard');
     }
     // elimina appartamento
-    public function apartmentDelete($id) {
+    public function apartmentDelete($id)
+    {
         $apartment = Apartment::findOrFail($id);
 
         $apartment->services()->sync([]);
-        $apartment->save();        
+        $apartment->save();
 
         $apartment->delete();
         return redirect()->route('userDashboard');
-        
     }
 
-    public function sponsor($id){
+    public function sponsor($id)
+    {
         $apartment = Apartment::findOrFail($id);
         $sponsorship = Sponsorship::all();
         $apartmentSponsorship = ApartmentSponsorship::all();
-    
+
         return view('pages.sponsorship', compact('apartment', 'sponsorship', 'apartmentSponsorship'));
     }
 
-    public function sponsorStore($apartment_id, $sponsorship_id) {
+    public function sponsorStore($apartment_id, $sponsorship_id)
+    {
 
-        return view('pages.payment',compact("apartment_id","sponsorship_id"));
+        return view('pages.payment', compact("apartment_id", "sponsorship_id"));
     }
 
-    public function paymentStore($apartment_id,$sponsorship_id){
-       
+    public function paymentStore($apartment_id, $sponsorship_id)
+    {
         $ap = new ApartmentSponsorship();
-        $ap -> start_date = Carbon::now();
+        $ap->start_date = Carbon::now();
 
         $endDate = 0;
 
         if ($sponsorship_id == 1) {
             $endDate = 1;
-        }elseif ($sponsorship_id == 2) {
+        } elseif ($sponsorship_id == 2) {
             $endDate = 3;
-        }elseif($sponsorship_id == 3) {
+        } elseif ($sponsorship_id == 3) {
             $endDate = 6;
         }
 
-        $ap -> end_date = Carbon::now()-> addDays($endDate);
-       
-        $apartment = Apartment::findOrFail($apartment_id);
+        $ap->end_date = Carbon::now()->addDays($endDate);
 
-        $apartment -> n_sponsorships += 1 ;
+        $apartment = Apartment::findOrFail($apartment_id);
 
         $apartment->save();
 
         $sponsorship = Sponsorship::findOrFail($sponsorship_id);
 
-        $ap->apartment()->associate($apartment);                   
-        $ap->sponsorship()->associate($sponsorship);   
-         
-        $ap -> save();
-        
+        $ap->apartment()->associate($apartment);
+        $ap->sponsorship()->associate($sponsorship);
+
+        $ap->save();
+
         return view('pages.home');
     }
 
+    public function statistics($id)
+    {
+        $apartment = Apartment::findOrFail($id);
+        $messages = Message::all();
+        $filteredMessages = array();
+
+        foreach ($messages as $message) {
+            if ($message->apartment_id == $apartment->id) {
+                array_push($filteredMessages, $message);
+            }
+        }
+
+        return view('pages.apartmentStatistics', compact('filteredMessages', 'apartment'));
+    }
 }
