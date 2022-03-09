@@ -28,10 +28,11 @@ class UserController extends Controller
     public function userDashboard(){
         $apartments = Apartment::all();
         $apartmentSponsorship = ApartmentSponsorship::all();
+        $messages = Message::all();
       
         $currentDate = Carbon::now();
 
-        return view('pages.userDashboard',compact('apartments', 'apartmentSponsorship', 'currentDate'));
+        return view('pages.userDashboard',compact('apartments', 'apartmentSponsorship', 'currentDate', 'messages'));
     }
 
     public function viewMessage($id){
