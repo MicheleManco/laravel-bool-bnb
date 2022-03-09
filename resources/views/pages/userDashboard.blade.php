@@ -8,7 +8,9 @@
         @if ($apartment->user_id == Auth::user()->id)
             <a href="{{route('showApartment', $apartment->id)}}">{{$apartment->title}}</a>
 
-            <a href="{{route('sponsor', $apartment->id)}}" class="bnt btn-primary"> Sponsorizza </a><br>
+            <a href="{{route('sponsor', $apartment->id)}}" class="bnt btn-primary"> Sponsorizza </a>
+
+            <a href="{{route('viewMessage', $apartment->id)}}" class="bnt btn-primary">Notifiche</a><br>
     
         @endif
     @endforeach
