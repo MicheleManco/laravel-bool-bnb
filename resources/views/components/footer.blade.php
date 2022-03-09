@@ -43,34 +43,3 @@
 
 </footer>
 
-    <style>
-
-        footer{
-            background-color: #332b27;
-            color: white;
-            margin-bottom:0;
-        }
-        h1{
-            padding:60px 0  20px 50px;
-            color: #FFAE00;
-        }
-
-        h4{
-            padding:20px 0 20px 40px;
-        }
-
-        li{
-            list-style-type: none;
-        }
-        
-        p{
-            padding:20px 0 20px 50px; 
-        }
-
-        hr{
-            background-color:white;
-            width: 80%;
-            margin: 40px auto;
-        }
-    </style>
-

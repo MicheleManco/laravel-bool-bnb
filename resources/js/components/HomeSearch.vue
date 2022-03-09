@@ -4,16 +4,22 @@
         <Jumbotrone /> 
         <Visitedcities />
 
-        <h1>Appartamenti in evidenza</h1>
+        <h2>Appartamenti in evidenza</h2>
+        <div class="row row-apartment">
+            <div class="elenco" v-for="sponsor, i in filter_sponsor" :key="i">
 
-        <div class="elenco" v-for="sponsor, i in filter_sponsor" :key="i">
-
-            <div class="apartment" v-for="apartment in apartments" :key="apartment.id" v-if="(apartment.id == sponsor[i].apartment_id) && (sponsor[i].end_date > expiryDate)">
-                <p>
-                    <a :href="`/apartment/${apartment.id}`">{{apartment.title}}</a>
-                </p>
-            </div>
+                <div class="apartment" v-for="apartment in apartments" :key="apartment.id" v-if="(apartment.id == sponsor[i].apartment_id) && (sponsor[i].end_date > expiryDate)">
+                    <div>
+                        <p><strong>{{apartment.price}}€</strong></p>
+                    </div>
+                    <div>
+                        <a :href="`/apartment/${apartment.id}`">{{apartment.city}}</a>
+                        <div>{{apartment.title}}</div>  
+                    </div>
+                </div>
+            </div>   
         </div>
+        
        
         <Randomdestination />
     </div>
@@ -97,5 +103,28 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+h2{
+        font-size: 40px;
+        text-align: center;    
+        margin: 50px 0;
+    }
+.row-apartment{
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+    .apartment{
+        border-radius: 20px;
+        box-shadow: 4px 5px 3px 0px #888888;
+        display: flex;
+        height: 280px;
+        width: 280px;
+        justify-content: space-between;
+        flex-direction: column;
+        margin: 47px;
+        padding: 15px;
+        background-color: #FFAE00;
+        font-size: 20px;
+    }
 </style>
