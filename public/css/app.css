@@ -11101,6 +11101,105 @@ footer hr {
   font-weight: bold;
 }
 
+#user-dashboard .my-btn {
+  background: #ffae00;
+  color: #fff;
+  border-radius: 30px;
+  border: none;
+  padding: 10px 30px;
+  transition: all 0.2s ease;
+}
+
+#user-dashboard .my-btn:hover {
+  box-shadow: 0 0 20px #cbcbcb;
+  color: #fff;
+  font-weight: bold;
+}
+
+#user-dashboard .my-btn.btn-outline {
+  background: #fff;
+  border: 2px solid #ffae00;
+  color: #ffae00;
+}
+
+#user-dashboard .my-btn.btn-sponsored {
+  border-color: #cbcbcb;
+  color: #cbcbcb;
+}
+
+#user-dashboard .my-btn.btn-sponsored:hover {
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+#user-dashboard hr {
+  margin: 1rem auto 2rem;
+  width: 90%;
+}
+
+#user-dashboard .dash-head {
+  width: 80%;
+  margin: 3rem auto 2rem;
+}
+
+#user-dashboard .dash-head > div {
+  margin-bottom: 2rem;
+}
+
+#user-dashboard .dash-head .my-btn {
+  font-size: 1.5rem;
+}
+
+#user-dashboard .dash-ap-list {
+  width: 80%;
+  margin: 0 auto 2rem;
+}
+
+#user-dashboard .dash-ap-list .apartment {
+  border: 1px solid #cbcbcb;
+  width: 50%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.2s ease;
+}
+
+#user-dashboard .dash-ap-list .apartment:hover {
+  border-color: #a0a0a0;
+  transform: scale(1.01);
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-head,
+#user-dashboard .dash-ap-list .apartment .apartment-foot {
+  display: flex;
+  justify-content: space-between;
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-head {
+  align-items: center;
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-head > a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-head div span {
+  font-weight: bold;
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-head div .my-btn {
+  padding: 5px 10px;
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-foot .my-btn {
+  padding: 5px 10px;
+}
+
 #containerForm .form {
   text-align: center;
   background-color: #b19f90;

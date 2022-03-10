@@ -409,12 +409,17 @@ section {
       width: 40%;
       height: 1000px;
       overflow: auto;
+      padding: 1rem;
       .apartment {
         border: 1px solid #cbcbcb;
         height: 300px;
         width: 100%;
         margin-bottom: 1rem;
         padding: 1rem;
+        &:hover {
+                border-color: #a0a0a0;
+                transform: scale(1.01);
+            }
         .apartment-head {
           display: flex;
           justify-content: space-between;
