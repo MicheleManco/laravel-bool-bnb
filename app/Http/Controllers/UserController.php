@@ -12,6 +12,7 @@ use App\Sponsorship;
 use App\ApartmentSponsorship;
 use App\User;
 use App\Message;
+use App\Stat;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -120,6 +121,12 @@ class UserController extends Controller
             }
             $apartment->images()->createMany($data);
         }
+
+        $stats =new Stat();
+        $stats -> apartment_id = $apartment->id;
+        $stats-> n_views = 0;
+        $stats-> n_messages = 0;
+        $stats->save();
 
         return redirect()->route('userDashboard');
     }

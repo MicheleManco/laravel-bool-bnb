@@ -7,6 +7,7 @@ use App\Category;
 use App\Service;
 use App\ApartmentSponsorship;    
 use App\Message;
+use App\Stat;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -54,9 +55,14 @@ class GuestController extends Controller
         $apartment = Apartment::findOrFail($id);
         $apartment->views+=1;
         $apartment->save();
+
         $messages= Message::all();
         $messages->apartment_id = $apartment->id;
 
+        $stats= Stat::all();
+        $stats->apartment_id = $apartment->id;
+        $stats->n_views++;
+        $stats->save();
     
         return view('pages.apartmentDetails', compact('apartment'));
     }
@@ -73,6 +79,10 @@ class GuestController extends Controller
         $apartment = Apartment::findOrFail($id);
         $message->apartment_id = $apartment->id;
         $message->save();
+
+        $stats = Stat::finOrFail($id);
+        $stats -> n_messages++;
+        $stats->save();
 
         return view('pages.apartmentDetails', compact('apartment'));
     }
