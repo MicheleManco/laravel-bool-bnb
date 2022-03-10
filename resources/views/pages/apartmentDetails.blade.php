@@ -1,6 +1,17 @@
 @extends('layouts.main-layout')
 @section('content')
 
+   
+
+    <?php
+
+    foreach ($stats as $stat) {
+        if ($stat->apartment_id == $apartment->id) {
+            $stat->id;
+        }
+    }
+    ?>
+
     <a href="{{route('home')}}">Torna indietro</a>
 
     {{-- pagina di dettaglio dell'appartamento --}}
@@ -38,9 +49,10 @@
         @if (Auth::user()->id == $apartment->user_id)
             <a href="{{route('apartmentEdit', $apartment->id)}}">Modifica</a>
             <a href="{{route('apartmentDelete', $apartment->id)}}">Elimina</a>    
-            <a href="{{route('apartmentStatistics', $apartment->id)}}">Statistiche</a> 
+            <a href="{{route('apartmentStatistics', ['apartment_id' => $apartment->id,'stat_id' => $stat->id])}}">Statistiche</a> 
 
         @endif
     @endauth
+
 
 @endsection

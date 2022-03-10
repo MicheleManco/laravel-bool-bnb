@@ -65,17 +65,13 @@ class GuestController extends Controller
             $stat->save();
         }
 
-        
-        
-
-
         $messages= Message::all();
         $messages->apartment_id = $apartment->id;
 
    
         // $stats->save();
     
-        return view('pages.apartmentDetails', compact('apartment'));
+        return view('pages.apartmentDetails', compact('apartment', 'stats'));
     }
 
     public function messages(Request $request, $id){
