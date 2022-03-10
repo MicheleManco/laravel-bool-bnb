@@ -15,14 +15,19 @@
             </div>
 
              <!-- Link per andare alla ricerca avanzata -->
-            <a id="advanced_reserach" href="/search">Vuoi fare una <span> ricerca avanzata</span> ? </a><br>
+           <div id="advanced_reserach"><span>Vuoi fare una <a href="/search">ricerca avanzata </a>?</span> </div> <br>
 
             <!-- Elenco degli appartamenti ricercati -->
-            <div class="elenco" >
+            <div class="row row-apartment" >
                 <div  class="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
-                    <a :href="`/apartment/${apartment.id}`">{{apartment.city}}</a>
-                    <p>{{apartment.title}}</p>
-                    <p>{{apartment.description}}</p>
+                    <div>
+                        <p><strong>{{apartment.price}}€</strong></p>
+                    </div>
+                    <div>
+                        <a :href="`/apartment/${apartment.id}`">{{apartment.city}}</a>
+                        <div>{{apartment.title}}</div>
+                    </div>
+                   
                 </div>
             </div>
 
@@ -97,6 +102,25 @@ export default {
         margin:0;
         padding:0;
     }
+    .row-apartment{
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+    .apartment{
+        border-radius: 20px;
+        box-shadow: 4px 5px 3px 0px #888888;
+        display: flex;
+        height: 280px;
+        width: 280px;
+        justify-content: space-between;
+        flex-direction: column;
+        margin: 47px;
+        padding: 15px;
+        background-color: #FFAE00;
+        font-size: 20px;
+    }
 
     #jumbotrone{
         background:url("https://images.unsplash.com/photo-1588840103995-02893d4eb8fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80");
@@ -134,10 +158,9 @@ export default {
         padding:20px;
     }
 
-    #advanced_reserach > span {
+    #advanced_reserach a {
         color:#FFAE00;
         font-weight: bold;
-        margin-left: 3px;
     }
 
     #advanced_reserach:hover {
@@ -146,8 +169,8 @@ export default {
 
     hr{
         width: 78%;
+        border: 1px solid #978e87;
         margin:auto;
-        color: #978e87;
     }    
 
     h2{

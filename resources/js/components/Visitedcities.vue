@@ -15,6 +15,7 @@
                 <h3>Napoli</h3>
             </div>
         </div>
+        <hr>
     </div>
 </template>
 
@@ -30,6 +31,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+hr{
+        width: 78%;
+        border: 1px solid #978e87;
+        margin: 40px auto;
+    }   
 
     h3{
         color: white;
@@ -39,11 +45,11 @@ export default {
     }
 
      #city_cards div{
-         margin-top: 20px;
+         margin: 20px 0;
      }
 
     #city_cards img{
-        border-radius:50px;
+        border-radius:20px;
     }
 
 </style>
