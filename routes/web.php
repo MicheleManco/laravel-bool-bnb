@@ -21,6 +21,7 @@ Route::get('/userDashboard', 'UserController@userDashboard')->name('userDashboar
 // dettaglio dell'appartamento
 Route::get('/apartment/{id}', 'GuestController@showApartment')->name('showApartment');
 Route::post('post/message/{id}','GuestController@messages') ->name('messagesPost');
+Route::get('view/messages/{id}', 'UserController@viewMessage') ->name('viewMessage');
 
 // crea e salva un nuovo appartamento
 Route::get('/create', 'UserController@apartmentCreate')->name('apartmentCreate');
@@ -30,6 +31,10 @@ Route::get('/edit/{id}', 'UserController@apartmentEdit')->name('apartmentEdit');
 Route::post('/update/{id}', 'UserController@apartmentUpdate')->name('apartmentUpdate');
 // elimina un appartamento
 Route::get('/delete/{id}', 'UserController@apartmentDelete')->name('apartmentDelete');
+
+//rotta per statistiche 
+
+Route::get('/statistics/{id}', 'UserController@statistics') ->name('apartmentStatistics');
 
 // rotta per lo sponsor
 Route::get('/sponsor/{id}', 'UserController@sponsor') ->name('sponsor');

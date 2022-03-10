@@ -52,6 +52,11 @@ class GuestController extends Controller
     // mostra la pagina di dettaglio del singolo appartamento
     public function showApartment($id){
         $apartment = Apartment::findOrFail($id);
+        $apartment->views+=1;
+        $apartment->save();
+        $messages= Message::all();
+        $messages->apartment_id = $apartment->id;
+
     
         return view('pages.apartmentDetails', compact('apartment'));
     }

@@ -19,7 +19,7 @@ class Apartment extends Model
         'price',
         'latitude',
         'longitude',
-        'n_sponsorships',
+        'views',
         'user_id',
         'category_id',
     ];

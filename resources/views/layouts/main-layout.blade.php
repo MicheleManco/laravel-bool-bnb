@@ -11,6 +11,7 @@
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
     <script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script type = "text/JavaScript" src = " https://MomentJS.com/downloads/moment.js"></script>
     <link rel="stylesheet" href={{asset("css/app.css")}}>
     <script src={{asset("js/app.js")}}></script>

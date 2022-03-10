@@ -28,7 +28,7 @@ class CreateApartmentsTable extends Migration
             $table->decimal('price');
             $table->float('latitude', 8, 6)->nullable();
             $table->float('longitude', 8, 6)->nullable();
-            $table->integer('n_sponsorships')->nullable();
+            $table->integer('views')->nullable();
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
