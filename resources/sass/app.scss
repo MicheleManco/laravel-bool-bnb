@@ -19,42 +19,7 @@
             float: right; 
         }
     }
-
-
-    #containerForm {
-
-        .form{
-            // margin: 0 auto;
-            text-align: center;
-            background-color: #b19f90;
-            width: 50%;
-        
-            label, input {
-                display: block;
-                margin: 0 auto;
-                text-align: center;
-            }
-        
-            .btn {
-        
-                color: white;
-                border: 1px solid burlywood;        
-            }
-            
-            .btn:hover {
-        
-                background-color: burlywood;
-            }
-        
-            .btn:active {
-                background-color: red;
-            }
-        
-        
-        }
-
-    }
-
+    
     #search {
         width: 90%;
         margin: 10px auto;

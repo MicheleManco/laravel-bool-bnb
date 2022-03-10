@@ -10974,32 +10974,6 @@ a.text-dark:focus {
   float: right;
 }
 
-#containerForm .form {
-  text-align: center;
-  background-color: #b19f90;
-  width: 50%;
-}
-
-#containerForm .form label,
-#containerForm .form input {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-}
-
-#containerForm .form .btn {
-  color: white;
-  border: 1px solid burlywood;
-}
-
-#containerForm .form .btn:hover {
-  background-color: burlywood;
-}
-
-#containerForm .form .btn:active {
-  background-color: red;
-}
-
 #search {
   width: 90%;
   margin: 10px auto;
