@@ -1,5 +1,7 @@
 @extends('layouts.main-layout')
 @section('content')
+
+    <a href="/">Torna indietro</a>
     <h2> Ciao {{ Auth::user()->name }}, benvenuto alla tua dashboard!</h2>
 
     @foreach ($apartments as $apartment)
