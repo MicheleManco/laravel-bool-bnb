@@ -84,18 +84,7 @@
         }
     }
 
-    .search-box:hover > .search-txt{
-
-        width: 240px;
-        padding: 0 6px;
-
-    }
-
-    .search-box:hover > .search-btn{
-
-        background-color: white;
-    }
-
+    // sponsorship -----------------------------------------------------------------------------------------
     #sponsorship {
 
         display: flex;
@@ -109,14 +98,9 @@
         }
 
         .sponsor {
-
-            // border: 1px solid black;
-            // height: 130px;
-            // width: 160px;
             margin: 0 15px;
             transition: 0.45s;
             text-align: center;
-            // box-shadow: 10px 10px 5px #2f3640;
 
             img {
                 width: 70%;
@@ -145,19 +129,16 @@
         }
 
         .Gold {
-
-            // background-color: purple;
             color: gold;
         }
 
         .Platinum {
-
-            // background-color: #e5e4e2;
-            // background-color: black;
             color: #e5e4e2;
         }
     }
 
+
+    // messaggi -----------------------------------------------------------------------------------------
     #views {
 
         margin: 0 auto;

@@ -2265,7 +2265,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -2328,8 +2327,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -2535,6 +2532,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -39328,7 +39326,7 @@ var render = function () {
     [
       _c("Jumbotrone"),
       _vm._v(" "),
-      _c("Visitedcities"),
+      _c("Randomdestination"),
       _vm._v(" "),
       _c("h2", [_vm._v("Appartamenti in evidenza")]),
       _vm._v(" "),
@@ -39367,7 +39365,7 @@ var render = function () {
         0
       ),
       _vm._v(" "),
-      _c("Randomdestination"),
+      _c("Visitedcities"),
     ],
     1
   )
@@ -39462,8 +39460,6 @@ var render = function () {
       }),
       0
     ),
-    _vm._v(" "),
-    _c("hr"),
   ])
 }
 var staticRenderFns = [
@@ -39666,6 +39662,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container-fluid" }, [
+      _c("hr"),
+      _vm._v(" "),
       _c("h2", [_vm._v("Le città più visitate")]),
       _vm._v(" "),
       _c(
@@ -39715,8 +39713,6 @@ var staticRenderFns = [
           ]),
         ]
       ),
-      _vm._v(" "),
-      _c("hr"),
     ])
   },
 ]
@@ -52628,8 +52624,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\es-boolean\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\es-boolean\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

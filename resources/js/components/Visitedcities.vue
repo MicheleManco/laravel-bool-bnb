@@ -1,6 +1,7 @@
 <template>
     <!-- CARD DELLE 3 CITTA PIU' VISITATE -->
     <div class="container-fluid">
+        <hr>
         <h2>Le città più visitate</h2>
         <div class="row justify-content-center" id ="city_cards">
             <div class="col-12 col-sm-4 col-md-4 col-lg-3">
@@ -16,7 +17,7 @@
                 <h3>Napoli</h3>
             </div>
         </div>
-        <hr>
+        
     </div>
 </template>
 
@@ -32,6 +33,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 hr{
         width: 78%;
         border: 1px solid #978e87;

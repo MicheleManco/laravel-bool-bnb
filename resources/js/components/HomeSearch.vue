@@ -1,8 +1,9 @@
 <template>
     <div>
 
-        <Jumbotrone /> 
-        <Visitedcities />
+        <Jumbotrone/> 
+        <Randomdestination/>
+        
 
         <h2>Appartamenti in evidenza</h2>
         <div class="row row-apartment">
@@ -21,10 +22,8 @@
         </div>
         
        
-        <Randomdestination />
+        <Visitedcities/>
     </div>
-      
-
 </template>
 
 <script>
