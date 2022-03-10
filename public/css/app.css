@@ -10962,16 +10962,32 @@ a.text-dark:focus {
   }
 }
 
-.elenco {
-  width: 25%;
-  display: flex;
+footer {
+  background-color: #332b27;
+  color: white;
 }
 
-.elenco .apartment {
-  padding: 13%;
-  border: 1px solid black;
-  margin: 10px;
-  float: right;
+footer h1 {
+  padding: 60px 0 20px 50px;
+  color: #FFAE00;
+}
+
+footer h4 {
+  padding: 20px 0 20px 40px;
+}
+
+footer li {
+  list-style-type: none;
+}
+
+footer p {
+  padding: 20px 0 20px 50px;
+}
+
+footer hr {
+  background-color: white;
+  width: 80%;
+  margin: 40px auto;
 }
 
 #containerForm .form {
