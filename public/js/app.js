@@ -2366,8 +2366,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Jumbotrone',
   data: function data() {
@@ -2537,6 +2535,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -6965,7 +6964,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "*[data-v-67e95864] {\n  margin: 0;\n  padding: 0;\n}\n.row-apartment[data-v-67e95864] {\n  width: 90%;\n  margin: 0 auto;\n  display: flex;\n  justify-content: center;\n}\n.apartment[data-v-67e95864] {\n  border-radius: 20px;\n  box-shadow: 4px 5px 3px 0px #888888;\n  display: flex;\n  height: 280px;\n  width: 280px;\n  justify-content: space-between;\n  flex-direction: column;\n  margin: 47px;\n  padding: 15px;\n  background-color: #FFAE00;\n  font-size: 20px;\n}\n#jumbotrone[data-v-67e95864] {\n  background: url(\"https://images.unsplash.com/photo-1588840103995-02893d4eb8fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80\");\n  height: 550px;\n  filter: contrast(1.5);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center center;\n}\n#jumbotrone div[data-v-67e95864] {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n#jumbotrone_paragraph h1[data-v-67e95864] {\n  font-size: 5em;\n  color: #FFAE00;\n}\n#jumbotrone_paragraph p[data-v-67e95864] {\n  font-size: 2em;\n  color: #ffffff;\n}\n#advanced_reserach[data-v-67e95864] {\n  color: black;\n  font-size: 20px;\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  padding: 20px;\n}\n#advanced_reserach a[data-v-67e95864] {\n  color: #FFAE00;\n  font-weight: bold;\n}\n#advanced_reserach[data-v-67e95864]:hover {\n  text-decoration: none;\n}\nhr[data-v-67e95864] {\n  width: 78%;\n  border: 1px solid #978e87;\n  margin: auto;\n}\nh2[data-v-67e95864] {\n  font-size: 40px;\n  text-align: center;\n  margin: 50px 0;\n}\n#search[data-v-67e95864] {\n  height: 55px;\n  border-radius: 50px;\n  margin-left: 50px;\n  border: none;\n  box-shadow: 5px 5px 30px grey;\n}\n#box[data-v-67e95864] {\n  display: flex;\n  flex-direction: row;\n}\n#box button[data-v-67e95864] {\n  border-radius: 18px;\n  color: #FFFFFF;\n  font-family: Helvetica;\n  font-size: 15px;\n  font-weight: 100;\n  height: 60px;\n  margin-top: 10px;\n  margin-left: 10px;\n  border: none;\n  background-color: #FFAE00;\n  box-shadow: 5px 5px 30px grey;\n  border-radius: 38px;\n  transform: translate(0, 0);\n  -ms-transform: translate(-50%, -50%);\n}\n#box button[data-v-67e95864]:hover {\n  border: solid #FFAE00;\n  border-radius: 38px;\n  text-decoration: none;\n  background-color: #332b27;\n}\n#box[data-v-67e95864] {\n  width: 70%;\n  margin: 0 auto;\n  margin-top: -40px;\n}", ""]);
+exports.push([module.i, "*[data-v-67e95864] {\n  margin: 0;\n  padding: 0;\n}\n.row-apartment[data-v-67e95864] {\n  width: 90%;\n  margin: 0 auto;\n  display: flex;\n  justify-content: center;\n}\n.apartment[data-v-67e95864] {\n  border-radius: 20px;\n  box-shadow: 4px 5px 3px 0px #888888;\n  display: flex;\n  height: 280px;\n  width: 280px;\n  justify-content: space-between;\n  flex-direction: column;\n  margin: 47px;\n  padding: 15px;\n  background-color: #FFAE00;\n  font-size: 20px;\n}\n#jumbotrone[data-v-67e95864] {\n  background: url(\"https://images.unsplash.com/photo-1588840103995-02893d4eb8fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80\");\n  height: 550px;\n  filter: contrast(1.5);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center center;\n}\n#jumbotrone div[data-v-67e95864] {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n#jumbotrone_paragraph h1[data-v-67e95864] {\n  font-size: 5em;\n  color: #FFAE00;\n}\n#jumbotrone_paragraph p[data-v-67e95864] {\n  font-size: 2em;\n  color: #ffffff;\n}\n#advanced_reserach[data-v-67e95864] {\n  color: black;\n  font-size: 20px;\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  padding: 20px;\n}\n#advanced_reserach a[data-v-67e95864] {\n  color: #FFAE00;\n  font-weight: bold;\n}\n#advanced_reserach[data-v-67e95864]:hover {\n  text-decoration: none;\n}\nhr[data-v-67e95864] {\n  width: 78%;\n  border: 1px solid #978e87;\n  margin: auto;\n}\n#search[data-v-67e95864] {\n  height: 55px;\n  border-radius: 50px;\n  margin-left: 50px;\n  border: none;\n  box-shadow: 5px 5px 30px grey;\n}\n#box[data-v-67e95864] {\n  display: flex;\n  flex-direction: row;\n}\n#box button[data-v-67e95864] {\n  border-radius: 18px;\n  color: #FFFFFF;\n  font-family: Helvetica;\n  font-size: 15px;\n  font-weight: 100;\n  height: 60px;\n  margin-top: 10px;\n  margin-left: 10px;\n  border: none;\n  background-color: #FFAE00;\n  box-shadow: 5px 5px 30px grey;\n  border-radius: 38px;\n  transform: translate(0, 0);\n  -ms-transform: translate(-50%, -50%);\n}\n#box button[data-v-67e95864]:hover {\n  border: solid #FFAE00;\n  border-radius: 38px;\n  text-decoration: none;\n  background-color: #332b27;\n}\n#box[data-v-67e95864] {\n  width: 70%;\n  margin: 0 auto;\n  margin-top: -40px;\n}", ""]);
 
 // exports
 
@@ -7003,7 +7002,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "hr[data-v-aa3a5dd0] {\n  width: 78%;\n  border: 1px solid #978e87;\n  margin: 40px auto;\n}\nh3[data-v-aa3a5dd0] {\n  color: white;\n  font-weight: bold;\n  margin-top: -40px;\n  margin-left: 25px;\n}\n#city_cards div[data-v-aa3a5dd0] {\n  margin: 20px 0;\n}\n#city_cards img[data-v-aa3a5dd0] {\n  border-radius: 20px;\n}", ""]);
+exports.push([module.i, "hr[data-v-aa3a5dd0] {\n  width: 78%;\n  border: 1px solid #978e87;\n  margin: 40px auto;\n}\nh2[data-v-aa3a5dd0] {\n  font-size: 40px;\n  text-align: center;\n  margin: 50px 0;\n}\nh3[data-v-aa3a5dd0] {\n  color: white;\n  font-weight: bold;\n  margin-top: -40px;\n  margin-left: 25px;\n}\n#city_cards div[data-v-aa3a5dd0] {\n  margin: 20px 0;\n}\n#city_cards img[data-v-aa3a5dd0] {\n  border-radius: 20px;\n}", ""]);
 
 // exports
 
@@ -39465,8 +39464,6 @@ var render = function () {
     ),
     _vm._v(" "),
     _c("hr"),
-    _vm._v(" "),
-    _c("h2", [_vm._v("Le città più visitate")]),
   ])
 }
 var staticRenderFns = [
@@ -39669,6 +39666,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container-fluid" }, [
+      _c("h2", [_vm._v("Le città più visitate")]),
+      _vm._v(" "),
       _c(
         "div",
         {
@@ -52629,13 +52628,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! C:\es-boolean\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\es-boolean\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
->>>>>>> 8c9710f3a1c7222ab7ed70c7c8f2f38f2ba0622a
 
 
 /***/ })

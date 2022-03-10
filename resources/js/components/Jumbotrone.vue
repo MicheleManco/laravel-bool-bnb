@@ -33,8 +33,6 @@
 
             <hr>   
 
-            <h2>Le città più visitate</h2>
-
     </div>
 </template>
 
@@ -172,12 +170,6 @@ export default {
         border: 1px solid #978e87;
         margin:auto;
     }    
-
-    h2{
-        font-size: 40px;
-        text-align: center;    
-        margin: 50px 0;
-    }
 
     #search{
         height:55px;
