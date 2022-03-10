@@ -311,7 +311,6 @@ section {
   align-items: center;
     a {
       color: #ffae00;
-      text-decoration: underline;
       font-weight: bold;
     }
     .my-btn {

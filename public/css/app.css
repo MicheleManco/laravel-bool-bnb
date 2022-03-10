@@ -10990,6 +10990,97 @@ footer hr {
   margin: 40px auto;
 }
 
+#sponsorship {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#sponsorship .title {
+  margin: 3rem 0 1rem;
+}
+
+#sponsorship .title h2 {
+  font-weight: bold;
+}
+
+#sponsorship .title p {
+  font-size: 1.3rem;
+}
+
+#sponsorship .ap-info {
+  margin-bottom: 2rem;
+}
+
+#sponsorship .ap-info h3 {
+  font-weight: bold;
+}
+
+#sponsorship .sponsor-tiers {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+#sponsorship .sponsor-tiers > div {
+  width: 25%;
+}
+
+#sponsorship .sponsor-tiers > div a {
+  text-align: center;
+  text-decoration: none;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor {
+  transition: 0.45s;
+  padding: 2rem;
+  border-radius: 30px;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 20px #cbcbcb;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor:hover img {
+  transform: rotateY(360deg);
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor.Silver .name {
+  color: silver;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor.Gold .name {
+  color: gold;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor.Platinum .name {
+  color: #e5e4e2;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor img {
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  transition: 0.45s;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor .name {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor .info {
+  color: #000;
+  font-size: 1.4rem;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor .info .price {
+  color: #ffae00;
+  font-weight: bold;
+}
+
 #containerForm .form {
   text-align: center;
   background-color: #b19f90;
@@ -11064,51 +11155,6 @@ footer hr {
 
 .search-box:hover > .search-btn {
   background-color: white;
-}
-
-#sponsorship {
-  display: flex;
-  justify-content: center;
-  background-color: black;
-  height: 100%;
-}
-
-#sponsorship a {
-  text-decoration: none;
-  color: black;
-}
-
-#sponsorship .sponsor {
-  margin: 0 15px;
-  transition: 0.45s;
-  text-align: center;
-}
-
-#sponsorship .sponsor img {
-  width: 70%;
-  transition: 0.45s;
-}
-
-#sponsorship .sponsor .info {
-  font-size: 20px;
-}
-
-#sponsorship .sponsor:hover img {
-  transform: rotateY(360deg);
-  width: 90%;
-}
-
-#sponsorship .Silver {
-  background-color: black;
-  color: silver;
-}
-
-#sponsorship .Gold {
-  color: gold;
-}
-
-#sponsorship .Platinum {
-  color: #e5e4e2;
 }
 
 #views {
