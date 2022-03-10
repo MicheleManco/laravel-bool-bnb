@@ -122,7 +122,7 @@ class UserController extends Controller
             $apartment->images()->createMany($data);
         }
 
-        $stats =new Stat();
+        $stats = new Stat();
         $stats -> apartment_id = $apartment->id;
         $stats-> n_views = 0;
         $stats-> n_messages = 0;
@@ -179,6 +179,12 @@ class UserController extends Controller
         }
         $apartment->services()->sync($services);
         $apartment->save();
+
+        // $stats = new Stat();
+        // $stats -> apartment_id = $apartment->id;
+        // $stats-> n_views = 0;
+        // $stats-> n_messages = 0;
+        // $stats->save();
 
         return redirect()->route('userDashboard');
     }

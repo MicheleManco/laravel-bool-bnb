@@ -53,16 +53,27 @@ class GuestController extends Controller
     // mostra la pagina di dettaglio del singolo appartamento
     public function showApartment($id){
         $apartment = Apartment::findOrFail($id);
-        $apartment->views+=1;
-        $apartment->save();
+        // $apartment->views+=1;
+        // $apartment->save();
+
+        $stats = Stat::all();
+        foreach ($stats as $stat) {
+            if ($stat->apartment_id == $id) {
+                $stat -> n_views += 1;
+            }
+            
+            $stat->save();
+        }
+
+        
+        
+
 
         $messages= Message::all();
         $messages->apartment_id = $apartment->id;
 
-        $stats= Stat::all();
-        $stats->apartment_id = $apartment->id;
-        $stats->n_views++;
-        $stats->save();
+   
+        // $stats->save();
     
         return view('pages.apartmentDetails', compact('apartment'));
     }
@@ -80,9 +91,14 @@ class GuestController extends Controller
         $message->apartment_id = $apartment->id;
         $message->save();
 
-        $stats = Stat::finOrFail($id);
-        $stats -> n_messages++;
-        $stats->save();
+        $stats = Stat::all();
+        foreach ($stats as $stat) {
+            if ($stat->apartment_id == $id) {
+                $stat -> n_messages += 1;
+            }
+            
+            $stat->save();
+        }
 
         return view('pages.apartmentDetails', compact('apartment'));
     }
