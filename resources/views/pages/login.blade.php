@@ -13,19 +13,15 @@
     @endif
 
     {{-- form di login --}}
-    <div id="containerForm">
+    <div id="containerForm" class="col-12 col-sm-12 col-md-12 col-lg-12">
         <form action="{{route('login')}}" method="POST">
 
             @method('POST')
             @csrf
 
-            <label for="email">Email</label><br>
-            <input type="email" name="email"> <br>
-
-            <label for="password">Password</label><br>
-            <input type="password" name="password" > <br>
-
-            <input id='button_register' type="submit" value="Login">
+            <input type="email" name="email" placeholder="  Email"> <br>
+            <input type="password" name="password" placeholder="  Password"> <br>
+            <button id='button_register' type="submit" value="Login">LOGIN</button>
         </form>
     </div>
     
@@ -33,23 +29,18 @@
 
 <style scoped lang="scss">
 
-    #containerForm{
-        display:flex;
-        justify-content:center;
-        align-items:center;        
-        height:50vh;
-    }
-
-    label{
-        display: inline-block;
-        font-size:18px;
+    form input{
         margin-top:15px;
+        border-radius:50px;
+        border:1px solid grey;
+        height:45px;
+        width: 100%;
     }
 
-     input{
-        box-shadow: 5px 10px 10px #332b27;
-        border:1px solid #332b27;
-        border-radius:50px;
+    form{
+        width:30%;
+        margin: 60px auto 40px;
+        height:25vh;
     }
 
     #button_register{
@@ -59,12 +50,13 @@
         background-color: #FFAE00;
         text-decoration: none;
         cursor: pointer;
-        padding:10px 15px;
+        padding:15px 15px;
         border: #FFAE00;
         border-radius: 38px;
         font-weight:600;
         line-height:5px;
         margin-top:15px;
+        width:80px;
     }
 
     #button_register:hover {

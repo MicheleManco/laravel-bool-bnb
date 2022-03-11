@@ -14,58 +14,57 @@
 
     {{-- form di registrazione --}}
     <div id="containerForm" class="container-fluid">
-        <form action="{{route('register')}}" method="POST" class="container-fluid">
-
-            @method('POST')
-            @csrf
-            <div class="col-12 col-sm-5 col-md-5 col-lg-5">
-                <label for="name">Nome</label><br>
-                <input type="text" name="name"> <br>
-                <label for="surname">Cognome</label><br>
-                <input type="text" name="surname"><br>
-                <label for="email">Email</label><br>
-                <input type="email" name="email"><br>
-                <label for="password">Password</label><br>
-                <input type="password" name="password"><br>
-            </div>
-            <div class="col-12 col-sm-5 col-md-5 col-lg-5">
-                <label for="password_confirmation">Password-confirmation</label><br>
-                <input type="password" name="password_confirmation"><br>
-                <label for="birthday">Data di nascita</label><br>
-                <input type="date" name="birthday"><br>
-                <label for="description">Descrizione</label><br>
-                <input type="textarea" name="description"><br>
-                <input type="submit" value= "Register" id="button_register">
-            </div>
-        </form>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-5">
+            <h3>Registrati</h3>
+            <form action="{{route('register')}}" method="POST" class="container-fluid">
+                @method('POST')
+                @csrf
+                    <input type="text" name="name" placeholder="  Nome"> 
+                    <input type="text" name="surname" placeholder="  Cognome">
+                    <input type="email" name="email" placeholder="  Email">
+                    <input type="password" name="password" placeholder="  Password">
+                    <input type="password" name="password_confirmation" placeholder="  Conferma Password">
+                    <input type="text" placeholder="  Data di nascita" onfocus="(this.type='date')">                
+                    <textarea name="description" placeholder="Descrivi il tuo appartamento" rows="10" class="col-10 col-sm-10 col-md-10 col-lg-10"></textarea> <br>
+                    <input type="submit" value= "Register" id="button_register">
+            </form>
+        </div>
     </div>
     
 @endsection
 
 <style scoped lang="scss">
 
-    form{
-        display:flex;
-        justify-content: center;
-        flex-wrap: wrap;
+    #containerForm  h3{
+        font-size:30px;
+        padding:15px 0;
+        padding-left:15px;
     }
 
     #containerForm{
-        padding:40px 0 60px;
+        display:flex;
+        justify-content: center;
+    } 
+
+    input{
+        margin:10px 0px;
     }
 
-    label{
-        display: inline-block;
-        font-size:18px;
-        margin-top:15px;
+    #containerForm{
+        padding:20px 0px 80px 60px;
     }
 
     input{
-        width:80%;
+        width:83%;
         height:45px;
         border-radius:50px;
-        box-shadow: 1px 5px 10px #332b27;
-        border:1px solid #332b27;
+        border:1px solid grey;
+    }
+
+    textarea{
+        border-radius:13px;
+        border:1px solid grey;
+        margin-top:10px;
     }
 
     #button_register{
@@ -75,10 +74,10 @@
         background-color: #FFAE00;
         text-decoration: none;
         cursor: pointer;
-        width:90px;
+        width:120px;
         border: #FFAE00;
         border-radius: 38px;
-        margin-top:45px;
+        margin-top:10px;
         font-weight:600;
     }
 

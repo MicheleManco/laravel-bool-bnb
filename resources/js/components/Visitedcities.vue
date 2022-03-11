@@ -7,12 +7,12 @@
                 <h3>ROMA</h3>
             </div>
             <div class="col-12 col-sm-4 col-md-4 col-lg-3">
-                <img class="img-fluid" src="https://images.unsplash.com/photo-1516296270211-f3ae5494e65d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80" style="height:99%"  alt="Milano">
-                <h3>Milano</h3>
+                <img class="img-fluid" src="https://images.unsplash.com/photo-1516296270211-f3ae5494e65d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80" alt="Milano">
+                <h3>MILANO</h3>
             </div>
             <div class="col-12 col-sm-4 col-md-4 col-lg-3">
                 <img class="img-fluid" src="https://images.unsplash.com/photo-1571075051578-c8cd15385f46?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" style="height:100%" alt="Napoli">
-                <h3>Napoli</h3>
+                <h3>TORINO</h3>
             </div>
         </div>
     </div>
