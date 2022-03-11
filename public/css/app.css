@@ -249,7 +249,7 @@ button,
 select,
 optgroup,
 textarea {
-  margin: 0;
+  /* margin: 0; */
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
@@ -11388,32 +11388,6 @@ footer hr {
 
 body {
   font-family: "Montserrat", sans-serif;
-}
-
-#containerForm .form {
-  text-align: center;
-  background-color: #b19f90;
-  width: 50%;
-}
-
-#containerForm .form label,
-#containerForm .form input {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-}
-
-#containerForm .form .btn {
-  color: white;
-  border: 1px solid burlywood;
-}
-
-#containerForm .form .btn:hover {
-  background-color: burlywood;
-}
-
-#containerForm .form .btn:active {
-  background-color: red;
 }
 
 #search {

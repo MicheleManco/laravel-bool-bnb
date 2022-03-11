@@ -12,43 +12,84 @@
     @endif
 
     {{-- form per creare un appartamento --}}
-    <form action="{{route('apartmentStore')}}" enctype="multipart/form-data" method="POST"> 
+    <form action="{{route('apartmentStore')}}" enctype="multipart/form-data" method="POST"  class="container-fluid"> 
 
         @method('POST')
         @csrf
+        <div id="first" class="col-10 col-sm-5 col-md-5 col-lg-5">
+            <input type="text" name="title" placeholder="  Titolo"><br>
+            <textarea name="description" placeholder="  Descrizione" rows="10" class="col-10 col-sm-10 col-md-10 col-lg-10"></textarea><br>
+            <input type="number" name="sqmeters" placeholder="  Metri quadri"><br>            
+            <input type="number" name="rooms" placeholder="  Stanze"><br>
+            <input type="number" name="beds" placeholder="  Letti"><br>
+            <input type="number" name="bathrooms" placeholder="  Bagni"><br>
+        </div>
 
-        <label for="title">Titolo</label>
-        <input type="text" name="title">
-        <label for="description">Descrizione</label>
-        <input type="text" name="description">
-        <label for="address">Indirizzo</label>
-        <input type="text" name="address">
-        <label for="city">Città</label>
-        <input type="text" name="city">
-        <label for="cap">CAP</label>
-        <input type="text" name="cap">
-        <label for="sqmeters">Metri quadri</label>
-        <input type="number" name="sqmeters">
-        <label for="rooms">Stanze</label>
-        <input type="number" name="rooms">
-        <label for="beds">Letti</label>
-        <input type="number" name="beds">
-        <label for="bathrooms">Bagni</label>
-        <input type="number" name="bathrooms">
-        <label for="price">Prezzo a notte</label>
-        <input type="number" name="price">
-        <label for="category_id">Categoria</label>
-        <select name="category">
-            @foreach ($categories as $category)            
-                <option value="{{$category->id}}">{{$category->name}}</option>
-            @endforeach
-        </select><br>
-        @foreach ($services as $service)
-            <input type="checkbox" value="{{$service->id}}" name="services[]">{{$service->name}}<br>
-        @endforeach
-        <label for="images">Immagini</label>
-        <input type="file" name="images[]" accept="image/*" multiple>
-        <input type="submit" value= "Salva nuovo appartamento">
+        <div class="col-10 col-sm-5 col-md-5 col-lg-5">
+            <div id="second">
+                <input type="text" name="address" placeholder="  Indirizzo"><br>
+                <input type="text" name="city" placeholder="  Città"><br>
+                <input type="text" name="cap" placeholder="  Cap"><br>
+                <input type="number" name="price" placeholder="  Prezzo"><br>
+            </div>
+
+            <div id="checkbox">
+                <label for="category_id">Categoria</label><br>
+                <select name="category">
+                    @foreach ($categories as $category)            
+                        <option value="{{$category->id}}">{{$category->name}}</option><br>
+                    @endforeach
+                </select><br>
+                <div id="list_button">
+                    @foreach ($services as $service)
+                        <div id="check_bob_mini"><input type="checkbox"  value="{{$service->id}}" name="services[]">{{$service->name}}</div>
+                    @endforeach
+                </div>
+                <label for="images">Immagini</label>
+                <input type="file" name="images[]" accept="image/*" multiple> <br>
+                <input type="submit" value= "Salva nuovo appartamento">
+            </div>
+        </div>
     </form>
     
 @endsection
+
+<style>
+    form{
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+    }
+
+    #first input{
+        width:84%;
+        border-radius:35px;
+        border:1px solid grey;
+        margin:10px 0;
+        height:40px;
+        padding-right:20px;
+    }
+
+    #second input{
+        width:84%;
+        border-radius:35px;
+        border:1px solid grey;
+        margin:10px 0;
+        height:40px;
+        padding-right:20px;
+    }
+
+    textarea{
+        border-radius:10px;
+        border:1px solid grey;
+    }
+
+    #checkbox{
+        width:40%;
+    }
+
+    #check_bob_mini{
+        padding:5px;
+    }
+
+</style>
