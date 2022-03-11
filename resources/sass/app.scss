@@ -1,166 +1,121 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700&display=swap");
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
-    @import 'footer';
-    #containerForm {
+@import "header-home";
+@import "footer";
+@import "sponsorship";
+@import "payment";
+@import "userDashboard";
+@import "apartment-details";
 
-        .form{
-            // margin: 0 auto;
-            text-align: center;
-            background-color: #b19f90;
-            width: 50%;
-        
-            label, input {
-                display: block;
-                margin: 0 auto;
-                text-align: center;
-            }
-        
-            .btn {
-        
-                color: white;
-                border: 1px solid burlywood;        
-            }
-            
-            .btn:hover {
-        
-                background-color: burlywood;
-            }
-        
-            .btn:active {
-                background-color: red;
-            }
-        
-        
-        }
+body {
+    font-family: "Montserrat", sans-serif;
+}
 
-    }
-
-    #search {
-        width: 90%;
-        margin: 10px auto;
-
-        .search-box {
-            position: absolute;
-            top: 10%;
-            left: 15%;
-            transform: translate(-50%, -50%);
-            background-color: #2f3640;
-            height: 40px;
-            border-radius: 40px;
-            padding: 0px;
-            
-            .search-btn {
-                color: #e84118;
-                float: right;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                background: #2f3640;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .search-txt {
-                border:none;
-                background: none;
-                outline: none;
-                float: left;
-                padding: 0;
-                color: white;
-                font-size: 16px;
-                transition: 0.4s;
-                line-height: 40px;
-                width: 0px;
-            }
-
-        }
-    }
-
-    // sponsorship -----------------------------------------------------------------------------------------
-    #sponsorship {
-
-        display: flex;
-        justify-content: center;
-        background-color: black;
-        height: 100%;
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
-
-        .sponsor {
-            margin: 0 15px;
-            transition: 0.45s;
-            text-align: center;
-
-            img {
-                width: 70%;
-                transition: 0.45s;
-            }
-
-            .info {
-                font-size: 20px;
-            }
-        }
-
-        .sponsor:hover {
-
-            img {
-
-            transform: rotateY(360deg);
-            width: 90%;
-            }
-        }
-
-        .Silver {
-
-            background-color: black;
-            color: silver;
-
-        }
-
-        .Gold {
-            color: gold;
-        }
-
-        .Platinum {
-            color: #e5e4e2;
-        }
-    }
-
-
-    // messaggi -----------------------------------------------------------------------------------------
-    #views {
-
-        margin: 0 auto;
+#containerForm {
+    .form {
+        // margin: 0 auto;
+        text-align: center;
+        background-color: #b19f90;
         width: 50%;
 
-        .noMessage {
-
-            border: 1px solid red;
-            line-height: 50px;
+        label,
+        input {
+            display: block;
+            margin: 0 auto;
             text-align: center;
-
         }
 
-        .messageViews {
-            line-height: 50px;
-            border: 1px solid black;
-            margin: 20px;
-            text-align: center;
-
-            p {
-                padding: 0;
-            }
+        .btn {
+            color: white;
+            border: 1px solid burlywood;
         }
 
+        .btn:hover {
+            background-color: burlywood;
+        }
+
+        .btn:active {
+            background-color: red;
+        }
     }
+}
+
+#search {
+    width: 90%;
+    margin: 10px auto;
+
+    .search-box {
+        position: absolute;
+        top: 10%;
+        left: 15%;
+        transform: translate(-50%, -50%);
+        background-color: #2f3640;
+        height: 40px;
+        border-radius: 40px;
+        padding: 0px;
+
+        .search-btn {
+            color: #e84118;
+            float: right;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2f3640;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-txt {
+            border: none;
+            background: none;
+            outline: none;
+            float: left;
+            padding: 0;
+            color: white;
+            font-size: 16px;
+            transition: 0.4s;
+            line-height: 40px;
+            width: 0px;
+        }
+    }
+}
+
+.search-box:hover > .search-txt {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.search-box:hover > .search-btn {
+    background-color: white;
+}
+
+#views {
+    margin: 0 auto;
+    width: 50%;
+
+    .noMessage {
+        border: 1px solid red;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    .messageViews {
+        line-height: 50px;
+        border: 1px solid black;
+        margin: 20px;
+        text-align: center;
+
+        p {
+            padding: 0;
+        }
+    }
+}

@@ -1,105 +1,122 @@
 <template>
-  <div>
-    <a href="/">Torna indietro</a>
-
-    <!-- sezione di ricerca -->
-    <h2>Cerca una città</h2>
-    <!-- input testo -->
-    <input
-      type="text"
-      placeholder="Cerca una città"
-      v-model="searchText"
-      @keyup.enter="getSearchLatLong()"
-    />
-    <!-- pulsante cerca -->
-    <button class="btn btn-primary" @click="getSearchLatLong()">
-      Cerca
-    </button>
-
-    <!-- numero di risultati -->
-    {{filteredApartments.length}} Risultati
-
-    <!-- sezione filtri -->
-    <h2>Filtri</h2>
-    <div>
-      <!-- raaggio di kilometri per la ricerca -->
-      <input type="range" min="0" max="30" step="1" v-model="searchRadius"> {{searchRadius}} KM
-      <!-- selezione categoria -->
-      <select v-model="selectedCategory">
-        <option value="-1">Categoria</option>
-        <option
-          v-for="(category, j) in categories"
-          :key="j"
-          :value="category.id"
-        >
-          {{ category.name }}
-        </option>
-      </select>
-      <!-- selezione numero di stanze -->
-      <select v-model="selectedRooms">
-        <option value="-1">Stanze</option>
-        <option v-for="number in numbers" :key="number" :value="number">
-          {{ number }}
-        </option>
-        <option value="5">5+</option>
-      </select>
-      <!-- selezione numero di leti -->
-      <select v-model="selectedBeds">
-        <option value="-1">Letti</option>
-        <option v-for="number in numbers" :key="number" :value="number">
-          {{ number }}
-        </option>
-        <option value="5">5+</option>
-      </select>
-      <!-- selezione numero di bagni -->
-      <select v-model="selectedBathrooms">
-        <option value="-1">Bagni</option>
-        <option v-for="number in numbers" :key="number" :value="number">
-          {{ number }}
-        </option>
-        <option value="5">5+</option>
-      </select>
-      <!-- selezione servizi aggiuntivi -->
-      <div>
-        <span v-for="(service, i) in services" :key="i">
-          <input
-            type="checkbox"
-            :value="service.id"
-            v-model="selectedServices"
-          />
-          {{ service.name }}
-        </span>
+  <section>
+    <section class="controls">
+      <div class="search-bar-cont">
+        <input class="city-search"
+          type="text"
+          placeholder="Cerca una città"
+          v-model="searchText"
+          @keyup.enter="getSearchLatLong()"
+        />
+        <!-- pulsante cerca -->
+        <button class="my-btn" @click="getSearchLatLong()">
+          Cerca
+        </button>
       </div>
-    </div>
-    <!-- pulsante ordina per prezzo minore -->
-    <button class="btn btn-secondary" @click="filteredByPrice()">
-      ordina per prezzo
-    </button>
-    <hr />
-    <!-- messaggio di errore se non si inserisce una città -->
-    <div v-if="noSearch">
-      Devi inserire una città.
-    </div>
-    <!-- lista di appartamenti risultati dalla ricerca -->
-    <div class="result-container" style="display: flex; justify-content: space-between;">
+        <!-- <hr> -->
+      <!-- sezione filtri -->
+      <div class="filter-cont">
         <div>
-            <div v-for="(filteredApartment, i) in filteredApartments" :key="i">
-              <h3>
-                <a :href="`/apartment/${filteredApartment.apartment.id}`">{{
-                  filteredApartment.apartment.title
-                }}</a>
-              </h3>
-              <h4>{{ filteredApartment.category.name }}</h4>
-              <h4>{{ filteredApartment.apartment.price }}</h4>
+          <h2>Filtri</h2>
+        </div>
+        <div>
+          <div class="range-cont">
+            <!-- raaggio di kilometri per la ricerca -->
+            <span>Cerca in un raggio di:</span><input type="range" min="0" max="30" step="1" v-model="searchRadius"> <span>{{searchRadius}} KM</span>
+          </div>
+          <div class="select-cont">
+            <!-- selezione categoria -->
+            <select v-model="selectedCategory">
+              <option value="-1">Categoria</option>
+              <option
+                v-for="(category, j) in categories"
+                :key="j"
+                :value="category.id"
+              >
+                {{ category.name }}
+              </option>
+            </select>
+            <!-- selezione numero di stanze -->
+            <select v-model="selectedRooms">
+              <option value="-1">Stanze</option>
+              <option v-for="number in numbers" :key="number" :value="number">
+                {{ number }}
+              </option>
+              <option value="5">5+</option>
+            </select>
+            <!-- selezione numero di leti -->
+            <select v-model="selectedBeds">
+              <option value="-1">Letti</option>
+              <option v-for="number in numbers" :key="number" :value="number">
+                {{ number }}
+              </option>
+              <option value="5">5+</option>
+            </select>
+            <!-- selezione numero di bagni -->
+            <select v-model="selectedBathrooms">
+              <option value="-1">Bagni</option>
+              <option v-for="number in numbers" :key="number" :value="number">
+                {{ number }}
+              </option>
+              <option value="5">5+</option>
+            </select>
+          </div>
+          <div class="service-cont">
+          <!-- selezione servizi aggiuntivi -->
+            <span v-for="(service, i) in services" :key="i">
+              <input
+                type="checkbox"
+                :value="service.id"
+                v-model="selectedServices"
+              />
+              {{ service.name }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <div class="order-cont">
+        <!-- pulsante ordina per prezzo minore -->
+        <div>
+          <button class="my-btn btn-outline" @click="filteredByPrice()">
+            ordina per prezzo
+          </button>
+          <hr />
+        </div>
+            <!-- numero di risultati -->
+        <p>{{filteredApartments.length}} Risultati</p>
+            <!-- messaggio di errore se non si inserisce una città -->
+      </div>
+      
+    <div class="result-cont">
+      <div v-if="noSearch">
+        Devi inserire una città.
+      </div>
+        <div class="results">
+          <!-- lista di appartamenti risultati dalla ricerca -->
+          <div v-for="(filteredApartment, i) in filteredApartments" :key="i" class="apartment">
+            <h3>
+              <a :href="`/apartment/${filteredApartment.apartment.id}`">{{
+                filteredApartment.apartment.title
+              }}</a>
+            </h3>
+            <div class="apartment-head">
+              <h4>{{ filteredApartment.apartment.city }}</h4>
+              <h4>{{ filteredApartment.apartment.price }} €</h4>
+            </div>
+            <h4>{{ filteredApartment.category.name }}</h4>
+            <div class="apartment-labels">
               <h5 v-for="(service, j) in filteredApartment.services" :key="j">
                 {{ service.name }}
               </h5>
             </div>
+          </div>
         </div>
-        <!-- mappa che mostra gli appartamenti -->
-        <div  id="map" class="map" style="width: 1000px; height: 1000px;"></div>
+      <!-- mappa che mostra gli appartamenti -->
+      <div id="map" class="map"></div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -285,5 +302,153 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style lang="scss" scoped>
+
+section {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    a {
+      color: #ffae00;
+      font-weight: bold;
+    }
+    .my-btn {
+        background: #ffae00;
+        color: #fff;
+        border-radius: 30px;
+        border: solid #ffae00;
+        padding: 10px 30px;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        &:hover {
+            font-weight: bold;
+            background-color: #332b27;
+        }
+        &.btn-outline {
+            background: #fff;
+            border: solid #ffae00;
+            color: #ffae00;
+        }
+    }
+  .controls{
+    width: 80%;
+
+    .search-bar-cont {
+      display: flex;
+      margin: 3rem 0;
+      >* {
+        margin: 0 20px;
+      }
+      .city-search {
+        width: 1000px;
+        border-radius: 30px;
+        border: 1px solid #cbcbcb;
+        padding: 10px 0 10px 25px;
+      }
+    }
+    .filter-cont {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1rem;
+      h2{
+        font-weight: bold;
+      }
+      .range-cont, .select-cont{
+        display: flex;
+        justify-content: center;
+      }
+      .range-cont{
+        margin: 1rem 0;
+        input {
+          width: 50%;
+          margin: 0 1rem;
+        }
+      }
+      .select-cont{
+        margin-bottom: 1rem;
+        select {
+          margin: 0 1rem;
+          border-radius: 30px;
+          padding: .2rem 1.5rem;
+        }
+      }
+      .service-cont{
+        display: grid; 
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+        grid-template-rows: 1fr 1fr 1fr; 
+        gap: 0 2rem; 
+        margin-bottom: 1rem;
+      }
+    }
+  }
+    .order-cont{
+      margin-bottom: 1rem;
+      width: 80%;
+      div {
+        display: flex;
+        align-items: center;
+        hr {
+          width: 80%;
+        }
+      }
+      .my-btn {
+        margin-right: 1rem;
+      }
+      p {
+        text-align: center;
+      }
+    }
+  .result-cont{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 1rem;
+    .results {
+      width: 40%;
+      height: 1000px;
+      overflow: auto;
+      padding: 1rem;
+      .apartment {
+        border: 1px solid #cbcbcb;
+        height: 300px;
+        width: 100%;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        transition: all 0.2s ease;
+        &:hover {
+              box-shadow: 0 0 20px #cbcbcb;
+              border-color: #a0a0a0;
+              transform: scale(1.01);
+            }
+        .apartment-head {
+          display: flex;
+          justify-content: space-between;
+          h4{
+
+            font-weight: bold;
+          }
+        }
+        .apartment-labels{
+          display: flex;
+          margin-top: 1rem;
+          h5{
+            margin-right: 1rem;
+            color: #fff;
+            background: #ffae00;
+            border-radius: 30px;
+            padding: .5rem 1rem;
+            font-size: .6rem;
+          }
+        }
+      }
+    }
+    #map {
+      width: 50%;
+      height: 1000px;
+    }
+  }
+}
+
+</style>>

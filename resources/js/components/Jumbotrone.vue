@@ -3,7 +3,7 @@
 
         <div id="jumbotrone" class="container-fluid">
                 <div id="jumbotrone_paragraph" >
-                    <h1>boolBNB</h1>
+                    <h1 class="logo">boolBNB</h1>
                     <p>Sentiti a casa</p>
                 </div> 
             </div>
@@ -138,6 +138,7 @@ export default {
     #jumbotrone_paragraph h1{
         font-size: 5em;
         color: #FFAE00;
+        font-family: "Noto Serif Display", serif;
     }
 
     #jumbotrone_paragraph p{
