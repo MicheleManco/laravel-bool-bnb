@@ -1,11 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@400;
 
-/*!
- * Bootstrap v4.6.1 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+700&display=swap);@charset "UTF-8";
 
 :root {
   --blue: #3490dc;
@@ -11034,13 +11029,14 @@ footer hr {
 }
 
 #sponsorship .sponsor-tiers > div a .sponsor {
+  border: 1px solid #cbcbcb;
   transition: 0.45s;
   padding: 2rem;
-  border-radius: 30px;
 }
 
 #sponsorship .sponsor-tiers > div a .sponsor:hover {
   transform: scale(1.01);
+  border-color: #a0a0a0;
   box-shadow: 0 0 20px #cbcbcb;
 }
 
@@ -11168,6 +11164,7 @@ footer hr {
 }
 
 #user-dashboard .dash-ap-list .apartment:hover {
+  box-shadow: 0 0 20px #cbcbcb;
   border-color: #a0a0a0;
   transform: scale(1.01);
 }
@@ -11198,6 +11195,10 @@ footer hr {
 
 #user-dashboard .dash-ap-list .apartment .apartment-foot .my-btn {
   padding: 5px 10px;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
 }
 
 #containerForm .form {

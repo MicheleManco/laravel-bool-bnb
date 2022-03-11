@@ -32,11 +32,13 @@
                 text-align: center;
                 text-decoration: none;
                 .sponsor {
+                    border: 1px solid #cbcbcb;
                     transition: 0.45s;
                     padding: 2rem;
-                    border-radius: 30px;
+                    // border-radius: 30px;
                     &:hover {
                         transform: scale(1.01);
+                        border-color: #a0a0a0;
                         box-shadow: 0 0 20px #cbcbcb;
                         img {
                             transform: rotateY(360deg);

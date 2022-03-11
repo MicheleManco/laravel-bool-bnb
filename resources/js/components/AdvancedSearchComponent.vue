@@ -416,9 +416,11 @@ section {
         width: 100%;
         margin-bottom: 1rem;
         padding: 1rem;
+        transition: all 0.2s ease;
         &:hover {
-                border-color: #a0a0a0;
-                transform: scale(1.01);
+              box-shadow: 0 0 20px #cbcbcb;
+              border-color: #a0a0a0;
+              transform: scale(1.01);
             }
         .apartment-head {
           display: flex;
