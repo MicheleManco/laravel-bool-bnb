@@ -4,10 +4,11 @@
    
 
     <?php
+   
 
-    foreach ($stats as $stat) {
-        if ($stat->apartment_id == $apartment->id) {
-            $stat->id;
+    foreach ($stats as $s) {
+        if ($s->apartment_id == $apartment->id) {
+            var_dump($s);
         }
     }
     ?>
@@ -49,7 +50,7 @@
         @if (Auth::user()->id == $apartment->user_id)
             <a href="{{route('apartmentEdit', $apartment->id)}}">Modifica</a>
             <a href="{{route('apartmentDelete', $apartment->id)}}">Elimina</a>    
-            <a href="{{route('apartmentStatistics', ['apartment_id' => $apartment->id,'stat_id' => $stat->id])}}">Statistiche</a> 
+            <a href="{{route('apartmentStatistics', ['apartment_id' => $apartment->id,'stat_id' => $s->id])}}">Statistiche</a> 
 
         @endif
     @endauth
