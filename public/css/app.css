@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@400;
 
-700&display=swap);@charset "UTF-8";
+700&display=swap);@import url(https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700&display=swap);@charset "UTF-8";
 
 :root {
   --blue: #3490dc;
@@ -10957,6 +10957,36 @@ a.text-dark:focus {
   }
 }
 
+header {
+  background-color: #332b27;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 1.5rem;
+}
+
+header .logo {
+  font-family: "Noto Serif Display", serif;
+  color: #fff;
+}
+
+header .guest,
+header .logged-user {
+  text-align: right;
+}
+
+header .guest a,
+header .logged-user a {
+  color: #fff;
+  margin-left: 1rem;
+}
+
+header .guest a:first-of-type,
+header .logged-user a:first-of-type {
+  margin-right: 1rem;
+}
+
 footer {
   background-color: #332b27;
   color: white;
@@ -10964,7 +10994,8 @@ footer {
 
 footer h1 {
   padding: 60px 0 20px 50px;
-  color: #FFAE00;
+  color: #ffae00;
+  font-family: "Noto Serif Display", serif;
 }
 
 footer h4 {
