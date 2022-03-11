@@ -6,8 +6,8 @@
 ciao
 
     <apartment-stats
-    :apartment = '{{json_encode($apartment)}}'
-    :stat = '{{json_encode($stats)}}'
+    :statistics_views = '{{json_encode($statViews)}}'
+    :statistics_messages = '{{json_encode($statMessage)}}'
     >
 
     </apartment-stats>

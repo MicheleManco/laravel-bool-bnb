@@ -246,13 +246,28 @@ class UserController extends Controller
         return view('pages.home');
     }
 
-    public function statistics($id, $stat_id)
+    public function statistics($id)
     {
         $apartment = Apartment::findOrFail($id);
         
-        $stats = Stat::findOrFail($stat_id);
+        $stats = Stat::all();
+        $statViews = [];
 
+        foreach ($stats as $stat) {
+            if ($stat->apartment_id == $id) {
+                array_push($statViews, $stat->n_views);
+            }
+        }
 
-        return view('pages.apartmentStatistics', compact('apartment', 'stats'));
+        $messages = Message::all();
+        $statMessage = [];
+
+        foreach ($stats as $stat) {
+            if ($stat->apartment_id == $id) {
+                array_push($statMessage, $stat->n_messages);
+            }
+        }
+
+        return view('pages.apartmentStatistics', compact('apartment', 'statViews', 'statMessage'));
     }
 }

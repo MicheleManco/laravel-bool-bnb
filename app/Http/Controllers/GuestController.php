@@ -107,9 +107,10 @@ class GuestController extends Controller
         $message->apartment_id = $apartment->id;
         $message->save();
 
+        $stats = Stat::all();
         $isNewMonth = true;
         $dateNow = Carbon::now()->format('Y-m');
-        $stats = Stat::all();
+       
 
         foreach ($stats as $s) {
             if ($s->apartment_id == $id) {
@@ -128,6 +129,6 @@ class GuestController extends Controller
         }
 
 
-        return view('pages.apartmentDetails', compact('apartment'));
+        return view('pages.apartmentDetails', compact('apartment', 'stats'));
     }
 }

@@ -2243,24 +2243,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var ctx = document.getElementById('myChart');
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      statistics: this.statistics_views
+    };
   },
   props: {
-    apartment: Array,
-    stat: Array
+    statistics_messages: Array,
+    statistics_views: Array
   },
   mounted: function mounted() {
+    console.log(this.statistics_messages);
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
-      type: 'bar',
+      type: 'line',
       data: {
         labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
         datasets: [{
-          label: '# of Votes',
-          data: [this.stat.n_views, this.stat.n_messages],
+          label: '# of viwes',
+          data: this.statistics_views,
+          backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
+          borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+          borderWidth: 1
+        }, {
+          label: '# of mwssages',
+          data: this.statistics_messages,
           backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
           borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
           borderWidth: 1
@@ -2274,6 +2290,10 @@ var ctx = document.getElementById('myChart');
         }
       }
     });
+  },
+  methods: {// changeArray(statistics) {
+    //     this.statistics = statistics;
+    // },
   }
 });
 
@@ -39375,24 +39395,18 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._v(
-      "\n    " +
-        _vm._s(this.apartment.id) +
-        "\n    Numero di messaggi = " +
-        _vm._s(this.stat.n_messages) +
-        " "
-    ),
-    _c("br"),
-    _vm._v(
-      "\n    Numero di visualizzazioni = " +
-        _vm._s(this.stat.n_views) +
-        " \n    "
-    ),
-    _c("canvas", { attrs: { id: "myChart", width: "400", height: "400" } }),
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("canvas", { attrs: { id: "myChart", width: "400", height: "200" } }),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -52787,8 +52801,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
