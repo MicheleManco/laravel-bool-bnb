@@ -49,14 +49,11 @@ export default {
 
 #views {
 
-        // margin: 0 auto;
         margin-left: 50px ;
-        // width: 50%;
 
         .apartment {
 
             color: #6c6c6c;
-            // font-size: 30px;
             font-weight: bold;
             margin-left: 20px;
             padding-top: 10px;
@@ -70,14 +67,12 @@ export default {
 
         .noMessage {
 
-            border: 1px solid red;
-            line-height: 50px;
-            width: 50%;
+        
+           text-align: center;
 
         }
 
         .messageViews {
-            // line-height: 50px;
             border: 1px solid gray;
             margin: 20px;
             padding: 20px;
