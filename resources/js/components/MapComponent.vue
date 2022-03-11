@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <div id="map" class="map" style="height: 400px"></div>
+    <div class="map-container">
+        <div id="map" class="map"></div>
     </div>
 </template>
 
