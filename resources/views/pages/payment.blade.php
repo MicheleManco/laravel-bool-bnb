@@ -6,7 +6,7 @@
 <div id="payment-container">
         <h2>Completa il pagamento per la sponsorizzazione</h2>
         <div id="dropin-container"></div>
-        <button id="submit-button">Sponsorizza</button>
+        <button id="submit-button" class="my-btn">Sponsorizza</button>
     </div>
  
 @endsection

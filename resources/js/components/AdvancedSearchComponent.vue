@@ -314,22 +314,22 @@ section {
       font-weight: bold;
     }
     .my-btn {
-      background: #ffae00;
-      color: #fff;
-      border-radius: 30px;
-      border: none;
-      padding: 10px 30px;
-      transition: all .2s ease;
-      &:hover {
-        box-shadow: 0 0 20px #cbcbcb;
+        background: #ffae00;
         color: #fff;
-        font-weight: bold;
-      }
-      &.btn-outline {
-        background: #fff;
-        border: 2px solid #ffae00;
-        color: #ffae00;
-      }
+        border-radius: 30px;
+        border: solid #ffae00;
+        padding: 10px 30px;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        &:hover {
+            font-weight: bold;
+            background-color: #332b27;
+        }
+        &.btn-outline {
+            background: #fff;
+            border: solid #ffae00;
+            color: #ffae00;
+        }
     }
   .controls{
     width: 80%;
