@@ -34,7 +34,7 @@ Route::get('/delete/{id}', 'UserController@apartmentDelete')->name('apartmentDel
 
 //rotta per statistiche 
 
-Route::get('/statistics/{id}', 'UserController@statistics') ->name('apartmentStatistics');
+Route::get('/statistics/{apartment_id}', 'UserController@statistics') ->name('apartmentStatistics');
 
 // rotta per lo sponsor
 Route::get('/sponsor/{id}', 'UserController@sponsor') ->name('sponsor');

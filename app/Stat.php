@@ -11,4 +11,7 @@ class Stat extends Model
         'n_messages',
         'apartment_id',
     ];
+    public function apartment(){
+        return $this->belongsTo(Apartment::class);
+    }
 }

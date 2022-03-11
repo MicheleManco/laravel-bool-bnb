@@ -1,5 +1,6 @@
 @extends('layouts.main-layout')
 @section('content')
+    
 
     <a href="{{route('home')}}">Torna indietro</a>
 
@@ -8,7 +9,6 @@
     <h4>{{$apartment->city}}, <small>{{$apartment->address}}</small></h4>
     <p>{{$apartment->description}}</p>
     <span>Prezzo a notte: {{$apartment->price}}€</span>
-    <p>{{$apartment->views}}</p>
 
     {{-- Component per mappa --}}
     <map-component 
@@ -42,5 +42,6 @@
 
         @endif
     @endauth
+
 
 @endsection

@@ -12,6 +12,7 @@ use App\Sponsorship;
 use App\ApartmentSponsorship;
 use App\User;
 use App\Message;
+use App\Stat;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -121,6 +122,12 @@ class UserController extends Controller
             $apartment->images()->createMany($data);
         }
 
+        $stats = new Stat();
+        $stats -> apartment_id = $apartment->id;
+        $stats-> n_views = 0;
+        $stats-> n_messages = 0;
+        $stats->save();
+
         return redirect()->route('userDashboard');
     }
     // modifica appartamento
@@ -172,6 +179,12 @@ class UserController extends Controller
         }
         $apartment->services()->sync($services);
         $apartment->save();
+
+        // $stats = new Stat();
+        // $stats -> apartment_id = $apartment->id;
+        // $stats-> n_views = 0;
+        // $stats-> n_messages = 0;
+        // $stats->save();
 
         return redirect()->route('userDashboard');
     }
@@ -236,15 +249,25 @@ class UserController extends Controller
     public function statistics($id)
     {
         $apartment = Apartment::findOrFail($id);
-        $messages = Message::all();
-        $filteredMessages = array();
+        
+        $stats = Stat::all();
+        $statViews = [];
 
-        foreach ($messages as $message) {
-            if ($message->apartment_id == $apartment->id) {
-                array_push($filteredMessages, $message);
+        foreach ($stats as $stat) {
+            if ($stat->apartment_id == $id) {
+                array_push($statViews, $stat->n_views);
             }
         }
 
-        return view('pages.apartmentStatistics', compact('filteredMessages', 'apartment'));
+        $messages = Message::all();
+        $statMessage = [];
+
+        foreach ($stats as $stat) {
+            if ($stat->apartment_id == $id) {
+                array_push($statMessage, $stat->n_messages);
+            }
+        }
+
+        return view('pages.apartmentStatistics', compact('apartment', 'statViews', 'statMessage'));
     }
 }
