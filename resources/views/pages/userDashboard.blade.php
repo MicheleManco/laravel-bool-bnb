@@ -1,66 +1,77 @@
 @extends('layouts.main-layout')
 @section('content')
+    <section id="user-dashboard">
+        {{-- <a href="/">Torna indietro</a> --}}
+        <div class="dash-head">
+            <div>
+                <h2> Benvenuto {{ Auth::user()->name }}!</h2>
+                <h2>Questa è la tua dashboard!</h2>
+            </div>
+            <a class="my-btn" href="{{ route('apartmentCreate') }}">Crea nuovo appartamento</a>
+        </div>
 
-    <a href="/">Torna indietro</a>
-    <h2> Ciao {{ Auth::user()->name }}, benvenuto alla tua dashboard!</h2>
-
-    @foreach ($apartments as $apartment)
-        {{-- mostra la lista degli appartamenti che appartengono all'utente --}}
+        <hr>
         
-        @if ($apartment->user_id == Auth::user()->id)
-            <a href="{{ route('showApartment', $apartment->id) }}">{{ $apartment->title }}</a>
-
-            <?php
-            $sponsorship = $apartmentSponsorship;
-            $isSponsored = false;
-            $expired = false;
+        <div class="dash-ap-list">
+            @foreach ($apartments as $apartment)
+                {{-- mostra la lista degli appartamenti che appartengono all'utente --}}
             
-            foreach ($sponsorship as $sponsored) {
-                if ($sponsored->apartment_id == $apartment->id) {
-                    $isSponsored = true;
-                }
-                if ($apartment->id == $sponsored->apartment_id && $sponsored->end_date < $dateNow) {
-                    $expired = true;
-                }
-            }
-            ?>
+                @if ($apartment->user_id == Auth::user()->id)
+                    <div class="apartment">
+                        
+                        <div class="apartment-head">
+                            <a href="{{ route('showApartment', $apartment->id) }}" class="aparment-title">{{ $apartment->title }}</a>
 
-            @if ($isSponsored == false || $expired)
-                <a href="{{ route('sponsor', $apartment->id) }}" class="bnt btn-primary mx-2">Sponsorizza </a>
-            @endif
+                            <div>
+                                <span>Messaggi: </span>
+                                <a href="{{route('viewMessage', $apartment->id)}}" class="my-btn">
+                                    <?php
+                                        $n_message = 0;
+                                    ?>
+                                    @foreach ($messages as $message)
+                                        @if ($message->apartment_id == $apartment->id)
+                                            <?php
+                                                $n_message++;
+                                            ?>
+                                        @endif
+                                    @endforeach
+                                    {{$n_message}}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="apartment-foot">
+                            <div class="apartment-sponsor">
+                                <?php
+                                $sponsorship = $apartmentSponsorship;
+                                $isSponsored = false;
+                                $expired = false;
+                                foreach ($sponsorship as $sponsored) {
+                                    if ($sponsored->apartment_id == $apartment->id) {
+                                        $isSponsored = true;
+                                    }
+                                    if ($apartment->id == $sponsored->apartment_id && $sponsored->end_date < $dateNow) {
+                                        $expired = true;
+                                    }
+                                }
+                                ?>
+                                @if ($isSponsored == false || $expired)
+                                    <a href="{{ route('sponsor', $apartment->id) }}" class="my-btn sponsor-btn">Sponsorizza </a>
+                                @else
+                                    <span class="my-btn btn-outline btn-sponsored">Già sponsorizzato</span>
+                                @endif
+                            </div>
+                            <div class="aparment-edit-delete">
+                                <a href="{{route('apartmentEdit', $apartment->id)}}" class="my-btn btn-outline">Modifica</a>
+                                <a href="{{route('apartmentDelete', $apartment->id)}}" class="my-btn btn-outline">Elimina</a>    
+                                <a href="{{route('apartmentStatistics', $apartment->id)}}" class="my-btn btn-outline">Statistiche</a> 
+                            </div>
+                        </div>
+            
 
-            <a href="{{route('viewMessage', $apartment->id)}}" class="bnt btn-primary">Notifiche</a>
-
-            <span class="border rounded-circle px-2 py-1 mx-2 bg-danger text-white">
-
-                <?php
-
-                    $n_message = 0;
-
-                ?>
-
-                @foreach ($messages as $message)
-
-                    
-
-                    @if ($message->apartment_id == $apartment->id)
-
-                        <?php
-
-                            $n_message++;
-
-                        ?>
-
-                    @endif
-                    
-                @endforeach
-                {{$n_message}}
-            </span><br><br>
-
-        @endif
-    @endforeach
-    
-    <br>
-    <a class="btn btn-primary my-2" href="{{ route('apartmentCreate') }}">Crea nuovo appartamento</a>
-    
+                    </div>
+            
+                @endif
+            @endforeach
+        </div>
+    </section>
 @endsection

@@ -1,0 +1,23 @@
+header {
+    background-color: #332b27;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    .logo {
+        font-family: "Noto Serif Display", serif;
+        color: #fff;
+    }
+    .guest,
+    .logged-user {
+        text-align: right;
+        a {
+            color: #fff;
+            margin-left: 1rem;
+            &:first-of-type {
+                margin-right: 1rem;
+            }
+        }
+    }
+}

@@ -40,7 +40,6 @@ export default {
 #paragraph{
     padding-top: 90px;
     color:#FFAE00;
-    font-weight: 900;
     text-align: center;
 }
 
@@ -61,6 +60,7 @@ export default {
 
 #trip h2 {
     margin: 20px 0;
+    font-weight: bold;
 }
 
 .BUTTON_UPJ {

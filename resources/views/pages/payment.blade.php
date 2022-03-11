@@ -1,9 +1,13 @@
 @extends('layouts.main-layout')
 
 @section('content')
-    
-    <div id="dropin-container"></div>
-    <button id="submit-button" class="button button--small button--green">Purchase</button>
+
+
+<div id="payment-container">
+        <h2>Completa il pagamento per la sponsorizzazione</h2>
+        <div id="dropin-container"></div>
+        <button id="submit-button" class="my-btn">Sponsorizza</button>
+    </div>
  
 @endsection
 

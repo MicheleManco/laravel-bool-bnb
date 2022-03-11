@@ -1,11 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@400;
 
-/*!
- * Bootstrap v4.6.1 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+700&display=swap);@import url(https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700&display=swap);@charset "UTF-8";
 
 :root {
   --blue: #3490dc;
@@ -10962,6 +10957,36 @@ a.text-dark:focus {
   }
 }
 
+header {
+  background-color: #332b27;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 1.5rem;
+}
+
+header .logo {
+  font-family: "Noto Serif Display", serif;
+  color: #fff;
+}
+
+header .guest,
+header .logged-user {
+  text-align: right;
+}
+
+header .guest a,
+header .logged-user a {
+  color: #fff;
+  margin-left: 1rem;
+}
+
+header .guest a:first-of-type,
+header .logged-user a:first-of-type {
+  margin-right: 1rem;
+}
+
 footer {
   background-color: #332b27;
   color: white;
@@ -10969,7 +10994,8 @@ footer {
 
 footer h1 {
   padding: 60px 0 20px 50px;
-  color: #FFAE00;
+  color: #ffae00;
+  font-family: "Noto Serif Display", serif;
 }
 
 footer h4 {
@@ -10988,6 +11014,380 @@ footer hr {
   background-color: white;
   width: 80%;
   margin: 40px auto;
+}
+
+#sponsorship {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#sponsorship .title {
+  margin: 3rem 0 1rem;
+}
+
+#sponsorship .title h2 {
+  font-weight: bold;
+}
+
+#sponsorship .title p {
+  font-size: 1.3rem;
+}
+
+#sponsorship .ap-info {
+  margin-bottom: 2rem;
+}
+
+#sponsorship .ap-info h3 {
+  font-weight: bold;
+}
+
+#sponsorship .sponsor-tiers {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+#sponsorship .sponsor-tiers > div {
+  width: 25%;
+}
+
+#sponsorship .sponsor-tiers > div a {
+  text-align: center;
+  text-decoration: none;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor {
+  border: 1px solid #cbcbcb;
+  transition: 0.45s;
+  padding: 2rem;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor:hover {
+  transform: scale(1.01);
+  border-color: #a0a0a0;
+  box-shadow: 0 0 20px #cbcbcb;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor:hover img {
+  transform: rotateY(360deg);
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor.Silver .name {
+  color: silver;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor.Gold .name {
+  color: gold;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor.Platinum .name {
+  color: #e5e4e2;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor img {
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  transition: 0.45s;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor .name {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor .info {
+  color: #000;
+  font-size: 1.4rem;
+}
+
+#sponsorship .sponsor-tiers > div a .sponsor .info .price {
+  color: #ffae00;
+  font-weight: bold;
+}
+
+#payment-container {
+  width: 50%;
+  margin: 2rem auto 3rem;
+}
+
+#payment-container .my-btn {
+  background: #ffae00;
+  color: #fff;
+  border-radius: 30px;
+  border: solid #ffae00;
+  padding: 10px 30px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+#payment-container .my-btn:hover {
+  font-weight: bold;
+  background-color: #332b27;
+}
+
+#user-dashboard .my-btn {
+  background: #ffae00;
+  color: #fff;
+  border-radius: 30px;
+  border: solid #ffae00;
+  padding: 10px 30px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+#user-dashboard .my-btn:hover {
+  font-weight: bold;
+  background-color: #332b27;
+}
+
+#user-dashboard .my-btn.btn-outline {
+  background: #fff;
+  border: solid #ffae00;
+  color: #ffae00;
+}
+
+#user-dashboard .my-btn.btn-sponsored {
+  border-color: #cbcbcb;
+  color: #cbcbcb;
+}
+
+#user-dashboard .my-btn.btn-sponsored:hover {
+  cursor: not-allowed;
+}
+
+#user-dashboard hr {
+  margin: 1rem auto 2rem;
+  width: 90%;
+}
+
+#user-dashboard .dash-head {
+  width: 80%;
+  margin: 3rem auto 2rem;
+}
+
+#user-dashboard .dash-head > div {
+  margin-bottom: 2rem;
+}
+
+#user-dashboard .dash-head .my-btn {
+  font-size: 1.5rem;
+}
+
+#user-dashboard .dash-ap-list {
+  width: 80%;
+  margin: 0 auto 2rem;
+}
+
+#user-dashboard .dash-ap-list .apartment {
+  border: 1px solid #cbcbcb;
+  width: 50%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.2s ease;
+}
+
+#user-dashboard .dash-ap-list .apartment:hover {
+  box-shadow: 0 0 20px #cbcbcb;
+  border-color: #a0a0a0;
+  transform: scale(1.01);
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-head,
+#user-dashboard .dash-ap-list .apartment .apartment-foot {
+  display: flex;
+  justify-content: space-between;
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-head {
+  align-items: center;
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-head > a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-head div span {
+  font-weight: bold;
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-head div .my-btn {
+  padding: 5px 10px;
+}
+
+#user-dashboard .dash-ap-list .apartment .apartment-foot .my-btn {
+  padding: 5px 10px;
+}
+
+#apartment-details {
+  width: 80%;
+  margin: 3rem auto;
+}
+
+#apartment-details .my-btn {
+  background: #ffae00;
+  color: #fff;
+  border-radius: 30px;
+  border: solid #ffae00;
+  padding: 10px 30px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+#apartment-details .my-btn:hover {
+  font-weight: bold;
+  background-color: #332b27;
+}
+
+#apartment-details .my-btn.btn-outline {
+  background: #fff;
+  border: solid #ffae00;
+  color: #ffae00;
+}
+
+#apartment-details .user-controls {
+  text-align: right;
+  margin-bottom: 3rem;
+}
+
+#apartment-details .user-controls a {
+  margin-left: 2rem;
+}
+
+#apartment-details .apartment-header {
+  font-weight: bold;
+}
+
+#apartment-details .apartment-header h1 {
+  margin-bottom: 2rem;
+}
+
+#apartment-details .apartment-header div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#apartment-details .img-container {
+  margin: 2rem 0;
+  width: 100%;
+  height: 400px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 1em 1em;
+  grid-auto-flow: row;
+  grid-template-areas: "cover side1 side2";
+}
+
+#apartment-details .img-container img {
+  max-width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#apartment-details .img-container .cover-image {
+  grid-area: cover;
+  background-color: red;
+  height: 100%;
+  width: 100%;
+}
+
+#apartment-details .img-container .side1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1em 1em;
+  grid-auto-flow: row;
+  grid-template-areas: "." ".";
+  grid-area: side1;
+}
+
+#apartment-details .img-container .side2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1em 1em;
+  grid-auto-flow: row;
+  grid-template-areas: "." ".";
+  grid-area: side2;
+}
+
+#apartment-details .img-container .side-img {
+  background-color: red;
+  height: 100%;
+  width: 100%;
+}
+
+#apartment-details .apartment-description {
+  margin-top: 10rem;
+  padding: 2rem 1rem;
+  display: flex;
+}
+
+#apartment-details .apartment-description .text {
+  width: 70%;
+  border-right: 1px solid #cbcbcb;
+}
+
+#apartment-details .apartment-description .text h3 {
+  font-weight: bold;
+}
+
+#apartment-details .apartment-description .text p {
+  width: 80%;
+}
+
+#apartment-details .apartment-description .text .ap-numbers {
+  display: flex;
+}
+
+#apartment-details .apartment-description .text .ap-numbers h5 {
+  margin-right: 1rem;
+}
+
+#apartment-details .apartment-description .services {
+  padding-left: 2rem;
+}
+
+#apartment-details .map-container {
+  margin-bottom: 2rem;
+}
+
+#apartment-details .map-container .map {
+  width: 100%;
+  height: 400px;
+}
+
+#apartment-details .msg-container {
+  width: 50%;
+  margin: 3rem auto;
+}
+
+#apartment-details .msg-container h4 {
+  margin-bottom: 2rem;
+}
+
+#apartment-details .msg-container input:not(.my-btn),
+#apartment-details .msg-container textarea {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+  border: 1px solid #cbcbcb;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
 }
 
 #containerForm .form {
@@ -11057,48 +11457,12 @@ footer hr {
   width: 0px;
 }
 
-#sponsorship {
-  display: flex;
-  justify-content: center;
-  background-color: black;
-  height: 100%;
+.search-box:hover > .search-txt {
+  width: 240px;
+  padding: 0 6px;
 }
 
-#sponsorship a {
-  text-decoration: none;
-  color: black;
-}
-
-#sponsorship .sponsor {
-  margin: 0 15px;
-  transition: 0.45s;
-  text-align: center;
-}
-
-#sponsorship .sponsor img {
-  width: 70%;
-  transition: 0.45s;
-}
-
-#sponsorship .sponsor .info {
-  font-size: 20px;
-}
-
-#sponsorship .sponsor:hover img {
-  transform: rotateY(360deg);
-  width: 90%;
-}
-
-#sponsorship .Silver {
-  background-color: black;
-  color: silver;
-}
-
-#sponsorship .Gold {
-  color: gold;
-}
-
-#sponsorship .Platinum {
-  color: #e5e4e2;
+.search-box:hover > .search-btn {
+  background-color: white;
 }
 

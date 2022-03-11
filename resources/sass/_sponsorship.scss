@@ -1,0 +1,134 @@
+#sponsorship {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+
+    .title {
+        margin: 3rem 0 1rem;
+        h2 {
+            font-weight: bold;
+        }
+        p {
+            font-size: 1.3rem;
+        }
+    }
+
+    .ap-info {
+        margin-bottom: 2rem;
+        h3 {
+            font-weight: bold;
+        }
+    }
+
+    .sponsor-tiers {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 2rem;
+        & > div {
+            width: 25%;
+            a {
+                text-align: center;
+                text-decoration: none;
+                .sponsor {
+                    border: 1px solid #cbcbcb;
+                    transition: 0.45s;
+                    padding: 2rem;
+                    // border-radius: 30px;
+                    &:hover {
+                        transform: scale(1.01);
+                        border-color: #a0a0a0;
+                        box-shadow: 0 0 20px #cbcbcb;
+                        img {
+                            transform: rotateY(360deg);
+                        }
+                    }
+                    &.Silver {
+                        .name {
+                            color: silver;
+                        }
+                    }
+                    &.Gold {
+                        .name {
+                            color: gold;
+                        }
+                    }
+                    &.Platinum {
+                        .name {
+                            color: #e5e4e2;
+                        }
+                    }
+                    img {
+                        max-width: 100%;
+                        margin-bottom: 1.5rem;
+                        transition: 0.45s;
+                    }
+                    .name {
+                        font-weight: bold;
+                        font-size: 2rem;
+                    }
+                    .info {
+                        color: #000;
+                        font-size: 1.4rem;
+                        .price {
+                            color: #ffae00;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // justify-content: center;
+    // background-color: black;
+    // height: 100%;
+
+    // a {
+    //     text-decoration: none;
+    //     color: black;
+    // }
+
+    // .sponsor {
+    //     // border: 1px solid black;
+    //     // height: 130px;
+    //     // width: 160px;
+    //     margin: 0 15px;
+    //     transition: 0.45s;
+    //     text-align: center;
+    //     // box-shadow: 10px 10px 5px #2f3640;
+
+    //     img {
+    //         width: 70%;
+    //         transition: 0.45s;
+    //     }
+
+    //     .info {
+    //         font-size: 20px;
+    //     }
+    // }
+
+    // .sponsor:hover {
+    //     img {
+    //         transform: rotateY(360deg);
+    //         width: 90%;
+    //     }
+    // }
+
+    // .Silver {
+    //     // background-color: black;
+    //     color: silver;
+    // }
+
+    // .Gold {
+    //     // background-color: purple;
+    //     color: gold;
+    // }
+
+    // .Platinum {
+    //     // background-color: #e5e4e2;
+    //     // background-color: black;
+    //     color: #e5e4e2;
+    // }
+}
