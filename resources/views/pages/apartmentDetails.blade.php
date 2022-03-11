@@ -5,9 +5,11 @@
 
     <?php
 
+    $statNew = 0;
+
     foreach ($stats as $stat) {
         if ($stat->apartment_id == $apartment->id) {
-            $stat->id;
+            $statNew = $stat->id;
         }
     }
     ?>
@@ -19,7 +21,6 @@
     <h4>{{$apartment->city}}, <small>{{$apartment->address}}</small></h4>
     <p>{{$apartment->description}}</p>
     <span>Prezzo a notte: {{$apartment->price}}€</span>
-    <p>{{$apartment->views}}</p>
 
     {{-- Component per mappa --}}
     <map-component 
@@ -49,7 +50,7 @@
         @if (Auth::user()->id == $apartment->user_id)
             <a href="{{route('apartmentEdit', $apartment->id)}}">Modifica</a>
             <a href="{{route('apartmentDelete', $apartment->id)}}">Elimina</a>    
-            <a href="{{route('apartmentStatistics', ['apartment_id' => $apartment->id,'stat_id' => $stat->id])}}">Statistiche</a> 
+            <a href="{{route('apartmentStatistics', ['apartment_id' => $apartment->id,'stat_id' => $statNew])}}">Statistiche</a> 
 
         @endif
     @endauth

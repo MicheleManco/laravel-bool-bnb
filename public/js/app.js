@@ -2242,6 +2242,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var ctx = document.getElementById('myChart');
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2254,9 +2255,9 @@ var ctx = document.getElementById('myChart');
   mounted: function mounted() {
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
-      type: 'line',
+      type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
         datasets: [{
           label: '# of Votes',
           data: [this.stat.n_views, this.stat.n_messages],
@@ -39375,7 +39376,13 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v("\n    Numero di messaggi = " + _vm._s(this.stat.n_messages) + " "),
+    _vm._v(
+      "\n    " +
+        _vm._s(this.apartment.id) +
+        "\n    Numero di messaggi = " +
+        _vm._s(this.stat.n_messages) +
+        " "
+    ),
     _c("br"),
     _vm._v(
       "\n    Numero di visualizzazioni = " +

@@ -1,5 +1,6 @@
 <template>
     <div>
+        {{this.apartment.id}}
         Numero di messaggi = {{this.stat.n_messages}} <br>
         Numero di visualizzazioni = {{this.stat.n_views}} 
         <canvas id="myChart" width="400" height="400"></canvas>
@@ -27,9 +28,9 @@ export default {
 
         const ctx = document.getElementById('myChart');
         const myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
         datasets: [{
             label: '# of Votes',
             data: [this.stat.n_views, this.stat.n_messages],
