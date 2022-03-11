@@ -1,13 +1,21 @@
 <template>
     
     <div id="views">
-        <div class="noMessage" v-if="this.filtered_messages.length === 0">
+
+        <h2 class="apartment">Messaggi ricevuti per <br> 
+        "{{apartment.title}}"</h2>
+
+        <hr>
+
+        <div class="noMessage col-12" v-if="this.filtered_messages.length === 0">
             <p>Non ci sono messaggi per questo appartamento</p>
         </div>
         <div class="messageViews" v-for="message, i in this.filtered_messages" :key="i">
-            <span>Messaggio inviato da {{message.name}} {{message.surname}}</span><br>
-
+            <h2>{{message.name}} {{message.surname}}</h2>
+            <h6>{{message.email}}</h6>
             <p>{{message.text}}</p>
+
+            <span class="btn position-absolute bottom-0 end-0">Rispondi</span>
         </div>
     </div>
     
@@ -36,3 +44,74 @@ export default {
     }
 }
 </script>
+
+<style scoped lang="scss">
+
+#views {
+
+        // margin: 0 auto;
+        margin-left: 50px ;
+        // width: 50%;
+
+        .apartment {
+
+            color: #6c6c6c;
+            // font-size: 30px;
+            font-weight: bold;
+            margin-left: 20px;
+            padding-top: 10px;
+        }
+        
+        hr {
+            margin-left: 20px ;
+            width: 70%;
+            border: 1px solid #6c6c6c;
+        }
+
+        .noMessage {
+
+            border: 1px solid red;
+            line-height: 50px;
+            width: 50%;
+
+        }
+
+        .messageViews {
+            // line-height: 50px;
+            border: 1px solid gray;
+            margin: 20px;
+            padding: 20px;
+            width: 50%;
+            position: relative;
+
+            h2, h6 {
+                font-weight: bold;
+                color: #6c6c6c;
+            }
+
+            p {
+
+                width: 80%;
+                padding-bottom:20px ;
+            }
+
+            .btn{
+                color: white;
+                background-color: #ffae00;
+                border-radius: 20px;
+                padding: 5px 50px;
+                right: 10px;
+                bottom: 15px;
+                position: absolute;
+            }
+
+            .btn:hover {
+
+                color: black;
+            }
+        }
+
+    }
+
+
+</style>
