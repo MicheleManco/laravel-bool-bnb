@@ -11102,25 +11102,3 @@ footer hr {
   color: #e5e4e2;
 }
 
-#views {
-  margin: 0 auto;
-  width: 50%;
-}
-
-#views .noMessage {
-  border: 1px solid red;
-  line-height: 50px;
-  text-align: center;
-}
-
-#views .messageViews {
-  line-height: 50px;
-  border: 1px solid black;
-  margin: 20px;
-  text-align: center;
-}
-
-#views .messageViews p {
-  padding: 0;
-}
-
