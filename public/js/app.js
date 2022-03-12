@@ -2452,7 +2452,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Jumbotrone',
   data: function data() {
@@ -39760,16 +39759,6 @@ var render = function () {
           },
         },
       }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "col-2 ",
-          attrs: { href: "#", id: "button_search" },
-          on: { click: _vm.getFilterCity },
-        },
-        [_vm._v("Cerca")]
-      ),
     ]),
     _vm._v(" "),
     _vm._m(1),

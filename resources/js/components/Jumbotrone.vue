@@ -10,8 +10,7 @@
 
             <!-- input per la ricerca degli appartamenti tramite la città -->
             <div id="box" class="col-9 ">
-                <input type="search" id="search"   name="search" class="txt" size="95%" placeholder="Inserisci città" v-model="searchAp" @keypress="getFilterCity" >
-                <button class="col-2 " href="#" id="button_search" @click="getFilterCity">Cerca</button>
+                <input type="search" id="search"   name="search" class="txt" size="95%" placeholder="Inserisci città" v-model="searchAp" @keypress="getFilterCity">
             </div>
 
              <!-- Link per andare alla ricerca avanzata -->
