@@ -19,16 +19,16 @@
 
             <!-- Elenco degli appartamenti ricercati -->
             <div class="row row-apartment" >
-                <div  class="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
+                <a :href="`/apartment/${apartment.id}`" class="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
                     <div>
                         <p><strong>{{apartment.price}}€</strong></p>
                     </div>
+                    <img src="/images/apartment-placeholder.jpg" :alt="apartment.title">
                     <div>
-                        <a :href="`/apartment/${apartment.id}`">{{apartment.city}}</a>
-                        <div>{{apartment.title}}</div>
+                        <span>{{apartment.city}}</span>
+                        <div>{{apartment.title}}</div>  
                     </div>
-                   
-                </div>
+                </a>
             </div>
 
     </div>
@@ -108,7 +108,7 @@ export default {
         border-radius: 20px;
         box-shadow: 4px 5px 3px 0px #888888;
         display: flex;
-        height: 280px;
+        height: auto;
         width: 280px;
         justify-content: space-between;
         flex-direction: column;
@@ -116,7 +116,29 @@ export default {
         padding: 15px;
         background-color: #FFAE00;
         font-size: 20px;
+        text-decoration: none;
+        color: white;
+        transition: 0.3s;
+
+        img {
+            width: 100%;
+        }
     }
+
+    .apartment:hover {
+
+        color: black;
+        width: 300px;
+        margin: 38.5px 47px;
+
+        img {
+            margin: 2px auto;
+            width: 100%;
+        }
+    }
+
+
+
 
     #jumbotrone{
         background:url("https://images.unsplash.com/photo-1588840103995-02893d4eb8fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80");
