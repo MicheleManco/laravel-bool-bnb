@@ -11,7 +11,7 @@
 
                 <a :href="`/apartment/${apartment.id}`" class="apartment" v-for="apartment in apartments" :key="apartment.id" v-if="(apartment.id == sponsor[i].apartment_id) && (sponsor[i].end_date > expiryDate)">
                     <div>
-                        <p><strong>{{apartment.price}}€</strong></p>
+                        <p><strong>{{apartment.price}}€</strong> </p>
                     </div>
                     <img src="/images/apartment-placeholder.jpg" :alt="apartment.title">
                     <div>
@@ -122,7 +122,7 @@ h2{
         width: 280px;
         justify-content: space-between;
         flex-direction: column;
-        margin: 47px;
+        margin: 40px 47px;
         padding: 15px;
         background-color: #FFAE00;
         font-size: 20px;
@@ -139,9 +139,9 @@ h2{
     .apartment:hover {
 
         color: black;
-        height: 320px;
+        // height: 320px;
         width: 300px;
-        margin: 47px;
+        margin: 25px 47px;
 
         img {
             margin: 2px auto;

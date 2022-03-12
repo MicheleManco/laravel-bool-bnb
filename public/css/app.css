@@ -11246,13 +11246,14 @@ footer hr {
   border-radius: 30px;
   border: solid #ffae00;
   padding: 10px 30px;
-  transition: all 0.2s ease;
+  transition: 0.2s;
   text-decoration: none;
 }
 
 #apartment-details .my-btn:hover {
-  font-weight: bold;
   background-color: #332b27;
+  padding: 10px 35px;
+  font-weight: bold;
 }
 
 #apartment-details .my-btn.btn-outline {
