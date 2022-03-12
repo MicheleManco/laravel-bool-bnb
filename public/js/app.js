@@ -7099,7 +7099,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#views[data-v-6186c831] {\n  margin-left: 50px;\n}\n#views .apartment[data-v-6186c831] {\n  color: #6c6c6c;\n  font-weight: bold;\n  margin-left: 20px;\n  padding-top: 10px;\n}\n#views hr[data-v-6186c831] {\n  margin-left: 20px;\n  width: 70%;\n  border: 1px solid #6c6c6c;\n}\n#views .noMessage[data-v-6186c831] {\n  border: 1px solid red;\n  line-height: 50px;\n  width: 50%;\n}\n#views .messageViews[data-v-6186c831] {\n  border: 1px solid gray;\n  margin: 20px;\n  padding: 20px;\n  width: 50%;\n  position: relative;\n}\n#views .messageViews h2[data-v-6186c831], #views .messageViews h6[data-v-6186c831] {\n  font-weight: bold;\n  color: #6c6c6c;\n}\n#views .messageViews p[data-v-6186c831] {\n  width: 80%;\n  padding-bottom: 20px;\n}\n#views .messageViews .btn[data-v-6186c831] {\n  color: white;\n  background-color: #ffae00;\n  border-radius: 20px;\n  padding: 5px 50px;\n  right: 10px;\n  bottom: 15px;\n  position: absolute;\n}\n#views .messageViews .btn[data-v-6186c831]:hover {\n  color: black;\n}", ""]);
+exports.push([module.i, "#views[data-v-6186c831] {\n  margin-left: 50px;\n}\n#views .apartment[data-v-6186c831] {\n  color: #6c6c6c;\n  font-weight: bold;\n  margin-left: 20px;\n  padding-top: 10px;\n}\n#views hr[data-v-6186c831] {\n  margin-left: 20px;\n  width: 70%;\n  border: 1px solid #6c6c6c;\n}\n#views .noMessage[data-v-6186c831] {\n  text-align: center;\n}\n#views .messageViews[data-v-6186c831] {\n  border: 1px solid gray;\n  margin: 20px;\n  padding: 20px;\n  width: 50%;\n  position: relative;\n}\n#views .messageViews h2[data-v-6186c831], #views .messageViews h6[data-v-6186c831] {\n  font-weight: bold;\n  color: #6c6c6c;\n}\n#views .messageViews p[data-v-6186c831] {\n  width: 80%;\n  padding-bottom: 20px;\n}\n#views .messageViews .btn[data-v-6186c831] {\n  color: white;\n  background-color: #ffae00;\n  border-radius: 20px;\n  padding: 5px 50px;\n  right: 10px;\n  bottom: 15px;\n  position: absolute;\n}\n#views .messageViews .btn[data-v-6186c831]:hover {\n  color: black;\n}", ""]);
 
 // exports
 
@@ -53007,8 +53007,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Samuele\Documents\Boolean\Progetto Finale\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Samuele\Documents\Boolean\Progetto Finale\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
