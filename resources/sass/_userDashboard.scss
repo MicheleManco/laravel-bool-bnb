@@ -1,4 +1,9 @@
 #user-dashboard {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     .my-btn {
         background: #ffae00;
         color: #fff;

@@ -10,7 +10,7 @@
 
             <!-- input per la ricerca degli appartamenti tramite la città -->
             <div id="box" class="col-9 ">
-                <input type="search" id="search"   name="search" class="txt" size="95%" placeholder="  Inserisci città" v-model="searchAp" @keypress="getFilterCity" >
+                <input type="search" id="search"   name="search" class="txt" size="95%" placeholder="Inserisci città" v-model="searchAp" @keypress="getFilterCity" >
                 <button class="col-2 " href="#" id="button_search" @click="getFilterCity">Cerca</button>
             </div>
 
@@ -172,6 +172,7 @@ export default {
 
     #search{
         height:55px;
+        padding: 0 20px;
         border-radius:50px;
         margin-left: 50px;
         border:none;
@@ -185,8 +186,8 @@ export default {
 
     #box button{
         border-radius: 18px;
-        color: #FFFFFF;
         font-family: Helvetica;
+        color: #FFFFFF;
         font-size: 15px;
         font-weight: 100;
         height: 60px;
@@ -198,6 +199,7 @@ export default {
         border-radius: 38px;
         transform: translate(0, 0);
         -ms-transform: translate(-50%, -50%);
+        transition: background-color .3s ease-in-out;
     }
 
     #box button:hover {

@@ -17,7 +17,7 @@
         <h1>{{$apartment->title}}</h1>
         <div>
             <h4>{{$apartment->city}}, <small>{{$apartment->address}}</small></h4>
-            <h4>{{$apartment->price}} € a notte</h4>
+            <h4><strong>{{$apartment->price}} €</strong> a notte</h4>
         </div>
     </div>
     <div class="img-container">

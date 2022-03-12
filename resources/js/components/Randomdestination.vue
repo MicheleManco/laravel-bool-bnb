@@ -76,7 +76,8 @@ export default {
    margin: 0px auto;
    border-radius: 38px;
    transform: translate(0, 0);
-  -ms-transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   transition: background-color .3s ease-in-out;
 }
 
 .BUTTON_UPJ:hover {
