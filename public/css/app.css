@@ -11004,6 +11004,7 @@ footer h4 {
 
 footer li {
   list-style-type: none;
+  color: #d6b19e;
 }
 
 footer p {
@@ -11126,6 +11127,13 @@ footer hr {
 #payment-container .my-btn:hover {
   font-weight: bold;
   background-color: #332b27;
+}
+
+#user-dashboard {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #user-dashboard .my-btn {
@@ -11329,7 +11337,7 @@ footer hr {
 }
 
 #apartment-details .apartment-description {
-  margin-top: 10rem;
+  margin-top: 6rem;
   padding: 2rem 1rem;
   display: flex;
 }
@@ -11388,6 +11396,17 @@ footer hr {
 
 body {
   font-family: "Montserrat", sans-serif;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+#containerForm {
+  min-height: 50vh;
 }
 
 #containerForm .form {

@@ -251,23 +251,14 @@ class UserController extends Controller
         $apartment = Apartment::findOrFail($id);
         
         $stats = Stat::all();
-        $statViews = [];
+        $statistics = [];
 
         foreach ($stats as $stat) {
             if ($stat->apartment_id == $id) {
-                array_push($statViews, $stat->n_views);
+                array_push($statistics, $stat);
             }
         }
 
-        $messages = Message::all();
-        $statMessage = [];
-
-        foreach ($stats as $stat) {
-            if ($stat->apartment_id == $id) {
-                array_push($statMessage, $stat->n_messages);
-            }
-        }
-
-        return view('pages.apartmentStatistics', compact('apartment', 'statViews', 'statMessage'));
+        return view('pages.apartmentStatistics', compact('apartment', 'statistics'));
     }
 }
