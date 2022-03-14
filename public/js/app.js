@@ -40031,14 +40031,13 @@ var staticRenderFns = [
           _c("div", { staticClass: "col-12 col-sm-4 col-md-4 col-lg-3" }, [
             _c("img", {
               staticClass: "img-fluid",
-              staticStyle: { height: "99%" },
               attrs: {
                 src: "https://images.unsplash.com/photo-1516296270211-f3ae5494e65d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80",
                 alt: "Milano",
               },
             }),
             _vm._v(" "),
-            _c("h3", [_vm._v("Milano")]),
+            _c("h3", [_vm._v("MILANO")]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-12 col-sm-4 col-md-4 col-lg-3" }, [
@@ -40051,7 +40050,7 @@ var staticRenderFns = [
               },
             }),
             _vm._v(" "),
-            _c("h3", [_vm._v("Napoli")]),
+            _c("h3", [_vm._v("TORINO")]),
           ]),
         ]
       ),

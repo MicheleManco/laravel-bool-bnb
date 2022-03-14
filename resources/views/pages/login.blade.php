@@ -13,18 +13,17 @@
     @endif
 
     {{-- form di login --}}
-    <div id="containerForm" class="mx-auto my-5">
-        <form class="form mx-auto" action="{{route('login')}}" method="POST">
+    <div id="containerForm" class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <form action="{{route('login')}}" method="POST">
 
             @method('POST')
             @csrf
-            <label for="email">Email</label>
-            <input type="email" name="email">
-            <label for="password">Password</label>
-            <input type="password" name="password">
 
-            <input class='my-4 btn' type="submit" value="Login">
+            <input type="email" name="email" placeholder="  Email"> <br>
+            <input type="password" name="password" placeholder="  Password"> <br>
+            <button id='button_register' type="submit" value="Login">LOGIN</button>
         </form>
     </div>
     
 @endsection
+

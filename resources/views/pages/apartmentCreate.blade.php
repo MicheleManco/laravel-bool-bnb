@@ -1,54 +1,56 @@
 @extends('layouts.main-layout')
 @section('content')
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <div id="apartment-create">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    {{-- form per creare un appartamento --}}
-    <form action="{{route('apartmentStore')}}" enctype="multipart/form-data" method="POST"> 
+     {{-- form per creare un appartamento --}}
 
-        @method('POST')
-        @csrf
+        <form action="{{route('apartmentStore')}}" enctype="multipart/form-data" method="POST"  class="container-fluid"> 
 
-        <label for="title">Titolo</label>
-        <input type="text" name="title">
-        <label for="description">Descrizione</label>
-        <input type="text" name="description">
-        <label for="address">Indirizzo</label>
-        <input type="text" name="address">
-        <label for="city">Città</label>
-        <input type="text" name="city">
-        <label for="cap">CAP</label>
-        <input type="text" name="cap">
-        <label for="sqmeters">Metri quadri</label>
-        <input type="number" name="sqmeters">
-        <label for="rooms">Stanze</label>
-        <input type="number" name="rooms">
-        <label for="beds">Letti</label>
-        <input type="number" name="beds">
-        <label for="bathrooms">Bagni</label>
-        <input type="number" name="bathrooms">
-        <label for="price">Prezzo a notte</label>
-        <input type="number" name="price">
-        <label for="category_id">Categoria</label>
-        <select name="category">
-            @foreach ($categories as $category)            
-                <option value="{{$category->id}}">{{$category->name}}</option>
-            @endforeach
-        </select><br>
-        @foreach ($services as $service)
-            <input type="checkbox" value="{{$service->id}}" name="services[]">{{$service->name}}<br>
-        @endforeach
-        <label for="images">Immagini</label>
-        <input type="file" name="images[]" accept="image/*" multiple>
-        <input type="submit" value= "Salva nuovo appartamento">
-    </form>
-    
+            @method('POST')
+            @csrf
+            <div id="first" class="col-10 col-sm-10 col-md-5 col-offset-2 offset-1 col-lg-5 container-fluid">
+                <input type="text" name="title" placeholder="  Titolo"><br>
+                <textarea name="description" placeholder="  Descrizione" rows="10" class="col-10 col-sm-10 col-md-10 col-lg-10"></textarea><br>
+                <input type="number" name="sqmeters" placeholder="  Metri quadri"><br>            
+                <input type="number" name="rooms" placeholder="  Stanze"><br>
+                <input type="number" name="beds" placeholder="  Letti"><br>
+                <input type="number" name="bathrooms" placeholder="  Bagni"><br>
+            </div>
+
+            <div class="col-10 col-sm-10 col-md-5 col-lg-5 container-fluid">
+                <div id="second">
+                    <input type="text" name="address" placeholder="  Indirizzo"><br>
+                    <input type="text" name="city" placeholder="  Città"><br>
+                    <input type="text" name="cap" placeholder="  Cap"><br>
+                    <input type="number" name="price" placeholder="  Prezzo"><br>
+                </div>
+
+                <div id="checkbox">
+                    <select id="category" class="col-10 col-sm-10 col-md-10 col-lg-10" name="category">
+                        @foreach ($categories as $category)            
+                            <option value="{{$category->id}}">{{$category->name}}</option><br>
+                        @endforeach
+                    </select><br>
+                    <div id="category_div">
+                        @foreach ($services as $service)
+                        <li><input type="checkbox" value="{{$service->id}}" name="services[]">{{$service->name}}</li> 
+                        @endforeach
+                    </div>
+                    <label for="images">Immagini</label>
+                    <input type="file" name="images[]" accept="image/*" multiple><br>
+                    <button id="create_button" type="submit" value= "Salva nuovo appartamento" > Salva nuovo appartamento </button>
+                </div>
+            </div>
+        </form>     
+    </div>
 @endsection
