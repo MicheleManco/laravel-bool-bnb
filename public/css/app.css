@@ -11374,7 +11374,6 @@ footer hr {
 }
 
 #containerForm {
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11455,7 +11454,8 @@ footer hr {
   -ms-transform: translate(-50%, -50%);
 }
 
-#apartment-create form {
+#apartment-create form,
+#apartment-edit form {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11463,44 +11463,40 @@ footer hr {
   margin: 50px 0;
 }
 
-#apartment-create #first input {
+#apartment-create form .input-cont input,
+#apartment-edit form .input-cont input {
   width: 84%;
   border-radius: 35px;
   border: 1px solid grey;
   margin: 10px 0;
   height: 40px;
   padding-right: 20px;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
-#apartment-create #second input {
-  width: 84%;
-  border-radius: 35px;
-  border: 1px solid grey;
-  margin: 10px 0;
-  height: 40px;
-  padding-right: 20px;
-  padding-left: 10px;
-}
-
-#apartment-create textarea {
+#apartment-create textarea,
+#apartment-edit textarea {
+  padding-top: 10px;
   border-radius: 10px;
   margin: 10px 0;
   border: 1px solid grey;
 }
 
-#apartment-create li {
+#apartment-create li,
+#apartment-edit li {
   display: inline-block;
   width: 180px;
   margin: 3px 0;
 }
 
-#apartment-create .checkbox {
+#apartment-create .checkbox,
+#apartment-edit .checkbox {
   width: 100%;
   padding: 5px;
 }
 
-#apartment-create #category {
+#apartment-create #category,
+#apartment-edit #category {
   margin: 10px 0;
   padding: 10px 20px;
   background-color: white;
@@ -11509,24 +11505,27 @@ footer hr {
   border-radius: 30px;
 }
 
-#apartment-create #category_div {
+#apartment-create #category_div,
+#apartment-edit #category_div {
   margin: 10px 0;
 }
 
-#apartment-create #create_button {
-  color: #FFFFFF;
-  background-color: #FFAE00;
+#apartment-create #create_button,
+#apartment-edit #create_button {
+  color: #ffffff;
+  background-color: #ffae00;
   width: 40%;
   padding: 10px 0;
   border: none;
   margin: 10px auto;
   border-radius: 38px;
-  border: solid #FFAE00;
+  border: solid #ffae00;
   font-weight: bold;
 }
 
-#apartment-create #create_button:hover {
-  border: solid #FFAE00;
+#apartment-create #create_button:hover,
+#apartment-edit #create_button:hover {
+  border: solid #ffae00;
   text-decoration: none;
   background-color: #332b27;
 }

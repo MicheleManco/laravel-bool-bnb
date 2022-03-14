@@ -31,8 +31,8 @@
                 <div class="input-cont">
                     <input type="text" name="address" placeholder="Indirizzo"><br>
                     <input type="text" name="city" placeholder="Città"><br>
-                    <input type="text" name="cap" placeholder="Cap"><br>
-                    <input type="number" name="price" placeholder="Prezzo"><br>
+                    <input type="text" name="cap" placeholder="CAP"><br>
+                    <input type="number" name="price" placeholder="Prezzo a notte"><br>
                 </div>
 
                 <div id="checkbox">

@@ -58,7 +58,7 @@
     ></map-component>
 
             
-    @auth        
+    @auth
         @if (Auth::user()->id != $apartment->user_id)
         <div class="msg-container">
             <h4>Contatta il proprietario</h4>
