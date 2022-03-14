@@ -11096,7 +11096,6 @@ footer hr {
 
 #sponsorship .sponsor-tiers > div a .sponsor .name {
   font-weight: bold;
-  font-size: 2rem;
 }
 
 #sponsorship .sponsor-tiers > div a .sponsor .info {
@@ -11142,12 +11141,12 @@ footer hr {
   border-radius: 30px;
   border: solid #ffae00;
   padding: 10px 30px;
-  transition: all 0.2s ease;
+  transition: all 0.2s linear;
   text-decoration: none;
+  font-weight: bold;
 }
 
 #user-dashboard .my-btn:hover {
-  font-weight: bold;
   background-color: #332b27;
 }
 
@@ -11155,6 +11154,12 @@ footer hr {
   background: #fff;
   border: solid #ffae00;
   color: #ffae00;
+  transition: all 0.3s e;
+}
+
+#user-dashboard .my-btn.btn-outline:hover {
+  background-color: #332b27;
+  color: white;
 }
 
 #user-dashboard .my-btn.btn-sponsored {
@@ -11164,6 +11169,9 @@ footer hr {
 
 #user-dashboard .my-btn.btn-sponsored:hover {
   cursor: not-allowed;
+  background-color: white;
+  border-color: #cbcbcb;
+  color: #cbcbcb;
 }
 
 #user-dashboard hr {
@@ -11191,7 +11199,6 @@ footer hr {
 
 #user-dashboard .dash-ap-list .apartment {
   border: 1px solid #cbcbcb;
-  width: 50%;
   height: 150px;
   display: flex;
   flex-direction: column;

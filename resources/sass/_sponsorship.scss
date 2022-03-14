@@ -23,6 +23,7 @@
 
     .sponsor-tiers {
         display: flex;
+        // flex-wrap: wrap;
         justify-content: space-between;
         width: 100%;
         margin-bottom: 2rem;
@@ -66,7 +67,7 @@
                     }
                     .name {
                         font-weight: bold;
-                        font-size: 2rem;
+                        // font-size: 2rem;
                     }
                     .info {
                         color: #000;

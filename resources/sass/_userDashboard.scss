@@ -10,22 +10,33 @@
         border-radius: 30px;
         border: solid #ffae00;
         padding: 10px 30px;
-        transition: all 0.2s ease;
+        transition: all 0.2s linear;
         text-decoration: none;
+        font-weight: bold;
+
         &:hover {
-            font-weight: bold;
+
+            // padding: 12px 35px;
             background-color: #332b27;
         }
         &.btn-outline {
             background: #fff;
             border: solid #ffae00;
             color: #ffae00;
+            transition: all 0.3s e;
+            &:hover{
+                background-color: #332b27;
+                color: white;
+            }
         }
         &.btn-sponsored {
             border-color: #cbcbcb;
             color: #cbcbcb;
             &:hover {
                 cursor: not-allowed;
+                background-color: white;
+                border-color: #cbcbcb;
+                color: #cbcbcb;
             }
         }
     }
@@ -49,7 +60,7 @@
         margin: 0 auto 2rem;
         .apartment {
             border: 1px solid #cbcbcb;
-            width: 50%;
+            // width: 50%;
             height: 150px;
             display: flex;
             flex-direction: column;
