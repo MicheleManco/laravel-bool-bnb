@@ -14,14 +14,14 @@
                 {{$apartment->address}} {{$apartment->city}} {{$apartment->cap}}
             </h4>
         </div>
-        <div class="sponsor-tiers">
+        <div class="sponsor-tiers d.flex flex-sm-wrap flex-lg-nowrap">
             @foreach ($sponsorship  as $sponsor)
-            <div>
+            <div class="col-sm-10 col-lg-4 mx-sm-auto mb-sm-5 mb-lg-0">
                 <a href="{{route('sponsorStore', ['id' => $apartment->id,'sponsor_id' => $sponsor->id])}}" method="post">
                     <div class="sponsor {{$sponsor->name}}">
                         <img src='/images/{{$sponsor->name}}.png' alt="{{$sponsor->name}}">
                         <h3 class="name">{{$sponsor->name}}</h3>
-                        <p class="info {{$sponsor->name}}"> A soli <span class="price">{{$sponsor->price}} €</span> l'appartmento sarà sponsorizzato per {{$sponsor->duration/24}} giorni </p>
+                        <p class="info"> A soli <span class="price">{{$sponsor->price}} €</span> l'appartmento sarà sponsorizzato per {{$sponsor->duration/24}} giorni </p>
                     </div>
                 </a>
             </div>
