@@ -8,6 +8,7 @@ use App\Service;
 use App\ApartmentSponsorship;
 use App\Message;
 use App\Stat;
+use App\Image;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -94,7 +95,10 @@ class GuestController extends Controller
 
         $services = Service::all();
 
-        return view('pages.apartmentDetails', compact('apartment', 'stats', 'services'));
+        $images = Image::where('apartment_id', $apartment->id)->get();
+        // dd($images);
+
+        return view('pages.apartmentDetails', compact('apartment', 'stats', 'services', 'images'));
     }
 
     public function messages(Request $request, $id)
