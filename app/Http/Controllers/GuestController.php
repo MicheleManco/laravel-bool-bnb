@@ -31,15 +31,19 @@ class GuestController extends Controller
             }
         }
 
+        // immagini associate agli appartamenti
         $apartment_images = array();
         foreach ($apartments as $apartment) {
+            // salva le immagini associate al singolo appartamento
             $images = Image::where('apartment_id', $apartment->id)->get();
 
+            // array con i filename delle immagini
             $a = array();
             foreach ($images as $image) {
                 array_push($a, $image->fileName);
             }
 
+            // associa l'array di nomi dei file all'id dell'appartamento
             array_push($apartment_images, ['id' => $apartment->id, 'images' => $a]);
         }
 
