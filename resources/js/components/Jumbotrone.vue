@@ -19,12 +19,12 @@
             <!-- Elenco degli appartamenti ricercati -->
             <div class="row row-apartment" >
                 <a :href="`/apartment/${apartment.id}`" class="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
-                    <div>
-                        <p><strong>{{apartment.price}}€</strong></p>
+                    <div class="prezzo">
+                        <div><strong>{{apartment.price}}€</strong></div>
                     </div>
-                    <img src="/images/apartment-placeholder.jpg" :alt="apartment.title">
-                    <div>
-                        <span>{{apartment.city}}</span>
+                    
+                    <div class="description">
+                        <div>{{apartment.city}}</div>
                         <div>{{apartment.title}}</div>  
                     </div>
                 </a>
@@ -113,27 +113,33 @@ export default {
         flex-direction: column;
         margin: 47px;
         padding: 15px;
-        background-color: #FFAE00;
         font-size: 20px;
         text-decoration: none;
         color: white;
         transition: 0.3s;
-
-        img {
-            width: 100%;
+        background-image: url('/images/apartment-placeholder.jpg');
+        background-repeat: no-repeat;
+        object-fit: cover;
+        background-position: center;
+        background-size: 200%;
+        .prezzo div{
+            background-color: #2c2c2c6c;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 80px;
+            width: 50%;
+            text-align: center;
+        }
+        .description{
+            background-color: #2c2c2c6c;
+            border-radius: 10px;
+            padding: 5px;
         }
     }
 
     .apartment:hover {
-
-        color: black;
         width: 300px;
         margin: 38.5px 47px;
-
-        img {
-            margin: 0px auto;
-            width: 100%;
-        }
     }
 
 
