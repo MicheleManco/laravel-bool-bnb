@@ -20,28 +20,13 @@
             <h4><strong>{{$apartment->price}} €</strong> a notte</h4>
         </div>
     </div>
-
     <div class="img-container">
-        <div class="cover-image">
-            <img src="{{asset('storage/apartments/'. $apartment->id . '/' . $images[0]->fileName)}}" alt="">
-        </div>
-        <div class="side1">
-            <div class="side-img">
-                <img src="{{asset('storage/apartments/'. $apartment->id . '/' . $images[1]->fileName)}}" alt="">
-            </div>
-            <div class="side-img">
-                <img src="{{asset('storage/apartments/'. $apartment->id . '/' . $images[2]->fileName)}}" alt="">
-            </div>
-        </div>
-        <div class="side2">
-            <div class="side-img">
-                <img src="{{asset('storage/apartments/'. $apartment->id . '/' . $images[3]->fileName)}}" alt="">
-            </div>
-            <div class="side-img">
-                <img src="{{asset('storage/apartments/'. $apartment->id . '/' . $images[4]->fileName)}}" alt="">
-            </div>
-        </div>
+        @foreach ($images as $image)
+                <img src="{{asset('storage/apartments/'. $apartment->id . '/' . $image->fileName)}}" alt="">
+        @endforeach
     </div>
+
+
     <div class="apartment-description">
 
         <div class="text">
