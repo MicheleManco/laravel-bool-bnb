@@ -10,7 +10,7 @@
 
             <!-- input per la ricerca degli appartamenti tramite la città -->
             <div id="box" class="col-9 ">
-                <input type="search" id="search"   name="search" class="txt" size="95%" placeholder="Inserisci città" v-model="searchAp" @keypress="getFilterCity">
+                <input type="search" id="search"   name="search" class="txt" size="95%" placeholder="Inserisci città" v-model="searchAp" @keypress="getFilterCity" @keyup.8="getFilterCity()">
             </div>
 
              <!-- Link per andare alla ricerca avanzata -->
@@ -131,7 +131,7 @@ export default {
         margin: 38.5px 47px;
 
         img {
-            margin: 2px auto;
+            margin: 0px auto;
             width: 100%;
         }
     }

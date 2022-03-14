@@ -16,7 +16,7 @@
         @endif
         
         {{-- form di modifica dell'appartamento --}}
-        <form action="{{route('apartmentUpdate', $apartment->id)}}" method="POST">
+        <form action="{{route('apartmentUpdate', $apartment->id)}}" enctype="multipart/form-data" method="POST">
         
             @method('POST')
             @csrf
@@ -60,7 +60,8 @@
                 @endforeach
                 >{{$service->name}}<br>
             @endforeach
-            
+            <label for="images">Immagini</label>
+            <input type="file" name="images[]" accept="image/*" multiple><br>
             <input type="submit" value= "Salva modifiche">
         </form>
     @else

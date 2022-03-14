@@ -21,26 +21,12 @@
         </div>
     </div>
     <div class="img-container">
-        <div class="cover-image">
-            <img src="/images/apartment-placeholder.jpg" alt="">
-        </div>
-        <div class="side1">
-            <div class="side-img">
-                <img src="/images/apartment-placeholder.jpg" alt="">
-            </div>
-            <div class="side-img">
-                <img src="/images/apartment-placeholder.jpg" alt="">
-            </div>
-        </div>
-        <div class="side2">
-            <div class="side-img">
-                <img src="/images/apartment-placeholder.jpg" alt="">
-            </div>
-            <div class="side-img">
-                <img src="/images/apartment-placeholder.jpg" alt="">
-            </div>
-        </div>
+        @foreach ($images as $image)
+                <img src="{{asset('storage/apartments/'. $apartment->id . '/' . $image->fileName)}}" alt="">
+        @endforeach
     </div>
+
+
     <div class="apartment-description">
 
         <div class="text">
@@ -71,6 +57,8 @@
     longitude="{{$apartment->longitude}}"
     ></map-component>
 
+            
+    @if (Auth::user()->id != $apartment->user_id)
     <div class="msg-container">
         <h4>Contatta il proprietario</h4>
         {{-- form per i messaggi --}}
@@ -84,6 +72,8 @@
             <input type="submit" value="Invia" class="my-btn">
         </form>
     </div>
+    @endif
+    
     
         
 </div>
