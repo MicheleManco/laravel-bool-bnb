@@ -456,15 +456,22 @@ section {
     display: flex;
     justify-content: flex-end;
     column-gap: 1rem;
+     @media (max-width: 480px) {
+          flex-direction: column;
+        }
     .results {
       width: 40%;
       height: 1000px;
       overflow: auto;
       padding: 1rem;
+      @media (max-width: 480px) {
+          width: 100%;
+      }
+      
       .apartment {
+        overflow: hidden;
         border: 1px solid #cbcbcb;
         height: 300px;
-        width: 100%;
         margin-bottom: 1rem;
         padding: 1rem;
         transition: all 0.2s ease;
@@ -477,13 +484,15 @@ section {
           display: flex;
           justify-content: space-between;
           h4{
-
             font-weight: bold;
           }
+      
         }
         .apartment-labels{
           display: flex;
+          flex-wrap: wrap;
           margin-top: 1rem;
+         
           h5{
             margin-right: 1rem;
             color: #fff;
@@ -499,6 +508,9 @@ section {
       width: 50%;
       height: 1000px;
       margin: 0px 50px 50px 10px;
+       @media (max-width: 480px) {
+          width: 100%;
+      }
     }
   }
 }
