@@ -22,7 +22,7 @@
                         <div class="apartment-head">
                             <a href="{{ route('showApartment', $apartment->id) }}" class="aparment-title">{{ $apartment->title }}</a>
 
-                            <div>
+                            <div >
                                 <span>Messaggi: </span>
                                 <a href="{{route('viewMessage', $apartment->id)}}" class="my-btn">
                                     <?php
@@ -55,11 +55,9 @@
                                 }
                                 ?>
                                 @if ($isSponsored == false || $expired)
-                                <a href="{{ route('sponsor', $apartment->id) }}" class="my-btn sponsor-btn d-md-none"><i class="fas fa-ad"></i></a>
-                                    <a href="{{ route('sponsor', $apartment->id) }}" class="my-btn sponsor-btn d-none d-md-inline">Sponsorizza </a>
+                                    <a href="{{ route('sponsor', $apartment->id) }}" class="my-btn sponsor-btn">Sponsorizza </a>
                                 @else
-                                    <span class="my-btn btn-outline btn-sponsored d-none d-md-inline">Già sponsorizzato</span>
-                                    <i class="fas fa-ban my-btn btn-sponsored btn-outline d-md-none "></i>
+                                    <span class="my-btn btn-outline btn-sponsored">Già sponsorizzato</span>
                                 @endif
                             </div>
                             <div class="aparment-edit-delete">

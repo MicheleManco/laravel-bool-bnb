@@ -5,6 +5,7 @@
     justify-content: center;
 
     .my-btn {
+        display: inline-block;
         background: #ffae00;
         color: #fff;
         border-radius: 30px;
@@ -14,16 +15,20 @@
         text-decoration: none;
         font-weight: bold;
 
-        &:hover {
+        @media (max-width: 580px) {
+            width: 100%;
+            margin-bottom: 8px;
+        }
 
-            // padding: 12px 35px;
+        &:hover {
             background-color: #332b27;
         }
+
         &.btn-outline {
             background: #fff;
             border: solid #ffae00;
             color: #ffae00;
-            transition: all 0.3s e;
+
             &:hover{
                 background-color: #332b27;
                 color: white;
@@ -32,6 +37,7 @@
         &.btn-sponsored {
             border-color: #cbcbcb;
             color: #cbcbcb;
+
             &:hover {
                 cursor: not-allowed;
                 background-color: white;
@@ -45,52 +51,80 @@
         margin: 1rem auto 2rem;
         width: 90%;
     }
+
     .dash-head {
         width: 80%;
         margin: 3rem auto 2rem;
+
         > div {
             margin-bottom: 2rem;
         }
+
         .my-btn {
-            font-size: 1.5rem;
+            font-size: 1.5rem;    
+            display: inline-block;
         }
     }
     .dash-ap-list {
         width: 80%;
         margin: 0 auto 2rem;
+
         .apartment {
             border: 1px solid #cbcbcb;
             // width: 50%;
-            height: 150px;
+            min-height: 150px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             padding: 2rem;
             margin-bottom: 2rem;
+            gap: 40px;
             transition: all 0.2s ease;
+            
             &:hover {
                 box-shadow: 0 0 20px #cbcbcb;
                 border-color: #a0a0a0;
                 transform: scale(1.01);
             }
+
             .apartment-head,
             .apartment-foot {
                 display: flex;
                 justify-content: space-between;
+
+                @media (max-width: 580px) {
+                    flex-direction: column;
+                }
             }
+
+            .apartment-messages {
+                flex-shrink: 0;
+            }
+
             .apartment-head {
                 align-items: center;
-                > a {
-                    font-size: 1.5rem;
-                    font-weight: bold;
-                    color: #000;
-                }
-                div {
+
+                > div {
+                    @media(max-width: 768px) {
+                        width: 100%;
+                    }
+
                     span {
                         font-weight: bold;
                     }
                     .my-btn {
                         padding: 5px 10px;
+                        width: auto;
+                    }
+                }
+
+                .aparment-title {
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    color: #000;
+
+                    @media (min-width: 480px) {
+                        padding-right: 20px;
                     }
                 }
             }
