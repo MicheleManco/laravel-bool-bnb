@@ -1,0 +1,81 @@
+#apartment-create {
+    form{
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        flex-wrap:wrap;
+        margin:50px 0;
+       } 
+
+     #first input{
+        width:84%;
+        border-radius:35px;
+        border:1px solid grey;
+        margin:10px 0;
+        height:40px;
+        padding-right:20px;
+        padding-left:10px;
+    }
+
+    #second input{
+        width:84%;
+        border-radius:35px;
+        border:1px solid grey;
+        margin:10px 0;
+        height:40px;
+        padding-right:20px;
+        padding-left:10px;
+    }
+
+    textarea{
+        border-radius:10px;
+        margin:10px 0;
+        border:1px solid grey;
+    }
+
+    li{
+        display:inline-block;
+        width:180px;
+        margin:3px 0;
+    }
+   
+    .checkbox{
+        width:100%;
+    }
+
+    #category{
+        margin:10px 0;
+        padding:10px 20px;
+        background-color:white;
+        padding-right:51%;
+        border:1px solid grey;
+        border-radius:30px;
+    }
+
+    #category_div{
+        margin:10px 0;
+    }
+
+    #create_button{
+        color: #FFFFFF;
+        font-family: Helvetica;
+        font-size: 15px;
+        font-weight: 100;
+        background-color: #FFAE00;
+        text-decoration: none;
+        cursor: pointer;
+        width:40%;
+        padding:10px 0;
+        border:none;
+        margin: 10px auto;
+        border-radius: 38px;
+        transform: translate(0, 0);
+        -ms-transform: translate(-50%, -50%);
+    }
+
+    #create_button:hover {
+        border: solid #FFAE00;
+        text-decoration: none;
+        background-color: #332b27;
+    } 
+}
