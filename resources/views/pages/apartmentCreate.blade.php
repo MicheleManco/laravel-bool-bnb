@@ -43,7 +43,7 @@
                     </select><br>
                     <div id="category_div">
                         @foreach ($services as $service)
-                        <li><input type="checkbox" value="{{$service->id}}" name="services[]">{{$service->name}}</li> 
+                        <li><input type="checkbox" value="{{$service->id}}" name="services[]">  {{$service->name}}</li> 
                         @endforeach
                     </div>
                     <label for="images">Immagini</label>

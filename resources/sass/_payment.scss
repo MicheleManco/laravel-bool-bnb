@@ -10,8 +10,9 @@
         padding: 10px 30px;
         transition: all 0.2s ease;
         text-decoration: none;
+        font-weight: bold;
         &:hover {
-            font-weight: bold;
+            
             background-color: #332b27;
         }
     }
