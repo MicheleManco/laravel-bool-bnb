@@ -17,7 +17,7 @@
                 {{-- mostra la lista degli appartamenti che appartengono all'utente --}}
             
                 @if ($apartment->user_id == Auth::user()->id)
-                    <div class="apartment">
+                    <div class="apartment col-sm-12 col-lg-8 col-xl-6">
                         
                         <div class="apartment-head">
                             <a href="{{ route('showApartment', $apartment->id) }}" class="aparment-title">{{ $apartment->title }}</a>
@@ -55,9 +55,11 @@
                                 }
                                 ?>
                                 @if ($isSponsored == false || $expired)
-                                    <a href="{{ route('sponsor', $apartment->id) }}" class="my-btn sponsor-btn">Sponsorizza </a>
+                                <a href="{{ route('sponsor', $apartment->id) }}" class="my-btn sponsor-btn d-md-none"><i class="fas fa-ad"></i></a>
+                                    <a href="{{ route('sponsor', $apartment->id) }}" class="my-btn sponsor-btn d-none d-md-inline">Sponsorizza </a>
                                 @else
-                                    <span class="my-btn btn-outline btn-sponsored">Già sponsorizzato</span>
+                                    <span class="my-btn btn-outline btn-sponsored d-none d-md-inline">Già sponsorizzato</span>
+                                    <i class="fas fa-ban my-btn btn-sponsored btn-outline d-md-none "></i>
                                 @endif
                             </div>
                             <div class="aparment-edit-delete">
