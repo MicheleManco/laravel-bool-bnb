@@ -2479,7 +2479,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     apartment_sponsorship: Array,
-    filter_sponsor: Array
+    filter_sponsor: Array,
+    apartment_images: Array
   },
   mounted: function mounted() {
     var _this = this;
@@ -2500,6 +2501,13 @@ __webpack_require__.r(__webpack_exports__);
         if (this.apartments[i].city.toLowerCase().includes(this.searchAp.toLowerCase()) || this.apartments[i].address.toLowerCase().includes(this.searchAp.toLowerCase())) {
           // aggiunge gli appartamenti filtrati nell'array
           this.apartmentFilted.push(this.apartments[i]);
+        }
+      }
+    },
+    getImage: function getImage(id) {
+      for (var i = 0; i < this.apartment_images.length; i++) {
+        if (this.apartment_images[i].id == id) {
+          return "/storage/apartments/".concat(id, "/").concat(this.apartment_images[i].images[0]);
         }
       }
     }
@@ -2631,8 +2639,8 @@ __webpack_require__.r(__webpack_exports__);
       randomNum: -1
     };
   },
-  mounted: function mounted() {
-    this.randomNum = Math.floor(Math.random() * 12);
+  created: function created() {
+    this.randomNum = Math.floor(Math.random() * 11) + 1;
     console.log(this.randomNum);
   }
 });
@@ -7097,7 +7105,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "h2[data-v-09e28492] {\n  font-size: 40px;\n  text-align: center;\n  margin: 50px 0;\n}\n.row-apartment[data-v-09e28492] {\n  width: 90%;\n  margin: 0 auto;\n  display: flex;\n  justify-content: center;\n}\n.apartment[data-v-09e28492] {\n  border-radius: 20px;\n  box-shadow: 4px 5px 3px 0px #888888;\n  display: flex;\n  height: auto;\n  width: 280px;\n  justify-content: space-between;\n  flex-direction: column;\n  margin: 40px 47px;\n  padding: 15px;\n  background-color: #FFAE00;\n  font-size: 20px;\n  text-decoration: none;\n  color: white;\n  transition: 0.3s;\n}\n.apartment img[data-v-09e28492] {\n  width: 100%;\n}\n.apartment[data-v-09e28492]:hover {\n  color: black;\n  width: 300px;\n  margin: 25px 47px;\n}\n.apartment:hover img[data-v-09e28492] {\n  margin: 0px auto;\n  width: 100%;\n}", ""]);
+exports.push([module.i, "h2[data-v-09e28492] {\n  font-size: 40px;\n  text-align: center;\n  margin: 50px 0;\n}\n.row-apartment[data-v-09e28492] {\n  width: 90%;\n  margin: 0 auto;\n  display: flex;\n  justify-content: center;\n}\n.apartment[data-v-09e28492] {\n  border-radius: 20px;\n  box-shadow: 4px 5px 3px 0px #888888;\n  display: flex;\n  height: auto;\n  width: 280px;\n  justify-content: space-between;\n  flex-direction: column;\n  margin: 40px 47px;\n  padding: 15px;\n  font-size: 20px;\n  text-decoration: none;\n  color: white;\n  transition: 0.3s;\n  position: relative;\n  overflow: hidden;\n}\n.apartment .prezzo div[data-v-09e28492] {\n  background-color: #2c2c2c6c;\n  border-radius: 10px;\n  padding: 5px;\n  margin-bottom: 80px;\n  width: 50%;\n  text-align: center;\n  z-index: 999;\n}\n.apartment .description[data-v-09e28492] {\n  background-color: #2c2c2c6c;\n  border-radius: 10px;\n  padding: 5px;\n  z-index: 999;\n}\n.apartment .image[data-v-09e28492] {\n  position: absolute;\n  top: -20px;\n  left: -20px;\n  z-index: -1;\n  height: 110%;\n}\n.apartment[data-v-09e28492]:hover {\n  width: 300px;\n  margin: 25px 47px;\n}", ""]);
 
 // exports
 
@@ -7116,7 +7124,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "*[data-v-67e95864] {\n  margin: 0;\n  padding: 0;\n}\n.row-apartment[data-v-67e95864] {\n  width: 90%;\n  margin: 0 auto;\n  display: flex;\n  justify-content: center;\n}\n.apartment[data-v-67e95864] {\n  border-radius: 20px;\n  box-shadow: 4px 5px 3px 0px #888888;\n  display: flex;\n  height: auto;\n  width: 280px;\n  justify-content: space-between;\n  flex-direction: column;\n  margin: 47px;\n  padding: 15px;\n  background-color: #FFAE00;\n  font-size: 20px;\n  text-decoration: none;\n  color: white;\n  transition: 0.3s;\n}\n.apartment img[data-v-67e95864] {\n  width: 100%;\n}\n.apartment[data-v-67e95864]:hover {\n  color: black;\n  width: 300px;\n  margin: 38.5px 47px;\n}\n.apartment:hover img[data-v-67e95864] {\n  margin: 0px auto;\n  width: 100%;\n}\n#jumbotrone[data-v-67e95864] {\n  background: url(\"https://images.unsplash.com/photo-1588840103995-02893d4eb8fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80\");\n  height: 550px;\n  filter: contrast(1.5);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center center;\n}\n#jumbotrone div[data-v-67e95864] {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n#jumbotrone_paragraph h1[data-v-67e95864] {\n  font-size: 5em;\n  color: #FFAE00;\n  font-family: \"Noto Serif Display\", serif;\n}\n#jumbotrone_paragraph p[data-v-67e95864] {\n  font-size: 2em;\n  color: #ffffff;\n}\n#advanced_reserach[data-v-67e95864] {\n  color: black;\n  font-size: 20px;\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  padding: 20px;\n}\n#advanced_reserach a[data-v-67e95864] {\n  color: #FFAE00;\n  font-weight: bold;\n}\n#advanced_reserach[data-v-67e95864]:hover {\n  text-decoration: none;\n}\nhr[data-v-67e95864] {\n  width: 78%;\n  border: 1px solid #978e87;\n  margin: auto;\n}\n#search[data-v-67e95864] {\n  height: 55px;\n  padding: 0 20px;\n  border-radius: 50px;\n  margin-left: 50px;\n  border: none;\n  box-shadow: 5px 5px 30px grey;\n}\n#box[data-v-67e95864] {\n  display: flex;\n  flex-direction: row;\n}\n#box button[data-v-67e95864] {\n  border-radius: 18px;\n  font-family: Helvetica;\n  color: #FFFFFF;\n  font-size: 15px;\n  font-weight: 100;\n  height: 60px;\n  margin-top: 10px;\n  margin-left: 10px;\n  border: none;\n  background-color: #FFAE00;\n  box-shadow: 5px 5px 30px grey;\n  border-radius: 38px;\n  transform: translate(0, 0);\n  -ms-transform: translate(-50%, -50%);\n  transition: background-color 0.3s ease-in-out;\n}\n#box button[data-v-67e95864]:hover {\n  border: solid #FFAE00;\n  border-radius: 38px;\n  text-decoration: none;\n  background-color: #332b27;\n}\n#box[data-v-67e95864] {\n  width: 70%;\n  margin: 0 auto;\n  margin-top: -40px;\n}", ""]);
+exports.push([module.i, "*[data-v-67e95864] {\n  margin: 0;\n  padding: 0;\n}\n.row-apartment[data-v-67e95864] {\n  width: 90%;\n  margin: 0 auto;\n  display: flex;\n  justify-content: center;\n}\n.apartment[data-v-67e95864] {\n  border-radius: 20px;\n  box-shadow: 4px 5px 3px 0px #888888;\n  display: flex;\n  height: auto;\n  width: 280px;\n  justify-content: space-between;\n  flex-direction: column;\n  margin: 40px 47px;\n  padding: 15px;\n  font-size: 20px;\n  text-decoration: none;\n  color: white;\n  transition: 0.3s;\n  position: relative;\n  overflow: hidden;\n}\n.apartment .prezzo div[data-v-67e95864] {\n  background-color: #2c2c2c6c;\n  border-radius: 10px;\n  padding: 5px;\n  margin-bottom: 80px;\n  width: 50%;\n  text-align: center;\n  z-index: 999;\n}\n.apartment .description[data-v-67e95864] {\n  background-color: #2c2c2c6c;\n  border-radius: 10px;\n  padding: 5px;\n  z-index: 999;\n}\n.apartment .image[data-v-67e95864] {\n  position: absolute;\n  top: -20px;\n  left: -20px;\n  z-index: -1;\n  height: 110%;\n}\n.apartment[data-v-67e95864]:hover {\n  width: 300px;\n  margin: 25px 47px;\n}\n#jumbotrone[data-v-67e95864] {\n  background: url(\"https://images.unsplash.com/photo-1588840103995-02893d4eb8fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80\");\n  height: 550px;\n  filter: contrast(1.5);\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center center;\n}\n#jumbotrone div[data-v-67e95864] {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n#jumbotrone_paragraph h1[data-v-67e95864] {\n  font-size: 5em;\n  color: #FFAE00;\n  font-family: \"Noto Serif Display\", serif;\n}\n#jumbotrone_paragraph p[data-v-67e95864] {\n  font-size: 2em;\n  color: #ffffff;\n}\n#advanced_reserach[data-v-67e95864] {\n  color: black;\n  font-size: 20px;\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  padding: 20px;\n}\n#advanced_reserach a[data-v-67e95864] {\n  color: #FFAE00;\n  font-weight: bold;\n}\n#advanced_reserach[data-v-67e95864]:hover {\n  text-decoration: none;\n}\nhr[data-v-67e95864] {\n  width: 78%;\n  border: 1px solid #978e87;\n  margin: auto;\n}\n#search[data-v-67e95864] {\n  height: 55px;\n  padding: 0 20px;\n  border-radius: 50px;\n  margin-left: 50px;\n  border: none;\n  box-shadow: 5px 5px 30px grey;\n}\n#box[data-v-67e95864] {\n  display: flex;\n  flex-direction: row;\n}\n#box button[data-v-67e95864] {\n  border-radius: 18px;\n  font-family: Helvetica;\n  color: #FFFFFF;\n  font-size: 15px;\n  font-weight: 100;\n  height: 60px;\n  margin-top: 10px;\n  margin-left: 10px;\n  border: none;\n  background-color: #FFAE00;\n  box-shadow: 5px 5px 30px grey;\n  border-radius: 38px;\n  transform: translate(0, 0);\n  -ms-transform: translate(-50%, -50%);\n  transition: background-color 0.3s ease-in-out;\n}\n#box button[data-v-67e95864]:hover {\n  border: solid #FFAE00;\n  border-radius: 38px;\n  text-decoration: none;\n  background-color: #332b27;\n}\n#box[data-v-67e95864] {\n  width: 70%;\n  margin: 0 auto;\n  margin-top: -40px;\n}", ""]);
 
 // exports
 
@@ -7173,7 +7181,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".container-fluid[data-v-aa3a5dd0] {\n  margin-bottom: 40px;\n}\nhr[data-v-aa3a5dd0] {\n  width: 78%;\n  border: 1px solid #978e87;\n  margin: 40px auto;\n}\nh2[data-v-aa3a5dd0] {\n  font-size: 40px;\n  text-align: center;\n  margin: 50px 0;\n}\nh3[data-v-aa3a5dd0] {\n  color: white;\n  font-weight: bold;\n  margin-top: -40px;\n  margin-left: 25px;\n}\n#city_cards div[data-v-aa3a5dd0] {\n  margin: 20px 0;\n}\n#city_cards img[data-v-aa3a5dd0] {\n  border-radius: 20px;\n}", ""]);
+exports.push([module.i, ".container-fluid[data-v-aa3a5dd0] {\n  margin-bottom: 40px;\n}\nhr[data-v-aa3a5dd0] {\n  width: 78%;\n  border: 1px solid #978e87;\n  margin: 40px auto;\n}\nh2[data-v-aa3a5dd0] {\n  font-size: 40px;\n  text-align: center;\n  margin: 50px 0;\n}\nh3[data-v-aa3a5dd0] {\n  color: white;\n  font-weight: bold;\n  margin-top: -40px;\n  margin-left: 25px;\n}\n#city_cards div[data-v-aa3a5dd0] {\n  margin: 20px 0;\n}\n#city_cards img[data-v-aa3a5dd0] {\n  border-radius: 20px;\n  box-shadow: 4px 5px 3px 0px #888888;\n}", ""]);
 
 // exports
 
@@ -39673,7 +39681,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("Jumbotrone"),
+      _c("Jumbotrone", { attrs: { apartment_images: _vm.apartment_images } }),
       _vm._v(" "),
       _c("Randomdestination"),
       _vm._v(" "),
@@ -39697,21 +39705,22 @@ var render = function () {
                       attrs: { href: "/apartment/" + apartment.id },
                     },
                     [
-                      _c("div", [
-                        _c("p", [
+                      _c("div", { staticClass: "prezzo" }, [
+                        _c("div", [
                           _c("strong", [_vm._v(_vm._s(apartment.price) + "€")]),
                         ]),
                       ]),
                       _vm._v(" "),
                       _c("img", {
+                        staticClass: "image",
                         attrs: {
                           src: _vm.getImage(apartment.id),
                           alt: apartment.title,
                         },
                       }),
                       _vm._v(" "),
-                      _c("div", [
-                        _c("span", [_vm._v(_vm._s(apartment.city))]),
+                      _c("div", { staticClass: "description" }, [
+                        _c("div", [_vm._v(_vm._s(apartment.city))]),
                         _vm._v(" "),
                         _c("div", [_vm._v(_vm._s(apartment.title))]),
                       ]),
@@ -39808,19 +39817,19 @@ var render = function () {
             attrs: { href: "/apartment/" + apartment.id },
           },
           [
-            _c("div", [
-              _c("p", [_c("strong", [_vm._v(_vm._s(apartment.price) + "€")])]),
+            _c("div", { staticClass: "prezzo" }, [
+              _c("div", [
+                _c("strong", [_vm._v(_vm._s(apartment.price) + "€")]),
+              ]),
             ]),
             _vm._v(" "),
             _c("img", {
-              attrs: {
-                src: "/images/apartment-placeholder.jpg",
-                alt: apartment.title,
-              },
+              staticClass: "image",
+              attrs: { src: _vm.getImage(apartment.id), alt: apartment.title },
             }),
             _vm._v(" "),
-            _c("div", [
-              _c("span", [_vm._v(_vm._s(apartment.city))]),
+            _c("div", { staticClass: "description" }, [
+              _c("div", [_vm._v(_vm._s(apartment.city))]),
               _vm._v(" "),
               _c("div", [_vm._v(_vm._s(apartment.title))]),
             ]),
@@ -53127,8 +53136,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Samuele\Documents\Boolean\Progetto Finale\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Samuele\Documents\Boolean\Progetto Finale\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
