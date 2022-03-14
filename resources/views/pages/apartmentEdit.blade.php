@@ -51,13 +51,7 @@
                         </select><br>
                         <div id="category_div">
                             @foreach ($services as $service)
-                                <input type="checkbox" value="{{$service->id}}" name="services[]"
-                                @foreach ($apartment->services as $apartmentService)
-                                    @if ($service->id == $apartmentService->id)
-                                        checked
-                                    @endif
-                                @endforeach
-                                >{{$service->name}}<br>
+                                <li><input type="checkbox" value="{{$service->id}}" name="services[]" @foreach ($apartment->services as $apartmentService) @if ($service->id == $apartmentService->id) checked @endif @endforeach>  {{$service->name}}</li> 
                             @endforeach
                         </div>
                         <label for="images">Immagini</label>
