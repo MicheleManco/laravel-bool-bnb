@@ -19,12 +19,12 @@
             <!-- Elenco degli appartamenti ricercati -->
             <div class="row row-apartment" >
                 <a :href="`/apartment/${apartment.id}`" class="apartment" v-for="apartment in apartmentFilted" :key="apartment.id">
-                    <div>
-                        <p><strong>{{apartment.price}}€</strong></p>
+                    <div class="prezzo">
+                        <div><strong>{{apartment.price}}€</strong></div>
                     </div>
-                    <img src="/images/apartment-placeholder.jpg" :alt="apartment.title">
-                    <div>
-                        <span>{{apartment.city}}</span>
+                    <img class="image" :src="getImage(apartment.id)" :alt="apartment.title">
+                    <div class="description">
+                        <div>{{apartment.city}}</div>
                         <div>{{apartment.title}}</div>  
                     </div>
                 </a>
@@ -56,6 +56,7 @@ export default {
         props: {
             apartment_sponsorship: Array,
             filter_sponsor: Array,
+            apartment_images: Array,
         },
 
         mounted() {
@@ -85,6 +86,13 @@ export default {
                     }
                 }
 
+            },
+            getImage(id) {
+                for (let i = 0; i < this.apartment_images.length; i++) {
+                    if(this.apartment_images[i].id == id) {
+                        return `/storage/apartments/${id}/${this.apartment_images[i].images[0]}`
+                    }
+                }
             }
 
         }
@@ -111,29 +119,41 @@ export default {
         width: 280px;
         justify-content: space-between;
         flex-direction: column;
-        margin: 47px;
+        margin: 40px 47px;
         padding: 15px;
-        background-color: #FFAE00;
         font-size: 20px;
         text-decoration: none;
         color: white;
         transition: 0.3s;
-
-        img {
-            width: 100%;
+        position: relative;
+        overflow: hidden;
+        .prezzo div{
+            background-color: #2c2c2c6c;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 80px;
+            width: 50%;
+            text-align: center;
+            z-index: 999;
+        }
+        .description{
+            background-color: #2c2c2c6c;
+            border-radius: 10px;
+            padding: 5px;
+            z-index: 999;
+        }
+        .image{
+            position:absolute;
+            top: -20px;
+            left: -20px;
+            z-index: -1;
+            height: 110%;
         }
     }
 
     .apartment:hover {
-
-        color: black;
         width: 300px;
-        margin: 38.5px 47px;
-
-        img {
-            margin: 0px auto;
-            width: 100%;
-        }
+        margin: 25px 47px;
     }
 
 

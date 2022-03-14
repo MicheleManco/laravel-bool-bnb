@@ -13,22 +13,22 @@
     @endif
 
     {{-- form di registrazione --}}
-    <div id="containerForm" class="container-fluid">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-5">
+    <div id="containerForm" class="container-fluid col-6 col-sm-4">
+        <div>
             <h3>Registrati</h3>
-            <form action="{{route('register')}}" method="POST" class="container-fluid">
+            <form action="{{route('register')}}" method="POST">
                 @method('POST')
                 @csrf
-                    <input type="text" name="name" placeholder="  Nome"> 
-                    <input type="text" name="surname" placeholder="  Cognome">
-                    <input type="email" name="email" placeholder="  Email">
-                    <input type="password" name="password" placeholder="  Password">
-                    <input type="password" name="password_confirmation" placeholder="  Conferma Password">
-                    <input type="text" placeholder="  Data di nascita" onfocus="(this.type='date')">                
-                    <textarea name="description" placeholder="Descrivi il tuo appartamento" rows="10" class="col-10 col-sm-10 col-md-10 col-lg-10"></textarea> <br>
-                    <input type="submit" value= "Register" id="button_register">
+                    <input type="text" name="name" placeholder="  Nome"> <br>
+                    <input type="text" name="surname" placeholder="  Cognome"><br>
+                    <input type="email" name="email" placeholder="  Email"><br>
+                    <input type="password" name="password" placeholder="  Password"><br>
+                    <input type="password" name="password_confirmation" placeholder="  Conferma Password"><br>
+                    <input type="text" placeholder="  Data di nascita" onfocus="(this.type='date')"><br>
+                    <textarea name="description" placeholder="Descrivi il tuo appartamento" rows="8" class="col-12 col-sm-4 col-md-4 col-lg-12"></textarea><br>
+                    <button type="submit" value= "Register" id="button_below">Registrati   </button>
             </form>
         </div>
     </div>
-    
+
 @endsection

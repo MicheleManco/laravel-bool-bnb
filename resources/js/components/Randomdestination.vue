@@ -22,8 +22,8 @@ export default {
             randomNum: -1,
         }
     },
-    mounted(){
-        this.randomNum = Math.floor(Math.random() * 12)
+    created(){
+        this.randomNum = Math.floor(Math.random() * 11)+1
         console.log(this.randomNum);
 
     }

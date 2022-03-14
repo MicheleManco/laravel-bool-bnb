@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <Jumbotrone/> 
+        <Jumbotrone :apartment_images="apartment_images"/> 
         <Randomdestination/>
         
 
@@ -10,12 +10,12 @@
             <div class="elenco" v-for="sponsor, i in filter_sponsor" :key="i">
 
                 <a :href="`/apartment/${apartment.id}`" class="apartment" v-for="apartment in apartments" :key="apartment.id" v-if="(apartment.id == sponsor[i].apartment_id) && (sponsor[i].end_date > expiryDate)">
-                    <div>
-                        <p><strong>{{apartment.price}}€</strong> </p>
+                    <div class="prezzo">
+                        <div><strong>{{apartment.price}}€</strong> </div>
                     </div>
-                    <img :src="getImage(apartment.id)" :alt="apartment.title">
-                    <div>
-                        <span>{{apartment.city}}</span>
+                    <img class="image" :src="getImage(apartment.id)" :alt="apartment.title">
+                    <div class="description">
+                        <div>{{apartment.city}}</div>
                         <div>{{apartment.title}}</div>  
                     </div>
                 </a>
@@ -133,28 +133,38 @@ h2{
         flex-direction: column;
         margin: 40px 47px;
         padding: 15px;
-        background-color: #FFAE00;
         font-size: 20px;
         text-decoration: none;
         color: white;
         transition: 0.3s;
-
-        img {
-            width: 100%;
+        position: relative;
+        overflow: hidden;
+        .prezzo div{
+            background-color: #2c2c2c6c;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 80px;
+            width: 50%;
+            text-align: center;
+            z-index: 999;
+        }
+        .description{
+            background-color: #2c2c2c6c;
+            border-radius: 10px;
+            padding: 5px;
+            z-index: 999;
+        }
+        .image{
+            position:absolute;
+            top: -20px;
+            left: -20px;
+            z-index: -1;
+            height: 110%;
         }
     }
 
-
     .apartment:hover {
-
-        color: black;
-        // height: 320px;
         width: 300px;
         margin: 25px 47px;
-
-        img {
-            margin: 0px auto;
-            width: 100%;
-        }
     }
 </style>
