@@ -69,8 +69,6 @@ export default {
         },
 
         mounted() {
-            console.log('id appartamento:'+ this.apartment_images[9].id);
-
             // salva gli appartamenti del DB nell'array
             axios.get('api/apartments/list')
                 .then(r => this.apartments = r.data)
