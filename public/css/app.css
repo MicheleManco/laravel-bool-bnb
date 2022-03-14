@@ -11373,92 +11373,82 @@ footer hr {
   border: 1px solid #cbcbcb;
 }
 
-#register #containerForm h3 {
-  font-size: 30px;
-  padding: 15px 0;
-  padding-left: 15px;
-}
-
-#register #containerForm {
+#containerForm {
+  height: 100vh;
   display: flex;
+  align-items: center;
   justify-content: center;
+  padding: 50px 0;
 }
 
-#register input {
-  margin: 10px 0px;
-}
-
-#register #containerForm {
-  padding: 20px 0px 80px 60px;
-}
-
-#register input {
-  width: 83%;
-  height: 45px;
-  border-radius: 50px;
-  border: 1px solid grey;
-}
-
-#register textarea {
-  border-radius: 13px;
-  border: 1px solid grey;
-  margin-top: 10px;
-}
-
-#register #button_register {
-  color: #FFFFFF;
-  font-family: Helvetica;
-  font-size: 15px;
-  background-color: #FFAE00;
-  text-decoration: none;
-  cursor: pointer;
-  width: 120px;
-  border: #FFAE00;
-  border-radius: 38px;
-  margin-top: 10px;
-  font-weight: 600;
-}
-
-#register #button_register:hover {
-  border: solid #FFAE00;
-  text-decoration: none;
-  background-color: #332b27;
-  transform: translate(0, 0);
-  -ms-transform: translate(-50%, -50%);
-}
-
-#containerForm form input {
+#containerForm textarea {
   margin-top: 15px;
-  border-radius: 50px;
+  border-radius: 30px;
   border: 1px solid grey;
-  height: 45px;
-  width: 100%;
+  padding-top: 10px;
 }
 
-#containerForm form {
-  width: 30%;
-  margin: 60px auto 40px;
-  height: 25vh;
+#containerForm input {
+  padding: 10px 200px 10px 20px;
+  border-radius: 30px;
+  border: 1px solid grey;
+  margin: 10px 0;
 }
 
-#containerForm #button_register {
-  color: #FFFFFF;
+#containerForm #button_below {
+  color: #ffffff;
   font-family: Helvetica;
   font-size: 15px;
-  background-color: #FFAE00;
+  background-color: #ffae00;
   text-decoration: none;
   cursor: pointer;
-  padding: 15px 15px;
-  border: #FFAE00;
+  border: #ffae00;
   border-radius: 38px;
   font-weight: 600;
   line-height: 5px;
   margin-top: 15px;
-  width: 80px;
+  padding: 15px 30px;
 }
 
-#containerForm #button_register:hover {
-  border: solid #FFAE00;
+#containerForm #button_below:hover {
+  border: solid #ffae00;
+  text-decoration: none;
+  background-color: #332b27;
+  transform: translate(0%, 0%);
+}
+
+#containerForm_login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 80px 0;
+}
+
+#containerForm_login input {
+  padding: 10px 200px 10px 20px;
+  border-radius: 30px;
+  border: 1px solid grey;
+  margin: 10px 0;
+}
+
+#containerForm_login #button_register {
+  color: #ffffff;
+  font-family: Helvetica;
+  font-size: 15px;
+  background-color: #ffae00;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 15px 15px;
+  border: #ffae00;
+  border-radius: 38px;
+  font-weight: 600;
+  line-height: 5px;
+  margin-top: 15px;
+  width: 150px;
+}
+
+#containerForm_login #button_register:hover {
+  border: solid #ffae00;
   text-decoration: none;
   background-color: #332b27;
   transform: translate(0, 0);
