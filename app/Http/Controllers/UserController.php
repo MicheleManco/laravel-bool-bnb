@@ -34,11 +34,12 @@ class UserController extends Controller
         $apartmentSponsorship = ApartmentSponsorship::all();
         $dateNow = Carbon::now();
         $messages = Message::all();
-      
-        return view('pages.userDashboard',compact('apartments', 'apartmentSponsorship','dateNow', 'messages'));
+
+        return view('pages.userDashboard', compact('apartments', 'apartmentSponsorship', 'dateNow', 'messages'));
     }
 
-    public function viewMessage($id){
+    public function viewMessage($id)
+    {
 
         $apartment = Apartment::findOrFail($id);
         $messages = Message::all();
@@ -52,7 +53,7 @@ class UserController extends Controller
         }
 
 
-        return view('pages.messageView',compact('apartment', 'messages', 'filteredMessages'));
+        return view('pages.messageView', compact('apartment', 'messages', 'filteredMessages'));
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -112,20 +113,21 @@ class UserController extends Controller
         if ($request->hasFile('images')) {  //immagini ciclate e salvate
             $data = [];
             foreach ($files as $file) {
-                $file->store('apartments/' . $apartment->id . '/images');
+                $fileName = rand(100000, 999999) . '_' . time() . '.' . $file->getClientOriginalExtension();
                 $data[] = [
-                    'fileName' => $file->getClientOriginalName(),
-                    'altText' => 'prova img 1',
-                    'cover' => true
+                    'fileName' => $fileName,
+                    'altText' => $apartment->title,
+                    'cover' => false
                 ];
+                $file->storeAs('/apartments/' . $apartment->id, $fileName, 'public');
             }
             $apartment->images()->createMany($data);
         }
 
         $stats = new Stat();
-        $stats -> apartment_id = $apartment->id;
-        $stats-> n_views = 0;
-        $stats-> n_messages = 0;
+        $stats->apartment_id = $apartment->id;
+        $stats->n_views = 0;
+        $stats->n_messages = 0;
         $stats->save();
 
         return redirect()->route('userDashboard');
@@ -249,7 +251,7 @@ class UserController extends Controller
     public function statistics($id)
     {
         $apartment = Apartment::findOrFail($id);
-        
+
         $stats = Stat::all();
         $statistics = [];
 

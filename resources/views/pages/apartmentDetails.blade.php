@@ -21,26 +21,12 @@
         </div>
     </div>
     <div class="img-container">
-        <div class="cover-image">
-            <img src="/images/apartment-placeholder.jpg" alt="">
-        </div>
-        <div class="side1">
-            <div class="side-img">
-                <img src="/images/apartment-placeholder.jpg" alt="">
-            </div>
-            <div class="side-img">
-                <img src="/images/apartment-placeholder.jpg" alt="">
-            </div>
-        </div>
-        <div class="side2">
-            <div class="side-img">
-                <img src="/images/apartment-placeholder.jpg" alt="">
-            </div>
-            <div class="side-img">
-                <img src="/images/apartment-placeholder.jpg" alt="">
-            </div>
-        </div>
+        @foreach ($images as $image)
+                <img src="{{asset('storage/apartments/'. $apartment->id . '/' . $image->fileName)}}" alt="">
+        @endforeach
     </div>
+
+
     <div class="apartment-description">
 
         <div class="text">
