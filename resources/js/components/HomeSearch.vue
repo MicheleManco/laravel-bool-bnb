@@ -144,7 +144,7 @@ h2{
         margin: 25px 47px;
 
         img {
-            margin: 2px auto;
+            margin: 0px auto;
             width: 100%;
         }
     }
