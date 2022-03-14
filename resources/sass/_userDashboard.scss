@@ -97,16 +97,20 @@
                 }
             }
 
-            .apartment-messages {
-                flex-shrink: 0;
-            }
-
             .apartment-head {
                 align-items: center;
 
                 > div {
+                    flex-shrink: 0;
+                    text-align: right;
+
                     @media(max-width: 768px) {
                         width: 100%;
+                        flex-shrink: initial;
+                    }
+
+                    @media (max-width: 580px) {
+                        text-align: left;
                     }
 
                     span {
