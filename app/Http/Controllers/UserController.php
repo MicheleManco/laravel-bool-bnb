@@ -182,6 +182,23 @@ class UserController extends Controller
         $apartment->services()->sync($services);
         $apartment->save();
 
+        // caricamento immagini nel database
+
+        $files = $request->file('images'); //file è un'immagine
+        if ($request->hasFile('images')) {  //immagini ciclate e salvate
+            $data = [];
+            foreach ($files as $file) {
+                $fileName = rand(100000, 999999) . '_' . time() . '.' . $file->getClientOriginalExtension();
+                $data[] = [
+                    'fileName' => $fileName,
+                    'altText' => $apartment->title,
+                    'cover' => false
+                ];
+                $file->storeAs('/apartments/' . $apartment->id, $fileName, 'public');
+            }
+            $apartment->images()->createMany($data);
+        }
+
         // $stats = new Stat();
         // $stats -> apartment_id = $apartment->id;
         // $stats-> n_views = 0;
