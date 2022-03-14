@@ -58,21 +58,23 @@
     ></map-component>
 
             
-    @if (Auth::user()->id != $apartment->user_id)
-    <div class="msg-container">
-        <h4>Contatta il proprietario</h4>
-        {{-- form per i messaggi --}}
-        <form action="{{route('messagesPost', $apartment->id)}}" method='POST'>
-            @method('POST')
-            @csrf
-            <input type="text" name="name" placeholder="Nome"><br>
-            <input type="text" name="surname" placeholder="Cognome"><br>
-            <input type="email" name="email" placeholder="Email"><br>
-            <textarea name="text" cols="50" rows="10" placeholder="Scrivi il tuo messaggio."></textarea><br>
-            <input type="submit" value="Invia" class="my-btn">
-        </form>
-    </div>
-    @endif
+    @auth        
+        @if (Auth::user()->id != $apartment->user_id)
+        <div class="msg-container">
+            <h4>Contatta il proprietario</h4>
+            {{-- form per i messaggi --}}
+            <form action="{{route('messagesPost', $apartment->id)}}" method='POST'>
+                @method('POST')
+                @csrf
+                <input type="text" name="name" placeholder="Nome"><br>
+                <input type="text" name="surname" placeholder="Cognome"><br>
+                <input type="email" name="email" placeholder="Email"><br>
+                <textarea name="text" cols="50" rows="10" placeholder="Scrivi il tuo messaggio."></textarea><br>
+                <input type="submit" value="Invia" class="my-btn">
+            </form>
+        </div>
+        @endif
+    @endauth
     
     
         
