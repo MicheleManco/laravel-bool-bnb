@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <Jumbotrone/> 
+        <Jumbotrone :apartment_images="apartment_images"/> 
         <Randomdestination/>
         
 
@@ -13,7 +13,7 @@
                     <div class="prezzo">
                         <div><strong>{{apartment.price}}€</strong> </div>
                     </div>
-                    <!-- <img src="/images/apartment-placeholder.jpg" :alt="apartment.title"> -->
+                    <img class="image" :src="getImage(apartment.id)" :alt="apartment.title">
                     <div class="description">
                         <div>{{apartment.city}}</div>
                         <div>{{apartment.title}}</div>  
@@ -65,9 +65,11 @@ export default {
         props: {
             apartment_sponsorship: Array,
             filter_sponsor: Array,
+            apartment_images: Array,
         },
 
         mounted() {
+            console.log('id appartamento:'+ this.apartment_images[9].id);
 
             // salva gli appartamenti del DB nell'array
             axios.get('api/apartments/list')
@@ -94,6 +96,13 @@ export default {
                     }
                 }
 
+            },
+            getImage(id) {
+                for (let i = 0; i < this.apartment_images.length; i++) {
+                    if(this.apartment_images[i].id == id) {
+                        return `/storage/apartments/${id}/${this.apartment_images[i].images[0]}`
+                    }
+                }
             }
 
         }
@@ -128,11 +137,8 @@ h2{
         text-decoration: none;
         color: white;
         transition: 0.3s;
-        background-image: url('/images/apartment-placeholder.jpg');
-        background-repeat: no-repeat;
-        object-fit: cover;
-        background-position: center;
-        background-size: 200%;
+        position: relative;
+        overflow: hidden;
         .prezzo div{
             background-color: #2c2c2c6c;
             border-radius: 10px;
@@ -140,11 +146,20 @@ h2{
             margin-bottom: 80px;
             width: 50%;
             text-align: center;
+            z-index: 999;
         }
         .description{
             background-color: #2c2c2c6c;
             border-radius: 10px;
             padding: 5px;
+            z-index: 999;
+        }
+        .image{
+            position:absolute;
+            top: -20px;
+            left: -20px;
+            z-index: -1;
+            height: 110%;
         }
     }
 

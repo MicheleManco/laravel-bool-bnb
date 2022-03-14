@@ -61,6 +61,7 @@ hr{
 
     #city_cards img{
         border-radius:20px;
+        box-shadow: 4px 5px 3px 0px #888888
     }
 
 </style>

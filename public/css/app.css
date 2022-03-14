@@ -11121,10 +11121,10 @@ footer hr {
   padding: 10px 30px;
   transition: all 0.2s ease;
   text-decoration: none;
+  font-weight: bold;
 }
 
 #payment-container .my-btn:hover {
-  font-weight: bold;
   background-color: #332b27;
 }
 
@@ -11302,10 +11302,12 @@ footer hr {
 }
 
 #apartment-details .img-container img {
-  max-width: 100%;
+  width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 #apartment-details .img-container img:first-child {
@@ -11505,6 +11507,7 @@ footer hr {
 
 #apartment-create .checkbox {
   width: 100%;
+  padding: 5px;
 }
 
 #apartment-create #category {
@@ -11522,19 +11525,14 @@ footer hr {
 
 #apartment-create #create_button {
   color: #FFFFFF;
-  font-family: Helvetica;
-  font-size: 15px;
-  font-weight: 100;
   background-color: #FFAE00;
-  text-decoration: none;
-  cursor: pointer;
   width: 40%;
   padding: 10px 0;
   border: none;
   margin: 10px auto;
   border-radius: 38px;
-  transform: translate(0, 0);
-  -ms-transform: translate(-50%, -50%);
+  border: solid #FFAE00;
+  font-weight: bold;
 }
 
 #apartment-create #create_button:hover {

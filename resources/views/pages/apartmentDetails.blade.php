@@ -57,6 +57,8 @@
     longitude="{{$apartment->longitude}}"
     ></map-component>
 
+            
+    @if (Auth::user()->id != $apartment->user_id)
     <div class="msg-container">
         <h4>Contatta il proprietario</h4>
         {{-- form per i messaggi --}}
@@ -70,6 +72,8 @@
             <input type="submit" value="Invia" class="my-btn">
         </form>
     </div>
+    @endif
+    
     
         
 </div>

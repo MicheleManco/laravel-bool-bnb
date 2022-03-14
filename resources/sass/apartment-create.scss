@@ -41,6 +41,7 @@
    
     .checkbox{
         width:100%;
+        padding: 5px;
     }
 
     #category{
@@ -58,24 +59,20 @@
 
     #create_button{
         color: #FFFFFF;
-        font-family: Helvetica;
-        font-size: 15px;
-        font-weight: 100;
         background-color: #FFAE00;
-        text-decoration: none;
-        cursor: pointer;
-        width:40%;
+        width: 40%;
         padding:10px 0;
         border:none;
         margin: 10px auto;
         border-radius: 38px;
-        transform: translate(0, 0);
-        -ms-transform: translate(-50%, -50%);
-    }
-
-    #create_button:hover {
         border: solid #FFAE00;
-        text-decoration: none;
-        background-color: #332b27;
+        font-weight: bold;
+    
+
+        &:hover {
+            border: solid #FFAE00;
+            text-decoration: none;
+            background-color: #332b27;
+        }
     } 
 }

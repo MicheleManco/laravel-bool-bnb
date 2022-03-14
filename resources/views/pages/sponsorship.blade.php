@@ -4,7 +4,7 @@
     <div id="sponsorship">
         <div class="title">
             <h2>Sponsorizza il tuo appartamento</h2>
-            <p>Sponsorizzandolo, il tuo appartamento apparirà in home page.</p>
+            <p>Sponsorizzandolo, il tuo appartamento apparirà tra i primi in home.</p>
         </div>
         <div class="ap-info">
             <h3>
@@ -21,7 +21,7 @@
                     <div class="sponsor {{$sponsor->name}}">
                         <img src='/images/{{$sponsor->name}}.png' alt="{{$sponsor->name}}">
                         <h3 class="name">{{$sponsor->name}}</h3>
-                        <p class="info"> A soli <span class="price">{{$sponsor->price}} €</span> l'appartmento sarà sponsorizzato per {{$sponsor->duration/24}} giorni </p>
+                        <p class="info"> A soli <span class="price">{{$sponsor->price}} €</span> l'appartamento sarà sponsorizzato per {{$sponsor->duration/24}} giorni </p>
                     </div>
                 </a>
             </div>
