@@ -447,6 +447,7 @@ section {
     #map {
       width: 50%;
       height: 1000px;
+      margin: 0px 50px 50px 10px;
     }
   }
 }
