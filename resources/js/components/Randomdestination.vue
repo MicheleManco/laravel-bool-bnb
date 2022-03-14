@@ -8,7 +8,7 @@
             <p>Tra i nostri tantissimi appartamenti <br>
             c'è anche quello perfetto per te.
             </p>
-            <a href="#" class="BUTTON_UPJ">Destinazione casuale</a>
+            <a href="/search" class="BUTTON_UPJ">Destinazione casuale</a>
         </div>
     </div>
 </template>
