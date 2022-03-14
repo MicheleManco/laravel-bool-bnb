@@ -13,7 +13,7 @@
                     <div>
                         <p><strong>{{apartment.price}}€</strong> </p>
                     </div>
-                    <img src="/images/apartment-placeholder.jpg" :alt="apartment.title">
+                    <img :src="`/storage/apartments/${apartment.id}/112250_1647257852.jpg`" :alt="apartment.title">
                     <div>
                         <span>{{apartment.city}}</span>
                         <div>{{apartment.title}}</div>  

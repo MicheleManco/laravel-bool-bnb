@@ -2614,7 +2614,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Randomdestination',
   data: function data() {
-    return {};
+    return {
+      randomNum: -1
+    };
+  },
+  mounted: function mounted() {
+    this.randomNum = Math.floor(Math.random() * 12);
+    console.log(this.randomNum);
   }
 });
 
@@ -7040,7 +7046,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "section[data-v-6c4d5998] {\n  font-size: 1.2rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\nsection a[data-v-6c4d5998] {\n  color: #ffae00;\n  font-weight: bold;\n}\nsection .my-btn[data-v-6c4d5998] {\n  background: #ffae00;\n  color: #fff;\n  border-radius: 30px;\n  border: solid #ffae00;\n  padding: 10px 30px;\n  transition: all 0.2s ease;\n  text-decoration: none;\n}\nsection .my-btn[data-v-6c4d5998]:hover {\n  font-weight: bold;\n  background-color: #332b27;\n}\nsection .my-btn.btn-outline[data-v-6c4d5998] {\n  background: #fff;\n  border: solid #ffae00;\n  color: #ffae00;\n}\nsection .controls[data-v-6c4d5998] {\n  width: 80%;\n}\nsection .controls .search-bar-cont[data-v-6c4d5998] {\n  display: flex;\n  margin: 3rem 0;\n}\nsection .controls .search-bar-cont > *[data-v-6c4d5998] {\n  margin: 0 20px;\n}\nsection .controls .search-bar-cont .city-search[data-v-6c4d5998] {\n  width: 1000px;\n  border-radius: 30px;\n  border: 1px solid #cbcbcb;\n  padding: 10px 0 10px 25px;\n}\nsection .controls .filter-cont[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 1rem;\n}\nsection .controls .filter-cont h2[data-v-6c4d5998] {\n  font-weight: bold;\n}\nsection .controls .filter-cont .range-cont[data-v-6c4d5998], section .controls .filter-cont .select-cont[data-v-6c4d5998] {\n  display: flex;\n  justify-content: center;\n}\nsection .controls .filter-cont .range-cont[data-v-6c4d5998] {\n  margin: 1rem 0;\n}\nsection .controls .filter-cont .range-cont input[data-v-6c4d5998] {\n  width: 50%;\n  margin: 0 1rem;\n}\nsection .controls .filter-cont .select-cont[data-v-6c4d5998] {\n  margin-bottom: 1rem;\n}\nsection .controls .filter-cont .select-cont select[data-v-6c4d5998] {\n  margin: 0 1rem;\n  border-radius: 30px;\n  padding: 0.2rem 1.5rem;\n}\nsection .controls .filter-cont .service-cont[data-v-6c4d5998] {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;\n  grid-template-rows: 1fr 1fr 1fr;\n  gap: 0 2rem;\n  margin-bottom: 1rem;\n}\nsection .order-cont[data-v-6c4d5998] {\n  margin-bottom: 1rem;\n  width: 80%;\n}\nsection .order-cont div[data-v-6c4d5998] {\n  display: flex;\n  align-items: center;\n}\nsection .order-cont div hr[data-v-6c4d5998] {\n  width: 80%;\n}\nsection .order-cont .my-btn[data-v-6c4d5998] {\n  margin-right: 1rem;\n}\nsection .order-cont p[data-v-6c4d5998] {\n  text-align: center;\n}\nsection .result-cont[data-v-6c4d5998] {\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  -moz-column-gap: 1rem;\n       column-gap: 1rem;\n}\nsection .result-cont .results[data-v-6c4d5998] {\n  width: 40%;\n  height: 1000px;\n  overflow: auto;\n  padding: 1rem;\n}\nsection .result-cont .results .apartment[data-v-6c4d5998] {\n  border: 1px solid #cbcbcb;\n  height: 300px;\n  width: 100%;\n  margin-bottom: 1rem;\n  padding: 1rem;\n  transition: all 0.2s ease;\n}\nsection .result-cont .results .apartment[data-v-6c4d5998]:hover {\n  box-shadow: 0 0 20px #cbcbcb;\n  border-color: #a0a0a0;\n  transform: scale(1.01);\n}\nsection .result-cont .results .apartment .apartment-head[data-v-6c4d5998] {\n  display: flex;\n  justify-content: space-between;\n}\nsection .result-cont .results .apartment .apartment-head h4[data-v-6c4d5998] {\n  font-weight: bold;\n}\nsection .result-cont .results .apartment .apartment-labels[data-v-6c4d5998] {\n  display: flex;\n  margin-top: 1rem;\n}\nsection .result-cont .results .apartment .apartment-labels h5[data-v-6c4d5998] {\n  margin-right: 1rem;\n  color: #fff;\n  background: #ffae00;\n  border-radius: 30px;\n  padding: 0.5rem 1rem;\n  font-size: 0.6rem;\n}\nsection .result-cont #map[data-v-6c4d5998] {\n  width: 50%;\n  height: 1000px;\n}", ""]);
+exports.push([module.i, "section[data-v-6c4d5998] {\n  font-size: 1.2rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\nsection a[data-v-6c4d5998] {\n  color: #ffae00;\n  font-weight: bold;\n}\nsection .my-btn[data-v-6c4d5998] {\n  background: #ffae00;\n  color: #fff;\n  border-radius: 30px;\n  border: solid #ffae00;\n  padding: 10px 30px;\n  transition: all 0.2s ease;\n  text-decoration: none;\n}\nsection .my-btn[data-v-6c4d5998]:hover {\n  font-weight: bold;\n  background-color: #332b27;\n}\nsection .my-btn.btn-outline[data-v-6c4d5998] {\n  background: #fff;\n  border: solid #ffae00;\n  color: #ffae00;\n}\nsection .controls[data-v-6c4d5998] {\n  width: 80%;\n}\nsection .controls .search-bar-cont[data-v-6c4d5998] {\n  display: flex;\n  margin: 3rem 0;\n}\nsection .controls .search-bar-cont > *[data-v-6c4d5998] {\n  margin: 0 20px;\n}\nsection .controls .search-bar-cont .city-search[data-v-6c4d5998] {\n  width: 1000px;\n  border-radius: 30px;\n  border: 1px solid #cbcbcb;\n  padding: 10px 0 10px 25px;\n}\nsection .controls .filter-cont[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 1rem;\n}\nsection .controls .filter-cont h2[data-v-6c4d5998] {\n  font-weight: bold;\n}\nsection .controls .filter-cont .range-cont[data-v-6c4d5998], section .controls .filter-cont .select-cont[data-v-6c4d5998] {\n  display: flex;\n  justify-content: center;\n}\nsection .controls .filter-cont .range-cont[data-v-6c4d5998] {\n  margin: 1rem 0;\n}\nsection .controls .filter-cont .range-cont input[data-v-6c4d5998] {\n  width: 50%;\n  margin: 0 1rem;\n}\nsection .controls .filter-cont .select-cont[data-v-6c4d5998] {\n  margin-bottom: 1rem;\n}\nsection .controls .filter-cont .select-cont select[data-v-6c4d5998] {\n  margin: 0 1rem;\n  border-radius: 30px;\n  padding: 0.2rem 1.5rem;\n}\nsection .controls .filter-cont .service-cont[data-v-6c4d5998] {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;\n  grid-template-rows: 1fr 1fr 1fr;\n  gap: 0 2rem;\n  margin-bottom: 1rem;\n}\nsection .order-cont[data-v-6c4d5998] {\n  margin-bottom: 1rem;\n  width: 80%;\n}\nsection .order-cont div[data-v-6c4d5998] {\n  display: flex;\n  align-items: center;\n}\nsection .order-cont div hr[data-v-6c4d5998] {\n  width: 80%;\n}\nsection .order-cont .my-btn[data-v-6c4d5998] {\n  margin-right: 1rem;\n}\nsection .order-cont p[data-v-6c4d5998] {\n  text-align: center;\n}\nsection .result-cont[data-v-6c4d5998] {\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  -moz-column-gap: 1rem;\n       column-gap: 1rem;\n}\nsection .result-cont .results[data-v-6c4d5998] {\n  width: 40%;\n  height: 1000px;\n  overflow: auto;\n  padding: 1rem;\n}\nsection .result-cont .results .apartment[data-v-6c4d5998] {\n  border: 1px solid #cbcbcb;\n  height: 300px;\n  width: 100%;\n  margin-bottom: 1rem;\n  padding: 1rem;\n  transition: all 0.2s ease;\n}\nsection .result-cont .results .apartment[data-v-6c4d5998]:hover {\n  box-shadow: 0 0 20px #cbcbcb;\n  border-color: #a0a0a0;\n  transform: scale(1.01);\n}\nsection .result-cont .results .apartment .apartment-head[data-v-6c4d5998] {\n  display: flex;\n  justify-content: space-between;\n}\nsection .result-cont .results .apartment .apartment-head h4[data-v-6c4d5998] {\n  font-weight: bold;\n}\nsection .result-cont .results .apartment .apartment-labels[data-v-6c4d5998] {\n  display: flex;\n  margin-top: 1rem;\n}\nsection .result-cont .results .apartment .apartment-labels h5[data-v-6c4d5998] {\n  margin-right: 1rem;\n  color: #fff;\n  background: #ffae00;\n  border-radius: 30px;\n  padding: 0.5rem 1rem;\n  font-size: 0.6rem;\n}\nsection .result-cont #map[data-v-6c4d5998] {\n  width: 50%;\n  height: 1000px;\n  margin: 0px 50px 50px 10px;\n}", ""]);
 
 // exports
 
@@ -7154,7 +7160,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "hr[data-v-aa3a5dd0] {\n  width: 78%;\n  border: 1px solid #978e87;\n  margin: 40px auto;\n}\nh2[data-v-aa3a5dd0] {\n  font-size: 40px;\n  text-align: center;\n  margin: 50px 0;\n}\nh3[data-v-aa3a5dd0] {\n  color: white;\n  font-weight: bold;\n  margin-top: -40px;\n  margin-left: 25px;\n}\n#city_cards div[data-v-aa3a5dd0] {\n  margin: 20px 0;\n}\n#city_cards img[data-v-aa3a5dd0] {\n  border-radius: 20px;\n}", ""]);
+exports.push([module.i, ".container-fluid[data-v-aa3a5dd0] {\n  margin-bottom: 40px;\n}\nhr[data-v-aa3a5dd0] {\n  width: 78%;\n  border: 1px solid #978e87;\n  margin: 40px auto;\n}\nh2[data-v-aa3a5dd0] {\n  font-size: 40px;\n  text-align: center;\n  margin: 50px 0;\n}\nh3[data-v-aa3a5dd0] {\n  color: white;\n  font-weight: bold;\n  margin-top: -40px;\n  margin-left: 25px;\n}\n#city_cards div[data-v-aa3a5dd0] {\n  margin: 20px 0;\n}\n#city_cards img[data-v-aa3a5dd0] {\n  border-radius: 20px;\n}", ""]);
 
 // exports
 
@@ -39680,7 +39686,10 @@ var render = function () {
                       _vm._v(" "),
                       _c("img", {
                         attrs: {
-                          src: "/images/apartment-placeholder.jpg",
+                          src:
+                            "/storage/apartments/" +
+                            apartment.id +
+                            "/112250_1647257852.jpg",
                           alt: apartment.title,
                         },
                       }),
@@ -39751,6 +39760,12 @@ var render = function () {
         domProps: { value: _vm.searchAp },
         on: {
           keypress: _vm.getFilterCity,
+          keyup: function ($event) {
+            if (!$event.type.indexOf("key") && $event.keyCode !== 8) {
+              return null
+            }
+            return _vm.getFilterCity()
+          },
           input: function ($event) {
             if ($event.target.composing) {
               return
@@ -39943,36 +39958,43 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container-fluid", attrs: { id: "trip" } }, [
+    _c("div", { attrs: { id: "paragraph" } }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "BUTTON_UPJ",
+          attrs: { href: "/apartment/" + _vm.randomNum },
+        },
+        [_vm._v("Destinazione casuale")]
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "container-fluid", attrs: { id: "trip" } },
-      [
-        _c("div", { attrs: { id: "paragraph" } }, [
-          _c("h2", [
-            _vm._v("Non sai dove andare? "),
-            _c("br"),
-            _vm._v("\n            Fidati di noi\n        "),
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v("Tra i nostri tantissimi appartamenti "),
-            _c("br"),
-            _vm._v("\n        c'è anche quello perfetto per te.\n        "),
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "BUTTON_UPJ", attrs: { href: "#" } }, [
-            _vm._v("Destinazione casuale"),
-          ]),
-        ]),
-      ]
-    )
+    return _c("h2", [
+      _vm._v("Non sai dove andare? "),
+      _c("br"),
+      _vm._v("\n            Fidati di noi\n        "),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("Tra i nostri tantissimi appartamenti "),
+      _c("br"),
+      _vm._v("\n        c'è anche quello perfetto per te.\n        "),
+    ])
   },
 ]
 render._withStripped = true
