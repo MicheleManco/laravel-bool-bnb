@@ -31,7 +31,19 @@ class GuestController extends Controller
             }
         }
 
-        return view('pages.home', compact('apartments', 'apartmentSponsorship', 'filterSponsor'));
+        $apartment_images = array();
+        foreach ($apartments as $apartment) {
+            $images = Image::where('apartment_id', $apartment->id)->get();
+
+            $a = array();
+            foreach ($images as $image) {
+                array_push($a, $image->fileName);
+            }
+
+            array_push($apartment_images, ['id' => $apartment->id, 'images' => $a]);
+        }
+
+        return view('pages.home', compact('apartments', 'apartmentSponsorship', 'filterSponsor', 'apartment_images'));
     }
 
     public function pageRegister()

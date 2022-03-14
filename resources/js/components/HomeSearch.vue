@@ -13,7 +13,7 @@
                     <div>
                         <p><strong>{{apartment.price}}€</strong> </p>
                     </div>
-                    <img src="/images/apartment-placeholder.jpg" :alt="apartment.title">
+                    <img :src="getImage(apartment.id)" :alt="apartment.title">
                     <div>
                         <span>{{apartment.city}}</span>
                         <div>{{apartment.title}}</div>  
@@ -65,9 +65,11 @@ export default {
         props: {
             apartment_sponsorship: Array,
             filter_sponsor: Array,
+            apartment_images: Array,
         },
 
         mounted() {
+            console.log('id appartamento:'+ this.apartment_images[9].id);
 
             // salva gli appartamenti del DB nell'array
             axios.get('api/apartments/list')
@@ -94,6 +96,13 @@ export default {
                     }
                 }
 
+            },
+            getImage(id) {
+                for (let i = 0; i < this.apartment_images.length; i++) {
+                    if(this.apartment_images[i].id == id) {
+                        return `/storage/apartments/${id}/${this.apartment_images[i].images[0]}`
+                    }
+                }
             }
 
         }
