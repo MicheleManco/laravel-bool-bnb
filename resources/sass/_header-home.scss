@@ -9,6 +9,11 @@ header {
         font-family: "Noto Serif Display", serif;
         color: #fff;
     }
+    a:hover{
+        transform: scale(1.1);
+        color:#FFAE00;
+        text-decoration: none;
+    }
     .guest,
     .logged-user {
         text-align: right;
