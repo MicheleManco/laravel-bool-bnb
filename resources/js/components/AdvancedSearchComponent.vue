@@ -26,6 +26,7 @@
           </div>
           <div class="select-cont">
             <!-- selezione categoria -->
+            <div category-rooms-container>
             <select v-model="selectedCategory">
               <option value="-1">Categoria</option>
               <option
@@ -44,6 +45,8 @@
               </option>
               <option value="5">5+</option>
             </select>
+            </div>
+            <div class="beds-bathrooms-container">
             <!-- selezione numero di leti -->
             <select v-model="selectedBeds">
               <option value="-1">Letti</option>
@@ -60,6 +63,7 @@
               </option>
               <option value="5">5+</option>
             </select>
+            </div>
           </div>
           <div class="service-cont">
           <!-- selezione servizi aggiuntivi -->
@@ -74,8 +78,6 @@
           </div>
         </div>
       </div>
-    </section>
-
       <div class="order-cont">
         <!-- pulsante ordina per prezzo minore -->
         <div>
@@ -88,6 +90,8 @@
         <p>{{filteredApartments.length}} Risultati</p>
             <!-- messaggio di errore se non si inserisce una città -->
       </div>
+    </section>
+
       
     <div class="result-cont">
       <div v-if="noSearch">
@@ -321,6 +325,7 @@ section {
         padding: 10px 30px;
         transition: all 0.2s ease;
         text-decoration: none;
+       
         &:hover {
             font-weight: bold;
             background-color: #332b27;
@@ -332,20 +337,28 @@ section {
         }
     }
   .controls{
-    width: 80%;
-
     .search-bar-cont {
+      width: 100%;
       display: flex;
       margin: 3rem 0;
-      >* {
+      * {
         margin: 0 20px;
       }
       .city-search {
-        width: 1000px;
+        width: 80%;
         border-radius: 30px;
         border: 1px solid #cbcbcb;
         padding: 10px 0 10px 25px;
       }
+         @media (max-width: 480px) {
+            flex-direction: column;
+          }
+          .my-btn {
+            @media (max-width: 480px) {
+            max-width: 120px;
+            margin-top: 10px;
+          }
+          }
     }
     .filter-cont {
       display: flex;
@@ -364,37 +377,75 @@ section {
         input {
           width: 50%;
           margin: 0 1rem;
+          @media (max-width: 600px) {
+            width: 20%;
+          }
         }
       }
       .select-cont{
         margin-bottom: 1rem;
+        width: 100%;
+      
+         @media (max-width: 600px) {
+              display: block;
+              width: 50%;
+              max-width: 200px;
+              margin:auto;
+            }
+
         select {
-          margin: 0 1rem;
+          margin-bottom: 5px;
+          margin-right: 1rem;
           border-radius: 30px;
           padding: .2rem 1.5rem;
+          
+          @media (max-width: 600px) {
+              margin: 5px;
+          }
         }
       }
       .service-cont{
         display: grid; 
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+        grid-template-columns: 1fr 1fr 1fr 1fr; 
         grid-template-rows: 1fr 1fr 1fr; 
         gap: 0 2rem; 
         margin-bottom: 1rem;
+
+        @media (max-width: 1200px) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 480px) {
+            grid-template-columns: 1fr;
+        }
+
+        span {
+          line-height: 1.2em;
+        }
       }
     }
   }
     .order-cont{
       margin-bottom: 1rem;
-      width: 80%;
+      width: 100%;
       div {
         display: flex;
         align-items: center;
         hr {
           width: 80%;
         }
+        @media (max-width: 768px) {
+          flex-direction: column;
+        }
       }
       .my-btn {
         margin-right: 1rem;
+        width: 220px;
+        font-size: 15px;
       }
       p {
         text-align: center;
