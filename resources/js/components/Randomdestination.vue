@@ -8,7 +8,7 @@
             <p>Tra i nostri tantissimi appartamenti <br>
             c'è anche quello perfetto per te.
             </p>
-            <a href="/search" class="BUTTON_UPJ">Destinazione casuale</a>
+            <a :href="'/apartment/' + randomNum" class="BUTTON_UPJ">Destinazione casuale</a>
         </div>
     </div>
 </template>
@@ -19,7 +19,13 @@ export default {
     name: 'Randomdestination',
     data(){
         return{
+            randomNum: -1,
         }
+    },
+    mounted(){
+        this.randomNum = Math.floor(Math.random() * 12)
+        console.log(this.randomNum);
+
     }
 }
 </script>
