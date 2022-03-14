@@ -18,21 +18,21 @@
 
             @method('POST')
             @csrf
-            <div id="first" class="col-10 col-sm-10 col-md-5 col-offset-2 offset-1 col-lg-5 container-fluid">
-                <input type="text" name="title" placeholder="  Titolo"><br>
-                <textarea name="description" placeholder="  Descrizione" rows="10" class="col-10 col-sm-10 col-md-10 col-lg-10"></textarea><br>
-                <input type="number" name="sqmeters" placeholder="  Metri quadri"><br>            
-                <input type="number" name="rooms" placeholder="  Stanze"><br>
-                <input type="number" name="beds" placeholder="  Letti"><br>
-                <input type="number" name="bathrooms" placeholder="  Bagni"><br>
+            <div class="col-10 col-sm-10 col-md-5 col-offset-2 offset-1 col-lg-5 container-fluid input-cont">
+                <input type="text" name="title" placeholder="Titolo"><br>
+                <textarea name="description" placeholder="Descrizione" rows="10" class="col-10 col-sm-10 col-md-10 col-lg-10"></textarea><br>
+                <input type="number" name="sqmeters" placeholder="Metri quadri"><br>            
+                <input type="number" name="rooms" placeholder="Stanze"><br>
+                <input type="number" name="beds" placeholder="Letti"><br>
+                <input type="number" name="bathrooms" placeholder="Bagni"><br>
             </div>
 
             <div class="col-10 col-sm-10 col-md-5 col-lg-5 container-fluid">
-                <div id="second">
-                    <input type="text" name="address" placeholder="  Indirizzo"><br>
-                    <input type="text" name="city" placeholder="  Città"><br>
-                    <input type="text" name="cap" placeholder="  Cap"><br>
-                    <input type="number" name="price" placeholder="  Prezzo"><br>
+                <div class="input-cont">
+                    <input type="text" name="address" placeholder="Indirizzo"><br>
+                    <input type="text" name="city" placeholder="Città"><br>
+                    <input type="text" name="cap" placeholder="Cap"><br>
+                    <input type="number" name="price" placeholder="Prezzo"><br>
                 </div>
 
                 <div id="checkbox">

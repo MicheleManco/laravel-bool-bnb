@@ -1,78 +1,69 @@
 #apartment-create {
-    form{
-        display:flex;
-        flex-direction:row;
-        justify-content:center;
-        flex-wrap:wrap;
-        margin:50px 0;
-       } 
-
-     #first input{
-        width:84%;
-        border-radius:35px;
-        border:1px solid grey;
-        margin:10px 0;
-        height:40px;
-        padding-right:20px;
-        padding-left:10px;
+    form {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 50px 0;
+        .input-cont {
+            input {
+                width: 84%;
+                border-radius: 35px;
+                border: 1px solid grey;
+                margin: 10px 0;
+                height: 40px;
+                padding-right: 20px;
+                padding-left: 20px;
+            }
+        }
     }
 
-    #second input{
-        width:84%;
-        border-radius:35px;
-        border:1px solid grey;
-        margin:10px 0;
-        height:40px;
-        padding-right:20px;
-        padding-left:10px;
+    textarea {
+        padding-top: 10px;
+        border-radius: 10px;
+        margin: 10px 0;
+        border: 1px solid grey;
     }
 
-    textarea{
-        border-radius:10px;
-        margin:10px 0;
-        border:1px solid grey;
+    li {
+        display: inline-block;
+        width: 180px;
+        margin: 3px 0;
     }
 
-    li{
-        display:inline-block;
-        width:180px;
-        margin:3px 0;
-    }
-   
-    .checkbox{
-        width:100%;
+    .checkbox {
+        width: 100%;
         padding: 5px;
     }
 
-    #category{
-        margin:10px 0;
-        padding:10px 20px;
-        background-color:white;
-        padding-right:51%;
-        border:1px solid grey;
-        border-radius:30px;
+    #category {
+        margin: 10px 0;
+        padding: 10px 20px;
+        background-color: white;
+        padding-right: 51%;
+        border: 1px solid grey;
+        border-radius: 30px;
     }
 
-    #category_div{
-        margin:10px 0;
+    #category_div {
+        margin: 10px 0;
     }
 
-    #create_button{
-        color: #FFFFFF;
-        background-color: #FFAE00;
+    #create_button {
+        color: #ffffff;
+        background-color: #ffae00;
         width: 40%;
-        padding:10px 0;
-        border:none;
+        padding: 10px 0;
+        border: none;
         margin: 10px auto;
         border-radius: 38px;
-        border: solid #FFAE00;
+        border: solid #ffae00;
         font-weight: bold;
-    
 
         &:hover {
-            border: solid #FFAE00;
+            border: solid #ffae00;
             text-decoration: none;
             background-color: #332b27;
         }
-    } 
+    }
 }
