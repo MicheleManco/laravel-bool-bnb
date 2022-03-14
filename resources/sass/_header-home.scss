@@ -14,6 +14,7 @@ header {
         color:#FFAE00;
         text-decoration: none;
     }
+
     .guest,
     .logged-user {
         text-align: right;
@@ -24,5 +25,10 @@ header {
                 margin-right: 1rem;
             }
         }
+        a:hover{
+            color:#FFAE00;
+            text-decoration: none;
+        }
+        
     }
 }
