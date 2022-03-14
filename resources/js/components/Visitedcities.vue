@@ -33,6 +33,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.container-fluid{
+    margin-bottom: 40px;
+}
 
 hr{
         width: 78%;
