@@ -2389,8 +2389,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    console.log('id appartamento:' + this.apartment_images[9].id); // salva gli appartamenti del DB nell'array
-
+    // salva gli appartamenti del DB nell'array
     axios.get('api/apartments/list').then(function (r) {
       return _this.apartments = r.data;
     })["catch"](function (e) {
@@ -7105,7 +7104,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "h2[data-v-09e28492] {\n  font-size: 40px;\n  text-align: center;\n  margin: 50px 0;\n}\n.row-apartment[data-v-09e28492] {\n  width: 90%;\n  margin: 0 auto;\n  display: flex;\n  justify-content: center;\n}\n.apartment[data-v-09e28492] {\n  border-radius: 20px;\n  box-shadow: 4px 5px 3px 0px #888888;\n  display: flex;\n  height: auto;\n  width: 280px;\n  justify-content: space-between;\n  flex-direction: column;\n  margin: 40px 47px;\n  padding: 15px;\n  font-size: 20px;\n  text-decoration: none;\n  color: white;\n  transition: 0.3s;\n  position: relative;\n  overflow: hidden;\n}\n.apartment .prezzo div[data-v-09e28492] {\n  background-color: #2c2c2c6c;\n  border-radius: 10px;\n  padding: 5px;\n  margin-bottom: 80px;\n  width: 50%;\n  text-align: center;\n  z-index: 999;\n}\n.apartment .description[data-v-09e28492] {\n  background-color: #2c2c2c6c;\n  border-radius: 10px;\n  padding: 5px;\n  z-index: 999;\n}\n.apartment .image[data-v-09e28492] {\n  position: absolute;\n  top: -20px;\n  left: -20px;\n  z-index: -1;\n  height: 110%;\n}\n.apartment[data-v-09e28492]:hover {\n  width: 300px;\n  margin: 25px 47px;\n}", ""]);
+exports.push([module.i, "h2[data-v-09e28492] {\n  font-size: 40px;\n  text-align: center;\n  margin: 50px 0;\n}\n.row-apartment[data-v-09e28492] {\n  width: 90%;\n  margin: 0 auto;\n  display: flex;\n  justify-content: center;\n}\n.apartment[data-v-09e28492] {\n  border-radius: 20px;\n  box-shadow: 4px 5px 3px 0px #888888;\n  display: flex;\n  height: 280px;\n  width: 280px;\n  justify-content: space-between;\n  flex-direction: column;\n  margin: 40px 47px;\n  padding: 15px;\n  font-size: 20px;\n  text-decoration: none;\n  color: white;\n  transition: 0.3s;\n  position: relative;\n  overflow: hidden;\n}\n.apartment[data-v-09e28492]:hover {\n  margin: 25px 47px;\n  transform: scale(1.1);\n}\n.apartment .prezzo div[data-v-09e28492] {\n  background-color: #2c2c2c6c;\n  border-radius: 10px;\n  padding: 5px;\n  margin-bottom: 80px;\n  width: 50%;\n  text-align: center;\n  z-index: 999;\n}\n.apartment .description[data-v-09e28492] {\n  background-color: #2c2c2c6c;\n  border-radius: 10px;\n  padding: 5px;\n  z-index: 999;\n}\n.apartment .image[data-v-09e28492] {\n  position: absolute;\n  top: -20px;\n  left: -20px;\n  z-index: -1;\n  height: 110%;\n}", ""]);
 
 // exports
 
@@ -53136,8 +53135,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\es-boolean\laravel-bool-bnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\es-boolean\laravel-bool-bnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/amalia/Boolean/laravel-bool-bnb/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

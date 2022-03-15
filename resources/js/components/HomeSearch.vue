@@ -125,7 +125,7 @@ h2{
         border-radius: 20px;
         box-shadow: 4px 5px 3px 0px #888888;
         display: flex;
-        height: auto;
+        height: 280px;
         width: 280px;
         justify-content: space-between;
         flex-direction: column;
@@ -137,6 +137,13 @@ h2{
         transition: 0.3s;
         position: relative;
         overflow: hidden;
+
+        &:hover {
+            // width: 300px;
+            margin: 25px 47px;
+            transform: scale(1.1);
+        }
+
         .prezzo div{
             background-color: #2c2c2c6c;
             border-radius: 10px;
@@ -159,10 +166,5 @@ h2{
             z-index: -1;
             height: 110%;
         }
-    }
-
-    .apartment:hover {
-        width: 300px;
-        margin: 25px 47px;
     }
 </style>
