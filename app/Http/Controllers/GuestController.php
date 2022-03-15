@@ -151,8 +151,9 @@ class GuestController extends Controller
 
             $stat->save();
         }
+        $images = Image::where('apartment_id', $apartment->id)->get();
+        $services = Service::all();
 
-
-        return view('pages.apartmentDetails', compact('apartment', 'stats'));
+        return view('pages.apartmentDetails', compact('apartment', 'stats','services', 'images'));
     }
 }
