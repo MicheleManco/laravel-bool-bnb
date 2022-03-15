@@ -23,7 +23,7 @@ export default {
         }
     },
     created(){
-        this.randomNum = Math.floor(Math.random() * 11)+1
+        this.randomNum = Math.floor(Math.random() * 10) + 40
         console.log(this.randomNum);
 
     }
