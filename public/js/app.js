@@ -39951,9 +39951,14 @@ var render = function () {
           _vm._v(" "),
           _c("p", [_vm._v(_vm._s(message.text))]),
           _vm._v(" "),
-          _c("span", { staticClass: "btn position-absolute bottom-0 end-0" }, [
-            _vm._v("Rispondi"),
-          ]),
+          _c(
+            "a",
+            {
+              staticClass: "btn position-absolute bottom-0 end-0",
+              attrs: { href: "mailto:amalialorenaferariu@gmail.com" },
+            },
+            [_vm._v("Rispondi")]
+          ),
         ])
       }),
     ],

@@ -24,7 +24,7 @@
 
                 <div class="col-10 col-sm-10 col-md-5 col-offset-2 offset-1 col-lg-5 container-fluid input-cont">
                     <input type="text" name="title" value="{{$apartment->title}}" placeholder="Titolo"><br>
-                    <textarea name="description"  rows="10" class="col-10 col-sm-10 col-md-10 col-lg-10" value="{{$apartment->description}}" placeholder="Descrizione"></textarea><br>
+                    <textarea name="description"  rows="10" class="col-10 col-sm-10 col-md-10 col-lg-10" value="{{$apartment->description}}">{{$apartment->description}}</textarea><br>
                     <input type="number" name="sqmeters" value="{{$apartment->sqmeters}}" placeholder="Metri quadri"><br>            
                     <input type="number" name="rooms" value="{{$apartment->rooms}}" placeholder="Stanze"><br>
                     <input type="number" name="beds" value="{{$apartment->beds}}" placeholder="Letti"><br>

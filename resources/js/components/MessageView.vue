@@ -15,7 +15,7 @@
             <h6>{{message.email}}</h6>
             <p>{{message.text}}</p>
 
-            <span class="btn position-absolute bottom-0 end-0">Rispondi</span>
+            <a href="mailto:amalialorenaferariu@gmail.com" class="btn position-absolute bottom-0 end-0">Rispondi</a>
         </div>
     </div>
     
